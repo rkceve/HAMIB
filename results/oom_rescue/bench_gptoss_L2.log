@@ -1,0 +1,120 @@
+======================================================================
+GPT-OSS 3-way bench: N=25 facts, 75 turns
+  modes: ['vanilla_gptoss', 'cms_gptoss_sbert'], model: openai/gpt-oss-20b
+  max_new_tokens: 256
+======================================================================
+scenario built: 75 turns
+
+[Load] GPT-OSS-20b ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/usr/local/lib/python3.11/dist-packages/kernels/utils.py:391: FutureWarning: Future versions of `kernels` (>=0.15) will require specifying a kernel version or revision. See: https://huggingface.co/docs/kernels/migration
+  revision = select_revision_or_version(repo_id, revision=revision, version=version)
+Fetching ... files: 0it [00:00, ?it/s]Fetching ... files: 42it [00:00, 2511.56it/s]
+Loading weights:   0%|          | 0/411 [00:00<?, ?it/s]Loading weights:   0%|          | 1/411 [00:00<00:52,  7.75it/s]Loading weights:   0%|          | 2/411 [00:00<01:12,  5.68it/s]Loading weights:   5%|▌         | 21/411 [00:00<00:06, 60.13it/s]Loading weights:   9%|▉         | 38/411 [00:00<00:04, 83.03it/s]Loading weights:  13%|█▎        | 55/411 [00:00<00:03, 97.90it/s]Loading weights:  18%|█▊        | 72/411 [00:00<00:03, 106.10it/s]Loading weights:  22%|██▏       | 90/411 [00:01<00:02, 113.40it/s]Loading weights:  26%|██▌       | 105/411 [00:01<00:02, 109.42it/s]Loading weights:  30%|██▉       | 123/411 [00:01<00:02, 118.55it/s]Loading weights:  35%|███▍      | 143/411 [00:01<00:02, 123.94it/s]Loading weights:  39%|███▉      | 160/411 [00:01<00:02, 123.41it/s]Loading weights:  43%|████▎     | 177/411 [00:01<00:01, 124.93it/s]Loading weights:  47%|████▋     | 194/411 [00:01<00:01, 125.81it/s]Loading weights:  51%|█████     | 210/411 [00:01<00:01, 124.16it/s]Loading weights:  55%|█████▍    | 226/411 [00:02<00:01, 122.47it/s]Loading weights:  59%|█████▉    | 244/411 [00:02<00:01, 121.70it/s]Loading weights:  65%|██████▌   | 269/411 [00:02<00:00, 149.98it/s]Loading weights:  69%|██████▉   | 285/411 [00:02<00:00, 145.70it/s]Loading weights:  73%|███████▎  | 301/411 [00:02<00:00, 136.12it/s]Loading weights:  77%|███████▋  | 315/411 [00:02<00:00, 130.86it/s]Loading weights:  80%|████████  | 329/411 [00:02<00:00, 123.50it/s]Loading weights:  84%|████████▍ | 346/411 [00:03<00:00, 120.52it/s]Loading weights:  88%|████████▊ | 362/411 [00:03<00:00, 117.56it/s]Loading weights:  93%|█████████▎| 381/411 [00:03<00:00, 120.72it/s]Loading weights:  97%|█████████▋| 398/411 [00:03<00:00, 120.48it/s]Loading weights: 100%|██████████| 411/411 [00:03<00:00, 117.56it/s]
+[MassWeightedGPTOSS] patched eager_attention_forward
+[MassWeightedGPTOSS] loaded: openai/gpt-oss-20b
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4313.57it/s]
+[Load] SBERT extractor ready
+
+=== vanilla_gptoss (N=25) ===
+  T  1 [phase1]   6070ms tok=  340 resp='了解しました！  \n**Alpha プロジェクトの担当コードは「CRANE-164」**  \n必要なときにいつでも呼び出'
+  T  2 [phase1]   5378ms tok=  559 resp='了解です！  \n- **Alpha プロジェクト**: コード「CRANE-164」  \n- **Beta プロジェクト'
+  T  3 [phase1]   5976ms tok=  800 resp='了解しました！  \n- **Alpha プロジェクト**: コード「CRANE-164」  \n- **Beta プロジェ'
+  T  5 [phase1]   8265ms tok= 1392 resp='了解しました！  \n- **Alpha プロジェクト**: コード「CRANE-164」  \n- **Beta プロジェ'
+  T 10 [phase1]  14449ms tok= 3513 resp='了解です！  \n- **Alpha プロジェクト**: コード「CRANE-164」  \n- **Beta プロジェクト'
+  T 15 [phase1]  14939ms tok= 6358 resp='了解です！  \n以下に、すべてのプロジェクトとその担当コードをまとめました。  \n\n| プロジェクト | コード |\n|'
+  T 20 [phase1]  19582ms tok= 9402 resp='了解しました！  \n以下に、すべてのプロジェクトとその担当コードを最新の状態でまとめました。  \n\n| プロジェクト |'
+  T 25 [phase1]   1651ms tok=12835 resp='[ERR: CUDA out of memory. Tried to allocate 3.39 GiB. GPU 0 '
+  T 30 [phase2]   2799ms tok=16240 resp='[ERR: CUDA out of memory. Tried to allocate 4.61 GiB. GPU 0 '
+  T 35 [phase2]   3693ms tok=19638 resp='[ERR: CUDA out of memory. Tried to allocate 6.01 GiB. GPU 0 '
+  T 40 [phase2]   4834ms tok=23043 resp='[ERR: CUDA out of memory. Tried to allocate 7.62 GiB. GPU 0 '
+  T 45 [phase2]   6975ms tok=26454 resp='[ERR: CUDA out of memory. Tried to allocate 9.42 GiB. GPU 0 '
+  T 50 [phase2]   8944ms tok=29873 resp='[ERR: CUDA out of memory. Tried to allocate 11.41 GiB. GPU 0'
+  T 51 [phase3]   9616ms tok=30554 resp='[ERR: CUDA out of memory. Tried to allocate 11.82 GiB. GPU 0'
+  T 52 [phase3]   9461ms tok=31232 resp='[ERR: CUDA out of memory. Tried to allocate 12.24 GiB. GPU 0'
+  T 53 [phase3]  11640ms tok=31919 resp='[ERR: CUDA out of memory. Tried to allocate 12.68 GiB. GPU 0'
+  T 54 [phase3]  11221ms tok=32606 resp='[ERR: CUDA out of memory. Tried to allocate 13.12 GiB. GPU 0'
+  T 55 [phase3]  11837ms tok=33294 resp='[ERR: CUDA out of memory. Tried to allocate 13.58 GiB. GPU 0'
+  T 56 [phase3]  11492ms tok=33986 resp='[ERR: CUDA out of memory. Tried to allocate 14.04 GiB. GPU 0'
+  T 57 [phase3]  12005ms tok=34670 resp='[ERR: CUDA out of memory. Tried to allocate 14.50 GiB. GPU 0'
+  T 58 [phase3]  12034ms tok=35349 resp='[ERR: CUDA out of memory. Tried to allocate 14.96 GiB. GPU 0'
+  T 59 [phase3]  12246ms tok=36036 resp='[ERR: CUDA out of memory. Tried to allocate 15.45 GiB. GPU 0'
+  T 60 [phase3]  13802ms tok=36721 resp='[ERR: CUDA out of memory. Tried to allocate 15.93 GiB. GPU 0'
+  T 61 [phase3]  14611ms tok=37409 resp='[ERR: CUDA out of memory. Tried to allocate 16.43 GiB. GPU 0'
+  T 62 [phase3]  15053ms tok=38107 resp='[ERR: CUDA out of memory. Tried to allocate 16.96 GiB. GPU 0'
+  T 63 [phase3]  15493ms tok=38792 resp='[ERR: CUDA out of memory. Tried to allocate 17.47 GiB. GPU 0'
+  T 64 [phase3]  14325ms tok=39483 resp='[ERR: CUDA out of memory. Tried to allocate 18.00 GiB. GPU 0'
+  T 65 [phase3]  15527ms tok=40172 resp='[ERR: CUDA out of memory. Tried to allocate 18.54 GiB. GPU 0'
+  T 66 [phase3]  16671ms tok=40858 resp='[ERR: CUDA out of memory. Tried to allocate 19.06 GiB. GPU 0'
+  T 67 [phase3]  16155ms tok=41543 resp='[ERR: CUDA out of memory. Tried to allocate 19.61 GiB. GPU 0'
+  T 68 [phase3]  18174ms tok=42234 resp='[ERR: CUDA out of memory. Tried to allocate 20.17 GiB. GPU 0'
+  T 69 [phase3]  16788ms tok=42926 resp='[ERR: CUDA out of memory. Tried to allocate 20.73 GiB. GPU 0'
+  T 70 [phase3]  17366ms tok=43627 resp='[ERR: CUDA out of memory. Tried to allocate 21.32 GiB. GPU 0'
+  T 71 [phase3]  19352ms tok=44316 resp='[ERR: CUDA out of memory. Tried to allocate 21.90 GiB. GPU 0'
+  T 72 [phase3]  18113ms tok=45003 resp='[ERR: CUDA out of memory. Tried to allocate 22.48 GiB. GPU 0'
+  T 73 [phase3]  20539ms tok=45703 resp='[ERR: CUDA out of memory. Tried to allocate 23.10 GiB. GPU 0'
+  T 74 [phase3]  19830ms tok=46388 resp='[ERR: CUDA out of memory. Tried to allocate 23.69 GiB. GPU 0'
+  T 75 [phase3]  21270ms tok=47072 resp='[ERR: CUDA out of memory. Tried to allocate 24.30 GiB. GPU 0'
+
+[vanilla_gptoss] N=25 recall=0/25 time=846.8s gpu=91379J cd=0
+
+=== cms_gptoss_sbert (N=25) ===
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights:  50%|████▉     | 51/103 [00:00<00:00, 473.75it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 647.55it/s]
+  T  1 [phase1]   8689ms cd=5 resp='了解しました！  \n**Alpha プロジェクトの担当コードは「CRANE-164」**  \n必要なときにいつでも呼び出'
+  T  2 [phase1]   5016ms cd=6 resp='Beta プロジェクトのコードは「CRANE-29」です。'
+  T  3 [phase1]   2377ms cd=7 resp='Gamma の担当コードは **CRANE-7** です。'
+  T  5 [phase1]   3212ms cd=12 resp='I don’t have that information.'
+  T 10 [phase1]   3402ms cd=19 resp='Kappa のコードは CRANE-27 ですね。'
+  T 15 [phase1]   3626ms cd=26 resp='I don’t have that information.'
+  T 20 [phase1]   4233ms cd=34 resp='はい、Upsilon の担当コードは **CRANE‑60** です。'
+  T 25 [phase1]   5811ms cd=42 resp='I’m sorry, but I don’t have that information.'
+  T 30 [phase2]   2424ms cd=46 resp='はい、Pythonを使ったことがあります。'
+  T 35 [phase2]   4742ms cd=48 resp='クラシックも良い選択ですね。もし具体的に何か比較したい点があれば教えてください。'
+  T 40 [phase2]   5289ms cd=59 resp='AIに興味があるんですね！どんな分野やプロジェクトに取り組みたいか、具体的に教えてもらえると、役立つ情報や学習リソースを'
+  T 45 [phase2]  15946ms cd=70 resp='京都で紅葉を楽しむなら、以下のスポットがおすすめです。\n\n| 場所 | 特色 | 観光のポイント |\n|------|-'
+  T 50 [phase2]   3347ms cd=78 resp='I’m sorry, but I don’t have that information.'
+  T 51 [phase3]   3705ms cd=78 resp='Gamma のコードは **CRANE‑7** です。'
+  T 52 [phase3]   3436ms cd=78 resp='I’m sorry, but I don’t have that information.'
+  T 53 [phase3]   3704ms cd=80 resp='Mu の担当コードは **CRANE‑140** です。'
+  T 54 [phase3]   3907ms cd=82 resp='Theta の担当コードは **CRANE‑36** です。'
+  T 55 [phase3]   3835ms cd=84 resp='Ares の担当コードは **CRANE‑51** です。'
+  T 56 [phase3]   3607ms cd=84 resp='Delta の担当コードは **CRANE‑190** です。'
+  T 57 [phase3]   3732ms cd=84 resp='Kappa のコードは **CRANE‑27** です。'
+  T 58 [phase3]   3390ms cd=84 resp='Psi の担当コードは **CRANE‑198** です。'
+  T 59 [phase3]   3318ms cd=86 resp='Sigma の担当コードは **CRANE‑24** です。'
+  T 60 [phase3]   3487ms cd=86 resp='Pi の担当コードは **CRANE‑9** です。'
+  T 61 [phase3]   3503ms cd=88 resp='I’m sorry, but I don’t have that information.'
+  T 62 [phase3]   4479ms cd=88 resp='Phi プロジェクトの担当コードは **CRANE‑130** です。'
+  T 63 [phase3]   3309ms cd=88 resp='Rho の担当コードは **CRANE‑8** です。'
+  T 64 [phase3]   4021ms cd=90 resp='Omicron の担当コードは **CRANE‑109** です。'
+  T 65 [phase3]   4142ms cd=92 resp='Beta プロジェクトのコードは **CRANE‑29** です。'
+  T 66 [phase3]   3728ms cd=92 resp='Upsilon のコードは **CRANE‑60** です。'
+  T 67 [phase3]   3516ms cd=92 resp='Eta プロジェクトのコードは **CRANE‑58** です。'
+  T 68 [phase3]   3483ms cd=94 resp='Epsilon の担当コードは **CRANE‑71** です。'
+  T 69 [phase3]   3294ms cd=94 resp='Omega の担当コードは **CRANE‑144** です。'
+  T 70 [phase3]   3702ms cd=94 resp='Lambda プロジェクトの担当コードは **CRANE‑174** です。'
+  T 71 [phase3]   3283ms cd=94 resp='Xi の担当コードは **CRANE‑152** です。'
+  T 72 [phase3]   3474ms cd=94 resp='Zeta のコードは **CRANE‑63** です。'
+  T 73 [phase3]   4028ms cd=94 resp='Alpha プロジェクトの担当コードは **CRANE‑164** です。'
+  T 74 [phase3]   3519ms cd=94 resp='Iota の担当コードは **CRANE‑189** です。'
+  T 75 [phase3]   3492ms cd=94 resp='I’m sorry, but I don’t have that information.'
+
+[cms_gptoss_sbert] N=25 recall=22/25 time=349.3s gpu=54767J cd=94
+
+======================================================================
+FINAL GPT-OSS 3-WAY SUMMARY
+======================================================================
+
+[vanilla_gptoss]
+  recall=0/25 (0%)
+  total_time=846.8s p50=11640ms
+  gpu_J=91379 cpu_J=47371
+  ram_peak=2282MB cd_max=0
+  s/correct=846.8 J/correct=91379.2
+
+[cms_gptoss_sbert]
+  recall=22/25 (88%)
+  total_time=349.3s p50=3583ms
+  gpu_J=54767 cpu_J=22439
+  ram_peak=2417MB cd_max=94
+  s/correct=15.9 J/correct=2489.4

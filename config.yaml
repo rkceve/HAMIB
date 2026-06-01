@@ -1,0 +1,63 @@
+# HAMIB Prototype Configuration
+# Distributed structured context management system
+
+# --- LLM Server ---
+server:
+  host: "0.0.0.0"
+  port: 8080
+  model_id: "google/gemma-3-4b-it"       # HuggingFace model ID (lightweight default for local testing; headline results use Llama 3.3 70B and GPT-OSS-20B)
+  quantization: "nf4"                     # BitsAndBytes 4-bit NormalFloat
+  device: "cuda"                          # "cuda" or "cpu"
+  max_new_tokens: 256                     # Tuned for 6GB VRAM; raise to 512 on larger GPUs
+  temperature: 0.7
+  do_sample: true
+
+# --- HAMIB Client ---
+client:
+  host: "localhost"
+  server_port: 8080
+
+# --- Attention Modification ---
+attention:
+  mass_weight: 1.0                        # w in: scores += w * M
+  prefill_mass_scale: 0.0                 # extra mass scaling during prefill (0.0 = disabled)
+  # M matrix: shape (seq_len, seq_len), column = "seen by" (attended to)
+  # mass is added to the column of the token representing the node
+
+# --- Correlation Diagram ---
+graph:
+  # Node-count caps are effectively unbounded
+  max_sun_nodes: 10000
+  max_planet_nodes_per_sun: 1000
+  max_satellite_nodes_per_planet: 1000
+  # Mass is added to pre-softmax logits, so it amplifies attention exponentially:
+  # mass=1.0 -> exp(1) ~= 2.7x, mass=5 -> exp(5) ~= 148x, mass=10 -> exp(10) ~= 22000x.
+  # Low default masses keep generation quality stable.
+  default_sun_mass: 1.0
+  default_planet_mass: 0.5
+  default_satellite_mass: 0.1
+
+# --- Management Unit ---
+management:
+  chunk_max_tokens: 200                   # Max tokens per text chunk
+  similarity_threshold: 0.92              # Node-merge similarity threshold (high, to avoid merging similar-but-distinct facts)
+  embedding_model: "all-MiniLM-L6-v2"     # SentenceTransformer model
+
+# --- Evaluation Unit ---
+# Disabled by default (HAMIBSession uses disable_eval2=True).
+# Settings below are the defaults used when the evaluation unit is re-enabled.
+evaluation:
+  eval_interval_rounds: 5                 # Round-trips between evaluation passes (unused while disabled)
+  replace_score_margin: 0.05              # Replace existing CD when eval CD scores higher by this margin
+
+# --- Token Mapping ([PN{mass}] special token) ---
+tokenization:
+  prefix: "[PN"
+  suffix: "]"
+  mass_precision: 1                       # Decimal places
+  # e.g. mass=5.0 -> "[PN5.0]", mass=10.0 -> "[PN10.0]"
+
+# --- Scoring Weights ---
+scoring:
+  contradiction_weight: 0.6               # Weight for contradiction-free score
+  concentration_weight: 0.4               # Weight for information-concentration score

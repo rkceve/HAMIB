@@ -1,0 +1,15 @@
+# Ruff configuration for the HAMIB public repository.
+#
+# The benchmark and experiment scripts under benchmark/ and experiments/, plus
+# server/hamib_session.py and server/main.py, intentionally place
+# `sys.path.insert(0, str(_ROOT))` before importing in-repo packages so they can
+# be invoked directly (e.g. `python experiments/bench_longmemeval.py`) without first
+# installing the package. E402 (module-import-not-at-top-of-file) flags this
+# idiom; we suppress it on those specific entry-point files. Library modules
+# that do not use the idiom remain subject to E402 as usual.
+
+[lint.per-file-ignores]
+"benchmark/*.py" = ["E402"]
+"experiments/**/*.py" = ["E402"]
+"server/hamib_session.py" = ["E402"]
+"server/main.py" = ["E402"]
