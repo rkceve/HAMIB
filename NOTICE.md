@@ -79,6 +79,24 @@ SOFTWARE.
 
 ## Citation
 
+The theoretical paper for HAMIB (this repository implements its first
+embodiment):
+
+```bibtex
+@misc{kawai2026hamib,
+  title     = {Geometric Convergence for Conversational Context Management:
+               A Distributed Structured Memory Architecture Based on
+               Correlation-Diagram Data},
+  author    = {Kawai, Ryosuke},
+  year      = {2026},
+  doi       = {10.5281/zenodo.19354705},
+  url       = {https://doi.org/10.5281/zenodo.19354705},
+  publisher = {Zenodo}
+}
+```
+
+For the bundled benchmark data:
+
 ```bibtex
 @inproceedings{wu2025longmemeval,
   title     = {LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory},

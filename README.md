@@ -5,6 +5,16 @@ recall in existing LLMs. HAMIB builds a hierarchical map of a conversation and
 injects per-topic "mass" directly into the attention logits, so important earlier
 topics keep pulling the model's attention without any fine-tuning.
 
+**📄 Theoretical paper.** The architecture, data structure, and the
+mass-aware attention formula are formalised in:
+
+> Kawai, R. (2026). *Geometric Convergence for Conversational Context
+> Management: A Distributed Structured Memory Architecture Based on
+> Correlation-Diagram Data.* Zenodo. <https://doi.org/10.5281/zenodo.19354705>
+
+That paper is the canonical theoretical reference; this repository is the
+implementation of its first embodiment.
+
 **Patent pending.** Code, data, and documents in this repository are released
 under the PolyForm Noncommercial 1.0.0 license (see `LICENSE`). Commercial use
 requires a separate license — contact below.
@@ -30,7 +40,7 @@ requires a separate license — contact below.
    - **planet** nodes — distinct facts or threads under a sun
    - **satellite** nodes — concrete details under a planet
 
-2. **Mass-weighted attention.** Each planet node is assigned a *mass* equal to
+2. **Mass-aware attention.** Each planet node is assigned a *mass* equal to
    the number of satellites attached to it (how much a topic was elaborated on).
    That mass is added to the pre-softmax attention logits:
 
@@ -322,8 +332,23 @@ code license (see `NOTICE.md` for full text and attribution):
 
 ## Citation
 
-If you use the bundled benchmark data, please cite the original work
-(BibTeX in `NOTICE.md`): LongMemEval (Wu et al., ICLR 2025).
+If you use this work, please cite the theoretical paper:
+
+```bibtex
+@misc{kawai2026hamib,
+  title     = {Geometric Convergence for Conversational Context Management:
+               A Distributed Structured Memory Architecture Based on
+               Correlation-Diagram Data},
+  author    = {Kawai, Ryosuke},
+  year      = {2026},
+  doi       = {10.5281/zenodo.19354705},
+  url       = {https://doi.org/10.5281/zenodo.19354705},
+  publisher = {Zenodo}
+}
+```
+
+If you use the bundled benchmark data, also cite the original work (BibTeX in
+`NOTICE.md`): LongMemEval (Wu et al., ICLR 2025).
 
 ## Contact
 
