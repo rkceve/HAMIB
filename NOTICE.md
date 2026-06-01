@@ -1,5 +1,9 @@
 # NOTICE
 
+> 🚫 **商用利用は完全に禁止しています / Commercial use is strictly prohibited.**
+> Noncommercial research / evaluation / academic use only.
+> Commercial licensing: ryosukekawai1224@gmail.com
+
 This file documents the licensing of the code in this repository and of the
 third-party benchmark data that is redistributed here.
 
