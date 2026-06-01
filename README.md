@@ -157,10 +157,10 @@ The LongMemEval result reproduces across **two independent judge models**:
 | McNemar one-sided p | 0.0037 | 0.0016 |
 | 95% CI of ratio | [1.086, 1.587] | [1.106, 1.575] |
 
-A reader can reproduce the inter-judge agreement (per-item label match rate and
-Cohen's kappa) by running
-`python -m experiments.judges.analyze_inter_judge_agreement` against the bundled
-`judge_output_lme.json` files in both judge subdirectories. See
+Inter-judge agreement on the same 1000 items: **observed agreement 91.3%
+(913/1000), Cohen's kappa 0.78** — both reproducible by running
+`python -m experiments.judges.analyze_inter_judge_agreement` against the
+bundled `judge_output_lme.json` files in both judge subdirectories. See
 `experiments/judges/README.md` for details.
 
 ---

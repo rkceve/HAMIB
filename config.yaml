@@ -1,5 +1,5 @@
 # HAMIB Prototype Configuration
-# Distributed structured context management system
+# Distributed structured memory architecture for conversational LLMs
 
 # --- LLM Server ---
 server:
