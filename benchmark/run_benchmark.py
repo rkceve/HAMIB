@@ -1,15 +1,15 @@
 """
 Benchmark execution entry point.
 
-Usage (from the cms_prototype/ directory):
+Usage (from the hamib_prototype/ directory):
   python -m benchmark.run_benchmark
   python -m benchmark.run_benchmark --server http://192.168.x.x:8080
-  python -m benchmark.run_benchmark --mode cms        # HAMIB only
+  python -m benchmark.run_benchmark --mode hamib        # HAMIB only
   python -m benchmark.run_benchmark --mode baseline   # Baseline only
 
 Output:
   benchmark_results/
-    cms_results.csv
+    hamib_results.csv
     baseline_results.csv
     summary.json
     benchmark_comparison.png
@@ -31,7 +31,7 @@ def main():
     parser = argparse.ArgumentParser(description="HAMIB vs Baseline benchmark")
     parser.add_argument("--server", default=None,
                         help="server URL (e.g. http://192.168.1.10:8080)")
-    parser.add_argument("--mode", choices=["cms", "baseline", "both"], default="both",
+    parser.add_argument("--mode", choices=["hamib", "baseline", "both"], default="both",
                         help="run mode (default: both)")
     args = parser.parse_args()
 
@@ -48,14 +48,14 @@ def main():
         print(f"[ERROR] cannot connect to server: {e}")
         sys.exit(1)
 
-    cms_result = None
+    hamib_result = None
     baseline_result = None
 
     print("\n" + "=" * 60)
-    if args.mode in ("cms", "both"):
+    if args.mode in ("hamib", "both"):
         print("■ HAMIB mode start")
         print("=" * 60)
-        cms_result = runner.run_cms()
+        hamib_result = runner.run_hamib()
 
     print("\n" + "=" * 60)
     if args.mode in ("baseline", "both"):
@@ -66,13 +66,13 @@ def main():
     runner.close()
 
     # Save results and draw graphs
-    if cms_result and baseline_result:
-        save_all(cms_result, baseline_result)
-        _print_summary(cms_result, baseline_result)
-    elif cms_result:
+    if hamib_result and baseline_result:
+        save_all(hamib_result, baseline_result)
+        _print_summary(hamib_result, baseline_result)
+    elif hamib_result:
         from benchmark.plotter import OUTPUT_DIR, _save_csv
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-        _save_csv(cms_result, OUTPUT_DIR / "cms_results.csv")
+        _save_csv(hamib_result, OUTPUT_DIR / "hamib_results.csv")
         print("\nHAMIB run only. Please run Baseline additionally.")
     elif baseline_result:
         from benchmark.plotter import OUTPUT_DIR, _save_csv
@@ -81,7 +81,7 @@ def main():
         print("\nBaseline run only. Please run HAMIB additionally.")
 
 
-def _print_summary(cms, baseline):
+def _print_summary(hamib, baseline):
     import numpy as np
 
     print("\n" + "=" * 60)
@@ -92,23 +92,23 @@ def _print_summary(cms, baseline):
         hits = [t.recall_hit for t in r.turns if t.turn_type == "recall"]
         return sum(hits) / len(hits) if hits else 0.0
 
-    cms_acc = recall_acc(cms)
+    hamib_acc = recall_acc(hamib)
     base_acc = recall_acc(baseline)
-    cms_tokens = np.mean([t.input_tokens for t in cms.turns])
+    hamib_tokens = np.mean([t.input_tokens for t in hamib.turns])
     base_tokens = np.mean([t.input_tokens for t in baseline.turns])
-    cms_ms = np.mean([t.inference_ms for t in cms.turns])
+    hamib_ms = np.mean([t.inference_ms for t in hamib.turns])
     base_ms = np.mean([t.inference_ms for t in baseline.turns])
-    cms_cd = np.mean([t.cd_build_ms for t in cms.turns])
+    hamib_cd = np.mean([t.cd_build_ms for t in hamib.turns])
 
     print(f"{'':25} {'HAMIB':>12} {'Baseline':>12}")
-    print(f"  {'recall accuracy':23} {cms_acc:>11.0%} {base_acc:>11.0%}")
-    print(f"  {'avg input tokens':21} {cms_tokens:>12,.0f} {base_tokens:>12,.0f}")
-    print(f"  {'avg inference (ms)':22} {cms_ms:>12,.0f} {base_ms:>12,.0f}")
-    print(f"  {'client CD build (ms)':19} {cms_cd:>12,.0f} {'N/A':>12}")
+    print(f"  {'recall accuracy':23} {hamib_acc:>11.0%} {base_acc:>11.0%}")
+    print(f"  {'avg input tokens':21} {hamib_tokens:>12,.0f} {base_tokens:>12,.0f}")
+    print(f"  {'avg inference (ms)':22} {hamib_ms:>12,.0f} {base_ms:>12,.0f}")
+    print(f"  {'client CD build (ms)':19} {hamib_cd:>12,.0f} {'N/A':>12}")
     print()
-    token_reduction = (base_tokens - cms_tokens) / base_tokens * 100
+    token_reduction = (base_tokens - hamib_tokens) / base_tokens * 100
     print(f"  -> server input token reduction: {token_reduction:+.1f}%")
-    print(f"  -> recall accuracy diff:         {(cms_acc - base_acc):+.0%}")
+    print(f"  -> recall accuracy diff:         {(hamib_acc - base_acc):+.0%}")
     print()
 
 

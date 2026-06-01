@@ -1,6 +1,6 @@
 {
   "summary": {
-    "mode": "cms_sbert",
+    "mode": "hamib_sbert",
     "n": 500,
     "correct": 110,
     "acc": 0.22,

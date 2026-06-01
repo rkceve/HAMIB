@@ -130,7 +130,7 @@
         "Lupus->CRANE-113": true
       }
     },
-    "cms_sbert": {
+    "hamib_sbert": {
       "n_facts": 200,
       "recall": 0.9705882352941176,
       "n_hit": 99,
@@ -4302,7 +4302,7 @@
       "cd_node_count": 0
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 1,
       "phase": "phase1",
       "user_text": "Alpha プロジェクトの担当コードは「CRANE-164」だよ。覚えておいてね。",
@@ -4312,7 +4312,7 @@
       "cd_node_count": 1
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 2,
       "phase": "phase1",
       "user_text": "あと重要、Beta プロジェクトのコードは「CRANE-29」です。",
@@ -4322,7 +4322,7 @@
       "cd_node_count": 3
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 3,
       "phase": "phase1",
       "user_text": "それから Gamma は CRANE-7 ね。",
@@ -4332,7 +4332,7 @@
       "cd_node_count": 4
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 4,
       "phase": "phase1",
       "user_text": "Delta の担当コードは CRANE-190 だよ。",
@@ -4342,7 +4342,7 @@
       "cd_node_count": 5
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 5,
       "phase": "phase1",
       "user_text": "Epsilon については CRANE-71 でお願いします。",
@@ -4352,7 +4352,7 @@
       "cd_node_count": 8
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 6,
       "phase": "phase1",
       "user_text": "Zeta プロジェクトのコードは「CRANE-63」って覚えておいて。",
@@ -4362,7 +4362,7 @@
       "cd_node_count": 9
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 7,
       "phase": "phase1",
       "user_text": "ところで Eta は CRANE-58 が割り当てられてる。",
@@ -4372,7 +4372,7 @@
       "cd_node_count": 10
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 8,
       "phase": "phase1",
       "user_text": "Theta の担当は CRANE-36。",
@@ -4382,7 +4382,7 @@
       "cd_node_count": 11
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 9,
       "phase": "phase1",
       "user_text": "あと Iota プロジェクトは「CRANE-189」。前回も忘れないでね。",
@@ -4392,7 +4392,7 @@
       "cd_node_count": 12
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 10,
       "phase": "phase1",
       "user_text": "Kappa のコードは CRANE-27。",
@@ -4402,7 +4402,7 @@
       "cd_node_count": 13
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 11,
       "phase": "phase1",
       "user_text": "Lambda プロジェクトの担当コードは「CRANE-174」だよ。覚えておいてね。",
@@ -4412,7 +4412,7 @@
       "cd_node_count": 14
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 12,
       "phase": "phase1",
       "user_text": "あと重要、Mu プロジェクトのコードは「CRANE-140」です。",
@@ -4422,7 +4422,7 @@
       "cd_node_count": 15
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 13,
       "phase": "phase1",
       "user_text": "それから Nu は CRANE-23 ね。",
@@ -4432,7 +4432,7 @@
       "cd_node_count": 16
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 14,
       "phase": "phase1",
       "user_text": "Xi の担当コードは CRANE-152 だよ。",
@@ -4442,7 +4442,7 @@
       "cd_node_count": 17
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 15,
       "phase": "phase1",
       "user_text": "Omicron については CRANE-109 でお願いします。",
@@ -4452,7 +4452,7 @@
       "cd_node_count": 18
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 16,
       "phase": "phase1",
       "user_text": "Pi プロジェクトのコードは「CRANE-9」って覚えておいて。",
@@ -4462,7 +4462,7 @@
       "cd_node_count": 19
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 17,
       "phase": "phase1",
       "user_text": "ところで Rho は CRANE-8 が割り当てられてる。",
@@ -4472,7 +4472,7 @@
       "cd_node_count": 20
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 18,
       "phase": "phase1",
       "user_text": "Sigma の担当は CRANE-24。",
@@ -4482,7 +4482,7 @@
       "cd_node_count": 21
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 19,
       "phase": "phase1",
       "user_text": "あと Tau プロジェクトは「CRANE-56」。前回も忘れないでね。",
@@ -4492,7 +4492,7 @@
       "cd_node_count": 22
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 20,
       "phase": "phase1",
       "user_text": "Upsilon のコードは CRANE-60。",
@@ -4502,7 +4502,7 @@
       "cd_node_count": 23
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 21,
       "phase": "phase1",
       "user_text": "Phi プロジェクトの担当コードは「CRANE-130」だよ。覚えておいてね。",
@@ -4512,7 +4512,7 @@
       "cd_node_count": 24
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 22,
       "phase": "phase1",
       "user_text": "あと重要、Chi プロジェクトのコードは「CRANE-155」です。",
@@ -4522,7 +4522,7 @@
       "cd_node_count": 25
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 23,
       "phase": "phase1",
       "user_text": "それから Psi は CRANE-198 ね。",
@@ -4532,7 +4532,7 @@
       "cd_node_count": 26
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 24,
       "phase": "phase1",
       "user_text": "Omega の担当コードは CRANE-144 だよ。",
@@ -4542,7 +4542,7 @@
       "cd_node_count": 27
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 25,
       "phase": "phase1",
       "user_text": "Ares については CRANE-51 でお願いします。",
@@ -4552,7 +4552,7 @@
       "cd_node_count": 28
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 26,
       "phase": "phase1",
       "user_text": "Athena プロジェクトのコードは「CRANE-167」って覚えておいて。",
@@ -4562,7 +4562,7 @@
       "cd_node_count": 29
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 27,
       "phase": "phase1",
       "user_text": "ところで Apollo は CRANE-192 が割り当てられてる。",
@@ -4572,7 +4572,7 @@
       "cd_node_count": 30
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 28,
       "phase": "phase1",
       "user_text": "Hermes の担当は CRANE-108。",
@@ -4582,7 +4582,7 @@
       "cd_node_count": 31
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 29,
       "phase": "phase1",
       "user_text": "あと Helios プロジェクトは「CRANE-57」。前回も忘れないでね。",
@@ -4592,7 +4592,7 @@
       "cd_node_count": 32
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 30,
       "phase": "phase1",
       "user_text": "Hera のコードは CRANE-115。",
@@ -4602,7 +4602,7 @@
       "cd_node_count": 34
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 31,
       "phase": "phase1",
       "user_text": "Hades プロジェクトの担当コードは「CRANE-151」だよ。覚えておいてね。",
@@ -4612,7 +4612,7 @@
       "cd_node_count": 35
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 32,
       "phase": "phase1",
       "user_text": "あと重要、Demeter プロジェクトのコードは「CRANE-72」です。",
@@ -4622,7 +4622,7 @@
       "cd_node_count": 36
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 33,
       "phase": "phase1",
       "user_text": "それから Dionysus は CRANE-2 ね。",
@@ -4632,7 +4632,7 @@
       "cd_node_count": 37
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 34,
       "phase": "phase1",
       "user_text": "Eros の担当コードは CRANE-41 だよ。",
@@ -4642,7 +4642,7 @@
       "cd_node_count": 38
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 35,
       "phase": "phase1",
       "user_text": "Hephaestus については CRANE-186 でお願いします。",
@@ -4652,7 +4652,7 @@
       "cd_node_count": 39
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 36,
       "phase": "phase1",
       "user_text": "Hestia プロジェクトのコードは「CRANE-88」って覚えておいて。",
@@ -4662,7 +4662,7 @@
       "cd_node_count": 40
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 37,
       "phase": "phase1",
       "user_text": "ところで Poseidon は CRANE-169 が割り当てられてる。",
@@ -4672,7 +4672,7 @@
       "cd_node_count": 41
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 38,
       "phase": "phase1",
       "user_text": "Selene の担当は CRANE-40。",
@@ -4682,7 +4682,7 @@
       "cd_node_count": 43
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 39,
       "phase": "phase1",
       "user_text": "あと Titan プロジェクトは「CRANE-182」。前回も忘れないでね。",
@@ -4692,7 +4692,7 @@
       "cd_node_count": 44
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 40,
       "phase": "phase1",
       "user_text": "Atlas のコードは CRANE-87。",
@@ -4702,7 +4702,7 @@
       "cd_node_count": 45
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 41,
       "phase": "phase1",
       "user_text": "Boreas プロジェクトの担当コードは「CRANE-191」だよ。覚えておいてね。",
@@ -4712,7 +4712,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 42,
       "phase": "phase1",
       "user_text": "あと重要、Chronos プロジェクトのコードは「CRANE-183」です。",
@@ -4722,7 +4722,7 @@
       "cd_node_count": 47
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 43,
       "phase": "phase1",
       "user_text": "それから Daphne は CRANE-98 ね。",
@@ -4732,7 +4732,7 @@
       "cd_node_count": 48
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 44,
       "phase": "phase1",
       "user_text": "Echo の担当コードは CRANE-25 だよ。",
@@ -4742,7 +4742,7 @@
       "cd_node_count": 49
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 45,
       "phase": "phase1",
       "user_text": "Faune については CRANE-92 でお願いします。",
@@ -4752,7 +4752,7 @@
       "cd_node_count": 50
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 46,
       "phase": "phase1",
       "user_text": "Galene プロジェクトのコードは「CRANE-89」って覚えておいて。",
@@ -4762,7 +4762,7 @@
       "cd_node_count": 51
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 47,
       "phase": "phase1",
       "user_text": "ところで Hyperion は CRANE-68 が割り当てられてる。",
@@ -4772,7 +4772,7 @@
       "cd_node_count": 52
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 48,
       "phase": "phase1",
       "user_text": "Iris の担当は CRANE-12。",
@@ -4782,7 +4782,7 @@
       "cd_node_count": 54
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 49,
       "phase": "phase1",
       "user_text": "あと Janus プロジェクトは「CRANE-118」。前回も忘れないでね。",
@@ -4792,7 +4792,7 @@
       "cd_node_count": 55
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 50,
       "phase": "phase1",
       "user_text": "Knossos のコードは CRANE-138。",
@@ -4802,7 +4802,7 @@
       "cd_node_count": 56
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 51,
       "phase": "phase1",
       "user_text": "Leander プロジェクトの担当コードは「CRANE-32」だよ。覚えておいてね。",
@@ -4812,7 +4812,7 @@
       "cd_node_count": 57
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 52,
       "phase": "phase1",
       "user_text": "あと重要、Medea プロジェクトのコードは「CRANE-97」です。",
@@ -4822,7 +4822,7 @@
       "cd_node_count": 58
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 53,
       "phase": "phase1",
       "user_text": "それから Andromeda は CRANE-21 ね。",
@@ -4832,7 +4832,7 @@
       "cd_node_count": 59
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 54,
       "phase": "phase1",
       "user_text": "Auriga の担当コードは CRANE-142 だよ。",
@@ -4842,7 +4842,7 @@
       "cd_node_count": 60
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 55,
       "phase": "phase1",
       "user_text": "Cassiopeia については CRANE-76 でお願いします。",
@@ -4852,7 +4852,7 @@
       "cd_node_count": 61
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 56,
       "phase": "phase1",
       "user_text": "Cygnus プロジェクトのコードは「CRANE-93」って覚えておいて。",
@@ -4862,7 +4862,7 @@
       "cd_node_count": 62
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 57,
       "phase": "phase1",
       "user_text": "ところで Draco は CRANE-50 が割り当てられてる。",
@@ -4872,7 +4872,7 @@
       "cd_node_count": 63
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 58,
       "phase": "phase1",
       "user_text": "Lyra の担当は CRANE-18。",
@@ -4882,7 +4882,7 @@
       "cd_node_count": 65
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 59,
       "phase": "phase1",
       "user_text": "あと Orion プロジェクトは「CRANE-153」。前回も忘れないでね。",
@@ -4892,7 +4892,7 @@
       "cd_node_count": 66
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 60,
       "phase": "phase1",
       "user_text": "Perseus のコードは CRANE-59。",
@@ -4902,7 +4902,7 @@
       "cd_node_count": 67
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 61,
       "phase": "phase1",
       "user_text": "Pegasus プロジェクトの担当コードは「CRANE-75」だよ。覚えておいてね。",
@@ -4912,7 +4912,7 @@
       "cd_node_count": 68
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 62,
       "phase": "phase1",
       "user_text": "あと重要、Phoenix プロジェクトのコードは「CRANE-148」です。",
@@ -4922,7 +4922,7 @@
       "cd_node_count": 69
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 63,
       "phase": "phase1",
       "user_text": "それから Vega は CRANE-181 ね。",
@@ -4932,7 +4932,7 @@
       "cd_node_count": 70
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 64,
       "phase": "phase1",
       "user_text": "Sirius の担当コードは CRANE-26 だよ。",
@@ -4942,7 +4942,7 @@
       "cd_node_count": 71
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 65,
       "phase": "phase1",
       "user_text": "Polaris については CRANE-158 でお願いします。",
@@ -4952,7 +4952,7 @@
       "cd_node_count": 72
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 66,
       "phase": "phase1",
       "user_text": "Capella プロジェクトのコードは「CRANE-200」って覚えておいて。",
@@ -4962,7 +4962,7 @@
       "cd_node_count": 73
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 67,
       "phase": "phase1",
       "user_text": "ところで Arcturus は CRANE-117 が割り当てられてる。",
@@ -4972,7 +4972,7 @@
       "cd_node_count": 74
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 68,
       "phase": "phase1",
       "user_text": "Antares の担当は CRANE-94。",
@@ -4982,7 +4982,7 @@
       "cd_node_count": 75
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 69,
       "phase": "phase1",
       "user_text": "あと Rigel プロジェクトは「CRANE-42」。前回も忘れないでね。",
@@ -4992,7 +4992,7 @@
       "cd_node_count": 76
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 70,
       "phase": "phase1",
       "user_text": "Spica のコードは CRANE-95。",
@@ -5002,7 +5002,7 @@
       "cd_node_count": 77
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 71,
       "phase": "phase1",
       "user_text": "Aldebaran プロジェクトの担当コードは「CRANE-91」だよ。覚えておいてね。",
@@ -5012,7 +5012,7 @@
       "cd_node_count": 78
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 72,
       "phase": "phase1",
       "user_text": "あと重要、Altair プロジェクトのコードは「CRANE-54」です。",
@@ -5022,7 +5022,7 @@
       "cd_node_count": 79
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 73,
       "phase": "phase1",
       "user_text": "それから Deneb は CRANE-69 ね。",
@@ -5032,7 +5032,7 @@
       "cd_node_count": 80
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 74,
       "phase": "phase1",
       "user_text": "Procyon の担当コードは CRANE-90 だよ。",
@@ -5042,7 +5042,7 @@
       "cd_node_count": 81
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 75,
       "phase": "phase1",
       "user_text": "Betelgeuse については CRANE-120 でお願いします。",
@@ -5052,7 +5052,7 @@
       "cd_node_count": 82
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 76,
       "phase": "phase1",
       "user_text": "Castor プロジェクトのコードは「CRANE-165」って覚えておいて。",
@@ -5062,7 +5062,7 @@
       "cd_node_count": 83
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 77,
       "phase": "phase1",
       "user_text": "ところで Pollux は CRANE-83 が割り当てられてる。",
@@ -5072,7 +5072,7 @@
       "cd_node_count": 84
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 78,
       "phase": "phase1",
       "user_text": "Regulus の担当は CRANE-10。",
@@ -5082,7 +5082,7 @@
       "cd_node_count": 86
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 79,
       "phase": "phase1",
       "user_text": "あと Mintaka プロジェクトは「CRANE-78」。前回も忘れないでね。",
@@ -5092,7 +5092,7 @@
       "cd_node_count": 87
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 80,
       "phase": "phase1",
       "user_text": "Bellatrix のコードは CRANE-82。",
@@ -5102,7 +5102,7 @@
       "cd_node_count": 88
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 81,
       "phase": "phase1",
       "user_text": "Mira プロジェクトの担当コードは「CRANE-22」だよ。覚えておいてね。",
@@ -5112,7 +5112,7 @@
       "cd_node_count": 89
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 82,
       "phase": "phase1",
       "user_text": "あと重要、Almach プロジェクトのコードは「CRANE-128」です。",
@@ -5122,7 +5122,7 @@
       "cd_node_count": 90
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 83,
       "phase": "phase1",
       "user_text": "それから Mizar は CRANE-133 ね。",
@@ -5132,7 +5132,7 @@
       "cd_node_count": 91
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 84,
       "phase": "phase1",
       "user_text": "Alcor の担当コードは CRANE-150 だよ。",
@@ -5142,7 +5142,7 @@
       "cd_node_count": 92
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 85,
       "phase": "phase1",
       "user_text": "Caelum については CRANE-139 でお願いします。",
@@ -5152,7 +5152,7 @@
       "cd_node_count": 93
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 86,
       "phase": "phase1",
       "user_text": "Volans プロジェクトのコードは「CRANE-170」って覚えておいて。",
@@ -5162,7 +5162,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 87,
       "phase": "phase1",
       "user_text": "ところで Lepus は CRANE-49 が割り当てられてる。",
@@ -5172,7 +5172,7 @@
       "cd_node_count": 95
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 88,
       "phase": "phase1",
       "user_text": "Carina の担当は CRANE-35。",
@@ -5182,7 +5182,7 @@
       "cd_node_count": 97
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 89,
       "phase": "phase1",
       "user_text": "あと Vela プロジェクトは「CRANE-121」。前回も忘れないでね。",
@@ -5192,7 +5192,7 @@
       "cd_node_count": 98
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 90,
       "phase": "phase1",
       "user_text": "Puppis のコードは CRANE-179。",
@@ -5202,7 +5202,7 @@
       "cd_node_count": 99
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 91,
       "phase": "phase1",
       "user_text": "Pyxis プロジェクトの担当コードは「CRANE-135」だよ。覚えておいてね。",
@@ -5212,7 +5212,7 @@
       "cd_node_count": 100
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 92,
       "phase": "phase1",
       "user_text": "あと重要、Crux プロジェクトのコードは「CRANE-199」です。",
@@ -5222,7 +5222,7 @@
       "cd_node_count": 102
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 93,
       "phase": "phase1",
       "user_text": "それから Tucana は CRANE-125 ね。",
@@ -5232,7 +5232,7 @@
       "cd_node_count": 104
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 94,
       "phase": "phase1",
       "user_text": "Pavo の担当コードは CRANE-132 だよ。",
@@ -5242,7 +5242,7 @@
       "cd_node_count": 105
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 95,
       "phase": "phase1",
       "user_text": "Phoenix2 については CRANE-99 でお願いします。",
@@ -5252,7 +5252,7 @@
       "cd_node_count": 106
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 96,
       "phase": "phase1",
       "user_text": "Indus プロジェクトのコードは「CRANE-100」って覚えておいて。",
@@ -5262,7 +5262,7 @@
       "cd_node_count": 107
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 97,
       "phase": "phase1",
       "user_text": "ところで Grus は CRANE-184 が割り当てられてる。",
@@ -5272,7 +5272,7 @@
       "cd_node_count": 108
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 98,
       "phase": "phase1",
       "user_text": "Pisces の担当は CRANE-30。",
@@ -5282,7 +5282,7 @@
       "cd_node_count": 109
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 99,
       "phase": "phase1",
       "user_text": "あと Aquila プロジェクトは「CRANE-5」。前回も忘れないでね。",
@@ -5292,7 +5292,7 @@
       "cd_node_count": 110
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 100,
       "phase": "phase1",
       "user_text": "Cetus のコードは CRANE-175。",
@@ -5302,7 +5302,7 @@
       "cd_node_count": 111
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 101,
       "phase": "phase1",
       "user_text": "Hydra プロジェクトの担当コードは「CRANE-52」だよ。覚えておいてね。",
@@ -5312,7 +5312,7 @@
       "cd_node_count": 112
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 102,
       "phase": "phase1",
       "user_text": "あと重要、Lupus プロジェクトのコードは「CRANE-113」です。",
@@ -5322,7 +5322,7 @@
       "cd_node_count": 113
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 103,
       "phase": "phase1",
       "user_text": "Arcturus2 プロジェクトのコードは「CRANE-267」だよ。",
@@ -5332,7 +5332,7 @@
       "cd_node_count": 114
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 104,
       "phase": "phase1",
       "user_text": "Volans2 プロジェクトのコードは「CRANE-388」だよ。",
@@ -5342,7 +5342,7 @@
       "cd_node_count": 114
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 105,
       "phase": "phase1",
       "user_text": "Lupus2 プロジェクトのコードは「CRANE-302」だよ。",
@@ -5352,7 +5352,7 @@
       "cd_node_count": 115
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 106,
       "phase": "phase1",
       "user_text": "Crux2 プロジェクトのコードは「CRANE-394」だよ。",
@@ -5362,7 +5362,7 @@
       "cd_node_count": 115
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 107,
       "phase": "phase1",
       "user_text": "Kappa2 プロジェクトのコードは「CRANE-312」だよ。",
@@ -5372,7 +5372,7 @@
       "cd_node_count": 116
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 108,
       "phase": "phase1",
       "user_text": "Upsilon2 プロジェクトのコードは「CRANE-322」だよ。",
@@ -5382,7 +5382,7 @@
       "cd_node_count": 117
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 109,
       "phase": "phase1",
       "user_text": "Xi2 プロジェクトのコードは「CRANE-214」だよ。",
@@ -5392,7 +5392,7 @@
       "cd_node_count": 118
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 110,
       "phase": "phase1",
       "user_text": "Gamma2 プロジェクトのコードは「CRANE-203」だよ。",
@@ -5402,7 +5402,7 @@
       "cd_node_count": 119
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 111,
       "phase": "phase1",
       "user_text": "Polaris2 プロジェクトのコードは「CRANE-265」だよ。",
@@ -5412,7 +5412,7 @@
       "cd_node_count": 119
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 112,
       "phase": "phase1",
       "user_text": "Faune2 プロジェクトのコードは「CRANE-245」だよ。",
@@ -5422,7 +5422,7 @@
       "cd_node_count": 119
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 113,
       "phase": "phase1",
       "user_text": "Hephaestus2 プロジェクトのコードは「CRANE-337」だよ。",
@@ -5432,7 +5432,7 @@
       "cd_node_count": 119
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 114,
       "phase": "phase1",
       "user_text": "Rigel2 プロジェクトのコードは「CRANE-371」だよ。",
@@ -5442,7 +5442,7 @@
       "cd_node_count": 120
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 115,
       "phase": "phase1",
       "user_text": "Apollo2 プロジェクトのコードは「CRANE-329」だよ。",
@@ -5452,7 +5452,7 @@
       "cd_node_count": 121
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 116,
       "phase": "phase1",
       "user_text": "Pollux2 プロジェクトのコードは「CRANE-277」だよ。",
@@ -5462,7 +5462,7 @@
       "cd_node_count": 122
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 117,
       "phase": "phase1",
       "user_text": "Draco2 プロジェクトのコードは「CRANE-359」だよ。",
@@ -5472,7 +5472,7 @@
       "cd_node_count": 122
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 118,
       "phase": "phase1",
       "user_text": "Capella2 プロジェクトのコードは「CRANE-368」だよ。",
@@ -5482,7 +5482,7 @@
       "cd_node_count": 122
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 119,
       "phase": "phase1",
       "user_text": "Galene2 プロジェクトのコードは「CRANE-246」だよ。",
@@ -5492,7 +5492,7 @@
       "cd_node_count": 122
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 120,
       "phase": "phase1",
       "user_text": "Helios2 プロジェクトのコードは「CRANE-331」だよ。",
@@ -5502,7 +5502,7 @@
       "cd_node_count": 123
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 121,
       "phase": "phase1",
       "user_text": "Hades2 プロジェクトのコードは「CRANE-231」だよ。",
@@ -5512,7 +5512,7 @@
       "cd_node_count": 123
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 122,
       "phase": "phase1",
       "user_text": "Delta2 プロジェクトのコードは「CRANE-204」だよ。",
@@ -5522,7 +5522,7 @@
       "cd_node_count": 124
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 123,
       "phase": "phase1",
       "user_text": "Lyra2 プロジェクトのコードは「CRANE-360」だよ。",
@@ -5532,7 +5532,7 @@
       "cd_node_count": 125
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 124,
       "phase": "phase1",
       "user_text": "Pi2 プロジェクトのコードは「CRANE-216」だよ。",
@@ -5542,7 +5542,7 @@
       "cd_node_count": 126
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 125,
       "phase": "phase1",
       "user_text": "Daphne2 プロジェクトのコードは「CRANE-243」だよ。",
@@ -5552,7 +5552,7 @@
       "cd_node_count": 127
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 126,
       "phase": "phase1",
       "user_text": "Ares2 プロジェクトのコードは「CRANE-327」だよ。",
@@ -5562,7 +5562,7 @@
       "cd_node_count": 128
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 127,
       "phase": "phase1",
       "user_text": "Caelum2 プロジェクトのコードは「CRANE-387」だよ。",
@@ -5572,7 +5572,7 @@
       "cd_node_count": 128
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 128,
       "phase": "phase1",
       "user_text": "Pegasus2 プロジェクトのコードは「CRANE-363」だよ。",
@@ -5582,7 +5582,7 @@
       "cd_node_count": 128
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 129,
       "phase": "phase1",
       "user_text": "Iris2 プロジェクトのコードは「CRANE-248」だよ。",
@@ -5592,7 +5592,7 @@
       "cd_node_count": 129
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 130,
       "phase": "phase1",
       "user_text": "Iota2 プロジェクトのコードは「CRANE-311」だよ。",
@@ -5602,7 +5602,7 @@
       "cd_node_count": 130
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 131,
       "phase": "phase1",
       "user_text": "Zeta2 プロジェクトのコードは「CRANE-206」だよ。",
@@ -5612,7 +5612,7 @@
       "cd_node_count": 130
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 132,
       "phase": "phase1",
       "user_text": "Tucana2 プロジェクトのコードは「CRANE-395」だよ。",
@@ -5622,7 +5622,7 @@
       "cd_node_count": 130
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 133,
       "phase": "phase1",
       "user_text": "Selene2 プロジェクトのコードは「CRANE-238」だよ。",
@@ -5632,7 +5632,7 @@
       "cd_node_count": 131
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 134,
       "phase": "phase1",
       "user_text": "Phi2 プロジェクトのコードは「CRANE-323」だよ。",
@@ -5642,7 +5642,7 @@
       "cd_node_count": 132
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 135,
       "phase": "phase1",
       "user_text": "Nu2 プロジェクトのコードは「CRANE-213」だよ。",
@@ -5652,7 +5652,7 @@
       "cd_node_count": 132
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 136,
       "phase": "phase1",
       "user_text": "Poseidon2 プロジェクトのコードは「CRANE-237」だよ。",
@@ -5662,7 +5662,7 @@
       "cd_node_count": 133
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 137,
       "phase": "phase1",
       "user_text": "Medea2 プロジェクトのコードは「CRANE-354」だよ。",
@@ -5672,7 +5672,7 @@
       "cd_node_count": 134
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 138,
       "phase": "phase1",
       "user_text": "Spica2 プロジェクトのコードは「CRANE-270」だよ。",
@@ -5682,7 +5682,7 @@
       "cd_node_count": 134
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 139,
       "phase": "phase1",
       "user_text": "Phoenix2 プロジェクトのコードは「CRANE-262」だよ。",
@@ -5692,7 +5692,7 @@
       "cd_node_count": 135
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 140,
       "phase": "phase1",
       "user_text": "Pavo2 プロジェクトのコードは「CRANE-396」だよ。",
@@ -5702,7 +5702,7 @@
       "cd_node_count": 135
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 141,
       "phase": "phase1",
       "user_text": "Dionysus2 プロジェクトのコードは「CRANE-233」だよ。",
@@ -5712,7 +5712,7 @@
       "cd_node_count": 136
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 142,
       "phase": "phase1",
       "user_text": "Aldebaran2 プロジェクトのコードは「CRANE-373」だよ。",
@@ -5722,7 +5722,7 @@
       "cd_node_count": 136
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 143,
       "phase": "phase1",
       "user_text": "Spica2 プロジェクトのコードは「CRANE-372」だよ。",
@@ -5732,7 +5732,7 @@
       "cd_node_count": 136
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 144,
       "phase": "phase1",
       "user_text": "Pegasus2 プロジェクトのコードは「CRANE-261」だよ。",
@@ -5742,7 +5742,7 @@
       "cd_node_count": 136
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 145,
       "phase": "phase1",
       "user_text": "Lambda2 プロジェクトのコードは「CRANE-211」だよ。",
@@ -5752,7 +5752,7 @@
       "cd_node_count": 137
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 146,
       "phase": "phase1",
       "user_text": "Daphne2 プロジェクトのコードは「CRANE-345」だよ。",
@@ -5762,7 +5762,7 @@
       "cd_node_count": 137
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 147,
       "phase": "phase1",
       "user_text": "Orion2 プロジェクトのコードは「CRANE-361」だよ。",
@@ -5772,7 +5772,7 @@
       "cd_node_count": 137
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 148,
       "phase": "phase1",
       "user_text": "Andromeda2 プロジェクトのコードは「CRANE-253」だよ。",
@@ -5782,7 +5782,7 @@
       "cd_node_count": 138
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 149,
       "phase": "phase1",
       "user_text": "Omega2 プロジェクトのコードは「CRANE-326」だよ。",
@@ -5792,7 +5792,7 @@
       "cd_node_count": 138
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 150,
       "phase": "phase1",
       "user_text": "Epsilon2 プロジェクトのコードは「CRANE-307」だよ。",
@@ -5802,7 +5802,7 @@
       "cd_node_count": 139
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 151,
       "phase": "phase1",
       "user_text": "Procyon2 プロジェクトのコードは「CRANE-274」だよ。",
@@ -5812,7 +5812,7 @@
       "cd_node_count": 139
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 152,
       "phase": "phase1",
       "user_text": "Mu2 プロジェクトのコードは「CRANE-314」だよ。",
@@ -5822,7 +5822,7 @@
       "cd_node_count": 140
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 153,
       "phase": "phase1",
       "user_text": "Delta2 プロジェクトのコードは「CRANE-306」だよ。",
@@ -5832,7 +5832,7 @@
       "cd_node_count": 140
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 154,
       "phase": "phase1",
       "user_text": "Indus2 プロジェクトのコードは「CRANE-296」だよ。",
@@ -5842,7 +5842,7 @@
       "cd_node_count": 141
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 155,
       "phase": "phase1",
       "user_text": "Beta2 プロジェクトのコードは「CRANE-304」だよ。",
@@ -5852,7 +5852,7 @@
       "cd_node_count": 142
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 156,
       "phase": "phase1",
       "user_text": "Echo2 プロジェクトのコードは「CRANE-346」だよ。",
@@ -5862,7 +5862,7 @@
       "cd_node_count": 142
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 157,
       "phase": "phase1",
       "user_text": "Echo2 プロジェクトのコードは「CRANE-244」だよ。",
@@ -5872,7 +5872,7 @@
       "cd_node_count": 143
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 158,
       "phase": "phase1",
       "user_text": "Alpha2 プロジェクトのコードは「CRANE-201」だよ。",
@@ -5882,7 +5882,7 @@
       "cd_node_count": 144
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 159,
       "phase": "phase1",
       "user_text": "Perseus2 プロジェクトのコードは「CRANE-362」だよ。",
@@ -5892,7 +5892,7 @@
       "cd_node_count": 144
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 160,
       "phase": "phase1",
       "user_text": "Pyxis2 プロジェクトのコードは「CRANE-393」だよ。",
@@ -5902,7 +5902,7 @@
       "cd_node_count": 144
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 161,
       "phase": "phase1",
       "user_text": "Rho2 プロジェクトのコードは「CRANE-217」だよ。",
@@ -5912,7 +5912,7 @@
       "cd_node_count": 145
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 162,
       "phase": "phase1",
       "user_text": "Mira2 プロジェクトのコードは「CRANE-281」だよ。",
@@ -5922,7 +5922,7 @@
       "cd_node_count": 146
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 163,
       "phase": "phase1",
       "user_text": "Alpha2 プロジェクトのコードは「CRANE-303」だよ。",
@@ -5932,7 +5932,7 @@
       "cd_node_count": 146
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 164,
       "phase": "phase1",
       "user_text": "Titan2 プロジェクトのコードは「CRANE-239」だよ。",
@@ -5942,7 +5942,7 @@
       "cd_node_count": 147
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 165,
       "phase": "phase1",
       "user_text": "Cassiopeia2 プロジェクトのコードは「CRANE-357」だよ。",
@@ -5952,7 +5952,7 @@
       "cd_node_count": 148
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 166,
       "phase": "phase1",
       "user_text": "Betelgeuse2 プロジェクトのコードは「CRANE-377」だよ。",
@@ -5962,7 +5962,7 @@
       "cd_node_count": 148
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 167,
       "phase": "phase1",
       "user_text": "Eros2 プロジェクトのコードは「CRANE-336」だよ。",
@@ -5972,7 +5972,7 @@
       "cd_node_count": 149
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 168,
       "phase": "phase1",
       "user_text": "Mintaka2 プロジェクトのコードは「CRANE-279」だよ。",
@@ -5982,7 +5982,7 @@
       "cd_node_count": 149
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 169,
       "phase": "phase1",
       "user_text": "Xi2 プロジェクトのコードは「CRANE-316」だよ。",
@@ -5992,7 +5992,7 @@
       "cd_node_count": 150
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 170,
       "phase": "phase1",
       "user_text": "Upsilon2 プロジェクトのコードは「CRANE-220」だよ。",
@@ -6002,7 +6002,7 @@
       "cd_node_count": 150
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 171,
       "phase": "phase1",
       "user_text": "Omicron2 プロジェクトのコードは「CRANE-215」だよ。",
@@ -6012,7 +6012,7 @@
       "cd_node_count": 150
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 172,
       "phase": "phase1",
       "user_text": "Castor2 プロジェクトのコードは「CRANE-378」だよ。",
@@ -6022,7 +6022,7 @@
       "cd_node_count": 150
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 173,
       "phase": "phase1",
       "user_text": "Faune2 プロジェクトのコードは「CRANE-347」だよ。",
@@ -6032,7 +6032,7 @@
       "cd_node_count": 150
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 174,
       "phase": "phase1",
       "user_text": "Regulus2 プロジェクトのコードは「CRANE-380」だよ。",
@@ -6042,7 +6042,7 @@
       "cd_node_count": 151
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 175,
       "phase": "phase1",
       "user_text": "Capella2 プロジェクトのコードは「CRANE-266」だよ。",
@@ -6052,7 +6052,7 @@
       "cd_node_count": 151
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 176,
       "phase": "phase1",
       "user_text": "Caelum2 プロジェクトのコードは「CRANE-285」だよ。",
@@ -6062,7 +6062,7 @@
       "cd_node_count": 151
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 177,
       "phase": "phase1",
       "user_text": "Sirius2 プロジェクトのコードは「CRANE-366」だよ。",
@@ -6072,7 +6072,7 @@
       "cd_node_count": 151
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 178,
       "phase": "phase1",
       "user_text": "Hyperion2 プロジェクトのコードは「CRANE-247」だよ。",
@@ -6082,7 +6082,7 @@
       "cd_node_count": 152
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 179,
       "phase": "phase1",
       "user_text": "Gamma2 プロジェクトのコードは「CRANE-305」だよ。",
@@ -6092,7 +6092,7 @@
       "cd_node_count": 152
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 180,
       "phase": "phase1",
       "user_text": "Bellatrix2 プロジェクトのコードは「CRANE-280」だよ。",
@@ -6102,7 +6102,7 @@
       "cd_node_count": 152
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 181,
       "phase": "phase1",
       "user_text": "Cassiopeia2 プロジェクトのコードは「CRANE-255」だよ。",
@@ -6112,7 +6112,7 @@
       "cd_node_count": 153
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 182,
       "phase": "phase1",
       "user_text": "Phoenix22 プロジェクトのコードは「CRANE-397」だよ。",
@@ -6122,7 +6122,7 @@
       "cd_node_count": 153
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 183,
       "phase": "phase1",
       "user_text": "Volans2 プロジェクトのコードは「CRANE-286」だよ。",
@@ -6132,7 +6132,7 @@
       "cd_node_count": 153
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 184,
       "phase": "phase1",
       "user_text": "Rho2 プロジェクトのコードは「CRANE-319」だよ。",
@@ -6142,7 +6142,7 @@
       "cd_node_count": 154
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 185,
       "phase": "phase1",
       "user_text": "Theta2 プロジェクトのコードは「CRANE-310」だよ。",
@@ -6152,7 +6152,7 @@
       "cd_node_count": 154
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 186,
       "phase": "phase1",
       "user_text": "Demeter2 プロジェクトのコードは「CRANE-334」だよ。",
@@ -6162,7 +6162,7 @@
       "cd_node_count": 155
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 187,
       "phase": "phase1",
       "user_text": "Boreas2 プロジェクトのコードは「CRANE-343」だよ。",
@@ -6172,7 +6172,7 @@
       "cd_node_count": 156
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 188,
       "phase": "phase1",
       "user_text": "Eros2 プロジェクトのコードは「CRANE-234」だよ。",
@@ -6182,7 +6182,7 @@
       "cd_node_count": 156
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 189,
       "phase": "phase1",
       "user_text": "Tau2 プロジェクトのコードは「CRANE-219」だよ。",
@@ -6192,7 +6192,7 @@
       "cd_node_count": 157
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 190,
       "phase": "phase1",
       "user_text": "Titan2 プロジェクトのコードは「CRANE-341」だよ。",
@@ -6202,7 +6202,7 @@
       "cd_node_count": 157
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 191,
       "phase": "phase1",
       "user_text": "Chi2 プロジェクトのコードは「CRANE-324」だよ。",
@@ -6212,7 +6212,7 @@
       "cd_node_count": 158
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 192,
       "phase": "phase1",
       "user_text": "Procyon2 プロジェクトのコードは「CRANE-376」だよ。",
@@ -6222,7 +6222,7 @@
       "cd_node_count": 159
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 193,
       "phase": "phase1",
       "user_text": "Sirius2 プロジェクトのコードは「CRANE-264」だよ。",
@@ -6232,7 +6232,7 @@
       "cd_node_count": 159
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 194,
       "phase": "phase1",
       "user_text": "Alcor2 プロジェクトのコードは「CRANE-284」だよ。",
@@ -6242,7 +6242,7 @@
       "cd_node_count": 160
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 195,
       "phase": "phase1",
       "user_text": "Hyperion2 プロジェクトのコードは「CRANE-349」だよ。",
@@ -6252,7 +6252,7 @@
       "cd_node_count": 160
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 196,
       "phase": "phase1",
       "user_text": "Hydra2 プロジェクトのコードは「CRANE-301」だよ。",
@@ -6262,7 +6262,7 @@
       "cd_node_count": 161
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 197,
       "phase": "phase1",
       "user_text": "Auriga2 プロジェクトのコードは「CRANE-356」だよ。",
@@ -6272,7 +6272,7 @@
       "cd_node_count": 162
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 198,
       "phase": "phase1",
       "user_text": "Deneb2 プロジェクトのコードは「CRANE-273」だよ。",
@@ -6282,7 +6282,7 @@
       "cd_node_count": 163
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 199,
       "phase": "phase1",
       "user_text": "Hermes2 プロジェクトのコードは「CRANE-228」だよ。",
@@ -6292,7 +6292,7 @@
       "cd_node_count": 163
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 200,
       "phase": "phase1",
       "user_text": "Mizar2 プロジェクトのコードは「CRANE-385」だよ。",
@@ -6302,7 +6302,7 @@
       "cd_node_count": 164
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 201,
       "phase": "phase2",
       "user_text": "Lambda2 プロジェクトのコードは「CRANE-313」だよ。",
@@ -6312,7 +6312,7 @@
       "cd_node_count": 164
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 202,
       "phase": "phase2",
       "user_text": "Medea2 プロジェクトのコードは「CRANE-252」だよ。",
@@ -6322,7 +6322,7 @@
       "cd_node_count": 165
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 203,
       "phase": "phase2",
       "user_text": "Deneb2 プロジェクトのコードは「CRANE-375」だよ。",
@@ -6332,7 +6332,7 @@
       "cd_node_count": 165
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 204,
       "phase": "phase2",
       "user_text": "Epsilon2 プロジェクトのコードは「CRANE-205」だよ。",
@@ -6342,7 +6342,7 @@
       "cd_node_count": 165
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 205,
       "phase": "phase3",
       "user_text": "Hera2 プロジェクトのコードは「CRANE-230」だよ。",
@@ -6352,7 +6352,7 @@
       "cd_node_count": 165
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 206,
       "phase": "phase3",
       "user_text": "Almach2 プロジェクトのコードは「CRANE-384」だよ。",
@@ -6362,7 +6362,7 @@
       "cd_node_count": 166
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 207,
       "phase": "phase3",
       "user_text": "Cetus2 プロジェクトのコードは「CRANE-300」だよ。",
@@ -6372,7 +6372,7 @@
       "cd_node_count": 166
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 208,
       "phase": "phase3",
       "user_text": "Aquila2 プロジェクトのコードは「CRANE-299」だよ。",
@@ -6382,7 +6382,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 209,
       "phase": "phase3",
       "user_text": "Hera2 プロジェクトのコードは「CRANE-332」だよ。",
@@ -6392,7 +6392,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 210,
       "phase": "phase3",
       "user_text": "Psi2 プロジェクトのコードは「CRANE-325」だよ。",
@@ -6402,7 +6402,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 211,
       "phase": "phase3",
       "user_text": "Grus2 プロジェクトのコードは「CRANE-399」だよ。",
@@ -6412,7 +6412,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 212,
       "phase": "phase3",
       "user_text": "Dionysus2 プロジェクトのコードは「CRANE-335」だよ。",
@@ -6422,7 +6422,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 213,
       "phase": "phase3",
       "user_text": "Pollux2 プロジェクトのコードは「CRANE-379」だよ。",
@@ -6432,7 +6432,7 @@
       "cd_node_count": 167
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 214,
       "phase": "phase3",
       "user_text": "Tau2 プロジェクトのコードは「CRANE-321」だよ。",
@@ -6442,7 +6442,7 @@
       "cd_node_count": 168
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 215,
       "phase": "phase3",
       "user_text": "Hephaestus2 プロジェクトのコードは「CRANE-235」だよ。",
@@ -6452,7 +6452,7 @@
       "cd_node_count": 168
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 216,
       "phase": "phase3",
       "user_text": "Janus2 プロジェクトのコードは「CRANE-249」だよ。",
@@ -6462,7 +6462,7 @@
       "cd_node_count": 168
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 217,
       "phase": "phase3",
       "user_text": "Antares2 プロジェクトのコードは「CRANE-370」だよ。",
@@ -6472,7 +6472,7 @@
       "cd_node_count": 168
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 218,
       "phase": "phase3",
       "user_text": "Poseidon2 プロジェクトのコードは「CRANE-339」だよ。",
@@ -6482,7 +6482,7 @@
       "cd_node_count": 168
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 219,
       "phase": "phase3",
       "user_text": "Iris2 プロジェクトのコードは「CRANE-350」だよ。",
@@ -6492,7 +6492,7 @@
       "cd_node_count": 169
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 220,
       "phase": "phase3",
       "user_text": "Hades2 プロジェクトのコードは「CRANE-333」だよ。",
@@ -6502,7 +6502,7 @@
       "cd_node_count": 169
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 221,
       "phase": "phase3",
       "user_text": "Athena2 プロジェクトのコードは「CRANE-328」だよ。",
@@ -6512,7 +6512,7 @@
       "cd_node_count": 170
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 222,
       "phase": "phase3",
       "user_text": "Chi2 プロジェクトのコードは「CRANE-222」だよ。",
@@ -6522,7 +6522,7 @@
       "cd_node_count": 170
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 223,
       "phase": "phase3",
       "user_text": "Almach2 プロジェクトのコードは「CRANE-282」だよ。",
@@ -6532,7 +6532,7 @@
       "cd_node_count": 170
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 224,
       "phase": "phase3",
       "user_text": "Regulus2 プロジェクトのコードは「CRANE-278」だよ。",
@@ -6542,7 +6542,7 @@
       "cd_node_count": 170
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 225,
       "phase": "phase3",
       "user_text": "Kappa2 プロジェクトのコードは「CRANE-210」だよ。",
@@ -6552,7 +6552,7 @@
       "cd_node_count": 170
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 226,
       "phase": "phase3",
       "user_text": "Mizar2 プロジェクトのコードは「CRANE-283」だよ。",
@@ -6562,7 +6562,7 @@
       "cd_node_count": 171
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 227,
       "phase": "phase3",
       "user_text": "Vega2 プロジェクトのコードは「CRANE-365」だよ。",
@@ -6572,7 +6572,7 @@
       "cd_node_count": 172
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 228,
       "phase": "phase3",
       "user_text": "Sigma2 プロジェクトのコードは「CRANE-320」だよ。",
@@ -6582,7 +6582,7 @@
       "cd_node_count": 173
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 229,
       "phase": "phase3",
       "user_text": "Puppis2 プロジェクトのコードは「CRANE-290」だよ。",
@@ -6592,7 +6592,7 @@
       "cd_node_count": 173
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 230,
       "phase": "phase3",
       "user_text": "Rigel2 プロジェクトのコードは「CRANE-269」だよ。",
@@ -6602,7 +6602,7 @@
       "cd_node_count": 173
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 231,
       "phase": "phase3",
       "user_text": "Auriga2 プロジェクトのコードは「CRANE-254」だよ。",
@@ -6612,7 +6612,7 @@
       "cd_node_count": 174
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 232,
       "phase": "phase3",
       "user_text": "Pyxis2 プロジェクトのコードは「CRANE-291」だよ。",
@@ -6622,7 +6622,7 @@
       "cd_node_count": 174
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 233,
       "phase": "phase3",
       "user_text": "Phoenix22 プロジェクトのコードは「CRANE-295」だよ。",
@@ -6632,7 +6632,7 @@
       "cd_node_count": 175
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 234,
       "phase": "phase3",
       "user_text": "Chronos2 プロジェクトのコードは「CRANE-242」だよ。",
@@ -6642,7 +6642,7 @@
       "cd_node_count": 175
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 235,
       "phase": "phase3",
       "user_text": "Pavo2 プロジェクトのコードは「CRANE-294」だよ。",
@@ -6652,7 +6652,7 @@
       "cd_node_count": 176
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 236,
       "phase": "phase3",
       "user_text": "Omicron2 プロジェクトのコードは「CRANE-317」だよ。",
@@ -6662,7 +6662,7 @@
       "cd_node_count": 176
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 237,
       "phase": "phase3",
       "user_text": "Pisces2 プロジェクトのコードは「CRANE-400」だよ。",
@@ -6672,7 +6672,7 @@
       "cd_node_count": 176
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 238,
       "phase": "phase3",
       "user_text": "Cygnus2 プロジェクトのコードは「CRANE-358」だよ。",
@@ -6682,7 +6682,7 @@
       "cd_node_count": 177
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 239,
       "phase": "phase3",
       "user_text": "Athena2 プロジェクトのコードは「CRANE-226」だよ。",
@@ -6692,7 +6692,7 @@
       "cd_node_count": 177
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 240,
       "phase": "phase3",
       "user_text": "Mintaka2 プロジェクトのコードは「CRANE-381」だよ。",
@@ -6702,7 +6702,7 @@
       "cd_node_count": 177
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 241,
       "phase": "phase3",
       "user_text": "Galene2 プロジェクトのコードは「CRANE-348」だよ。",
@@ -6712,7 +6712,7 @@
       "cd_node_count": 177
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 242,
       "phase": "phase3",
       "user_text": "Betelgeuse2 プロジェクトのコードは「CRANE-275」だよ。",
@@ -6722,7 +6722,7 @@
       "cd_node_count": 177
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 243,
       "phase": "phase3",
       "user_text": "Orion2 プロジェクトのコードは「CRANE-259」だよ。",
@@ -6732,7 +6732,7 @@
       "cd_node_count": 178
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 244,
       "phase": "phase3",
       "user_text": "Leander2 プロジェクトのコードは「CRANE-353」だよ。",
@@ -6742,7 +6742,7 @@
       "cd_node_count": 178
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 245,
       "phase": "phase3",
       "user_text": "Sigma2 プロジェクトのコードは「CRANE-218」だよ。",
@@ -6752,7 +6752,7 @@
       "cd_node_count": 178
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 246,
       "phase": "phase3",
       "user_text": "Knossos2 プロジェクトのコードは「CRANE-250」だよ。",
@@ -6762,7 +6762,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 247,
       "phase": "phase3",
       "user_text": "Tucana2 プロジェクトのコードは「CRANE-293」だよ。",
@@ -6772,7 +6772,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 248,
       "phase": "phase3",
       "user_text": "Castor2 プロジェクトのコードは「CRANE-276」だよ。",
@@ -6782,7 +6782,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 249,
       "phase": "phase3",
       "user_text": "Atlas2 プロジェクトのコードは「CRANE-342」だよ。",
@@ -6792,7 +6792,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 250,
       "phase": "phase3",
       "user_text": "Phi2 プロジェクトのコードは「CRANE-221」だよ。",
@@ -6802,7 +6802,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 251,
       "phase": "phase3",
       "user_text": "Grus2 プロジェクトのコードは「CRANE-297」だよ。",
@@ -6812,7 +6812,7 @@
       "cd_node_count": 179
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 252,
       "phase": "phase3",
       "user_text": "Demeter2 プロジェクトのコードは「CRANE-232」だよ。",
@@ -6822,7 +6822,7 @@
       "cd_node_count": 180
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 253,
       "phase": "phase3",
       "user_text": "Hestia2 プロジェクトのコードは「CRANE-338」だよ。",
@@ -6832,7 +6832,7 @@
       "cd_node_count": 181
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 254,
       "phase": "phase3",
       "user_text": "Pi2 プロジェクトのコードは「CRANE-318」だよ。",
@@ -6842,7 +6842,7 @@
       "cd_node_count": 182
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 255,
       "phase": "phase3",
       "user_text": "Mu2 プロジェクトのコードは「CRANE-212」だよ。",
@@ -6852,7 +6852,7 @@
       "cd_node_count": 182
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 256,
       "phase": "phase3",
       "user_text": "Antares2 プロジェクトのコードは「CRANE-268」だよ。",
@@ -6862,7 +6862,7 @@
       "cd_node_count": 182
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 257,
       "phase": "phase3",
       "user_text": "Vela2 プロジェクトのコードは「CRANE-289」だよ。",
@@ -6872,7 +6872,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 258,
       "phase": "phase3",
       "user_text": "Crux2 プロジェクトのコードは「CRANE-292」だよ。",
@@ -6882,7 +6882,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 259,
       "phase": "phase3",
       "user_text": "Ares2 プロジェクトのコードは「CRANE-225」だよ。",
@@ -6892,7 +6892,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 260,
       "phase": "phase3",
       "user_text": "Pisces2 プロジェクトのコードは「CRANE-298」だよ。",
@@ -6902,7 +6902,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 261,
       "phase": "phase3",
       "user_text": "Mira2 プロジェクトのコードは「CRANE-383」だよ。",
@@ -6912,7 +6912,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 262,
       "phase": "phase3",
       "user_text": "Vela2 プロジェクトのコードは「CRANE-391」だよ。",
@@ -6922,7 +6922,7 @@
       "cd_node_count": 183
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 263,
       "phase": "phase3",
       "user_text": "Lepus2 プロジェクトのコードは「CRANE-287」だよ。",
@@ -6932,7 +6932,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 264,
       "phase": "phase3",
       "user_text": "Bellatrix2 プロジェクトのコードは「CRANE-382」だよ。",
@@ -6942,7 +6942,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 265,
       "phase": "phase3",
       "user_text": "Atlas2 プロジェクトのコードは「CRANE-240」だよ。",
@@ -6952,7 +6952,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 266,
       "phase": "phase3",
       "user_text": "Arcturus2 プロジェクトのコードは「CRANE-369」だよ。",
@@ -6962,7 +6962,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 267,
       "phase": "phase3",
       "user_text": "Carina2 プロジェクトのコードは「CRANE-288」だよ。",
@@ -6972,7 +6972,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 268,
       "phase": "phase3",
       "user_text": "Alcor2 プロジェクトのコードは「CRANE-386」だよ。",
@@ -6982,7 +6982,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 269,
       "phase": "phase3",
       "user_text": "Boreas2 プロジェクトのコードは「CRANE-241」だよ。",
@@ -6992,7 +6992,7 @@
       "cd_node_count": 184
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 270,
       "phase": "phase3",
       "user_text": "Beta2 プロジェクトのコードは「CRANE-202」だよ。",
@@ -7002,7 +7002,7 @@
       "cd_node_count": 185
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 271,
       "phase": "phase3",
       "user_text": "Altair2 プロジェクトのコードは「CRANE-272」だよ。",
@@ -7012,7 +7012,7 @@
       "cd_node_count": 185
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 272,
       "phase": "phase3",
       "user_text": "Janus2 プロジェクトのコードは「CRANE-351」だよ。",
@@ -7022,7 +7022,7 @@
       "cd_node_count": 186
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 273,
       "phase": "phase3",
       "user_text": "Nu2 プロジェクトのコードは「CRANE-315」だよ。",
@@ -7032,7 +7032,7 @@
       "cd_node_count": 187
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 274,
       "phase": "phase3",
       "user_text": "Draco2 プロジェクトのコードは「CRANE-257」だよ。",
@@ -7042,7 +7042,7 @@
       "cd_node_count": 187
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 275,
       "phase": "phase3",
       "user_text": "Zeta2 プロジェクトのコードは「CRANE-308」だよ。",
@@ -7052,7 +7052,7 @@
       "cd_node_count": 188
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 276,
       "phase": "phase3",
       "user_text": "Puppis2 プロジェクトのコードは「CRANE-392」だよ。",
@@ -7062,7 +7062,7 @@
       "cd_node_count": 189
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 277,
       "phase": "phase3",
       "user_text": "Polaris2 プロジェクトのコードは「CRANE-367」だよ。",
@@ -7072,7 +7072,7 @@
       "cd_node_count": 189
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 278,
       "phase": "phase3",
       "user_text": "Leander2 プロジェクトのコードは「CRANE-251」だよ。",
@@ -7082,7 +7082,7 @@
       "cd_node_count": 190
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 279,
       "phase": "phase3",
       "user_text": "Chronos2 プロジェクトのコードは「CRANE-344」だよ。",
@@ -7092,7 +7092,7 @@
       "cd_node_count": 190
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 280,
       "phase": "phase3",
       "user_text": "Indus2 プロジェクトのコードは「CRANE-398」だよ。",
@@ -7102,7 +7102,7 @@
       "cd_node_count": 190
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 281,
       "phase": "phase3",
       "user_text": "Andromeda2 プロジェクトのコードは「CRANE-355」だよ。",
@@ -7112,7 +7112,7 @@
       "cd_node_count": 190
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 282,
       "phase": "phase3",
       "user_text": "Hermes2 プロジェクトのコードは「CRANE-330」だよ。",
@@ -7122,7 +7122,7 @@
       "cd_node_count": 191
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 283,
       "phase": "phase3",
       "user_text": "Perseus2 プロジェクトのコードは「CRANE-260」だよ。",
@@ -7132,7 +7132,7 @@
       "cd_node_count": 191
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 284,
       "phase": "phase3",
       "user_text": "Cygnus2 プロジェクトのコードは「CRANE-256」だよ。",
@@ -7142,7 +7142,7 @@
       "cd_node_count": 192
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 285,
       "phase": "phase3",
       "user_text": "Omega2 プロジェクトのコードは「CRANE-224」だよ。",
@@ -7152,7 +7152,7 @@
       "cd_node_count": 192
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 286,
       "phase": "phase3",
       "user_text": "Theta2 プロジェクトのコードは「CRANE-208」だよ。",
@@ -7162,7 +7162,7 @@
       "cd_node_count": 192
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 287,
       "phase": "phase3",
       "user_text": "Iota2 プロジェクトのコードは「CRANE-209」だよ。",
@@ -7172,7 +7172,7 @@
       "cd_node_count": 192
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 288,
       "phase": "phase3",
       "user_text": "Eta2 プロジェクトのコードは「CRANE-309」だよ。",
@@ -7182,7 +7182,7 @@
       "cd_node_count": 193
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 289,
       "phase": "phase3",
       "user_text": "Knossos2 プロジェクトのコードは「CRANE-352」だよ。",
@@ -7192,7 +7192,7 @@
       "cd_node_count": 193
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 290,
       "phase": "phase3",
       "user_text": "Psi2 プロジェクトのコードは「CRANE-223」だよ。",
@@ -7202,7 +7202,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 291,
       "phase": "phase3",
       "user_text": "Selene2 プロジェクトのコードは「CRANE-340」だよ。",
@@ -7212,7 +7212,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 292,
       "phase": "phase3",
       "user_text": "Altair2 プロジェクトのコードは「CRANE-374」だよ。",
@@ -7222,7 +7222,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 293,
       "phase": "phase3",
       "user_text": "Apollo2 プロジェクトのコードは「CRANE-227」だよ。",
@@ -7232,7 +7232,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 294,
       "phase": "phase3",
       "user_text": "Lepus2 プロジェクトのコードは「CRANE-389」だよ。",
@@ -7242,7 +7242,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 295,
       "phase": "phase3",
       "user_text": "Hestia2 プロジェクトのコードは「CRANE-236」だよ。",
@@ -7252,7 +7252,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 296,
       "phase": "phase3",
       "user_text": "Lyra2 プロジェクトのコードは「CRANE-258」だよ。",
@@ -7262,7 +7262,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 297,
       "phase": "phase3",
       "user_text": "Vega2 プロジェクトのコードは「CRANE-263」だよ。",
@@ -7272,7 +7272,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 298,
       "phase": "phase3",
       "user_text": "Aldebaran2 プロジェクトのコードは「CRANE-271」だよ。",
@@ -7282,7 +7282,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 299,
       "phase": "phase3",
       "user_text": "Carina2 プロジェクトのコードは「CRANE-390」だよ。",
@@ -7292,7 +7292,7 @@
       "cd_node_count": 194
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 300,
       "phase": "phase3",
       "user_text": "Eta2 プロジェクトのコードは「CRANE-207」だよ。",
@@ -7302,7 +7302,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 301,
       "phase": "phase3",
       "user_text": "Helios2 プロジェクトのコードは「CRANE-229」だよ。",
@@ -7312,7 +7312,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 302,
       "phase": "phase3",
       "user_text": "Phoenix2 プロジェクトのコードは「CRANE-364」だよ。",
@@ -7322,7 +7322,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 303,
       "phase": "phase3",
       "user_text": "Dionysus のコードは?",
@@ -7332,7 +7332,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 304,
       "phase": "phase3",
       "user_text": "Andromeda のコードは?",
@@ -7342,7 +7342,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 305,
       "phase": "phase3",
       "user_text": "そういえば、Phi プロジェクトの担当コードって何だっけ?",
@@ -7352,7 +7352,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 306,
       "phase": "phase3",
       "user_text": "Polaris の担当コードを思い出させて。",
@@ -7362,7 +7362,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 307,
       "phase": "phase3",
       "user_text": "Mizar のコードは?",
@@ -7372,7 +7372,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 308,
       "phase": "phase3",
       "user_text": "Mu プロジェクトのコードも教えて。",
@@ -7382,7 +7382,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 309,
       "phase": "phase3",
       "user_text": "Rigel の担当コード何だっけ?",
@@ -7392,7 +7392,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 310,
       "phase": "phase3",
       "user_text": "そういえば、Lambda プロジェクトの担当コードって何だっけ?",
@@ -7402,7 +7402,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 311,
       "phase": "phase3",
       "user_text": "Upsilon のコードを教えて。",
@@ -7412,7 +7412,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 312,
       "phase": "phase3",
       "user_text": "Tau の担当コード何だっけ?",
@@ -7422,7 +7422,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 313,
       "phase": "phase3",
       "user_text": "Omega は CRANE-いくつだったかな?",
@@ -7432,7 +7432,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 314,
       "phase": "phase3",
       "user_text": "Orion の担当コード何だっけ?",
@@ -7442,7 +7442,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 315,
       "phase": "phase3",
       "user_text": "Chronos プロジェクトのコードも教えて。",
@@ -7452,7 +7452,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 316,
       "phase": "phase3",
       "user_text": "Rho プロジェクトのコードは?",
@@ -7462,7 +7462,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 317,
       "phase": "phase3",
       "user_text": "Antares のコードを再確認させて。",
@@ -7472,7 +7472,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 318,
       "phase": "phase3",
       "user_text": "Tucana のコードは?",
@@ -7482,7 +7482,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 319,
       "phase": "phase3",
       "user_text": "Selene のコードを再確認させて。",
@@ -7492,7 +7492,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 320,
       "phase": "phase3",
       "user_text": "Ares の担当コードを思い出させて。",
@@ -7502,7 +7502,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 321,
       "phase": "phase3",
       "user_text": "Regulus のコードを再確認させて。",
@@ -7512,7 +7512,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 322,
       "phase": "phase3",
       "user_text": "Faune の担当コードを思い出させて。",
@@ -7522,7 +7522,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 323,
       "phase": "phase3",
       "user_text": "Beta プロジェクトのコードも教えて。",
@@ -7532,7 +7532,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 324,
       "phase": "phase3",
       "user_text": "Titan の担当コード何だっけ?",
@@ -7542,7 +7542,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 325,
       "phase": "phase3",
       "user_text": "Sigma のコードを再確認させて。",
@@ -7552,7 +7552,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 326,
       "phase": "phase3",
       "user_text": "そういえば、Pegasus プロジェクトの担当コードって何だっけ?",
@@ -7562,7 +7562,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 327,
       "phase": "phase3",
       "user_text": "Almach プロジェクトのコードも教えて。",
@@ -7572,7 +7572,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 328,
       "phase": "phase3",
       "user_text": "Procyon は CRANE-いくつだったかな?",
@@ -7582,7 +7582,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 329,
       "phase": "phase3",
       "user_text": "Omicron の担当コードを思い出させて。",
@@ -7592,7 +7592,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 330,
       "phase": "phase3",
       "user_text": "Phoenix プロジェクトのコードも教えて。",
@@ -7602,7 +7602,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 331,
       "phase": "phase3",
       "user_text": "Zeta のコードって何でしたっけ?",
@@ -7612,7 +7612,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 332,
       "phase": "phase3",
       "user_text": "Xi は CRANE-いくつだったかな?",
@@ -7622,7 +7622,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 333,
       "phase": "phase3",
       "user_text": "Bellatrix のコードを教えて。",
@@ -7632,7 +7632,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 334,
       "phase": "phase3",
       "user_text": "Pollux プロジェクトのコードは?",
@@ -7642,7 +7642,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 335,
       "phase": "phase3",
       "user_text": "Eros は CRANE-いくつだったかな?",
@@ -7652,7 +7652,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 336,
       "phase": "phase3",
       "user_text": "Knossos のコードを教えて。",
@@ -7662,7 +7662,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 337,
       "phase": "phase3",
       "user_text": "Cassiopeia の担当コードを思い出させて。",
@@ -7672,7 +7672,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 338,
       "phase": "phase3",
       "user_text": "Phoenix2 の担当コードを思い出させて。",
@@ -7682,7 +7682,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 339,
       "phase": "phase3",
       "user_text": "Chi プロジェクトのコードも教えて。",
@@ -7692,7 +7692,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 340,
       "phase": "phase3",
       "user_text": "Cetus のコードを教えて。",
@@ -7702,7 +7702,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 341,
       "phase": "phase3",
       "user_text": "そういえば、Boreas プロジェクトの担当コードって何だっけ?",
@@ -7712,7 +7712,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 342,
       "phase": "phase3",
       "user_text": "そういえば、Pyxis プロジェクトの担当コードって何だっけ?",
@@ -7722,7 +7722,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 343,
       "phase": "phase3",
       "user_text": "Delta は CRANE-いくつだったかな?",
@@ -7732,7 +7732,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 344,
       "phase": "phase3",
       "user_text": "Deneb のコードは?",
@@ -7742,7 +7742,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 345,
       "phase": "phase3",
       "user_text": "Auriga は CRANE-いくつだったかな?",
@@ -7752,7 +7752,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 346,
       "phase": "phase3",
       "user_text": "Galene のコードって何でしたっけ?",
@@ -7762,7 +7762,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 347,
       "phase": "phase3",
       "user_text": "Psi のコードは?",
@@ -7772,7 +7772,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 348,
       "phase": "phase3",
       "user_text": "Sirius は CRANE-いくつだったかな?",
@@ -7782,7 +7782,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 349,
       "phase": "phase3",
       "user_text": "そういえば、Hydra プロジェクトの担当コードって何だっけ?",
@@ -7792,7 +7792,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 350,
       "phase": "phase3",
       "user_text": "Janus の担当コード何だっけ?",
@@ -7802,7 +7802,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 351,
       "phase": "phase3",
       "user_text": "Eta プロジェクトのコードは?",
@@ -7812,7 +7812,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 352,
       "phase": "phase3",
       "user_text": "Nu のコードは?",
@@ -7822,7 +7822,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 353,
       "phase": "phase3",
       "user_text": "Apollo プロジェクトのコードは?",
@@ -7832,7 +7832,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 354,
       "phase": "phase3",
       "user_text": "Aquila の担当コード何だっけ?",
@@ -7842,7 +7842,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 355,
       "phase": "phase3",
       "user_text": "Cygnus のコードって何でしたっけ?",
@@ -7852,7 +7852,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 356,
       "phase": "phase3",
       "user_text": "そういえば、Leander プロジェクトの担当コードって何だっけ?",
@@ -7862,7 +7862,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 357,
       "phase": "phase3",
       "user_text": "Lepus プロジェクトのコードは?",
@@ -7872,7 +7872,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 358,
       "phase": "phase3",
       "user_text": "Pisces のコードを再確認させて。",
@@ -7882,7 +7882,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 359,
       "phase": "phase3",
       "user_text": "Carina のコードを再確認させて。",
@@ -7892,7 +7892,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 360,
       "phase": "phase3",
       "user_text": "Poseidon プロジェクトのコードは?",
@@ -7902,7 +7902,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 361,
       "phase": "phase3",
       "user_text": "Puppis のコードを教えて。",
@@ -7912,7 +7912,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 362,
       "phase": "phase3",
       "user_text": "Perseus のコードを教えて。",
@@ -7922,7 +7922,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 363,
       "phase": "phase3",
       "user_text": "Hyperion プロジェクトのコードは?",
@@ -7932,7 +7932,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 364,
       "phase": "phase3",
       "user_text": "Altair プロジェクトのコードも教えて。",
@@ -7942,7 +7942,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 365,
       "phase": "phase3",
       "user_text": "Hephaestus の担当コードを思い出させて。",
@@ -7952,7 +7952,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 366,
       "phase": "phase3",
       "user_text": "Lupus プロジェクトのコードも教えて。",
@@ -7962,7 +7962,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 367,
       "phase": "phase3",
       "user_text": "Vega のコードは?",
@@ -7972,7 +7972,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 368,
       "phase": "phase3",
       "user_text": "Hestia のコードって何でしたっけ?",
@@ -7982,7 +7982,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 369,
       "phase": "phase3",
       "user_text": "そういえば、Hades プロジェクトの担当コードって何だっけ?",
@@ -7992,7 +7992,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 370,
       "phase": "phase3",
       "user_text": "Capella のコードって何でしたっけ?",
@@ -8002,7 +8002,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 371,
       "phase": "phase3",
       "user_text": "Betelgeuse の担当コードを思い出させて。",
@@ -8012,7 +8012,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 372,
       "phase": "phase3",
       "user_text": "Daphne のコードは?",
@@ -8022,7 +8022,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 373,
       "phase": "phase3",
       "user_text": "Epsilon の担当コードを思い出させて。",
@@ -8032,7 +8032,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 374,
       "phase": "phase3",
       "user_text": "Indus のコードって何でしたっけ?",
@@ -8042,7 +8042,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 375,
       "phase": "phase3",
       "user_text": "Mintaka の担当コード何だっけ?",
@@ -8052,7 +8052,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 376,
       "phase": "phase3",
       "user_text": "Theta のコードを再確認させて。",
@@ -8062,7 +8062,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 377,
       "phase": "phase3",
       "user_text": "Kappa のコードを教えて。",
@@ -8072,7 +8072,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 378,
       "phase": "phase3",
       "user_text": "そういえば、Alpha プロジェクトの担当コードって何だっけ?",
@@ -8082,7 +8082,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 379,
       "phase": "phase3",
       "user_text": "Caelum の担当コードを思い出させて。",
@@ -8092,7 +8092,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 380,
       "phase": "phase3",
       "user_text": "そういえば、Mira プロジェクトの担当コードって何だっけ?",
@@ -8102,7 +8102,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 381,
       "phase": "phase3",
       "user_text": "Hera のコードを教えて。",
@@ -8112,7 +8112,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 382,
       "phase": "phase3",
       "user_text": "そういえば、Aldebaran プロジェクトの担当コードって何だっけ?",
@@ -8122,7 +8122,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 383,
       "phase": "phase3",
       "user_text": "Castor のコードって何でしたっけ?",
@@ -8132,7 +8132,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 384,
       "phase": "phase3",
       "user_text": "Gamma のコードは?",
@@ -8142,7 +8142,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 385,
       "phase": "phase3",
       "user_text": "Echo は CRANE-いくつだったかな?",
@@ -8152,7 +8152,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 386,
       "phase": "phase3",
       "user_text": "Iota の担当コード何だっけ?",
@@ -8162,7 +8162,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 387,
       "phase": "phase3",
       "user_text": "Helios の担当コード何だっけ?",
@@ -8172,7 +8172,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 388,
       "phase": "phase3",
       "user_text": "Demeter プロジェクトのコードも教えて。",
@@ -8182,7 +8182,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 389,
       "phase": "phase3",
       "user_text": "Pi のコードって何でしたっけ?",
@@ -8192,7 +8192,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 390,
       "phase": "phase3",
       "user_text": "Lyra のコードを再確認させて。",
@@ -8202,7 +8202,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 391,
       "phase": "phase3",
       "user_text": "Arcturus プロジェクトのコードは?",
@@ -8212,7 +8212,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 392,
       "phase": "phase3",
       "user_text": "Draco プロジェクトのコードは?",
@@ -8222,7 +8222,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 393,
       "phase": "phase3",
       "user_text": "Iris のコードを再確認させて。",
@@ -8232,7 +8232,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 394,
       "phase": "phase3",
       "user_text": "Alcor は CRANE-いくつだったかな?",
@@ -8242,7 +8242,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 395,
       "phase": "phase3",
       "user_text": "Volans のコードって何でしたっけ?",
@@ -8252,7 +8252,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 396,
       "phase": "phase3",
       "user_text": "Medea プロジェクトのコードも教えて。",
@@ -8262,7 +8262,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 397,
       "phase": "phase3",
       "user_text": "Atlas のコードを教えて。",
@@ -8272,7 +8272,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 398,
       "phase": "phase3",
       "user_text": "Crux プロジェクトのコードも教えて。",
@@ -8282,7 +8282,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 399,
       "phase": "phase3",
       "user_text": "Athena のコードって何でしたっけ?",
@@ -8292,7 +8292,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 400,
       "phase": "phase3",
       "user_text": "Vela の担当コード何だっけ?",
@@ -8302,7 +8302,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 401,
       "phase": "phase3",
       "user_text": "Pavo は CRANE-いくつだったかな?",
@@ -8312,7 +8312,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 402,
       "phase": "phase3",
       "user_text": "Grus プロジェクトのコードは?",
@@ -8322,7 +8322,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 403,
       "phase": "phase3",
       "user_text": "Spica のコードを教えて。",
@@ -8332,7 +8332,7 @@
       "cd_node_count": 195
     },
     {
-      "mode": "cms_sbert",
+      "mode": "hamib_sbert",
       "turn": 404,
       "phase": "phase3",
       "user_text": "Hermes のコードを再確認させて。",

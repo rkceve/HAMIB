@@ -8,7 +8,7 @@ Endpoints:
   GET  /health         -- connectivity check
 
 Launch:
-  cd cms_prototype
+  cd hamib_prototype
   uvicorn server.main:app --host 0.0.0.0 --port 8080
 """
 from __future__ import annotations

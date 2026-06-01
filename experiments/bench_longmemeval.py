@@ -1,9 +1,9 @@
 """
-LongMemEval benchmark — baseline (full context) vs cms_sbert (CD-only).
+LongMemEval benchmark — baseline (full context) vs hamib_sbert (CD-only).
 
 Each question has a "haystack" of past chat sessions. For each question we:
   - baseline: concatenate all sessions as chat history, then ask the question
-  - cms_sbert: replay each turn through SBERTExtractor to build CD (no generation
+  - hamib_sbert: replay each turn through SBERTExtractor to build CD (no generation
     per turn — extract only), then ask the question using CD context
 
 Scoring: case-insensitive substring match of gold answer in the response.
@@ -194,10 +194,10 @@ def run_baseline(gemma, questions: list, output: Path) -> dict:
     return summary
 
 
-def run_cms(gemma, extractor_fn, questions: list, output: Path,
+def run_hamib(gemma, extractor_fn, questions: list, output: Path,
             *, cap_sun_mass: float = 1.0, cap_planet_mass: float = 0.5,
             cap_sat_mass: float = 0.1, start_from_index: int = 0,
-            output_filename: str = "longmemeval_cms_sbert.json") -> dict:
+            output_filename: str = "longmemeval_hamib_sbert.json") -> dict:
     """
     Args:
       start_from_index: 0-based question index to start from (for resume).
@@ -205,11 +205,11 @@ def run_cms(gemma, extractor_fn, questions: list, output: Path,
       output_filename: output JSON name (use a custom name for partial/resume runs).
     """
     if start_from_index > 0:
-        print(f"\n=== longmemeval cms_sbert RESUME from i={start_from_index} "
+        print(f"\n=== longmemeval hamib_sbert RESUME from i={start_from_index} "
               f"({len(questions) - start_from_index} items) ===", flush=True)
         questions = questions[start_from_index:]
     else:
-        print(f"\n=== longmemeval cms_sbert ({len(questions)} items) ===", flush=True)
+        print(f"\n=== longmemeval hamib_sbert ({len(questions)} items) ===", flush=True)
     from store.cd_store import CDStore
     from server.hamib_session import HAMIBSession
     em = EnergyMonitor()
@@ -279,7 +279,7 @@ def run_cms(gemma, extractor_fn, questions: list, output: Path,
         })
         total_q = len(questions) + start_from_index
         if i in (1,2,3,10,25,50,75,100,125,150,175,200) or local_i == len(questions):
-            print(f"  [lme cms ] {i}/{total_q}  acc={correct}/{local_i}={correct/local_i:.2f}  "
+            print(f"  [lme hamib ] {i}/{total_q}  acc={correct}/{local_i}={correct/local_i:.2f}  "
                   f"{ms:.0f}ms cd={cd_now}", flush=True)
         del session
         if local_i % 10 == 0:
@@ -292,7 +292,7 @@ def run_cms(gemma, extractor_fn, questions: list, output: Path,
         if local_i % 25 == 0:
             try:
                 partial_summary = {
-                    "mode": "cms_sbert", "in_progress": True,
+                    "mode": "hamib_sbert", "in_progress": True,
                     "n_done_local": local_i, "n_target": len(questions),
                     "correct": correct, "acc": correct / local_i if local_i else 0.0,
                     "cd_max": cd_max, "start_from_index": start_from_index,
@@ -309,7 +309,7 @@ def run_cms(gemma, extractor_fn, questions: list, output: Path,
     p50 = ms_list[len(ms_list)//2] if ms_list else 0
     p95 = ms_list[int(len(ms_list)*0.95)] if ms_list else 0
     summary = {
-        "mode": "cms_sbert", "n": len(questions),
+        "mode": "hamib_sbert", "n": len(questions),
         "correct": correct, "acc": correct / len(questions),
         "total_s": round(total, 1), "p50_ms": round(p50, 0), "p95_ms": round(p95, 0),
         "gpu_J": energy.get("gpu_energy_J", 0.0),
@@ -337,7 +337,7 @@ def main():
                          "LongMemEval); regex_only = NAME+CODE pair only "
                          "(for bench_scaler-style benchmarks)")
     ap.add_argument("--skip-baseline", action="store_true")
-    ap.add_argument("--skip-cms", action="store_true")
+    ap.add_argument("--skip-hamib", action="store_true")
     ap.add_argument("--mass-weight", type=float, default=0.3)
     ap.add_argument("--max-entities", type=int, default=1)
     ap.add_argument("--max-satellites", type=int, default=2)
@@ -350,7 +350,7 @@ def main():
                          "flat extraction")
     ap.add_argument("--start-from-index", type=int, default=0,
                     help="Skip first N HAMIB questions (for resume after timeout).")
-    ap.add_argument("--cms-output-name", type=str, default="longmemeval_cms_sbert.json",
+    ap.add_argument("--hamib-output-name", type=str, default="longmemeval_hamib_sbert.json",
                     help="Output filename for HAMIB run (use a suffix when resuming).")
     args = ap.parse_args()
 
@@ -385,14 +385,14 @@ def main():
     summaries = {}
     if not args.skip_baseline:
         summaries["baseline"] = run_baseline(gemma, questions, args.output)
-    if not args.skip_cms:
-        summaries["cms_sbert"] = run_cms(
+    if not args.skip_hamib:
+        summaries["hamib_sbert"] = run_hamib(
             gemma, extractor_fn, questions, args.output,
             cap_sun_mass=args.cap_sun_mass,
             cap_planet_mass=args.cap_planet_mass,
             cap_sat_mass=args.cap_sat_mass,
             start_from_index=args.start_from_index,
-            output_filename=args.cms_output_name,
+            output_filename=args.hamib_output_name,
         )
 
     json.dump(summaries, open(args.output/"longmemeval_summary.json","w"), ensure_ascii=False, indent=2)

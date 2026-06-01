@@ -22,7 +22,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 RESULTS = REPO_ROOT / "results" / "longmemeval"
 
-V10_HAMIB = RESULTS / "longmemeval_cms_sbert.json"
+V10_HAMIB = RESULTS / "longmemeval_hamib_sbert.json"
 V9_BASE = RESULTS / "longmemeval_baseline.json"
 
 # Regex used as a pre-write assertion. The HAMIB input template embeds tokens
@@ -50,7 +50,7 @@ def main() -> None:
     all_items = []
     for it in v10["items"]:
         all_items.append({
-            "_mode": "cms",
+            "_mode": "hamib",
             "_orig_i": it["i"],
             "_orig_qid": it["qid"],
             "_substring_label": bool(it["correct"]),
@@ -81,7 +81,7 @@ def main() -> None:
     # Note: LME qid is an opaque hash (e.g., "eace081b") that may end in "_abs"
     # to signal an abstention question; we preserve the original qid because
     # the judge rubric depends on the "_abs" suffix detection. The qid itself
-    # does NOT leak the mode (cms vs baseline) — both modes share the same qid
+    # does NOT leak the mode (hamib vs baseline) — both modes share the same qid
     # for the same question. Anonymous_id drops the "v10" tag to avoid even
     # the weak hint of a version number.
     blinded_items = []
@@ -121,7 +121,7 @@ def main() -> None:
         "meta": {
             "purpose": "De-anonymization mapping (judge-invisible).",
             "shuffle_seed": SEED,
-            "source_cms": str(V10_HAMIB.relative_to(REPO_ROOT)),
+            "source_hamib": str(V10_HAMIB.relative_to(REPO_ROOT)),
             "source_baseline": str(V9_BASE.relative_to(REPO_ROOT)),
         },
         "mapping": mapping,

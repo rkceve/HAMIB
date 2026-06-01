@@ -2,7 +2,7 @@
 Difficulty-scaled benchmark: L2 (25 fact) / L3 (50 fact) / L4 (100 fact)
 
 Purpose:
-  Probe the limits of baseline / cms_gemma / cms_sbert + measure energy efficiency.
+  Probe the limits of baseline / hamib_gemma / hamib_sbert + measure energy efficiency.
 
 Scenario:
   Phase 1: N fact storage (1 fact / turn)
@@ -223,7 +223,7 @@ def run_baseline(gemma, all_msgs: list[str], n: int) -> list[TurnRec]:
     return records
 
 
-def run_cms(gemma, mode: str, all_msgs: list[str], n: int, extractor_fn=None) -> list[TurnRec]:
+def run_hamib(gemma, mode: str, all_msgs: list[str], n: int, extractor_fn=None) -> list[TurnRec]:
     from store.cd_store import CDStore
     from server.hamib_session import HAMIBSession
     print(f"\n=== {mode} (N={n}) ===", flush=True)
@@ -343,7 +343,7 @@ def build_scenario_l5_multi(n: int, seed: int = 42) -> tuple[list[str], list[tup
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n-facts", type=int, required=True, help="L1=10, L2=25, L3=50, L4=100")
-    ap.add_argument("--modes", nargs="+", default=["baseline","cms_gemma","cms_sbert"])
+    ap.add_argument("--modes", nargs="+", default=["baseline","hamib_gemma","hamib_sbert"])
     ap.add_argument("--model-id", default="google/gemma-3-4b-it")
     ap.add_argument("--output", type=Path, default=_ROOT/"experiments"/"results")
     ap.add_argument("--seed", type=int, default=42)
@@ -384,7 +384,7 @@ def main():
     gemma.load()
 
     sbert_fn = None
-    if "cms_sbert" in args.modes:
+    if "hamib_sbert" in args.modes:
         from server.sbert_extractor import make_extractor_fn
         sbert_fn = make_extractor_fn(
             threshold=0.2,
@@ -400,10 +400,10 @@ def main():
         with EnergyMonitor() as em:
             if mode == "baseline":
                 rs = run_baseline(gemma, all_msgs, args.n_facts)
-            elif mode == "cms_gemma":
-                rs = run_cms(gemma, "cms_gemma", all_msgs, args.n_facts)
-            elif mode == "cms_sbert":
-                rs = run_cms(gemma, "cms_sbert", all_msgs, args.n_facts, extractor_fn=sbert_fn)
+            elif mode == "hamib_gemma":
+                rs = run_hamib(gemma, "hamib_gemma", all_msgs, args.n_facts)
+            elif mode == "hamib_sbert":
+                rs = run_hamib(gemma, "hamib_sbert", all_msgs, args.n_facts, extractor_fn=sbert_fn)
             else:
                 print(f"[skip] {mode}")
                 continue

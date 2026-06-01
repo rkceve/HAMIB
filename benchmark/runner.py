@@ -47,7 +47,7 @@ class TurnResult:
 
 @dataclass
 class BenchmarkResult:
-    mode: str          # "cms" | "baseline"
+    mode: str          # "hamib" | "baseline"
     turns: list[TurnResult] = field(default_factory=list)
 
 
@@ -62,8 +62,8 @@ class BenchmarkRunner:
 
     # -- HAMIB mode -------------------------------------------------------
 
-    def run_cms(self) -> BenchmarkResult:
-        result = BenchmarkResult(mode="cms")
+    def run_hamib(self) -> BenchmarkResult:
+        result = BenchmarkResult(mode="hamib")
         store = CDStore()
         serializer = CDSerializer()
 

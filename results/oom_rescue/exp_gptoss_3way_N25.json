@@ -52,7 +52,7 @@
         "Ares->CRANE-51": false
       }
     },
-    "cms_gptoss_sbert": {
+    "hamib_gptoss_sbert": {
       "n_facts": 25,
       "recall": 0.88,
       "n_hit": 22,
@@ -856,7 +856,7 @@
       "cd_node_count": 0
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 1,
       "phase": "phase1",
       "user_text": "Alpha プロジェクトの担当コードは「CRANE-164」だよ。覚えておいてね。",
@@ -866,7 +866,7 @@
       "cd_node_count": 5
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 2,
       "phase": "phase1",
       "user_text": "あと重要、Beta プロジェクトのコードは「CRANE-29」です。",
@@ -876,7 +876,7 @@
       "cd_node_count": 6
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 3,
       "phase": "phase1",
       "user_text": "それから Gamma は CRANE-7 ね。",
@@ -886,7 +886,7 @@
       "cd_node_count": 7
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 4,
       "phase": "phase1",
       "user_text": "Delta の担当コードは CRANE-190 だよ。",
@@ -896,7 +896,7 @@
       "cd_node_count": 10
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 5,
       "phase": "phase1",
       "user_text": "Epsilon については CRANE-71 でお願いします。",
@@ -906,7 +906,7 @@
       "cd_node_count": 12
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 6,
       "phase": "phase1",
       "user_text": "Zeta プロジェクトのコードは「CRANE-63」って覚えておいて。",
@@ -916,7 +916,7 @@
       "cd_node_count": 14
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 7,
       "phase": "phase1",
       "user_text": "ところで Eta は CRANE-58 が割り当てられてる。",
@@ -926,7 +926,7 @@
       "cd_node_count": 15
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 8,
       "phase": "phase1",
       "user_text": "Theta の担当は CRANE-36。",
@@ -936,7 +936,7 @@
       "cd_node_count": 16
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 9,
       "phase": "phase1",
       "user_text": "あと Iota プロジェクトは「CRANE-189」。前回も忘れないでね。",
@@ -946,7 +946,7 @@
       "cd_node_count": 18
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 10,
       "phase": "phase1",
       "user_text": "Kappa のコードは CRANE-27。",
@@ -956,7 +956,7 @@
       "cd_node_count": 19
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 11,
       "phase": "phase1",
       "user_text": "Lambda プロジェクトの担当コードは「CRANE-174」だよ。覚えておいてね。",
@@ -966,7 +966,7 @@
       "cd_node_count": 22
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 12,
       "phase": "phase1",
       "user_text": "あと重要、Mu プロジェクトのコードは「CRANE-140」です。",
@@ -976,7 +976,7 @@
       "cd_node_count": 23
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 13,
       "phase": "phase1",
       "user_text": "それから Nu は CRANE-23 ね。",
@@ -986,7 +986,7 @@
       "cd_node_count": 23
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 14,
       "phase": "phase1",
       "user_text": "Xi の担当コードは CRANE-152 だよ。",
@@ -996,7 +996,7 @@
       "cd_node_count": 24
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 15,
       "phase": "phase1",
       "user_text": "Omicron については CRANE-109 でお願いします。",
@@ -1006,7 +1006,7 @@
       "cd_node_count": 26
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 16,
       "phase": "phase1",
       "user_text": "Pi プロジェクトのコードは「CRANE-9」って覚えておいて。",
@@ -1016,7 +1016,7 @@
       "cd_node_count": 28
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 17,
       "phase": "phase1",
       "user_text": "ところで Rho は CRANE-8 が割り当てられてる。",
@@ -1026,7 +1026,7 @@
       "cd_node_count": 29
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 18,
       "phase": "phase1",
       "user_text": "Sigma の担当は CRANE-24。",
@@ -1036,7 +1036,7 @@
       "cd_node_count": 30
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 19,
       "phase": "phase1",
       "user_text": "あと Tau プロジェクトは「CRANE-56」。前回も忘れないでね。",
@@ -1046,7 +1046,7 @@
       "cd_node_count": 31
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 20,
       "phase": "phase1",
       "user_text": "Upsilon のコードは CRANE-60。",
@@ -1056,7 +1056,7 @@
       "cd_node_count": 34
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 21,
       "phase": "phase1",
       "user_text": "Phi プロジェクトの担当コードは「CRANE-130」だよ。覚えておいてね。",
@@ -1066,7 +1066,7 @@
       "cd_node_count": 37
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 22,
       "phase": "phase1",
       "user_text": "あと重要、Chi プロジェクトのコードは「CRANE-155」です。",
@@ -1076,7 +1076,7 @@
       "cd_node_count": 37
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 23,
       "phase": "phase1",
       "user_text": "それから Psi は CRANE-198 ね。",
@@ -1086,7 +1086,7 @@
       "cd_node_count": 38
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 24,
       "phase": "phase1",
       "user_text": "Omega の担当コードは CRANE-144 だよ。",
@@ -1096,7 +1096,7 @@
       "cd_node_count": 39
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 25,
       "phase": "phase1",
       "user_text": "Ares については CRANE-51 でお願いします。",
@@ -1106,7 +1106,7 @@
       "cd_node_count": 42
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 26,
       "phase": "phase2",
       "user_text": "推理小説とかどう?",
@@ -1116,7 +1116,7 @@
       "cd_node_count": 42
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 27,
       "phase": "phase2",
       "user_text": "今日は天気がいいね。",
@@ -1126,7 +1126,7 @@
       "cd_node_count": 42
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 28,
       "phase": "phase2",
       "user_text": "Docker は便利だよね。",
@@ -1136,7 +1136,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 29,
       "phase": "phase2",
       "user_text": "Python 使ったことある?",
@@ -1146,7 +1146,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 30,
       "phase": "phase2",
       "user_text": "Python 使ったことある?",
@@ -1156,7 +1156,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 31,
       "phase": "phase2",
       "user_text": "おすすめのカフェとかある?",
@@ -1166,7 +1166,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 32,
       "phase": "phase2",
       "user_text": "推理小説とかどう?",
@@ -1176,7 +1176,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 33,
       "phase": "phase2",
       "user_text": "京都の紅葉が見たいな。",
@@ -1186,7 +1186,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 34,
       "phase": "phase2",
       "user_text": "最近ハマっている趣味は?",
@@ -1196,7 +1196,7 @@
       "cd_node_count": 46
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 35,
       "phase": "phase2",
       "user_text": "クラシックも悪くない。",
@@ -1206,7 +1206,7 @@
       "cd_node_count": 48
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 36,
       "phase": "phase2",
       "user_text": "工事看板の番号 D-5 を見かけた。",
@@ -1216,7 +1216,7 @@
       "cd_node_count": 50
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 37,
       "phase": "phase2",
       "user_text": "週末はどこか出かけたい気分。",
@@ -1226,7 +1226,7 @@
       "cd_node_count": 52
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 38,
       "phase": "phase2",
       "user_text": "今日は天気がいいね。",
@@ -1236,7 +1236,7 @@
       "cd_node_count": 55
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 39,
       "phase": "phase2",
       "user_text": "最近ハマっている趣味は?",
@@ -1246,7 +1246,7 @@
       "cd_node_count": 55
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 40,
       "phase": "phase2",
       "user_text": "AI に興味あるんだ。",
@@ -1256,7 +1256,7 @@
       "cd_node_count": 59
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 41,
       "phase": "phase2",
       "user_text": "Python 使ったことある?",
@@ -1266,7 +1266,7 @@
       "cd_node_count": 59
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 42,
       "phase": "phase2",
       "user_text": "暖かい鍋でも食べたい。",
@@ -1276,7 +1276,7 @@
       "cd_node_count": 61
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 43,
       "phase": "phase2",
       "user_text": "リファクタリングのタイミングって難しい。",
@@ -1286,7 +1286,7 @@
       "cd_node_count": 65
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 44,
       "phase": "phase2",
       "user_text": "今日は天気がいいね。",
@@ -1296,7 +1296,7 @@
       "cd_node_count": 68
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 45,
       "phase": "phase2",
       "user_text": "京都の紅葉が見たいな。",
@@ -1306,7 +1306,7 @@
       "cd_node_count": 70
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 46,
       "phase": "phase2",
       "user_text": "AI に興味あるんだ。",
@@ -1316,7 +1316,7 @@
       "cd_node_count": 72
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 47,
       "phase": "phase2",
       "user_text": "京都の紅葉が見たいな。",
@@ -1326,7 +1326,7 @@
       "cd_node_count": 75
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 48,
       "phase": "phase2",
       "user_text": "工事看板の番号 D-5 を見かけた。",
@@ -1336,7 +1336,7 @@
       "cd_node_count": 75
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 49,
       "phase": "phase2",
       "user_text": "Python 使ったことある?",
@@ -1346,7 +1346,7 @@
       "cd_node_count": 75
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 50,
       "phase": "phase2",
       "user_text": "店のスタンプカードは CN-44 が今期。",
@@ -1356,7 +1356,7 @@
       "cd_node_count": 78
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 51,
       "phase": "phase3",
       "user_text": "Gamma のコードは?",
@@ -1366,7 +1366,7 @@
       "cd_node_count": 78
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 52,
       "phase": "phase3",
       "user_text": "Nu のコードは?",
@@ -1376,7 +1376,7 @@
       "cd_node_count": 78
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 53,
       "phase": "phase3",
       "user_text": "Mu プロジェクトのコードも教えて。",
@@ -1386,7 +1386,7 @@
       "cd_node_count": 80
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 54,
       "phase": "phase3",
       "user_text": "Theta のコードを再確認させて。",
@@ -1396,7 +1396,7 @@
       "cd_node_count": 82
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 55,
       "phase": "phase3",
       "user_text": "Ares の担当コードを思い出させて。",
@@ -1406,7 +1406,7 @@
       "cd_node_count": 84
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 56,
       "phase": "phase3",
       "user_text": "Delta は CRANE-いくつだったかな?",
@@ -1416,7 +1416,7 @@
       "cd_node_count": 84
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 57,
       "phase": "phase3",
       "user_text": "Kappa のコードを教えて。",
@@ -1426,7 +1426,7 @@
       "cd_node_count": 84
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 58,
       "phase": "phase3",
       "user_text": "Psi のコードは?",
@@ -1436,7 +1436,7 @@
       "cd_node_count": 84
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 59,
       "phase": "phase3",
       "user_text": "Sigma のコードを再確認させて。",
@@ -1446,7 +1446,7 @@
       "cd_node_count": 86
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 60,
       "phase": "phase3",
       "user_text": "Pi のコードって何でしたっけ?",
@@ -1456,7 +1456,7 @@
       "cd_node_count": 86
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 61,
       "phase": "phase3",
       "user_text": "Chi プロジェクトのコードも教えて。",
@@ -1466,7 +1466,7 @@
       "cd_node_count": 88
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 62,
       "phase": "phase3",
       "user_text": "そういえば、Phi プロジェクトの担当コードって何だっけ?",
@@ -1476,7 +1476,7 @@
       "cd_node_count": 88
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 63,
       "phase": "phase3",
       "user_text": "Rho プロジェクトのコードは?",
@@ -1486,7 +1486,7 @@
       "cd_node_count": 88
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 64,
       "phase": "phase3",
       "user_text": "Omicron の担当コードを思い出させて。",
@@ -1496,7 +1496,7 @@
       "cd_node_count": 90
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 65,
       "phase": "phase3",
       "user_text": "Beta プロジェクトのコードも教えて。",
@@ -1506,7 +1506,7 @@
       "cd_node_count": 92
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 66,
       "phase": "phase3",
       "user_text": "Upsilon のコードを教えて。",
@@ -1516,7 +1516,7 @@
       "cd_node_count": 92
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 67,
       "phase": "phase3",
       "user_text": "Eta プロジェクトのコードは?",
@@ -1526,7 +1526,7 @@
       "cd_node_count": 92
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 68,
       "phase": "phase3",
       "user_text": "Epsilon の担当コードを思い出させて。",
@@ -1536,7 +1536,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 69,
       "phase": "phase3",
       "user_text": "Omega は CRANE-いくつだったかな?",
@@ -1546,7 +1546,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 70,
       "phase": "phase3",
       "user_text": "そういえば、Lambda プロジェクトの担当コードって何だっけ?",
@@ -1556,7 +1556,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 71,
       "phase": "phase3",
       "user_text": "Xi は CRANE-いくつだったかな?",
@@ -1566,7 +1566,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 72,
       "phase": "phase3",
       "user_text": "Zeta のコードって何でしたっけ?",
@@ -1576,7 +1576,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 73,
       "phase": "phase3",
       "user_text": "そういえば、Alpha プロジェクトの担当コードって何だっけ?",
@@ -1586,7 +1586,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 74,
       "phase": "phase3",
       "user_text": "Iota の担当コード何だっけ?",
@@ -1596,7 +1596,7 @@
       "cd_node_count": 94
     },
     {
-      "mode": "cms_gptoss_sbert",
+      "mode": "hamib_gptoss_sbert",
       "turn": 75,
       "phase": "phase3",
       "user_text": "Tau の担当コード何だっけ?",

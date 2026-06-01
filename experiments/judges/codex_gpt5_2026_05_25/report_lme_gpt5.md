@@ -30,7 +30,7 @@ Paired N: 500 (HAMIB items: 500, baseline items: 500)
 
 ## Per-qtype breakdown
 
-| qtype | n | base correct | cms correct | base acc | cms acc | ratio |
+| qtype | n | base correct | hamib correct | base acc | hamib acc | ratio |
 |---|---|---|---|---|---|---|
 | knowledge-update | 78 | 29 | 27 | 0.372 | 0.346 | 0.93× |
 | multi-session | 133 | 16 | 22 | 0.120 | 0.165 | 1.38× |

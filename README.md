@@ -24,12 +24,11 @@ requires a separate license — contact below.
 > noncommercial research, evaluation, and academic use. Please do not label it
 > "OSS" or "open source" in downstream references.
 
-> Note: this repository was internally codenamed `cms` during the experimental
-> phase. The bundled data files, mode labels (`"cms"`, `"cms_sbert"`), and
-> analysis-script variable names retain that legacy lowercase tag for data
-> provenance integrity — renaming them in-place would desync the analysis
-> scripts from the recorded JSON. The technology brand and all public-facing
-> identifiers (class names, file names, prose) are `HAMIB`.
+> **Note on naming history.** The theoretical paper above presented this
+> work descriptively as a *context management system* — a provisional
+> wording used only at the paper-publication stage. The architecture's
+> formal name is **HAMIB**, and this repository implements it under that
+> name throughout (code, data files, mode labels, prose).
 
 ---
 
@@ -122,7 +121,7 @@ hamib/
 │
 ├── experiments/                     # Benchmark drivers + LLM-judge evaluation
 │   ├── bench_scaler.py              # synthetic difficulty-scaling benchmark + energy logging
-│   ├── bench_gptoss20b_3way.py      # GPT-OSS-20B 3-way (vanilla / cms_sbert / cms)
+│   ├── bench_gptoss20b_3way.py      # GPT-OSS-20B 3-way (vanilla / hamib_sbert / hamib)
 │   ├── bench_longmemeval.py         # LongMemEval (haystack QA)
 │   ├── bench_energy_monitor.py      # GPU/CPU/RAM time-series sampler
 │   ├── dialogue_extractor.py        # regex-only CD extractor for natural dialogue (<1 ms/turn)
@@ -211,7 +210,7 @@ as-is rather than re-judged silently.
 | Path | Format / role | Supports which result | Data origin & license |
 |---|---|---|---|
 | `results/longmemeval/longmemeval_baseline.json` | Llama 3.3 70B raw outputs, 500 LongMemEval questions, HAMIB OFF | LongMemEval accuracy result (1.308×) | Questions and gold derive from LongMemEval (MIT, © 2024 Di Wu). Outputs are ours, under PolyForm-NC. See `NOTICE.md`. |
-| `results/longmemeval/longmemeval_cms_sbert.json` | Same 500 questions, HAMIB ON | LongMemEval accuracy result (1.308×) | same as above |
+| `results/longmemeval/longmemeval_hamib_sbert.json` | Same 500 questions, HAMIB ON | LongMemEval accuracy result (1.308×) | same as above |
 | `results/oom_rescue/exp_gptoss_3way_N25.json` | GPT-OSS-20B 3-way (vanilla / HAMIB-SBERT / HAMIB) on a 24 GB GPU, N=25 facts | OOM-rescue result (0/25 → 22/25) | PolyForm-NC (no external dataset) |
 | `results/oom_rescue/bench_gptoss_L2.log` | Verbatim CUDA-OOM trace for the vanilla run above | OOM-rescue result (evidence) | PolyForm-NC |
 | `results/latency/exp_scaler_N200_l5adv.json` | Llama 3.3 70B latency benchmark, N=200 distractor scenario | Latency result (p50 2.26× / p95 3.61×) | PolyForm-NC |

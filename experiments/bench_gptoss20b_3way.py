@@ -3,8 +3,8 @@ GPT-OSS-20b 3-way benchmark (GPT-OSS variant of bench_gemma3n_3way.py)
 
 modes:
   1. vanilla_gptoss      : plain GPT-OSS + chat_template + raw history (no HAMIB)
-  2. cms_gptoss_sbert    : GPT-OSS + SBERT extractor (HAMIB pipeline, recommended)
-  3. cms_gptoss_gptoss   : GPT-OSS + GPT-OSS extractor (HAMIB pipeline, heavy, optional)
+  2. hamib_gptoss_sbert    : GPT-OSS + SBERT extractor (HAMIB pipeline, recommended)
+  3. hamib_gptoss_gptoss   : GPT-OSS + GPT-OSS extractor (HAMIB pipeline, heavy, optional)
 
 Scenario: L1 (N=10, 30 turn) / L2 (N=25, 75 turn) / L3 (N=50, 150 turn)
 Metrics: recall / inference_ms / GPU energy / RAM peak / max CD nodes
@@ -88,7 +88,7 @@ def run_vanilla(model_wrapper, all_msgs, n) -> list[TurnRec]:
     return records
 
 
-def run_cms(model_wrapper, mode, all_msgs, n, extractor_fn=None) -> list[TurnRec]:
+def run_hamib(model_wrapper, mode, all_msgs, n, extractor_fn=None) -> list[TurnRec]:
     """HAMIB mode: inject mass into MassWeightedGPTOSS via HAMIBSession"""
     from store.cd_store import CDStore
     from server.hamib_session import HAMIBSession
@@ -156,7 +156,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n-facts", type=int, default=10, help="L1=10, L2=25, L3=50")
     ap.add_argument("--modes", nargs="+",
-                    default=["vanilla_gptoss", "cms_gptoss_sbert"])
+                    default=["vanilla_gptoss", "hamib_gptoss_sbert"])
     ap.add_argument("--model-id", default="openai/gpt-oss-20b")
     ap.add_argument("--output", type=Path, default=_ROOT / "experiments" / "results")
     ap.add_argument("--seed", type=int, default=42)
@@ -185,7 +185,7 @@ def main():
     mw.load()
 
     sbert_fn = None
-    if "cms_gptoss_sbert" in args.modes:
+    if "hamib_gptoss_sbert" in args.modes:
         from server.sbert_extractor import make_extractor_fn
         sbert_fn = make_extractor_fn(
             threshold=0.2,
@@ -201,10 +201,10 @@ def main():
         with EnergyMonitor() as em:
             if mode == "vanilla_gptoss":
                 rs = run_vanilla(mw, all_msgs, args.n_facts)
-            elif mode == "cms_gptoss_gptoss":
-                rs = run_cms(mw, mode, all_msgs, args.n_facts)
-            elif mode == "cms_gptoss_sbert":
-                rs = run_cms(mw, mode, all_msgs, args.n_facts, extractor_fn=sbert_fn)
+            elif mode == "hamib_gptoss_gptoss":
+                rs = run_hamib(mw, mode, all_msgs, args.n_facts)
+            elif mode == "hamib_gptoss_sbert":
+                rs = run_hamib(mw, mode, all_msgs, args.n_facts, extractor_fn=sbert_fn)
             else:
                 print(f"[skip] {mode}")
                 continue
