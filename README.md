@@ -1,12 +1,5 @@
 # HAMIB — Hierarchical Additive Mass-Injection Bias
 
-> 🚫 **商用利用は完全に禁止しています / Commercial use is strictly prohibited.**
->
-> このリポジトリは PolyForm Noncommercial 1.0.0 のもとで、非商用の研究・評価・
-> 学術用途に限って公開しています。営利目的のあらゆる利用(本番デプロイ、有償
-> SaaS への組み込み、商用展開を見込む営利企業内での利用などを含む)は許諾され
-> ません。商用ライセンスについては ryosukekawai1224@gmail.com までご連絡ください。
->
 > Released under PolyForm Noncommercial 1.0.0 for noncommercial research,
 > evaluation, and academic use only. Any commercial use — production deployment,
 > paid SaaS integration, or internal use at a for-profit company with an
@@ -18,7 +11,7 @@ recall in existing LLMs. HAMIB builds a hierarchical map of a conversation and
 injects per-topic "mass" directly into the attention logits, so important earlier
 topics keep pulling the model's attention without any fine-tuning.
 
-**📄 Theoretical paper.** The architecture, data structure, and the
+Theoretical paper. The architecture, data structure, and the
 mass-aware attention formula are formalised in:
 
 > Kawai, R. (2026). *Geometric Convergence for Conversational Context
