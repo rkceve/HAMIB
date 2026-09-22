@@ -9,21 +9,34 @@ separate licence ([details](#license)). Patent pending.
 
 ## Latest measurement — 2026-09, Qwen3.8-27B on A100 80&nbsp;GB
 
-![Fact recall and compute per question. The full transcript answers 94 of 96 questions using 65,435 J; the 32k correlation-diagram window answers 63 using 3,108 J.](docs/result_recall_vs_compute.svg)
+![Fact recall and total energy for a 96-question run. The full transcript answers 94 of 96 using 6.28 MJ; the 32k correlation-diagram window answers 63 using 0.99 MJ, of which 0.69 MJ is the one-time cost of building the diagram.](docs/result_recall_vs_compute.svg)
 
 A reader shown **only** a 32,000-token correlation diagram — not one line of the
 original transcript — recovered **56 of 88 facts** from a 179,394-token agent
-session, including exact values from four hours earlier. Counting the one-time
-cost of building the diagram, the whole 96-question run took **0.991 MJ against
-6.282 MJ**: **6.3x less energy for 67% of the answers**. It passes break-even at
-11 questions and approaches 21x as the build amortizes.
+session, including exact values from four hours earlier.
 
-| | correct | prompt tokens | total FLOPs | wall | GPU energy |
+The diagram is not free. Building it took 1 h 45 min and **0.694 MJ**, once for
+the whole session, and that cost is included everywhere below. Across the full
+96-question run the totals are **0.99 MJ against 6.28 MJ**, so **6.3x less energy
+for 67% of the answers**.
+
+| total for the 96-question run | correct | diagram build | reading | **total energy** |
+|---|---|---|---|---|
+| full transcript | **94**/96 | — | 6.282 MJ | **6.282 MJ** |
+| diagram, 32k window | **63**/96 | 0.694 MJ | 0.298 MJ | **0.992 MJ** (6.3x less) |
+| diagram, 16k window | 41/96 | 0.694 MJ | 0.138 MJ | **0.832 MJ** (7.5x less) |
+| diagram, 8k window | 29/96 | 0.694 MJ | 0.064 MJ | **0.758 MJ** (8.3x less) |
+
+The build does not grow with the number of questions, so the saving depends on
+how many you ask. It is a loss below 11 questions:
+
+| questions asked | 5 | 11 | 96 | 500 | 1,000 |
 |---|---|---|---|---|---|
-| full transcript | **94**/96 | 179,394 | 1.60e16 | 220.1 s | 65,435 J |
-| diagram, 32k window | **63**/96 | 31,979 | 1.93e15 | 10.9 s | 3,108 J |
-| diagram, 16k window | 41/96 | 15,982 | 9.13e14 | 5.2 s | 1,442 J |
-| diagram, 8k window | 29/96 | 7,980 | 4.43e14 | 2.6 s | 667 J |
+| energy vs the baseline | 0.5x (worse) | 1.0x | 6.3x | 14.6x | 17.2x |
+
+Per question and counting the reader alone, the same cells are 65,435 J for the
+full transcript against 3,108 J, 1,442 J and 667 J — but that number ignores the
+build, and on its own it overstates the case.
 
 Accuracy across the full grid, by window size and bias strength `w`:
 
@@ -205,7 +218,11 @@ Two arms, same model, same prompt, greedy decoding:
 | 32,000 | **63** | **63** | 58 | 27 |
 | full transcript (179,394) | **94** | | | |
 
-### Compute, measured per question
+### Compute per question, reader only
+
+The table below excludes the cost of building the diagram. That cost is stated
+immediately after it, and every ratio quoted in this file includes it.
+
 
 GPU energy is the integral of `nvidia-smi` `power.draw` sampled at 1 Hz over each
 question's span (`benchmark/mcbuild_bench/gpu_sampler.py`); the raw CSVs are
@@ -213,7 +230,7 @@ published. `attention FLOPs` counts the QK^T term of the 16 full-attention
 layers; `total FLOPs` adds the linear-layer term `2 * 27e9 * prompt_tokens` that
 all 64 layers pay.
 
-| arm | correct | prompt tokens | attention FLOPs | total FLOPs | wall | GPU energy |
+| arm | correct | prompt tokens | attention FLOPs | total FLOPs | wall | GPU energy (reader) |
 |---|---|---|---|---|---|---|
 | full transcript | 94/96 | 179,394 | 6.33e15 | 1.60e16 | 220.1 s | 65,435 J |
 | W=32,000, w=0.1 | 63/96 | 31,979 | 2.01e14 | 1.93e15 | 10.9 s | 3,108 J |
@@ -224,8 +241,8 @@ Building the diagram is a one-time cost: 1 h 45 min of wall time and 0.694 MJ of
 GPU energy (integrated the same way), producing 1,606 nodes from 3,388 chunks.
 Over the 96 questions the totals are 6.282 MJ for the full transcript against
 0.991 MJ for the proposed side including the diagram build, a **6.3x reduction**.
-It passes break-even at 11 questions and approaches 21x as the build amortizes
-(17x at 1,000 questions).
+It is a loss below 11 questions, 6.3x at 96, and 17.2x at 1,000; the ceiling as
+the build amortizes is 21x, the reader-only ratio.
 
 ### What this does and does not show
 
