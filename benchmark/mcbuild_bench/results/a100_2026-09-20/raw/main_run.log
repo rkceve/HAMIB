@@ -1,0 +1,47 @@
+cd summary: {'sun': 389, 'planet': 414, 'satellite': 803, 'total': 1606, 'turns': 36, 'dropped_chunks': 1083, 'harness_calls': {'node': 3388, 'belongs': 3828, 'same': 3355}, 'harness_quality': {'unparsed': 0, 'defaulted': 0, 'node_fallback': 92, 'vanished': 699, 'attached': 838}} | stopped: None
+[02:43:15] V5: arm A on 5 questions
+[03:02:17] V5 exit=0
+[run_arms] f004 done (220108 ms, 10 tokens)
+[run_arms] f005 done (219905 ms, 9 tokens)
+wrote /workspace/mcb/runs/main/v5_A5 (5 answers, 0 resumed, window_tokens=179400, n_recent_rts=36)
+[03:02:17] cell proposed_W8000_w0.1
+[03:08:05] cell proposed_W8000_w0.1 exit=0
+[run_arms] a010 done (2478 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W8000_w0.1 (96 answers, 0 resumed, window_tokens=7994, n_recent_rts=0)
+[03:08:05] cell proposed_W8000_w0.3
+[03:14:06] cell proposed_W8000_w0.3 exit=0
+[run_arms] a010 done (2472 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W8000_w0.3 (96 answers, 0 resumed, window_tokens=7994, n_recent_rts=0)
+[03:14:06] cell proposed_W8000_w1.0
+[03:20:27] cell proposed_W8000_w1.0 exit=0
+[run_arms] a010 done (2473 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W8000_w1.0 (96 answers, 0 resumed, window_tokens=7994, n_recent_rts=0)
+[03:20:27] cell proposed_W16000_w0.1
+[03:31:06] cell proposed_W16000_w0.1 exit=0
+[run_arms] a010 done (4926 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W16000_w0.1 (96 answers, 0 resumed, window_tokens=15996, n_recent_rts=0)
+[03:31:06] cell proposed_W16000_w0.3
+[03:41:36] cell proposed_W16000_w0.3 exit=0
+[run_arms] a010 done (4922 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W16000_w0.3 (96 answers, 0 resumed, window_tokens=15996, n_recent_rts=0)
+[03:41:36] cell proposed_W16000_w1.0
+[03:52:24] cell proposed_W16000_w1.0 exit=0
+[run_arms] a010 done (4940 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W16000_w1.0 (96 answers, 0 resumed, window_tokens=15996, n_recent_rts=0)
+[03:52:24] cell proposed_W32000_w0.1
+[04:13:22] cell proposed_W32000_w0.1 exit=0
+[run_arms] a010 done (10336 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W32000_w0.1 (96 answers, 0 resumed, window_tokens=31993, n_recent_rts=0)
+[04:13:22] cell proposed_W32000_w0.3
+[04:34:11] cell proposed_W32000_w0.3 exit=0
+[run_arms] a010 done (10622 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W32000_w0.3 (96 answers, 0 resumed, window_tokens=31993, n_recent_rts=0)
+[04:34:11] cell proposed_W32000_w1.0
+[04:56:00] cell proposed_W32000_w1.0 exit=0
+[run_arms] a010 done (10653 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W32000_w1.0 (96 answers, 0 resumed, window_tokens=31993, n_recent_rts=0)
+[04:56:00] arm A on all 96 questions
+[10:56:27] arm A exit=0
+[run_arms] a010 done (219060 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/A_full (96 answers, 0 resumed, window_tokens=179408, n_recent_rts=36)
+MAIN_DONE

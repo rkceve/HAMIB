@@ -1,0 +1,152 @@
+[
+  {
+    "qid": "novel_q01",
+    "category": "early_static",
+    "question": "What was the original working title Maya was using for her novel when she first described the concept in session 1?",
+    "answer": "The Hollow Years",
+    "answer_source_session": 1,
+    "answer_source_quote": "The working title I've been using is \"The Hollow Years\" — I know it might change, but it's helped me think about the emotional core."
+  },
+  {
+    "qid": "novel_q02",
+    "category": "early_static",
+    "question": "What was Eleanor Reyes's profession as described in the original session 1 concept pitch?",
+    "answer": "marine biologist",
+    "answer_source_session": 1,
+    "answer_source_quote": "The story is about a woman named Eleanor Reyes who is a marine biologist. She's in her early forties, never married, deeply wedded to her work and her own solitude."
+  },
+  {
+    "qid": "novel_q03",
+    "category": "early_static",
+    "question": "What word count target did Maya set for her novel in session 1?",
+    "answer": "50,000 words",
+    "answer_source_session": 1,
+    "answer_source_quote": "My current target is 50,000 words, which I know is on the shorter end for a novel but feels right for the kind of compressed, atmospheric thing I'm going for."
+  },
+  {
+    "qid": "novel_q04",
+    "category": "early_static",
+    "question": "In what Maine town is the novel set?",
+    "answer": "Stonington, Maine",
+    "answer_source_session": 1,
+    "answer_source_quote": "Eleanor inherits the family property in Stonington, Maine — including this old lighthouse that's been in their family for generations."
+  },
+  {
+    "qid": "novel_q05",
+    "category": "mid_static",
+    "question": "At which bookstore did beta reader Quentin Marsh work, according to session 18?",
+    "answer": "Annie Bloom's Books",
+    "answer_source_session": 18,
+    "answer_source_quote": "He has been at Annie Bloom's Books for eleven years. He has handsold thousands of literary novels."
+  },
+  {
+    "qid": "novel_q06",
+    "category": "mid_static",
+    "question": "What new working title did Maya tentatively choose during the title brainstorm session in session 20?",
+    "answer": "Salt and Compass",
+    "answer_source_session": 20,
+    "answer_source_quote": "tentatively chose 'Salt and Compass' as new working title"
+  },
+  {
+    "qid": "novel_q07",
+    "category": "mid_static",
+    "question": "What was the revised word count of the manuscript after Maya completed the structural revision pass in session 14?",
+    "answer": "81200",
+    "answer_source_session": 14,
+    "answer_source_quote": "revised word count after structural pass: 81200"
+  },
+  {
+    "qid": "novel_q08",
+    "category": "mid_static",
+    "question": "How many questions did Maya include in the feedback form she sent to beta readers in session 15?",
+    "answer": "12-question feedback form",
+    "answer_source_session": 15,
+    "answer_source_quote": "asked for 4-week turnaround provided 12-question feedback form"
+  },
+  {
+    "qid": "novel_q09",
+    "category": "update_tracking",
+    "question": "What is the FINAL locked title of Maya's novel as confirmed in session 37?",
+    "answer": "The Eelgrass Year",
+    "answer_source_session": 37,
+    "answer_source_quote": "final title locked as 'The Eelgrass Year' on May 19, 2026",
+    "earlier_values": [
+      {"session": 1, "value": "The Hollow Years"},
+      {"session": 20, "value": "Salt and Compass"},
+      {"session": 29, "value": "The Eelgrass Year (tentative)"}
+    ]
+  },
+  {
+    "qid": "novel_q10",
+    "category": "update_tracking",
+    "question": "What is Eleanor Reyes's profession in the revised manuscript, after the change implemented in session 19?",
+    "answer": "marine ecologist studying eelgrass die-off",
+    "answer_source_session": 19,
+    "answer_source_quote": "decided to revise Eleanor's profession from marine biologist to marine ecologist studying eelgrass die-off, per Davinia's note from August",
+    "earlier_values": [
+      {"session": 1, "value": "marine biologist"}
+    ]
+  },
+  {
+    "qid": "novel_q11",
+    "category": "update_tracking",
+    "question": "What is the name of Eleanor's research vessel as it appears in the final pre-submission manuscript (session 30), after it was renamed from its original name?",
+    "answer": "Cordelia",
+    "answer_source_session": 30,
+    "answer_source_quote": "Persephone the research vessel renamed Cordelia per Renata's note about Greek myth fatigue",
+    "earlier_values": [
+      {"session": 5, "value": "Persephone"}
+    ]
+  },
+  {
+    "qid": "novel_q12",
+    "category": "update_tracking",
+    "question": "What is the FINAL confirmed publication date for The Eelgrass Year, after it was moved from the originally proposed date?",
+    "answer": "September 14, 2027",
+    "answer_source_session": 37,
+    "answer_source_quote": "publication date pushed from March 9 2027 to September 14, 2027 to align with fall literary season",
+    "earlier_values": [
+      {"session": 35, "value": "March 9, 2027"}
+    ]
+  },
+  {
+    "qid": "novel_q13",
+    "category": "synthesis",
+    "question": "Quentin Marsh offered to host a launch event for Maya's novel in session 18. What specific date was that launch event confirmed for in session 38?",
+    "answer": "September 16, 2027",
+    "answer_source_session": 38,
+    "answer_source_quote": "Quentin Marsh of Annie Bloom's Books confirmed launch event for September 16, 2027",
+    "synthesis_sessions": [18, 38],
+    "synthesis_note": "Session 18: Quentin offers to host a launch event if the book sells. Session 38: launch event confirmed for September 16, 2027. 20 sessions apart."
+  },
+  {
+    "qid": "novel_q14",
+    "category": "synthesis",
+    "question": "Eleanor's research vessel was introduced under a name in session 5. What was that original name before it was renamed in session 30?",
+    "answer": "Persephone",
+    "answer_source_session": 5,
+    "answer_source_quote": "Eleanor's research vessel named Persephone",
+    "synthesis_sessions": [5, 30],
+    "synthesis_note": "Session 5 introduces the vessel as Persephone; session 30 reveals it was renamed to Cordelia. Answering requires knowing both the original (s5) and that a rename happened (s30). 25 sessions apart."
+  },
+  {
+    "qid": "novel_q15",
+    "category": "synthesis",
+    "question": "Eleanor's mother Lillian is mentioned in session 3 as living in assisted care. When Eleanor visits her in session 14, which sister does Lillian reveal she always blamed for their father's stress?",
+    "answer": "Camille",
+    "answer_source_session": 14,
+    "answer_source_quote": "Lillian reveals she always blamed Camille for father's stress",
+    "synthesis_sessions": [3, 14],
+    "synthesis_note": "Session 3 establishes Lillian Reyes in assisted care in Bangor and father Hector's death. Session 14 reveals Lillian's feelings about Camille during Eleanor's visit. 11 sessions apart."
+  },
+  {
+    "qid": "novel_q16",
+    "category": "synthesis",
+    "question": "Maya's initial word count target was 50,000 words in session 1. What was the actual word count of the manuscript when it was sent to editors on submission in session 30?",
+    "answer": "89700",
+    "answer_source_session": 30,
+    "answer_source_quote": "final pre-submission word count 89700",
+    "synthesis_sessions": [1, 30],
+    "synthesis_note": "Session 1 sets the 50,000-word target; session 30 gives the final pre-submission count of 89700. 29 sessions apart. Answering requires knowing the original target changed and finding the final figure."
+  }
+]

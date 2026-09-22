@@ -1,0 +1,12 @@
+=== start 02:37:17
+Using Python 3.11.10 environment at: /root/venvs/venv_reader
+Resolved 32 packages in 2.70s
+   Building causal-conv1d @ file:///workspace/mcb/ccd_src/causal-conv1d-1.5.0.post8
+      Built causal-conv1d @ file:///workspace/mcb/ccd_src/causal-conv1d-1.5.0.post8
+Prepared 1 package in 5m 24s
+Installed 1 package in 119ms
+ + causal-conv1d==1.5.0.post8 (from file:///workspace/mcb/ccd_src/causal-conv1d-1.5.0.post8)
+=== exit=0 02:42:44
+forward ok, out (1, 8, 32)
+transformers sees it: True
+CCD_DONE

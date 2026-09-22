@@ -1,0 +1,93 @@
+{
+  "hamib_summary": {
+    "n": 500,
+    "correct": 110,
+    "acc": 0.22
+  },
+  "baseline_summary": {
+    "n": 500,
+    "correct": 72,
+    "acc": 0.144
+  },
+  "cd_size_distribution": {
+    "n": 500,
+    "min": 1168.0,
+    "max": 1521.0,
+    "mean": 1352.41,
+    "median": 1351.0,
+    "p25": 1317.75,
+    "p75": 1384.0,
+    "std": 51.06
+  },
+  "baseline_prompt_chars_distribution": {
+    "n": 500,
+    "min": 60184.0,
+    "max": 60518.0,
+    "mean": 60248.01,
+    "median": 60235.0,
+    "p25": 60217.0,
+    "p75": 60257.0,
+    "std": 48.71
+  },
+  "compression_ratio_estimate": {
+    "assumed_chars_per_node": 40.0,
+    "hamib_est_prompt_chars_mean": 54096.0,
+    "baseline_prompt_chars_mean": 60248.0,
+    "ratio": 1.11,
+    "note": "rough estimate — A1 enables exact measurement in future runs"
+  },
+  "correlations": {
+    "cd_vs_correct_point_biserial_r": -0.1003,
+    "cd_vs_ms_pearson_r": 0.144
+  },
+  "per_qtype": {
+    "knowledge-update": {
+      "n": 78,
+      "hamib_acc": 0.282,
+      "baseline_acc": 0.282,
+      "ratio": 1.0,
+      "cd_mean": 1360.7,
+      "cd_median": 1359.0
+    },
+    "multi-session": {
+      "n": 133,
+      "hamib_acc": 0.15,
+      "baseline_acc": 0.083,
+      "ratio": 1.82,
+      "cd_mean": 1346.6,
+      "cd_median": 1345.0
+    },
+    "single-session-assistant": {
+      "n": 56,
+      "hamib_acc": 0.286,
+      "baseline_acc": 0.232,
+      "ratio": 1.23,
+      "cd_mean": 1345.6,
+      "cd_median": 1346.0
+    },
+    "single-session-preference": {
+      "n": 30,
+      "hamib_acc": 0.0,
+      "baseline_acc": 0.0,
+      "ratio": null,
+      "cd_mean": 1364.2,
+      "cd_median": 1360.0
+    },
+    "single-session-user": {
+      "n": 70,
+      "hamib_acc": 0.4,
+      "baseline_acc": 0.171,
+      "ratio": 2.33,
+      "cd_mean": 1348.5,
+      "cd_median": 1350.5
+    },
+    "temporal-reasoning": {
+      "n": 133,
+      "hamib_acc": 0.18,
+      "baseline_acc": 0.105,
+      "ratio": 1.71,
+      "cd_mean": 1355.6,
+      "cd_median": 1355.0
+    }
+  }
+}

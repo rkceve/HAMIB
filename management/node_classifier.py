@@ -1,15 +1,17 @@
 """
-NodeClassifier: generates node candidates from text chunks.
+NodeClassifier: テキストチャンクからノード候補を生成する。
 
-Each chunk is scored out of 100 on three dimensions:
-  - comprehensiveness: corresponds to a sun node
-  - independence:      corresponds to a planet node
-  - detail:            corresponds to a satellite node
-The chunk is classified at the node level of the highest-scoring dimension.
+特許§0039-§0040 準拠:
+  各チャンクを以下の3項目で100点満点でスコアリング:
+    - 包括性 (comprehensiveness): sun ノードに対応
+    - 独立性 (independence):       planet ノードに対応
+    - 詳細度 (detail):             satellite ノードに対応
+  最高得点の項目に対応するノードレベルに分類する。
 
-Node-to-node similarity is computed pairwise. This implementation uses
-SentenceTransformer embeddings (all-MiniLM-L6-v2) by default and also offers
-an optional LLM-based similarity comparison.
+特許§0042 準拠:
+  ノード同士の類似度判定は学習済みLLMで1対1で実行。
+  本実装では SentenceTransformer 埋め込み（all-MiniLM-L6-v2）を
+  デフォルトとし、LLM ベース類似度判定もオプションとして提供する。
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -35,7 +37,7 @@ class NodeProposal:
     action: Action
     node: Node
     parent_id: str | None = None
-    # Retains the three dimension scores (used by later evaluation and debugging)
+    # 特許§0039: 3項目スコアを保持（後段の評価部2やデバッグで利用）
     score_comprehensiveness: float = 0.0
     score_independence: float = 0.0
     score_detail: float = 0.0
@@ -53,29 +55,29 @@ class NodeClassifier:
         builder=None,
     ) -> list[NodeProposal]:
         """
-        Extracts concepts from the chunk text and returns a list of NodeProposal.
-
-        llm_extract_fn(text) -> list[dict] is a function (implemented on the
-        server side) that returns:
+        chunk のテキストから概念を抽出し、NodeProposal のリストを返す。
+        llm_extract_fn(text) -> list[dict] は、特許§0039 準拠で
             [{"text": "...",
               "level": "sun"|"planet"|"satellite",
               "score_comprehensiveness": 0-100,
               "score_independence": 0-100,
               "score_detail": 0-100,
               "parent_hint": "...(parent text, optional)"}]
+        を返す関数（server 側で実装）。
 
-        The older format (without scores) is also accepted for backward
-        compatibility.
+        旧フォーマット（スコアなし）も後方互換で受け付ける。
 
-        When a ``builder`` argument is passed, each item's proposals are applied
-        incrementally to the provisional CD right after they are generated. This
-        preserves parent-child relationships within the same chunk, such as an
-        entity and a satellite(parent_hint=entity) returned by the extractor.
+        §94.2 (2026-05-20) fix: ``builder`` 引数を渡すと、 各 item の proposal
+        を生成直後に provisional CD へ <strong>incremental に apply</strong> する。
+        これにより、 同一 chunk 内で extractor が返す entity と
+        satellite(parent_hint=entity) のような親子関係を保てる。
 
-        With builder=None, all proposals are accumulated and applied in bulk by
-        the caller. In that mode a satellite cannot find an earlier entity in
-        the provisional CD via parent_hint, so it falls through to forced
-        NEW_SUN promotion and loses its parent-child relationship.
+        旧挙動 (builder=None): 全 proposal をリストに溜めて呼出側で一括 apply。
+            問題: 後続 item から見た provisional CD に先行 item が居ないため、
+            satellite が parent_hint で entity を探しても見つからず、
+            最終 fallback で NEW_SUN に強制昇格 → 親子関係喪失。
+
+        新挙動 (builder=GraphBuilder): item ごとに classify→apply を回す。
         """
         raw = llm_extract_fn(chunk.text)
         proposals: list[NodeProposal] = []
@@ -89,8 +91,8 @@ class NodeClassifier:
             score_i = float(item.get("score_independence", 0))
             score_d = float(item.get("score_detail", 0))
 
-            # Classify at the node level of the highest-scoring dimension.
-            # If all scores are 0 (old format), use item["level"] instead.
+            # 特許§0040: スコアが一番高かった項目に対応するノードに分類
+            # ただしスコアが全て0（旧フォーマット）の場合は item["level"] を使用
             if score_c == 0 and score_i == 0 and score_d == 0:
                 level_str = item.get("level", "satellite")
                 try:
@@ -103,15 +105,15 @@ class NodeClassifier:
             parent_hint = item.get("parent_hint", "")
 
             item_proposals: list[NodeProposal] = []
-            for p in self._build_proposals(text, level, parent_hint, cd):
+            for p in self._build_proposals(text, level, parent_hint, cd, chunk.turn):
                 p.score_comprehensiveness = score_c
                 p.score_independence = score_i
                 p.score_detail = score_d
                 item_proposals.append(p)
                 proposals.append(p)
 
-            # Apply each item's proposals immediately so the next item in the
-            # same chunk can see them in `cd`. Without this,
+            # §94.2 fix: apply each item's proposals immediately so the next
+            # item in the same chunk can see them in `cd`. Without this,
             # extractor-supplied parent_hint chains within the same chunk
             # always fall through to NEW_SUN promotion (parent never found).
             if builder is not None and item_proposals:
@@ -123,7 +125,7 @@ class NodeClassifier:
     def _level_from_scores(
         score_c: float, score_i: float, score_d: float
     ) -> NodeLevel:
-        """Returns the node level of the highest-scoring dimension."""
+        """特許§0040: スコアが一番高かった項目に対応するノードを返す。"""
         scores = [
             (score_c, NodeLevel.SUN),
             (score_i, NodeLevel.PLANET),
@@ -138,6 +140,7 @@ class NodeClassifier:
         level: NodeLevel,
         parent_hint: str,
         cd: CorrelationDiagram,
+        created_turn: int = -1,
     ) -> list[NodeProposal]:
         existing_texts = [n.text for n in cd.all_nodes()]
 
@@ -145,9 +148,8 @@ class NodeClassifier:
             best_idx, score = most_similar_index(text, existing_texts)
             if score >= self._sim_threshold:
                 matched = list(cd.all_nodes())[best_idx]
-                # A similar node already exists -> propose increasing its mass.
-                # Note: mass is recomputed from satellite count during
-                # GraphMerger's final normalization.
+                # 類似ノードが既にある → mass を増加させる提案
+                # 注: 質量は GraphMerger の最終正規化で衛星数ベースに再計算される
                 updated = Node(
                     text=matched.text,
                     level=matched.level,
@@ -157,35 +159,40 @@ class NodeClassifier:
                 )
                 return [NodeProposal(action=Action.UPDATE_MASS, node=updated)]
 
-        # New node candidate
+        # 新規ノード候補
+        # created_turn は生成時の chunk.turn を刻印する (recency ポリシー用)。
+        # 以降のレベル昇格 (§76 fallback) は同一 Node を mutate するだけなので
+        # created_turn はそのまま引き継がれ、ノード誕生時に一度だけ刻印される。
+        # UPDATE_MASS 経路は既存ノードの .mass のみを更新し created_turn は触らない。
         mass = self._mass_for(level)
-        new_node = Node(text=text, level=level, mass=mass)
+        new_node = Node(text=text, level=level, mass=mass, created_turn=created_turn)
 
         if level == NodeLevel.SUN:
             return [NodeProposal(action=Action.NEW_SUN, node=new_node)]
 
-        # Look up the parent node from parent_hint
+        # parent_hint から親ノードを探す
         parent_id = self._find_parent(parent_hint, level, cd)
         if parent_id is None:
-            # When no parent is found, try to keep the node at its own level by
-            # attaching it to a fallback parent: for a PLANET use the most
-            # recent SUN, for a SATELLITE use the most recent PLANET. Fall back
-            # to NEW_SUN only when no fallback parent exists.
+            # §76 (2026-05-12): 旧版は強制 SUN 昇格していたが、 これが原因で全 fact が
+            # SUN になり CD cap (旧 5) に当たって fact 5+ が drop していた。
+            # 修正: 親不在時は <strong>同レベルで親なし保存</strong>を試みる。
+            # PLANET なら直近 SUN を仮親、 SATELLITE なら直近 PLANET を仮親に設定。
+            # 仮親も無ければ NEW_SUN に fallback (旧動作維持) — ただし上限解除済なので drop しない。
             if level == NodeLevel.PLANET and cd.suns:
-                # Use the most recent SUN as a fallback parent
+                # 直近の SUN を仮親に
                 parent_id = cd.suns[-1].sun.node_id
             elif level == NodeLevel.SATELLITE:
-                # If a PLANET node exists, use the most recent one as parent
+                # PLANET ノードがあるならその直近を仮親に
                 all_planets = [pe.planet for se in cd.suns for pe in se.planets]
                 if all_planets:
                     parent_id = all_planets[-1].node_id
                 elif cd.suns:
-                    # No PLANET available -> store directly under a SUN as a PLANET
+                    # PLANET が無ければ SUN 直下に PLANET として保存
                     new_node.level = NodeLevel.PLANET
                     new_node.mass = self._mass_for(NodeLevel.PLANET)
                     parent_id = cd.suns[-1].sun.node_id
             if parent_id is None:
-                # Truly nothing exists (empty CD) -> NEW_SUN (initial startup only)
+                # 真に何も無い (CD 空) → NEW_SUN (起動初期のみ)
                 new_node.level = NodeLevel.SUN
                 new_node.mass = self._default_sun_mass
                 return [NodeProposal(action=Action.NEW_SUN, node=new_node)]
@@ -207,7 +214,7 @@ class NodeClassifier:
             return None
 
         if not hint:
-            # No hint -> first candidate
+            # ヒントなし → 最初の候補
             return candidates[0].node_id
 
         texts = [c.text for c in candidates]

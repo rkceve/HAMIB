@@ -1,0 +1,342 @@
+[
+  {
+    "qid": "novel_s01_02",
+    "source_session": 1,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 1 is a restaurant-planning chat (Kenta Morishita / Osteria Morishita). No novel, no Eleanor Reyes, no marine biologist. Content belongs to a different project entirely."
+  },
+  {
+    "qid": "novel_s02_01",
+    "source_session": 2,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 2 is a restaurant-planning chat (competitive landscape research for Italian restaurants in Tokyo). No novel, no Maya, no 12-chapter outline."
+  },
+  {
+    "qid": "novel_s02_04",
+    "source_session": 2,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 2 is restaurant-planning chat. No sisters, no grandmother's journal, no Act 3 resolution."
+  },
+  {
+    "qid": "novel_s04_01",
+    "source_session": 4,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 4 is restaurant location-scouting chat (Kenta walks five neighborhoods with broker Yusuke Hamada). No novel, no Chapter 1 word count. The number 4200 does not appear; 4,200 yen/500ml appears in session 10 as olive oil price."
+  },
+  {
+    "qid": "novel_s05_05",
+    "source_session": 5,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 5 is restaurant lease-signing chat (Kenta signs lease for Azabu Heights Building). No novel, no Maine lobstering research, no three books."
+  },
+  {
+    "qid": "novel_s07_04",
+    "source_session": 7,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 7 is restaurant loan/JFC discussion (Kenta processes 12M yen JFC approval). No novel, no Brent Halloran. Brent Halloran does appear in session 19 (novel chat) where the sick-wife addition is discussed, but session 7 is restaurant content."
+  },
+  {
+    "qid": "novel_s09_04",
+    "source_session": 9,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 9 is restaurant equipment sourcing chat (Forno Bravo oven, La Monferrina P3, Hoshizaki refrigeration). No novel, no narrator filtered through Eleanor."
+  },
+  {
+    "qid": "novel_s10_04",
+    "source_session": 10,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 10 is restaurant supplier sourcing chat (Solleone Japan, Suzuki Foods, Ueno Seika). No novel, no Owen Trask. The number 4,200 in session 10 is olive oil price per bottle, unrelated to any chapter."
+  },
+  {
+    "qid": "novel_s11_03",
+    "source_session": 11,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 11 is restaurant wine program chat (280 bottles, 47 labels, Nakata Shoji). No novel, no compass, no sisters."
+  },
+  {
+    "qid": "novel_s12_03",
+    "source_session": 12,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 12 is restaurant branding/renaming chat (Ginza Trattoria renamed to Osteria Morishita). No novel, no first draft with 12 chapters plus epilogue."
+  },
+  {
+    "qid": "novel_s13_03",
+    "source_session": 13,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 13 is restaurant chef-hire chat (Marco Petrelli from Modena hired as head chef). No novel. Owen Trask '9 scenes to 6' language does not appear in session 13; session 19 discusses keeping Owen Trask scenes (not cutting to 6), and session 28/29 discuss the 6-to-3/4 arc."
+  },
+  {
+    "qid": "novel_s14_02",
+    "source_session": 14,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 14 is restaurant renovation-debrief and health inspection chat. No novel, no Lillian, no Camille, no father's stress."
+  },
+  {
+    "qid": "novel_s15_01",
+    "source_session": 15,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 15 is restaurant menu-finalization chat (tagliatelle al ragu, no pizza decision). No novel, no beta readers. Beta reader names (Davinia, Priya, Marcus, Jennifer) do not appear in this session."
+  },
+  {
+    "qid": "novel_s15_05",
+    "source_session": 15,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 15 is restaurant menu chat. No Priya Ramanathan, no Marcus Holloway, no beta readers."
+  },
+  {
+    "qid": "novel_s16_04",
+    "source_session": 16,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 16 is restaurant staffing chat (Haruki Nakajima as sous chef). No novel, no Davinia, no opening 30 pages feedback. The '30 pages' in session 24 refers to a new project Maya is writing, not feedback from Davinia."
+  },
+  {
+    "qid": "novel_s17_03",
+    "source_session": 17,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 17 is restaurant soft-opening planning chat (October 8-11 soft opening, Marco Petrelli kitchen). No novel, no Marcus, no ambiguous ending suggestion. Marcus's ambiguous ending suggestion appears in session 19 (novel chat)."
+  },
+  {
+    "qid": "novel_s18_03",
+    "source_session": 18,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 18 contains only 'test turn 1' / 'test turn 2' (2-line stub). No novel content whatsoever. Jennifer Calloway and pacing feedback do not appear in any session file reviewed."
+  },
+  {
+    "qid": "novel_s19_02",
+    "source_session": 19,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "decided to soften antagonist Brent Halloran by giving him a sick wife",
+    "notes": null
+  },
+  {
+    "qid": "novel_s19_05",
+    "source_session": 19,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The Hollow Years is coming off the cover. Jennifer identified the problem clearly",
+    "notes": null
+  },
+  {
+    "qid": "novel_s20_04",
+    "source_session": 20,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 20 is restaurant opening-week debrief chat (Osteria Morishita opens November 4, dinner 28 covers). No novel, no Eleanor sampling eelgrass, no Persephone. The Persephone vessel name appears in session 30 (novel chat), where it is being renamed to Cordelia."
+  },
+  {
+    "qid": "novel_s22_02",
+    "source_session": 22,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 22 is restaurant November P&L walkthrough chat (3.42M yen revenue vs 4.0M target). No novel, no query letter, no comp titles. Olive Kitteridge and House of Sand and Fog appear in session 30 (novel chat)."
+  },
+  {
+    "qid": "novel_s23_01",
+    "source_session": 23,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I think I've looked at 40 literary agents who rep literary fiction with recent deal activity.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s23_04",
+    "source_session": 23,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "all five have closed deals in the past 18 months",
+    "notes": null
+  },
+  {
+    "qid": "novel_s24_02",
+    "source_session": 24,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Within 6 days being the outer window she works within, but it actually arrived in under 48 hours.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s24_05",
+    "source_session": 24,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Sloane Whitford-Jeong, Hattie Macreadie, and Joon-Ho Park — no response",
+    "notes": null
+  },
+  {
+    "qid": "novel_s25_04",
+    "source_session": 25,
+    "answerable_from_session": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 25 is restaurant January slowdown chat (Kenta, 42% revenue decline). No novel, no second batch of queries. Session 26 references the second batch but does not state the count; session 24 mentions sending 'five queries' (first batch) but the second batch count of 5 is not stated in any session text."
+  },
+  {
+    "qid": "novel_s26_03",
+    "source_session": 26,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "January 12 is a sound choice.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s27_01",
+    "source_session": 27,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Renata Goldfarb. Goldfarb Literary. An agent who specializes in debut quiet literary novels",
+    "notes": null
+  },
+  {
+    "qid": "novel_s27_04",
+    "source_session": 27,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Esme Calabrese passed citing voice mismatch",
+    "notes": null
+  },
+  {
+    "qid": "novel_s28_02",
+    "source_session": 28,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the journal device as overused — her exact framing was something close to 'the journal device as overused'",
+    "notes": "gold_short says 'chapter 5' but fact_quote says 'flagged chapter 5 journal device as overused'. Session confirms chapter 5 is where journal fragments are concentrated and Renata flagged it. Gold is correct."
+  },
+  {
+    "qid": "novel_s28_05",
+    "source_session": 28,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Renata wants Owen Trask's subplot cut in half. He's currently in 6 scenes and she says he should be in 3.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s29_03",
+    "source_session": 29,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I did not go all the way to 3. I landed on 4 Owen Trask scenes.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s30_01",
+    "source_session": 30,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Word count locked at 89,700.",
+    "notes": null
+  },
+  {
+    "qid": "novel_s30_04",
+    "source_session": 30,
+    "answerable_from_session": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "submitting to 14 editors... February 25th... February 25, 2026",
+    "notes": null
+  }
+]

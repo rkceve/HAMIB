@@ -1,0 +1,336 @@
+[
+ {
+  "qid": "novel_s01_02",
+  "source_session": 1,
+  "question": "What is the name of the novel's protagonist?",
+  "gold_short": "Eleanor Reyes",
+  "tier1_aliases": [
+   "Eleanor"
+  ],
+  "fact_quote": "protagonist Eleanor Reyes, a marine biologist"
+ },
+ {
+  "qid": "novel_s02_01",
+  "source_session": 2,
+  "question": "How many chapters were in the outline Maya drafted in session 2?",
+  "gold_short": "12-chapter",
+  "tier1_aliases": [
+   "12 chapters",
+   "12"
+  ],
+  "fact_quote": "12-chapter outline"
+ },
+ {
+  "qid": "novel_s02_04",
+  "source_session": 2,
+  "question": "Through what object do the sisters reconcile in the Act 3 resolution?",
+  "gold_short": "grandmother's journal",
+  "tier1_aliases": [
+   "journal"
+  ],
+  "fact_quote": "Act 3 resolution: sisters reconcile through grandmother's journal"
+ },
+ {
+  "qid": "novel_s04_01",
+  "source_session": 4,
+  "question": "What was the word count of Chapter 1 in session 4?",
+  "gold_short": "4200",
+  "tier1_aliases": [
+   "4,200"
+  ],
+  "fact_quote": "Chapter 1 word count 4200"
+ },
+ {
+  "qid": "novel_s05_05",
+  "source_session": 5,
+  "question": "How many books on Maine lobstering culture did Maya read for research?",
+  "gold_short": "three books",
+  "tier1_aliases": [
+   "3 books",
+   "three",
+   "3"
+  ],
+  "fact_quote": "read three books on Maine lobstering culture"
+ },
+ {
+  "qid": "novel_s07_04",
+  "source_session": 7,
+  "question": "What is the name of the secondary antagonist developer added in session 7?",
+  "gold_short": "Brent Halloran",
+  "tier1_aliases": [
+   "Halloran"
+  ],
+  "fact_quote": "added a secondary antagonist: developer Brent Halloran of Halloran Coastal LLC"
+ },
+ {
+  "qid": "novel_s09_04",
+  "source_session": 9,
+  "question": "Through which character is the narrator filtered?",
+  "gold_short": "Eleanor",
+  "tier1_aliases": [],
+  "fact_quote": "narrator filtered through Eleanor"
+ },
+ {
+  "qid": "novel_s10_04",
+  "source_session": 10,
+  "question": "In which chapter does Owen Trask first appear?",
+  "gold_short": "chapter 6",
+  "tier1_aliases": [],
+  "fact_quote": "Owen Trask first appears chapter 6"
+ },
+ {
+  "qid": "novel_s11_03",
+  "source_session": 11,
+  "question": "How many times does the compass pass between the sisters in the novel?",
+  "gold_short": "three times",
+  "tier1_aliases": [
+   "3 times",
+   "three",
+   "3"
+  ],
+  "fact_quote": "compass passes between sisters three times in novel"
+ },
+ {
+  "qid": "novel_s12_03",
+  "source_session": 12,
+  "question": "The completed first draft had 12 chapters plus what?",
+  "gold_short": "epilogue",
+  "tier1_aliases": [],
+  "fact_quote": "12 chapters plus epilogue"
+ },
+ {
+  "qid": "novel_s13_03",
+  "source_session": 13,
+  "question": "To how many scenes did Maya tighten Owen Trask's appearances in session 13?",
+  "gold_short": "6 scenes",
+  "tier1_aliases": [
+   "6",
+   "six"
+  ],
+  "fact_quote": "tightened Owen Trask appearances from 9 scenes to 6"
+ },
+ {
+  "qid": "novel_s14_02",
+  "source_session": 14,
+  "question": "Whom does Lillian reveal she always blamed for their father's stress?",
+  "gold_short": "Camille",
+  "tier1_aliases": [],
+  "fact_quote": "Lillian reveals she always blamed Camille for father's stress"
+ },
+ {
+  "qid": "novel_s15_01",
+  "source_session": 15,
+  "question": "How many beta readers did Maya recruit in session 15?",
+  "gold_short": "five beta readers",
+  "tier1_aliases": [
+   "5 beta readers",
+   "five",
+   "5"
+  ],
+  "fact_quote": "recruited five beta readers"
+ },
+ {
+  "qid": "novel_s15_05",
+  "source_session": 15,
+  "question": "Name one beta reader from Maya's writing group (Priya ...).",
+  "gold_short": "Priya Ramanathan",
+  "tier1_aliases": [
+   "Marcus Holloway",
+   "Priya",
+   "Marcus"
+  ],
+  "fact_quote": "beta readers: Davinia Okafor (friend), Priya Ramanathan (writing group)"
+ },
+ {
+  "qid": "novel_s16_04",
+  "source_session": 16,
+  "question": "How many opening pages did Davinia say she loved?",
+  "gold_short": "30 pages",
+  "tier1_aliases": [
+   "30"
+  ],
+  "fact_quote": "Davinia loved opening 30 pages"
+ },
+ {
+  "qid": "novel_s17_03",
+  "source_session": 17,
+  "question": "What kind of ending did Marcus suggest instead of full reconciliation?",
+  "gold_short": "ambiguous ending",
+  "tier1_aliases": [
+   "ambiguous"
+  ],
+  "fact_quote": "Marcus suggested an ambiguous ending rather than full reconciliation"
+ },
+ {
+  "qid": "novel_s18_03",
+  "source_session": 18,
+  "question": "Until which chapter did Jennifer Calloway find the pacing slow?",
+  "gold_short": "chapter 6",
+  "tier1_aliases": [],
+  "fact_quote": "Jennifer Calloway praised the prose but found pacing slow until chapter 6"
+ },
+ {
+  "qid": "novel_s19_02",
+  "source_session": 19,
+  "question": "How did Maya decide to soften antagonist Brent Halloran in session 19?",
+  "gold_short": "giving him a sick wife",
+  "tier1_aliases": [
+   "sick wife"
+  ],
+  "fact_quote": "decided to soften antagonist Brent Halloran by giving him a sick wife"
+ },
+ {
+  "qid": "novel_s19_05",
+  "source_session": 19,
+  "question": "About which title did Maya agree it needs to change in session 19?",
+  "gold_short": "The Hollow Years",
+  "tier1_aliases": [
+   "Hollow Years"
+  ],
+  "fact_quote": "agreed title 'The Hollow Years' needs to change"
+ },
+ {
+  "qid": "novel_s20_04",
+  "source_session": 20,
+  "question": "What is Eleanor sampling in the new scene off the Persephone?",
+  "gold_short": "eelgrass",
+  "tier1_aliases": [],
+  "fact_quote": "added a scene of Eleanor sampling eelgrass off the Persephone"
+ },
+ {
+  "qid": "novel_s22_02",
+  "source_session": 22,
+  "question": "Name one comp title Maya used in the query letter (Olive ...).",
+  "gold_short": "Olive Kitteridge",
+  "tier1_aliases": [
+   "House of Sand and Fog"
+  ],
+  "fact_quote": "comp titles: 'Olive Kitteridge' and 'House of Sand and Fog'"
+ },
+ {
+  "qid": "novel_s23_01",
+  "source_session": 23,
+  "question": "How many literary agents did Maya research in session 23?",
+  "gold_short": "40 literary agents",
+  "tier1_aliases": [
+   "40"
+  ],
+  "fact_quote": "researched 40 literary agents"
+ },
+ {
+  "qid": "novel_s23_04",
+  "source_session": 23,
+  "question": "Within what recent time window had all five first-batch agents made debut-author deals?",
+  "gold_short": "past 18 months",
+  "tier1_aliases": [
+   "18 months"
+  ],
+  "fact_quote": "all five have made deals with debut authors in past 18 months"
+ },
+ {
+  "qid": "novel_s24_02",
+  "source_session": 24,
+  "question": "Within how many days did Renata Goldfarb request a partial?",
+  "gold_short": "6 days",
+  "tier1_aliases": [
+   "six days"
+  ],
+  "fact_quote": "Renata Goldfarb requested partial within 6 days"
+ },
+ {
+  "qid": "novel_s24_05",
+  "source_session": 24,
+  "question": "Name one first-batch agent who had not responded (Hattie ...).",
+  "gold_short": "Hattie Macreadie",
+  "tier1_aliases": [
+   "Sloane Whitford-Jeong",
+   "Macreadie"
+  ],
+  "fact_quote": "Sloane Whitford-Jeong, Hattie Macreadie, and Joon-Ho Park have not responded"
+ },
+ {
+  "qid": "novel_s25_04",
+  "source_session": 25,
+  "question": "How many queries were in the second batch Maya sent?",
+  "gold_short": "5 queries",
+  "tier1_aliases": [
+   "five queries",
+   "5"
+  ],
+  "fact_quote": "sent second batch of 5 queries"
+ },
+ {
+  "qid": "novel_s26_03",
+  "source_session": 26,
+  "question": "Until what date did Maya give other agents to respond after the offer?",
+  "gold_short": "January 12",
+  "tier1_aliases": [],
+  "fact_quote": "decided to give other agents until January 12 to respond"
+ },
+ {
+  "qid": "novel_s27_01",
+  "source_session": 27,
+  "question": "Which agent did Maya ultimately choose to represent her?",
+  "gold_short": "Renata Goldfarb",
+  "tier1_aliases": [
+   "Goldfarb"
+  ],
+  "fact_quote": "chose Renata Goldfarb of Goldfarb Literary"
+ },
+ {
+  "qid": "novel_s27_04",
+  "source_session": 27,
+  "question": "What reason did Esme Calabrese give for passing?",
+  "gold_short": "voice mismatch",
+  "tier1_aliases": [],
+  "fact_quote": "Esme Calabrese passed citing 'voice mismatch'"
+ },
+ {
+  "qid": "novel_s28_02",
+  "source_session": 28,
+  "question": "Which chapter's journal device did Renata flag as overused?",
+  "gold_short": "chapter 5",
+  "tier1_aliases": [],
+  "fact_quote": "Renata flagged chapter 5 journal device as overused"
+ },
+ {
+  "qid": "novel_s28_05",
+  "source_session": 28,
+  "question": "Whose subplot did Renata suggest cutting in half?",
+  "gold_short": "Owen Trask",
+  "tier1_aliases": [
+   "Owen"
+  ],
+  "fact_quote": "Renata suggested cutting Owen Trask subplot in half"
+ },
+ {
+  "qid": "novel_s29_03",
+  "source_session": 29,
+  "question": "To how many scenes were Owen Trask's appearances cut in session 29?",
+  "gold_short": "4",
+  "tier1_aliases": [
+   "four"
+  ],
+  "fact_quote": "cutting Owen Trask scenes to 4 from 6"
+ },
+ {
+  "qid": "novel_s30_01",
+  "source_session": 30,
+  "question": "What was the final pre-submission word count in session 30?",
+  "gold_short": "89700",
+  "tier1_aliases": [
+   "89,700"
+  ],
+  "fact_quote": "final pre-submission word count 89700"
+ },
+ {
+  "qid": "novel_s30_04",
+  "source_session": 30,
+  "question": "On what date was the manuscript submission planned?",
+  "gold_short": "February 25, 2026",
+  "tier1_aliases": [
+   "February 25"
+  ],
+  "fact_quote": "submission planned for February 25, 2026"
+ }
+]

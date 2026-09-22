@@ -1,0 +1,173 @@
+
+[23:05:49] 0/6 GPU
+NVIDIA A100 80GB PCIe, 81920 MiB, 570.211.01
+
+[23:05:49] 1/6 tools
+downloading uv 0.12.17 x86_64-unknown-linux-gnu
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libevent-core-2.1-7:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24135 files and directories currently installed.)
+Preparing to unpack .../libevent-core-2.1-7_2.1.12-stable-1ubuntu0.1_amd64.deb ...
+Unpacking libevent-core-2.1-7:amd64 (2.1.12-stable-1ubuntu0.1) ...
+Selecting previously unselected package libutempter0:amd64.
+Preparing to unpack .../libutempter0_1.2.1-2build2_amd64.deb ...
+Unpacking libutempter0:amd64 (1.2.1-2build2) ...
+Selecting previously unselected package tmux.
+Preparing to unpack .../tmux_3.2a-4ubuntu0.2_amd64.deb ...
+Unpacking tmux (3.2a-4ubuntu0.2) ...
+Setting up libevent-core-2.1-7:amd64 (2.1.12-stable-1ubuntu0.1) ...
+Setting up libutempter0:amd64 (1.2.1-2build2) ...
+Setting up tmux (3.2a-4ubuntu0.2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+
+[23:05:59] 2/6 repository @ mcbuild-bench
+d20ed7e
+
+[23:05:59] 3/6 venv (one environment: vllm 0.29.0 pins torch 2.13.0; transformers 5.17.0)
+error: Failed to build `causal-conv1d==1.7.0`
+  cause: The build backend returned an error
+  cause: Call to `setuptools.build_meta.build_wheel` failed (exit status: 1)
+
+         [stdout]
+
+
+         torch.__version__  = 2.14.0+cu130
+
+
+         running bdist_wheel
+         Guessing wheel URL:  https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.7.0/causal_conv1d-1.7.0+cu13torch2.14cxx11abiTRUE-cp311-cp311-linux_x86_64.whl
+         Precompiled wheel not found. Building from source...
+         running build
+         running build_py
+         creating build/lib.linux-x86_64-cpython-311/causal_conv1d
+         copying causal_conv1d/__init__.py -> build/lib.linux-x86_64-cpython-311/causal_conv1d
+         copying causal_conv1d/causal_conv1d_interface.py -> build/lib.linux-x86_64-cpython-311/causal_conv1d
+         copying causal_conv1d/causal_conv1d_varlen.py -> build/lib.linux-x86_64-cpython-311/causal_conv1d
+         copying causal_conv1d/cpp_functions.py -> build/lib.linux-x86_64-cpython-311/causal_conv1d
+         running build_ext
+
+         [stderr]
+         /root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/wheel/bdist_wheel.py:4: FutureWarning: The 'wheel' package is no longer the canonical location of the 'bdist_wheel' command, and will be removed in a future release. Please update to setuptools v70.1 or later which contains an integrated version of this command.
+           warn(
+         /root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+           cpu = _conversion_method_template(device=torch.device("cpu"))
+         /root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/torch/cuda/__init__.py:228: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 12080). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+           return torch._C._cuda_getDeviceCount() > 0
+         W0920 23:06:37.235000 2212 torch/utils/cpp_extension.py:183] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+         /root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+         !!
+
+                 ********************************************************************************
+                 Please consider removing the following classifiers in favor of a SPDX license expression:
+
+                 License :: OSI Approved :: BSD License
+
+                 See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+                 ********************************************************************************
+
+         !!
+           self._finalize_license_expression()
+         Traceback (most recent call last):
+           File "<string>", line 330, in run
+           File "/usr/lib/python3.11/urllib/request.py", line 241, in urlretrieve
+             with contextlib.closing(urlopen(url, data)) as fp:
+                                     ^^^^^^^^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 216, in urlopen
+             return opener.open(url, data, timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 525, in open
+             response = meth(req, response)
+                        ^^^^^^^^^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 634, in http_response
+             response = self.parent.error(
+                        ^^^^^^^^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 563, in error
+             return self._call_chain(*args)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 496, in _call_chain
+             result = func(*args)
+                      ^^^^^^^^^^^
+           File "/usr/lib/python3.11/urllib/request.py", line 643, in http_error_default
+             raise HTTPError(req.full_url, code, msg, hdrs, fp)
+         urllib.error.HTTPError: HTTP Error 404: Not Found
+
+         During handling of the above exception, another exception occurred:
+
+         Traceback (most recent call last):
+           File "<string>", line 11, in <module>
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/build_meta.py", line 438, in build_wheel
+             return _build(['bdist_wheel'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/build_meta.py", line 429, in _build
+             return self._build_with_temp_dir(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/build_meta.py", line 410, in _build_with_temp_dir
+             self.run_setup()
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/build_meta.py", line 317, in run_setup
+             exec(code, locals())  # noqa: S102 # exec is intentional here
+             ^^^^^^^^^^^^^^^^^^^^
+           File "<string>", line 350, in <module>
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/__init__.py", line 117, in setup
+             return distutils.core.setup(**attrs)  # type: ignore[return-value]
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/core.py", line 168, in setup
+             return run_commands(dist)
+                    ^^^^^^^^^^^^^^^^^^
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/core.py", line 184, in run_commands
+             dist.run_commands()
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/dist.py", line 1028, in run_commands
+             self.run_command(cmd)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/dist.py", line 1106, in run_command
+             super().run_command(command)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/dist.py", line 1047, in run_command
+             cmd_obj.run()
+           File "<string>", line 347, in run
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/command/bdist_wheel.py", line 385, in run
+             self.run_command("build")
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/cmd.py", line 342, in run_command
+             self.distribution.run_command(command)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/dist.py", line 1106, in run_command
+             super().run_command(command)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/dist.py", line 1047, in run_command
+             cmd_obj.run()
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/command/build.py", line 137, in run
+             self.run_command(cmd_name)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/cmd.py", line 342, in run_command
+             self.distribution.run_command(command)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/dist.py", line 1106, in run_command
+             super().run_command(command)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/dist.py", line 1047, in run_command
+             cmd_obj.run()
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/command/build_ext.py", line 95, in run
+             _build_ext.run(self)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/setuptools/_distutils/command/build_ext.py", line 382, in run
+             self.build_extensions()
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 822, in build_extensions
+             _check_cuda_version(compiler_name, compiler_version)
+           File "/root/.cache/uv/builds-v0/.tmpOT88Ut/lib/python3.11/site-packages/torch/utils/cpp_extension.py", line 651, in _check_cuda_version
+             raise RuntimeError(CUDA_MISMATCH_MESSAGE, cuda_str_version, torch.version.cuda)
+         RuntimeError: ('The detected CUDA version (%s) mismatches the version that was used to compilePyTorch (%s). Please make sure to use the same CUDA versions.', '12.4', '13.0')
+
+hint: Build failures usually indicate a problem with the package or the build environment
+WARN: causal-conv1d wheel/build failed (conv falls back to torch; fla kernels still used)
+/root/venvs/venv_beta/lib/python3.11/site-packages/huggingface_hub/constants.py:301: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+torch 2.13.0+cu130 cuda 13.0 | transformers 5.17.0 | vllm 0.29.0
+fla_importable True | causal_conv1d False
+
+[23:06:53] 4/6 weights (reader BF16 55.6 GB, summarizer 9.3 GB) — resumable
+/root/venvs/venv_beta/lib/python3.11/site-packages/huggingface_hub/constants.py:301: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 29 files:   0%|          | 0/29 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 29 files:   3%|▎         | 1/29 [00:00<00:06,  4.07it/s]Fetching 29 files:  17%|█▋        | 5/29 [00:00<00:01, 14.82it/s]Fetching 29 files:  17%|█▋        | 5/29 [00:20<00:01, 14.82it/s]Fetching 29 files:  21%|██        | 6/29 [02:22<12:41, 33.11s/it]Fetching 29 files:  24%|██▍       | 7/29 [02:28<09:41, 26.41s/it]Fetching 29 files:  28%|██▊       | 8/29 [02:30<06:58, 19.93s/it]Fetching 29 files:  31%|███       | 9/29 [02:36<05:21, 16.06s/it]Fetching 29 files:  34%|███▍      | 10/29 [02:42<04:11, 13.24s/it]Fetching 29 files:  38%|███▊      | 11/29 [02:43<02:57,  9.88s/it]Fetching 29 files:  41%|████▏     | 12/29 [02:47<02:16,  8.04s/it]Fetching 29 files:  45%|████▍     | 13/29 [02:47<01:32,  5.79s/it]Fetching 29 files:  48%|████▊     | 14/29 [03:02<02:10,  8.67s/it]Fetching 29 files:  52%|█████▏    | 15/29 [03:21<02:43, 11.65s/it]Fetching 29 files:  55%|█████▌    | 16/29 [04:00<04:16, 19.72s/it]Fetching 29 files:  59%|█████▊    | 17/29 [04:00<02:47, 13.92s/it]Fetching 29 files:  62%|██████▏   | 18/29 [04:00<01:47,  9.80s/it]Fetching 29 files:  66%|██████▌   | 19/29 [04:03<01:17,  7.75s/it]Fetching 29 files:  69%|██████▉   | 20/29 [04:04<00:50,  5.61s/it]Fetching 29 files:  72%|███████▏  | 21/29 [04:04<00:31,  3.97s/it]Fetching 29 files:  76%|███████▌  | 22/29 [04:05<00:21,  3.04s/it]Fetching 29 files:  79%|███████▉  | 23/29 [04:09<00:19,  3.29s/it]Fetching 29 files:  83%|████████▎ | 24/29 [04:11<00:14,  2.86s/it]Fetching 29 files:  86%|████████▌ | 25/29 [04:25<00:24,  6.18s/it]Fetching 29 files:  90%|████████▉ | 26/29 [04:26<00:13,  4.61s/it]Fetching 29 files:  93%|█████████▎| 27/29 [04:35<00:12,  6.11s/it]Fetching 29 files:  97%|█████████▋| 28/29 [04:38<00:05,  5.05s/it]Fetching 29 files: 100%|██████████| 29/29 [04:41<00:00,  4.60s/it]Fetching 29 files: 100%|██████████| 29/29 [04:41<00:00,  9.72s/it]
+Qwen/Qwen3.8-27B -> /workspace/mcb/hf/hub/models--Qwen--Qwen3.8-27B/snapshots/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:01,  6.64it/s]Fetching 11 files:  45%|████▌     | 5/11 [00:00<00:00, 20.25it/s]Fetching 11 files:  73%|███████▎  | 8/11 [00:00<00:00, 17.91it/s]Fetching 11 files:  82%|████████▏ | 9/11 [00:18<00:00, 17.91it/s]Fetching 11 files:  91%|█████████ | 10/11 [00:39<00:06,  6.06s/it]Fetching 11 files: 100%|██████████| 11/11 [00:47<00:00,  6.54s/it]Fetching 11 files: 100%|██████████| 11/11 [00:47<00:00,  4.34s/it]
+Qwen/Qwen3.5-4B -> /workspace/mcb/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
+
+[23:12:24] 5/6 CPU-side self-tests on the pod (no GPU job yet)
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 162 passed, 17 warnings in 20.36s

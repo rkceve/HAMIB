@@ -1,0 +1,51 @@
+{
+ "model_id": "Qwen/Qwen3.8-27B",
+ "torch": "2.11.0+cu128",
+ "transformers": "5.17.0",
+ "kernels": {
+  "fla_importable": true,
+  "fla_version": "0.5.2",
+  "causal_conv1d_importable": false,
+  "torch_cuda_available": true,
+  "fast_path_available": false,
+  "would_use_torch_fallback": true,
+  "error": null
+ },
+ "load_s": 27.2,
+ "loaded_class_name": "Qwen3_5ForCausalLM",
+ "loading_info": {
+  "missing": 0,
+  "unexpected": 0,
+  "mismatched": 0
+ },
+ "attn_implementation": "sdpa",
+ "n_sdpa_layers": 16,
+ "n_linear_layers": 48,
+ "linear_module_classes": [
+  "Linear"
+ ],
+ "mem_after_load_gb": 50.1,
+ "forward_512_s": 39.08,
+ "answer_512": "\n\nfox",
+ "peak_mem_after_512_gb": 50.47,
+ "stats_after_512": {
+  "bias_applied_calls": 0,
+  "bias_skipped_prefill_calls": 0,
+  "bias_skipped_sliding_calls": 0
+ },
+ "last_generated_tokens": 3,
+ "last_prefill_ms": 38296.77976295352,
+ "last_decode_ms": 769.3251222372055,
+ "gen_2000_total_s": 10.03,
+ "gen_2000_prefill_ms": 9846.374329179525,
+ "gen_2000_s_per_token": 0.087,
+ "peak_mem_gb": 50.81,
+ "checks": {
+  "sdpa": true,
+  "n_sdpa_layers_16": true,
+  "fla_importable": true,
+  "no_missing_weights": true,
+  "packed_memory": true
+ },
+ "pass": true
+}

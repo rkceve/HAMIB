@@ -1,45 +1,43 @@
 """
-MassWeightedGPTOSS: wrapper for openai/gpt-oss-20b / gpt-oss-120b.
+MassWeightedGPTOSS: openai/gpt-oss-20b / gpt-oss-120b 用ラッパー
 
-Differences from MassWeightedGemma:
-  1. Already MXFP4-quantized natively, so bitsandbytes is not needed.
-  2. _supports_sdpa = False, so the SDPA monkey-patch cannot inject mass.
-     Instead, eager_attention_forward is monkey-patched directly.
-  3. The Harmony chat template is required (a raw "User:" prompt produces
-     repeated output).
-  4. The attention output includes a "sink" column (mass is added while the
-     sink is preserved).
+【MassWeightedGemma との違い】
+  1. native MXFP4 量子化済みなので bitsandbytes 不要
+  2. _supports_sdpa = False → SDPA monkey-patch では mass injection 不可
+     → eager_attention_forward を直接 monkey-patch する
+  3. Harmony chat template が必須 (raw "User:" だと繰り返し出力)
+  4. attention output に "sink" 列が含まれる (sink を保持しつつ mass を加算)
   5. tokenizer: o200k_harmony (vocab ~200K)
 
-Mass injection (eager version):
-  GPT-OSS's eager_attention_forward:
+【mass injection 仕組み (eager 版)】
+  GPT-OSS の eager_attention_forward:
       attn_weights = Q @ K^T * scaling
-      attn_weights += attention_mask          # mass is added here
+      attn_weights += attention_mask          ← ここで mass を足し込む
       combined = cat([attn_weights, sinks])
       probs = softmax(combined)
-      scores = probs[..., :-1]                 # drop the sink
+      scores = probs[..., :-1]                 ← sink を落とす
 
-  Patched version:
-      attn_weights += attention_mask + m_bias  # add on top of attn_mask
-      (everything else is the same)
+  パッチ版:
+      attn_weights += attention_mask + m_bias  ← attn_mask に上乗せ
+      (以下同じ)
 
-Chat template:
-  - When a prompt is in "User: ...\nAssistant:" form (from HAMIBSession), it is
-    automatically converted to [{"role":"user","content":...}] and the
-    chat_template is applied.
-  - When a context block (<CONTEXT>...) is present, it is separated out as the
-    system prompt.
+【chat template 適用】
+  - prompt が "User: ...\nAssistant:" 形式 (CMSSession 由来) のときは
+    自動的に [{"role":"user","content":...}] に変換して chat_template を適用。
+  - context_block (<CONTEXT>...) が含まれる場合は system prompt として分離。
 """
 from __future__ import annotations
+from pathlib import Path
 import gc
 import re
 import torch
+import torch.nn.functional as F
 
 from server.mass_weighted_gemma import MassWeightedGemma
 
 
 class MassWeightedGPTOSS(MassWeightedGemma):
-    """Wrapper for openai/gpt-oss-* (eager attention patch + chat template)."""
+    """openai/gpt-oss-* 用 wrapper (eager attention patch + chat template)"""
 
     def __init__(
         self,
@@ -61,14 +59,14 @@ class MassWeightedGPTOSS(MassWeightedGemma):
         )
         self._original_eager = None
 
-    # ── Load ──────────────────────────────────────────────────────────
+    # ── ロード ────────────────────────────────────────────────────────
 
     def load(self) -> None:
         from transformers import AutoTokenizer, AutoModelForCausalLM
 
         self._tokenizer = AutoTokenizer.from_pretrained(self._model_id)
-        # GPT-OSS is natively MXFP4-quantized, so BitsAndBytesConfig is not needed.
-        # torch_dtype="auto" applies MXFP4 via triton.
+        # GPT-OSS は native MXFP4 量子化済み → BitsAndBytesConfig 不要
+        # torch_dtype="auto" で MXFP4 が triton 経由で適用される
         self._model = AutoModelForCausalLM.from_pretrained(
             self._model_id,
             device_map="auto",
@@ -83,18 +81,17 @@ class MassWeightedGPTOSS(MassWeightedGemma):
             except Exception:
                 pass
 
-        # SDPA is unavailable, so patch eager_attention_forward instead.
+        # SDPA は使えないので、 eager_attention_forward を patch する
         self._patch_eager_attention()
         print(f"[MassWeightedGPTOSS] loaded: {self._model_id}")
 
     # ── eager attention monkey-patch ────────────────────────────────────
 
     def _patch_eager_attention(self) -> None:
-        """Replace transformers.models.gpt_oss.modeling_gpt_oss.eager_attention_forward.
+        """transformers.models.gpt_oss.modeling_gpt_oss.eager_attention_forward を差し替える。
 
-        Mass injection: add m_bias to attention_mask, then delegate to the
-        original implementation. The sink-column handling
-        (cat + softmax + drop sink) is left to the original implementation.
+        マス注入: attention_mask に m_bias を加算してから親実装に委譲する。
+        sink 列の処理 (cat + softmax + drop sink) はオリジナル実装に任せる。
         """
         from transformers.models.gpt_oss import modeling_gpt_oss as mgo
         outer = self
@@ -110,11 +107,16 @@ class MassWeightedGPTOSS(MassWeightedGemma):
             dropout=0.0,
             **kwargs,
         ):
-            # Add mass on top of attention_mask, then delegate to the original.
+            # mass を attention_mask に上乗せして親実装に委譲
             seq_q = query.shape[-2]
-            # attention_mask is passed in as (B, 1, seq_q, seq_k_orig), where
-            # seq_k_orig is key.shape[-2] (before repeat_kv, not after), so size
-            # m_bias to match key.shape[-2].
+            # GPT-OSS の eager は K に repeat_kv をかけてから Q @ K^T を行うが、
+            # この時点での key shape は (B, n_kv_heads, seq_k, d_head) なので
+            # seq_k = key.shape[-2] が正しい長さ
+            seq_k = key.shape[-2] * module.num_key_value_groups \
+                if hasattr(module, "num_key_value_groups") else key.shape[-2]
+            # ↑ ただし attention_mask は (B,1,seq_q,seq_k_orig) 形式で渡されてくる。
+            #   seq_k_orig は key.shape[-2] そのまま (repeat_kv 後 ではなく前)。
+            #   なので m_bias のサイズも key.shape[-2] に合わせる。
             seq_k_mask = key.shape[-2]
 
             m_bias = _build_m_bias(
@@ -136,8 +138,8 @@ class MassWeightedGPTOSS(MassWeightedGemma):
             )
 
         mgo.eager_attention_forward = patched_eager
-        # It is also registered as "eager" in ALL_ATTENTION_FUNCTIONS, so
-        # replace that entry too.
+        # ALL_ATTENTION_FUNCTIONS にも eager として登録されているので
+        # そちらも差し替える
         try:
             from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS
             ALL_ATTENTION_FUNCTIONS.register("eager", patched_eager)
@@ -146,29 +148,28 @@ class MassWeightedGPTOSS(MassWeightedGemma):
         print("[MassWeightedGPTOSS] patched eager_attention_forward")
 
     def restore_sdpa(self) -> None:
-        # For GPT-OSS, restore the eager implementation.
+        # GPT-OSS では eager を戻す
         if self._original_eager is not None:
             from transformers.models.gpt_oss import modeling_gpt_oss as mgo
             mgo.eager_attention_forward = self._original_eager
 
-    # ── Inference (auto-applies chat template) ──────────────────────────
+    # ── 推論 (chat template 自動適用) ────────────────────────────────────
 
-    # Regex that extracts "User: ...\nAssistant:" from the tail. The preceding
-    # content (the system part) is captured separately, so here we only match
-    # the text after "User:" non-greedily.
+    # "User: ...\nAssistant:" を末尾から抽出する正規表現。
+    # 直前までの内容 (system 部分) は別途取り出すので、 ここでは User: 以降だけ
+    # 非貪欲マッチで掴む。
     _USER_TAIL = re.compile(
         r"(?P<head>[\s\S]*?)User:\s*(?P<u>[\s\S]*?)\n\s*Assistant:\s*$"
     )
 
     def _to_chat_template(self, prompt: str) -> str:
-        """Convert a HAMIBSession "User:...\nAssistant:" prompt to Harmony format.
+        """CMSSession 由来の "User:...\nAssistant:" prompt を Harmony 形式へ変換。
 
-        - The preceding text (assistant instructions, <CONTEXT> block, etc.)
-          becomes the system message.
-        - A prompt that cannot be converted is returned unchanged.
-        - The GPT-OSS Harmony chat template supports a reasoning_effort kwarg.
-          The default "medium" makes the analysis channel long and consumes
-          max_new_tokens, so it is lowered to "low".
+        - 直前のテキスト (アシスタント説明 + <CONTEXT> ブロック等) は system message へ。
+        - 変換できない prompt は raw prompt をそのまま返す。
+        - GPT-OSS の Harmony chat template は reasoning_effort kwarg をサポート。
+          デフォルトの "medium" だと analysis channel が長くなり max_new_tokens を
+          食いつぶすため、 "low" に下げる。
         """
         try:
             m = self._USER_TAIL.search(prompt)
@@ -180,8 +181,8 @@ class MassWeightedGPTOSS(MassWeightedGemma):
             if head:
                 messages.append({"role": "system", "content": head})
             messages.append({"role": "user", "content": user_msg})
-            # Try with reasoning_effort first, with a one-step fallback for
-            # templates that do not support it.
+            # まず reasoning_effort 付きで試す。 サポートされていないテンプレ用に
+            # 1 段フォールバック。
             try:
                 return self._tokenizer.apply_chat_template(
                     messages, tokenize=False, add_generation_prompt=True,
@@ -201,15 +202,15 @@ class MassWeightedGPTOSS(MassWeightedGemma):
         except Exception:
             pass
 
-        # Convert a HAMIBSession-style prompt to Harmony format.
+        # CMSSession 形式の prompt は Harmony 形式に変換
         full_prompt = self._to_chat_template(prompt)
         inputs = self._tokenizer(full_prompt, return_tensors="pt").to(target_device)
         input_ids = inputs["input_ids"]
 
-        # If a mass_vector was set externally, recompute the [PN{mass}] positions
-        # against the actual token sequence produced by the chat_template.
-        # (HAMIBSession computes positions on the pre-conversion prompt, so without
-        #  this the positions would shift and mass would apply to the wrong tokens.)
+        # mass_vector が外部からセットされている場合、 chat_template 適用後の
+        # 実際のトークン列に対して [PN{mass}] 位置を再計算する。
+        # (CMSSession は変換前の prompt で位置を計算しているため、 そのままでは
+        #  位置がずれて mass が間違ったトークンに適用される)
         if self._mass_vector is not None and full_prompt != prompt:
             from server.cd_parser import find_pn_positions
             pn = find_pn_positions(input_ids[0].tolist(), self._tokenizer)
@@ -247,7 +248,7 @@ class MassWeightedGPTOSS(MassWeightedGemma):
         return result
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────
+# ── ヘルパ ───────────────────────────────────────────────────────────────
 
 
 def _build_m_bias(
@@ -257,17 +258,14 @@ def _build_m_bias(
     dtype: torch.dtype,
     device: torch.device,
 ) -> torch.Tensor | None:
-    """Turn the 1D mass vec / 2D M matrix into a bias tensor to add to attention_mask.
+    """1D mass vec / 2D M matrix を attention_mask 加算用 bias テンソルにする。
 
-    Returns shape (1,1,seq_q,seq_k) or (1,1,1,seq_k), or None.
+    Returns shape (1,1,seq_q,seq_k) or (1,1,1,seq_k)、 または None。
     """
     M = outer._m_matrix
     mass_vec = outer._mass_vector
 
     if M is not None:
-        # Unused in the default path: outer._m_matrix is never set
-        # (no caller of set_m_matrix() exists). 2D M-matrix mode is kept
-        # for short-context experiments only.
         m_q = min(seq_q, M.shape[0])
         m_k = min(seq_k, M.shape[1])
         m_slice = outer._mass_weight * M[:m_q, :m_k]
@@ -278,7 +276,7 @@ def _build_m_bias(
         return m_slice.to(dtype=dtype, device=device).unsqueeze(0).unsqueeze(0)
 
     if mass_vec is not None:
-        # decode-only guard (applying mass during prefill can collapse output)
+        # decode-only ガード (prefill では崩壊する経緯あり)
         effective_w: float | None = None
         if seq_q == 1:
             effective_w = outer._mass_weight
@@ -298,9 +296,9 @@ def _build_m_bias(
     return None
 
 
-# Harmony channel markers (after skip_special_tokens) often appear on one line,
-# e.g. "assistantfinal..." or "assistantanalysis...assistantfinal...".
-# Drop the line-start anchor so they are also matched mid-line.
+# Harmony channel マーカー (skip_special_tokens 後): "assistantfinal..." または
+# "assistantanalysis...assistantfinal..." のように 1 行に並ぶことが多い。
+# 行頭制約を外して中央でも捕まえる。
 _CHANNEL_FINAL_PATTERN = re.compile(
     r"(?:assistantfinal|<\|channel\|>\s*final\s*<\|message\|>)\s*"
     r"(?P<body>[\s\S]+?)"
@@ -309,17 +307,17 @@ _CHANNEL_FINAL_PATTERN = re.compile(
 
 
 def _strip_harmony_channels(text: str) -> str:
-    """Extract only the final-channel response from GPT-OSS Harmony output.
+    """GPT-OSS Harmony 出力から最終 (final channel) 応答だけ抽出する。
 
-    Example formats (after skip_special_tokens=True):
+    フォーマット例 (skip_special_tokens=True 後):
         "assistantanalysis<thinking text>assistantfinal<answer>"
         "assistantfinal<answer>"
-        "<answer>" (no final-channel tag, straight output)
+        "<answer>" (final channel タグなし、 ストレート出力)
     """
     m = _CHANNEL_FINAL_PATTERN.search(text)
     if m:
         return m.group("body").strip()
-    # If there is no final marker, strip the leading analysis section
-    # ("assistantanalysis<...>") from the front.
+    # final マーカーが無い場合、 先頭の analysis セクションだけ除去
+    # "assistantanalysis<...>" を頭から削る
     cleaned = re.sub(r"^(?:assistantanalysis|analysis)[\s\S]*", "", text)
     return cleaned.strip() or text.strip()

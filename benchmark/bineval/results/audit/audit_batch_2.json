@@ -1,0 +1,371 @@
+[
+  {
+    "qid": "rest_s01_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I've been calling it 'Ginza Trattoria' in my head, mostly as a placeholder name",
+    "notes": null
+  },
+  {
+    "qid": "rest_s02_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "For lunch I'm thinking a set menu format at 1,800 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s03_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Tanabe-san calculated that we need 38 covers per day average to break even",
+    "notes": null
+  },
+  {
+    "qid": "rest_s04_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "pull together a comprehensive initial list of 23 properties",
+    "notes": null
+  },
+  {
+    "qid": "rest_s04_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "no",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The neighborhoods are Nishi-Azabu, Higashi-Azabu, Hiroo, Yoyogi-Uehara, and Kagurazaka",
+    "notes": "Multiple valid answers (Nishi-Azabu, Hiroo, Yoyogi-Uehara, Kagurazaka); gold+aliases cover all correct responses."
+  },
+  {
+    "qid": "rest_s05_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The lease term is 4 years renewable",
+    "notes": null
+  },
+  {
+    "qid": "rest_s06_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "He recommended sourcing the wood-fired oven through a supplier called Forno Bravo Japan",
+    "notes": null
+  },
+  {
+    "qid": "rest_s07_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the total comes to 36 million yen in total opening capital secured",
+    "notes": null
+  },
+  {
+    "qid": "rest_s08_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Construction officially kicked off on June 9, 2025",
+    "notes": null
+  },
+  {
+    "qid": "rest_s09_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The model they quoted me is the Modena 100",
+    "notes": "fact_quote says 'wood-fired' but session clarifies the oven is gas-fired; model name Modena 100 is unambiguous."
+  },
+  {
+    "qid": "rest_s09_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The decision against rotisserie is final.",
+    "notes": "fact_quote 'too niche for menu' slightly mischaracterizes session reasoning (concept mismatch, ventilation cost, expertise gap), but gold answer is correct."
+  },
+  {
+    "qid": "rest_s10_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The pricing they quoted me is 3,800 yen per 25kg sack",
+    "notes": null
+  },
+  {
+    "qid": "rest_s11_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "we landed on 280 bottles for the initial order",
+    "notes": null
+  },
+  {
+    "qid": "rest_s12_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Aiko Fujimoto...Her fee for this full scope is 320,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s13_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "His name is Marco Petrelli. He is 38 years old",
+    "notes": null
+  },
+  {
+    "qid": "rest_s14_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "August 26 is the actual completion date",
+    "notes": null
+  },
+  {
+    "qid": "rest_s14_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "four days past the contractual target",
+    "notes": null
+  },
+  {
+    "qid": "rest_s15_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "no",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Pizza: not on menu - oven used for focaccia and roasted secondi only",
+    "notes": "Two equally valid answers (focaccia, roasted secondi); gold+aliases cover both."
+  },
+  {
+    "qid": "rest_s16_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Her salary is 460,000 yen per month",
+    "notes": null
+  },
+  {
+    "qid": "rest_s17_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Guest count is 80 total, which works out to 20 per night",
+    "notes": null
+  },
+  {
+    "qid": "rest_s18_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Our target was 22",
+    "notes": null
+  },
+  {
+    "qid": "rest_s20_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "dinner covers 22, 26, 24 against target 28",
+    "notes": null
+  },
+  {
+    "qid": "rest_s20_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We started November 5 lunch service",
+    "notes": null
+  },
+  {
+    "qid": "rest_s21_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "A woman named Sara Komatsu, age 23, started November 17",
+    "notes": null
+  },
+  {
+    "qid": "rest_s22_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "food 31%, labor 38%, rent+utilities 18%, other 9%",
+    "notes": null
+  },
+  {
+    "qid": "rest_s23_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "she'll be working 4 hours nightly",
+    "notes": null
+  },
+  {
+    "qid": "rest_s25_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The Square Plus subscription is 18,000 yen monthly",
+    "notes": null
+  },
+  {
+    "qid": "rest_s26_02",
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "Session 26 is entirely about a literary agent offer (Renata Goldfarb, novel 'Salt and Compass'). No restaurant or wine club content. The wine club (Cantina Morishita) and its membership fee appear in session 29, not session 26. source_session field is wrong."
+  },
+  {
+    "qid": "rest_s27_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "He's going February 14-28, 2026 — two full weeks",
+    "notes": null
+  },
+  {
+    "qid": "rest_s27_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "pausing lunch service for the first week...February 17-21, which includes the Friday and Saturday",
+    "notes": null
+  },
+  {
+    "qid": "rest_s28_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "we're sitting at 24 minutes average for dinner",
+    "notes": null
+  },
+  {
+    "qid": "rest_s29_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the preliminary estimate is an 18% savings vs current import costs",
+    "notes": null
+  },
+  {
+    "qid": "rest_s30_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "reservation requests spiked 4x in 48 hours",
+    "notes": null
+  },
+  {
+    "qid": "rest_s31_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the 2-course went up to 2,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s34_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "we have 412 unique guests in our TableCheck database",
+    "notes": null
+  },
+  {
+    "qid": "rest_s34_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I hosted a private gathering for 30 regulars that evening",
+    "notes": null
+  },
+  {
+    "qid": "rest_s36_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I want to name it Sala Modena",
+    "notes": null
+  },
+  {
+    "qid": "rest_s37_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "First formal performance reviews scheduled July 1",
+    "notes": null
+  },
+  {
+    "qid": "rest_s38_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "A two-year retention bonus of 200,000 yen at 24 months",
+    "notes": null
+  },
+  {
+    "qid": "rest_s39_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Marubeni booked Sala Modena for October 14 for a 14-person dinner",
+    "notes": null
+  },
+  {
+    "qid": "rest_s40_04",
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "Session 40 is about a novelist (Maya Tanaka) celebrating her book deal, not a restaurant session. No financial data about cumulative loss or July 2026 profitability. source_session field is wrong."
+  }
+]

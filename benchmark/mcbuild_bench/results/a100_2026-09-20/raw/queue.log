@@ -1,0 +1,29 @@
+[2026-09-20T23:17:11Z] queue started (waits for the venv rebuild)
+[2026-09-20T23:18:41Z] V2 start (bf16)
+V2 exit=0
+[MassWeightedGemma] loaded: Qwen/Qwen3.8-27B as Qwen3_5ForCausalLM loading_info={'missing': 0, 'unexpected': 0, 'mismatched': 0}
+  "error": null
+ "loaded_class_name": "Qwen3_5ForCausalLM",
+ "loading_info": {
+ "forward_512_s": 39.08,
+ "answer_512": "\n\nfox",
+ "peak_mem_after_512_gb": 50.47,
+ "gen_2000_total_s": 10.03,
+ "gen_2000_prefill_ms": 9846.374329179525,
+ "gen_2000_s_per_token": 0.087,
+ "peak_mem_gb": 50.81,
+ "pass": true
+V2 PASS
+[2026-09-20T23:20:02Z] V3 start
+V3 exit=0
+prompt tokens: 396; planet lines in block: 3
+{"w": 0.0, "answer": "25576", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.04565460174489999, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 0, "degenerate": false, "prefill_ms": 1318.398330360651, "decode_ms": 670.2577844262123}
+{"w": 0.1, "answer": "25576", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.055378820034093224, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 80, "degenerate": false, "prefill_ms": 162.9738099873066, "decode_ms": 438.0590319633484}
+{"w": 0.3, "answer": "25576", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.0789355320885079, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 80, "degenerate": false, "prefill_ms": 162.689421325922, "decode_ms": 441.11354649066925}
+{"w": 1.0, "answer": "25576", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.21899094595573843, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 80, "degenerate": false, "prefill_ms": 162.86686435341835, "decode_ms": 443.9486786723137}
+{"w": 3.0, "answer": "The Paper 1.", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.8197427242994308, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 80, "degenerate": false, "prefill_ms": 162.52683475613594, "decode_ms": 449.8767517507076}
+{"w": 10.0, "answer": "1.21.", "generated_tokens": 6, "planet_spans": 3, "planet_token_positions": 51, "planet_share_step1": 0.9999999925494194, "bias_applied_calls": 80, "bias_skipped_prefill_calls": 16, "bias_skipped_sliding_calls": 0, "expected_applied": 80, "degenerate": false, "prefill_ms": 162.74670511484146, "decode_ms": 445.3202039003372}
+{"planet_spans_3": true, "counters_exact": true, "no_sliding_skips": true, "share_monotone": true, "non_degenerate_ge3": true}
+V3 PASS
+[2026-09-20T23:20:37Z] queue finished
+QUEUE_END

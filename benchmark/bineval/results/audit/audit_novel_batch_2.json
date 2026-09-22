@@ -1,0 +1,342 @@
+[
+  {
+    "qid": "novel_s01_04",
+    "source_session": 1,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 1 is the restaurant-planning chat (Kenta Morishita / Ginza Trattoria). No novel, no Eleanor, no Camille Reyes. Fact_quote is fabricated for this session."
+  },
+  {
+    "qid": "novel_s02_02",
+    "source_session": 2,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 2 is the restaurant-planning chat (field-research debrief on Tokyo Italian restaurants). No novel, no Act 2 climax, no lighthouse fire."
+  },
+  {
+    "qid": "novel_s02_05",
+    "source_session": 2,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 2 is the restaurant-planning chat. No novel structure, no Act 1, no Stonington."
+  },
+  {
+    "qid": "novel_s05_03",
+    "source_session": 5,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 5 is the restaurant-planning chat (lease signing for 3-14-7 Higashi-Azabu). No novel, no research vessel Persephone."
+  },
+  {
+    "qid": "novel_s07_01",
+    "source_session": 7,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 7 is the restaurant-planning chat (JFC loan decision and budget gap analysis). No novel, no Owen Trask, no subplot."
+  },
+  {
+    "qid": "novel_s08_03",
+    "source_session": 8,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 8 is the restaurant-planning chat (construction kicked off June 9, materials decisions). No novel, no lighthouse-keeper journal, no chapter 5."
+  },
+  {
+    "qid": "novel_s09_05",
+    "source_session": 9,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 9 is the restaurant-planning chat (kitchen equipment sourcing). No Maya, no journal chapters, no first-person decision."
+  },
+  {
+    "qid": "novel_s10_05",
+    "source_session": 10,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 10 is the restaurant-planning chat (supplier sourcing: olive oil, flour, produce). No novel, no Camille, no developer offer."
+  },
+  {
+    "qid": "novel_s11_05",
+    "source_session": 11,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 11 is the restaurant-planning chat (wine program build). No novel, no Eleanor, no profession reference."
+  },
+  {
+    "qid": "novel_s12_04",
+    "source_session": 12,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 12 is the restaurant-planning chat (renaming Ginza Trattoria to Osteria Morishita, visual identity briefing for Aiko Fujimoto). No novel, no epilogue."
+  },
+  {
+    "qid": "novel_s13_04",
+    "source_session": 13,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 13 is the restaurant-planning chat (head chef hire: Marco Petrelli from Modena). No novel, no word count target."
+  },
+  {
+    "qid": "novel_s14_03",
+    "source_session": 14,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 14 is the restaurant-planning chat (renovation close-out debrief, health inspection). No novel, no structural pass, no word count 81200."
+  },
+  {
+    "qid": "novel_s15_03",
+    "source_session": 15,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 15 is the restaurant-planning chat (menu finalization with Marco). No Maya, no beta readers, no feedback form."
+  },
+  {
+    "qid": "novel_s16_01",
+    "source_session": 16,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 16 is the restaurant-planning chat (staffing walk-through: Haruki Nakajima, Eiko Sawada). No Davinia, no marine ecologist recommendation."
+  },
+  {
+    "qid": "novel_s16_05",
+    "source_session": 16,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 16 is the restaurant-planning chat. No Davinia feedback, no 'thin and underused' characterization of a protagonist's profession."
+  },
+  {
+    "qid": "novel_s17_04",
+    "source_session": 17,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 17 is the restaurant-planning chat (soft opening plan for Oct 8-11). No Brent Halloran, no Priya or Marcus beta-reader feedback."
+  },
+  {
+    "qid": "novel_s18_04",
+    "source_session": 18,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT + EMPTY SESSION. Session 18 contains only two test lines ('test turn 1' / 'test turn 2'). No Jennifer, no title feedback."
+  },
+  {
+    "qid": "novel_s19_03",
+    "source_session": 19,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "Session 19 IS the novel-writing chat, but the claimed fact ('decided against journal chapters being first-person') is NOT present in this session. Session 19 covers beta feedback decisions on Eleanor's profession, Brent Halloran, Owen Trask, and the title; 'first-person journal chapters' appears nowhere. Gold is wrong/fabricated for this session."
+  },
+  {
+    "qid": "novel_s20_01",
+    "source_session": 20,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 20 is the restaurant-operations chat (grand opening Nov 4, first three days' covers and ticket averages). No novel, no title 'Salt and Compass'."
+  },
+  {
+    "qid": "novel_s20_05",
+    "source_session": 20,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 20 is the restaurant-operations chat. No eelgrass research subplot, no chapter 6 reference."
+  },
+  {
+    "qid": "novel_s22_03",
+    "source_session": 22,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 22 is the restaurant-operations chat (November P&L review: 3.42M yen revenue, 312k yen loss). No novel, no title 'Salt and Compass'. The 3.42 figure in session 22 is a revenue number, not a Tabelog score or a novel title."
+  },
+  {
+    "qid": "novel_s23_02",
+    "source_session": 23,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "narrowed to 15 for the first batch—the ones whose recent deal history and stated wishlist made Salt and Compass feel like the closest match",
+    "notes": null
+  },
+  {
+    "qid": "novel_s23_05",
+    "source_session": 23,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Joon-Ho Park of Crescent Atlantic Agency. He's newer to agenting but has deep editorial experience",
+    "notes": null
+  },
+  {
+    "qid": "novel_s24_03",
+    "source_session": 24,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Anders Krishnamurthy auto-rejected within 48 hours",
+    "notes": "Session 24 confirms the rejection arrived at 3 AM in templated form. The question asks 'which agent auto-rejected Maya within 48 hours' — uniquely answered by session 24."
+  },
+  {
+    "qid": "novel_s25_02",
+    "source_session": 25,
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "WRONG CHAT. Session 25 is the restaurant-operations chat (January slowdown, Square Plus inventory module, branzino dropped, guinea fowl added). No Hattie Macreadie, no form rejection."
+  },
+  {
+    "qid": "novel_s26_01",
+    "source_session": 26,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "She offered representation — actually said those words on the phone on December 22, 2025",
+    "notes": null
+  },
+  {
+    "qid": "novel_s26_04",
+    "source_session": 26,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "no",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Joon-Ho Park stepped up to read after I sent the second batch, and... Pavithra Sundaram stepped up to read and Esme Calabrese stepped up to read too",
+    "notes": "Question asks to 'name one' and provides Pavithra as gold_short but also lists Joon-Ho Park and Esme Calabrese as aliases. All three are correct. Not uniquely_determined because multiple valid answers exist; alias_sufficient covers all."
+  },
+  {
+    "qid": "novel_s27_02",
+    "source_session": 27,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Pavithra sent her offer on January 5, 2026",
+    "notes": null
+  },
+  {
+    "qid": "novel_s27_05",
+    "source_session": 27,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Pavithra was 45 minutes, very professional, had a clear vision for the book",
+    "notes": null
+  },
+  {
+    "qid": "novel_s28_03",
+    "source_session": 28,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Renata is recommending a present-day chapter from Camille's POV be added to the manuscript",
+    "notes": null
+  },
+  {
+    "qid": "novel_s29_01",
+    "source_session": 29,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the one Renata responded to most strongly was The Eelgrass Year",
+    "notes": null
+  },
+  {
+    "qid": "novel_s29_04",
+    "source_session": 29,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Renata responded... 'yes, this is the one' in her email... approved it on February 2",
+    "notes": null
+  },
+  {
+    "qid": "novel_s30_02",
+    "source_session": 30,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "She wants me to change it to Cordelia... I'm going to do it",
+    "notes": null
+  },
+  {
+    "qid": "novel_s30_05",
+    "source_session": 30,
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "comp titles updated to 'Olive Kitteridge' and 'Migrations' by Charlotte McConaghy",
+    "notes": null
+  }
+]

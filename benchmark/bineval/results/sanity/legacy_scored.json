@@ -1,0 +1,280 @@
+{
+  "subset": "legacy",
+  "questions_file": "benchmark\\bineval\\questions_restaurant.json",
+  "conditions": {
+    "answers_full": {
+      "items": [
+        {
+          "qid": "rest_q01",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q02",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q03",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q04",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q05",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q06",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q07",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q08",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q09",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q10",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q11",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q12",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q13",
+          "verdict": "pass",
+          "tier": 1,
+          "matched_alias": "12,000 yen"
+        },
+        {
+          "qid": "rest_q14",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q15",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q16",
+          "verdict": "pass",
+          "tier": 1
+        }
+      ],
+      "aggregate": {
+        "pass": 16,
+        "fail": 0,
+        "indeterminate": 0,
+        "total": 16,
+        "pass_rate_tier1": 1.0
+      }
+    },
+    "answers_summarized": {
+      "items": [
+        {
+          "qid": "rest_q01",
+          "verdict": "indeterminate",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q02",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q03",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q04",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q05",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q06",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q07",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q08",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q09",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q10",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q11",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q12",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q13",
+          "verdict": "indeterminate",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q14",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q15",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q16",
+          "verdict": "fail",
+          "tier": 1
+        }
+      ],
+      "aggregate": {
+        "pass": 1,
+        "fail": 13,
+        "indeterminate": 2,
+        "total": 16,
+        "pass_rate_tier1": 0.0625
+      }
+    },
+    "answers_truncated": {
+      "items": [
+        {
+          "qid": "rest_q01",
+          "verdict": "indeterminate",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q02",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q03",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q04",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q05",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q06",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q07",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q08",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q09",
+          "verdict": "pass",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q10",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q11",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q12",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q13",
+          "verdict": "indeterminate",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q14",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q15",
+          "verdict": "fail",
+          "tier": 1
+        },
+        {
+          "qid": "rest_q16",
+          "verdict": "fail",
+          "tier": 1
+        }
+      ],
+      "aggregate": {
+        "pass": 1,
+        "fail": 13,
+        "indeterminate": 2,
+        "total": 16,
+        "pass_rate_tier1": 0.0625
+      }
+    }
+  }
+}

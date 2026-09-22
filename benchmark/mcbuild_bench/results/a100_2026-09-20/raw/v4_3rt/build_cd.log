@@ -1,0 +1,11 @@
+STOPPED: SummarizerStop("summarizer produced no usable node text after one retry: first='Java path: C:\\\\WINDOWS\\\\system32, C:\\\\WINDOWS, C:\\\\WINDOWS\\\\System32, C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell, C:\\\\WINDOWS\\\\System32\\\\OpenSSH, C:\\\\cmd, C:\\\\Program Files\\\\nodejs, C:\\\\Program.' (length 177 > 120) second='Files/Oracle/Java/javapath:/c/WINDOWS/system32:/c/WINDOWS:/c/WINDOWS/System32/Wbem:/c/WINDOWS/System32/WindowsPowerShell/v1.0:/c/WINDOWS/System32/OpenSSH:/cmd:/c/Program Files/nodejs:/c/Program' (length 193 > 120)")
+[corpus] benchmark/mcbuild_bench/data/session_redacted.json: 36 of 37 round trips (exclude_rt=[36]) sha256=ec58aa7baf5a6ad1015901bb0d0186da3241a4af2e9db939ffce89cc94ae280d
+[capacities] max_sun_nodes=10000 max_planet_nodes_per_sun=1000 max_satellite_nodes_per_planet=1000
+--- build summary ---
+round trips: 0  dropped chunks: 0
+nodes: sun=0 planet=0 satellite=0 total=0
+harness calls: node=54
+harness quality: attached=0 defaulted=0 node_fallback=0 unparsed=0 vanished=0
+jev requests=54 tokens: in=34466 out=3510 cost_usd=0.0014  wall=77.4s
+jev budget: requests 54/20000 input_tokens 34466/100000000
+wrote: /workspace/mcb/runs/v4_3rt/cd.json

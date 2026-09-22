@@ -1,14 +1,14 @@
 """
-MassWeightedLlama: mass-injection implementation for Llama models (Llama 3.x, Llama 3.2).
+MassWeightedLlama: Llama 系モデル (Llama 3.x, Llama 3.2) 専用のマスインジェクション実装。
 
-Differences from MassWeightedGemma:
-1. Applies the Llama 3 chat template via `tokenizer.apply_chat_template`.
-2. Limits `generation_config.max_length` dynamically instead of 128K
-   (Llama 3.2 defaults to max_length=131072, which OOMs on 6GB VRAM).
-3. Explicitly clears the KV cache between trials.
-4. Llama-specific pad_token setup.
+【MassWeightedGemma との違い】
+1. Llama 3 の chat template を `tokenizer.apply_chat_template` で適用
+2. `generation_config.max_length` を 128K → 動的に制限
+   (Llama 3.2 の max_length=131072 がデフォルト → 6GB VRAM では OOM)
+3. trial 間の KV cache 明示クリア
+4. Llama 特有の pad_token 設定
 
-Usage:
+使い方:
   from server.mass_weighted_llama import MassWeightedLlama
   m = MassWeightedLlama(model_id="unsloth/Llama-3.2-1B-Instruct")
   m.load()
@@ -23,9 +23,9 @@ from server.mass_weighted_gemma import MassWeightedGemma
 
 class MassWeightedLlama(MassWeightedGemma):
     """
-    MassWeightedLLM for Llama models (Llama 3.x, Llama 3.2, etc.).
-    Inherits the parent's sdpa patch while applying Llama-specific chat
-    template and generation config.
+    Llama 系モデル (Llama 3.x, Llama 3.2 等) 専用の MassWeightedLLM。
+    親クラスの sdpa パッチを継承しつつ、Llama 固有の chat template と
+    generation config を適用する。
     """
 
     def __init__(
@@ -50,25 +50,25 @@ class MassWeightedLlama(MassWeightedGemma):
     def load(self) -> None:
         super().load()
         gen_cfg = self._model.generation_config
-        # Llama 3.2 defaults to max_length=131072, which OOMs on a 6GB GPU.
-        # Cap it at 16K as a safe upper bound.
+        # Llama 3.2 のデフォルト max_length=131072 → 6GB GPU では OOM
+        # 安全な上限として 16K に制限
         if hasattr(gen_cfg, "max_length"):
             gen_cfg.max_length = 16384
-        # Llama may have pad_token set to None.
+        # Llama は pad_token が None の場合あり
         if self._tokenizer.pad_token_id is None and self._tokenizer.eos_token_id is not None:
             self._tokenizer.pad_token_id = self._tokenizer.eos_token_id
             gen_cfg.pad_token_id = self._tokenizer.eos_token_id
         print(f"[MassWeightedLlama] generation_config.max_length capped at {gen_cfg.max_length}")
 
     def chat(self, messages: list[dict]) -> str:
-        """Generate by applying the Llama 3 chat template."""
+        """Llama 3 の chat template を適用して生成。"""
         prompt = self._tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
         )
         return self.generate(prompt)
 
     def generate(self, prompt: str) -> str:
-        """Set max_length dynamically based on input length and clear VRAM between trials."""
+        """max_length を入力長に応じて動的設定し、trial 間の VRAM クリアを実施。"""
         target_device = self._device
         try:
             target_device = next(self._model.parameters()).device

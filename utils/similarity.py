@@ -1,22 +1,25 @@
 """
-Node similarity utilities.
+ノード類似度判定ユーティリティ。
 
-Two similarity backends are supported:
-  - Default: cosine similarity of SentenceTransformer (all-MiniLM-L6-v2)
-    embeddings (practical in terms of compute cost and speed).
-  - Optional: LLM-based similarity scoring, which compares nodes strictly
-    in a one-to-one fashion. Registered externally via
-    set_llm_similarity_fn(fn).
+特許§0042 準拠:
+  「ノード同士の類似度の判定には、学習済みのLLMが用いられ、
+   必ずノードを1対1の形で判定する」
 
-Usage of the LLM-based backend:
+実装方針:
+  - デフォルト: SentenceTransformer (all-MiniLM-L6-v2) 埋め込みコサイン類似度
+    （計算量・速度の観点で実用的）
+  - オプション: LLM ベース類似度判定（特許準拠の厳密実装）
+    set_llm_similarity_fn(fn) で外部から登録可能
+
+LLM ベース判定の使い方:
   from utils.similarity import set_llm_similarity_fn
 
   def my_llm_sim(text_a: str, text_b: str) -> float:
-      # Function returning a 0.0-1.0 score from an LLM
+      # LLM で 0.0-1.0 のスコアを返す関数
       ...
   set_llm_similarity_fn(my_llm_sim)
 
-  # Subsequent similarity calls switch to the LLM-based backend
+  # 以降の similarity 呼び出しは LLM ベースに切り替わる
 """
 from __future__ import annotations
 import numpy as np
@@ -27,15 +30,15 @@ from utils.config import get
 
 _MODEL_NAME: str = get("management", "embedding_model", "all-MiniLM-L6-v2")
 
-# Optional LLM-based similarity scoring function.
-# When registered, cosine_similarity / most_similar_index prefer it.
+# 特許§0042 準拠の LLM ベース類似度判定関数（オプション）
+# 登録された場合、cosine_similarity / most_similar_index がこれを優先する
 _llm_similarity_fn: Optional[Callable[[str, str], float]] = None
 
 
 def set_llm_similarity_fn(fn: Optional[Callable[[str, str], float]]) -> None:
     """
-    Register the LLM-based similarity scoring function.
-    Passing None reverts to the embedding-based backend.
+    特許§0042 準拠の LLM ベース類似度判定関数を登録する。
+    None を渡すと埋め込みベースに戻る。
     """
     global _llm_similarity_fn
     _llm_similarity_fn = fn
@@ -61,7 +64,7 @@ def embed(texts: list[str]) -> np.ndarray:
 def cosine_similarity(a: str, b: str) -> float:
     """
     Cosine similarity in [0, 1] between two texts.
-    Prefers the LLM similarity function when one is registered.
+    LLM 類似度関数が登録されていればそれを優先（特許§0042 準拠）。
     """
     if _llm_similarity_fn is not None:
         score = _llm_similarity_fn(a, b)
@@ -74,14 +77,14 @@ def most_similar_index(query: str, candidates: list[str]) -> tuple[int, float]:
     """
     Return (index, score) of the most similar candidate.
 
-    When the LLM similarity function is registered, similarity against
-    every candidate is scored one-to-one.
+    LLM 類似度関数が登録されていれば、特許§0042 準拠で
+    1対1 で全候補との類似度を判定する。
     """
     if not candidates:
         return -1, 0.0
 
     if _llm_similarity_fn is not None:
-        # Score nodes strictly one-to-one against every candidate.
+        # 特許§0042: 「必ずノードを1対1の形で判定する」
         scores = [_llm_similarity_fn(query, c) for c in candidates]
         scores_arr = np.array([max(0.0, min(1.0, float(s))) for s in scores])
         best = int(np.argmax(scores_arr))

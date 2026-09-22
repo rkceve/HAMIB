@@ -1,0 +1,394 @@
+[
+ {
+  "qid": "rest_s01_01",
+  "source_session": 1,
+  "question": "What is the age of Kenta Morishita, the user planning the restaurant, as stated at the start?",
+  "gold_short": "34",
+  "tier1_aliases": [],
+  "fact_quote": "User name: Kenta Morishita, age 34"
+ },
+ {
+  "qid": "rest_s02_01",
+  "source_session": 2,
+  "question": "How many Italian restaurants did Kenta visit during his two weeks of market research?",
+  "gold_short": "14",
+  "tier1_aliases": [],
+  "fact_quote": "Visited 14 Italian restaurants in 2 weeks"
+ },
+ {
+  "qid": "rest_s02_06",
+  "source_session": 2,
+  "question": "In which Tokyo district did Kenta name Heinz Beck as a benchmark restaurant?",
+  "gold_short": "Marunouchi",
+  "tier1_aliases": [],
+  "fact_quote": "Heinz Beck in Marunouchi"
+ },
+ {
+  "qid": "rest_s03_05",
+  "source_session": 3,
+  "question": "At what interest rate did Kenta initially apply for the Japan Finance Corporation loan?",
+  "gold_short": "1.85%",
+  "tier1_aliases": [
+   "1.85"
+  ],
+  "fact_quote": "applying for 15 million yen at 1.85%"
+ },
+ {
+  "qid": "rest_s04_04",
+  "source_session": 4,
+  "question": "Above what per-tsubo rent did Kenta rule out Ginza as a location?",
+  "gold_short": "95,000 yen per tsubo",
+  "tier1_aliases": [
+   "95,000 yen",
+   "95,000"
+  ],
+  "fact_quote": "Ruled out Ginza due to rent (above 95,000 yen per tsubo)"
+ },
+ {
+  "qid": "rest_s05_03",
+  "source_session": 5,
+  "question": "What is the monthly rent for Kenta's restaurant space?",
+  "gold_short": "487,000 yen",
+  "tier1_aliases": [
+   "487,000"
+  ],
+  "fact_quote": "Rent: 487,000 yen per month"
+ },
+ {
+  "qid": "rest_s06_02",
+  "source_session": 6,
+  "question": "Who leads the contractor firm Kenta selected for renovation?",
+  "gold_short": "Tetsuo Yamamoto",
+  "tier1_aliases": [
+   "Yamamoto"
+  ],
+  "fact_quote": "led by Tetsuo Yamamoto"
+ },
+ {
+  "qid": "rest_s07_01",
+  "source_session": 7,
+  "question": "How much did the Japan Finance Corporation ultimately approve for Kenta's loan?",
+  "gold_short": "12 million yen",
+  "tier1_aliases": [
+   "12 million"
+  ],
+  "fact_quote": "Japan Finance Corporation approved 12 million yen (3 million below request) at 1.95%"
+ },
+ {
+  "qid": "rest_s07_06",
+  "source_session": 7,
+  "question": "The 36 million opening capital combined savings with what other source?",
+  "gold_short": "loan",
+  "tier1_aliases": [],
+  "fact_quote": "28M savings + 12M loan minus expenses already incurred"
+ },
+ {
+  "qid": "rest_s08_05",
+  "source_session": 8,
+  "question": "What Italian wall-plaster product was used in the restaurant?",
+  "gold_short": "Marmorino",
+  "tier1_aliases": [],
+  "fact_quote": "Walls: limestone-finish plaster (Italian product Marmorino imported via Tokai Sangyo)"
+ },
+ {
+  "qid": "rest_s09_04",
+  "source_session": 9,
+  "question": "How much did the pasta extruder cost?",
+  "gold_short": "580,000 yen",
+  "tier1_aliases": [
+   "580,000"
+  ],
+  "fact_quote": "Pasta extruder: La Monferrina P3, cost 580,000 yen"
+ },
+ {
+  "qid": "rest_s10_03",
+  "source_session": 10,
+  "question": "Which flour did Kenta use, imported through Suzuki Foods?",
+  "gold_short": "Caputo 00",
+  "tier1_aliases": [
+   "Caputo"
+  ],
+  "fact_quote": "Flour: Caputo 00 imported through Suzuki Foods, 3,800 yen per 25kg sack"
+ },
+ {
+  "qid": "rest_s11_02",
+  "source_session": 11,
+  "question": "Who is Kenta's wine account manager at Nakata Shoji?",
+  "gold_short": "Mariko Nakata",
+  "tier1_aliases": [
+   "Mariko"
+  ],
+  "fact_quote": "Account manager: Mariko Nakata, daughter of company president"
+ },
+ {
+  "qid": "rest_s12_01",
+  "source_session": 12,
+  "question": "To what name did Kenta rename the restaurant in session 12?",
+  "gold_short": "Osteria Morishita",
+  "tier1_aliases": [],
+  "fact_quote": "Decision to rename from 'Ginza Trattoria' to 'Osteria Morishita'"
+ },
+ {
+  "qid": "rest_s12_06",
+  "source_session": 12,
+  "question": "What web domain did Kenta register for the restaurant?",
+  "gold_short": "osteria-morishita.tokyo",
+  "tier1_aliases": [],
+  "fact_quote": "Domain registered: osteria-morishita.tokyo"
+ },
+ {
+  "qid": "rest_s13_05",
+  "source_session": 13,
+  "question": "What monthly salary was head chef Petrelli hired at?",
+  "gold_short": "720,000 yen",
+  "tier1_aliases": [
+   "720,000"
+  ],
+  "fact_quote": "Salary: 720,000 yen monthly, 13-month bonus structure"
+ },
+ {
+  "qid": "rest_s14_04",
+  "source_session": 14,
+  "question": "From which ward's health department did inspector Mr. Ogawa come?",
+  "gold_short": "Minato Ward",
+  "tier1_aliases": [
+   "Minato"
+  ],
+  "fact_quote": "Health permit inspector: Mr. Ogawa, Minato Ward Health Department"
+ },
+ {
+  "qid": "rest_s15_03",
+  "source_session": 15,
+  "question": "What was the initial price of the 2-course lunch menu?",
+  "gold_short": "1,800 yen",
+  "tier1_aliases": [
+   "1,800"
+  ],
+  "fact_quote": "Lunch menu: 2 courses 1,800 yen, 3 courses 2,400 yen"
+ },
+ {
+  "qid": "rest_s16_02",
+  "source_session": 16,
+  "question": "What monthly salary was sous chef Nakajima hired at?",
+  "gold_short": "380,000 yen",
+  "tier1_aliases": [
+   "380,000"
+  ],
+  "fact_quote": "Nakajima salary: 380,000 yen monthly"
+ },
+ {
+  "qid": "rest_s17_01",
+  "source_session": 17,
+  "question": "On what dates was the soft opening held?",
+  "gold_short": "October 8-11, 2025",
+  "tier1_aliases": [
+   "October 8-11",
+   "October 8"
+  ],
+  "fact_quote": "Soft opening dates: October 8-11, 2025 (four days, dinner only)"
+ },
+ {
+  "qid": "rest_s17_06",
+  "source_session": 17,
+  "question": "How was wine pairing handled at the soft opening?",
+  "gold_short": "charged at cost",
+  "tier1_aliases": [
+   "separately charged"
+  ],
+  "fact_quote": "Wine pairing offered but separately charged at cost"
+ },
+ {
+  "qid": "rest_s18_05",
+  "source_session": 18,
+  "question": "Which food critic from Tokyo Calendar posted a positive note about the soft opening?",
+  "gold_short": "Akira Mochizuki",
+  "tier1_aliases": [
+   "Mochizuki"
+  ],
+  "fact_quote": "Food critic Akira Mochizuki from Tokyo Calendar published positive note on Instagram"
+ },
+ {
+  "qid": "rest_s20_04",
+  "source_session": 20,
+  "question": "What was the restaurant's first Tabelog rating after 3 reviews?",
+  "gold_short": "3.42",
+  "tier1_aliases": [],
+  "fact_quote": "First Tabelog rating after 3 reviews: 3.42"
+ },
+ {
+  "qid": "rest_s21_03",
+  "source_session": 21,
+  "question": "What health issue did sous chef Nakajima report in week 2 of operations?",
+  "gold_short": "back pain",
+  "tier1_aliases": [],
+  "fact_quote": "Sous chef Nakajima reports back pain - reducing his hours temporarily"
+ },
+ {
+  "qid": "rest_s22_02",
+  "source_session": 22,
+  "question": "What was the restaurant's loss in November?",
+  "gold_short": "312,000 yen",
+  "tier1_aliases": [
+   "312,000"
+  ],
+  "fact_quote": "Loss for month: 312,000 yen"
+ },
+ {
+  "qid": "rest_s23_01",
+  "source_session": 23,
+  "question": "How many guests attended the Marubeni private dinner on December 22?",
+  "gold_short": "24 guests",
+  "tier1_aliases": [
+   "24"
+  ],
+  "fact_quote": "Marubeni Corporation (user's old employer) booked December 22 private dinner: 24 guests, 12,000 yen per person fixed menu"
+ },
+ {
+  "qid": "rest_s25_01",
+  "source_session": 25,
+  "question": "By what percentage was January's first-week revenue down versus the December average?",
+  "gold_short": "42%",
+  "tier1_aliases": [
+   "42"
+  ],
+  "fact_quote": "January first week revenue down 42% versus December average"
+ },
+ {
+  "qid": "rest_s25_06",
+  "source_session": 25,
+  "question": "Which new dish did Petrelli add to the menu in January?",
+  "gold_short": "guinea fowl",
+  "tier1_aliases": [],
+  "fact_quote": "adding guinea fowl"
+ },
+ {
+  "qid": "rest_s26_05",
+  "source_session": 26,
+  "question": "Who designed the wine-club program?",
+  "gold_short": "Sawada",
+  "tier1_aliases": [],
+  "fact_quote": "Sawada designed program; Mariko Nakata sourcing exclusive labels"
+ },
+ {
+  "qid": "rest_s27_04",
+  "source_session": 27,
+  "question": "Who was hired as a part-time line cook for vacation coverage?",
+  "gold_short": "Toshiya Inoue",
+  "tier1_aliases": [
+   "Inoue"
+  ],
+  "fact_quote": "Hired part-time line cook for coverage: Toshiya Inoue, culinary school graduate"
+ },
+ {
+  "qid": "rest_s28_03",
+  "source_session": 28,
+  "question": "Which restaurant critic made an unexpected visit during Petrelli's absence?",
+  "gold_short": "Hiroko Sano",
+  "tier1_aliases": [
+   "Sano"
+  ],
+  "fact_quote": "Unexpected visit by Hiroko Sano, restaurant critic from Asahi Shimbun Weekly"
+ },
+ {
+  "qid": "rest_s29_02",
+  "source_session": 29,
+  "question": "What was the restaurant's Q1 revenue total?",
+  "gold_short": "11.8 million yen",
+  "tier1_aliases": [
+   "11.8 million"
+  ],
+  "fact_quote": "Q1 revenue total: 11.8 million yen versus plan 12.5 million"
+ },
+ {
+  "qid": "rest_s30_01",
+  "source_session": 30,
+  "question": "On what date was the Asahi Shimbun review published?",
+  "gold_short": "March 19, 2026",
+  "tier1_aliases": [
+   "March 19"
+  ],
+  "fact_quote": "Sano review published March 19, 2026 in Asahi Shimbun Weekly"
+ },
+ {
+  "qid": "rest_s30_06",
+  "source_session": 30,
+  "question": "In which publication was the Sano review published?",
+  "gold_short": "Asahi Shimbun Weekly",
+  "tier1_aliases": [
+   "Asahi Shimbun"
+  ],
+  "fact_quote": "Sano review published March 19, 2026 in Asahi Shimbun Weekly"
+ },
+ {
+  "qid": "rest_s31_05",
+  "source_session": 31,
+  "question": "By what percentage did switching olive oil save on cost in the April 2026 adjustment?",
+  "gold_short": "22%",
+  "tier1_aliases": [
+   "22"
+  ],
+  "fact_quote": "Olive oil switched from Frantoio Franci to a less expensive blend from Solleone (saving 22% on cost)"
+ },
+ {
+  "qid": "rest_s34_04",
+  "source_session": 34,
+  "question": "How many visits had the top repeat customer made by the six-month celebration?",
+  "gold_short": "10 visits",
+  "tier1_aliases": [
+   "10",
+   "ten"
+  ],
+  "fact_quote": "Mr. Hiroyuki Tachibana (10 visits)"
+ },
+ {
+  "qid": "rest_s36_03",
+  "source_session": 36,
+  "question": "What monthly cost is the nearby basement rental needed after the storage conversion?",
+  "gold_short": "38,000 yen",
+  "tier1_aliases": [
+   "38,000"
+  ],
+  "fact_quote": "Loss of storage requires basement rental: 38,000 yen monthly nearby"
+ },
+ {
+  "qid": "rest_s37_02",
+  "source_session": 37,
+  "question": "Which labor consultant helped draft the employee handbook?",
+  "gold_short": "Mr. Endo",
+  "tier1_aliases": [
+   "Endo"
+  ],
+  "fact_quote": "Employee handbook drafted with help from labor consultant Mr. Endo, fee 280,000 yen"
+ },
+ {
+  "qid": "rest_s38_01",
+  "source_session": 38,
+  "question": "To what monthly salary was Nakajima raised in the performance-review adjustments?",
+  "gold_short": "440,000 yen",
+  "tier1_aliases": [
+   "440,000"
+  ],
+  "fact_quote": "Nakajima raised to 440,000 yen (from 380,000)"
+ },
+ {
+  "qid": "rest_s38_06",
+  "source_session": 38,
+  "question": "For how many full-time staff were performance reviews completed?",
+  "gold_short": "7 FT staff",
+  "tier1_aliases": [
+   "7"
+  ],
+  "fact_quote": "Performance reviews completed for 7 FT staff"
+ },
+ {
+  "qid": "rest_s39_06",
+  "source_session": 39,
+  "question": "How many private events were pre-booked for September in the Sala Modena?",
+  "gold_short": "6 private events",
+  "tier1_aliases": [
+   "6",
+   "six"
+  ],
+  "fact_quote": "Pre-bookings already secured: 6 private events for September"
+ }
+]

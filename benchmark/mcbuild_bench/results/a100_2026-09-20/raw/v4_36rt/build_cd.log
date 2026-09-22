@@ -1,0 +1,46 @@
+[corpus] benchmark/mcbuild_bench/data/session_redacted.json: 36 of 37 round trips (exclude_rt=[36]) sha256=ec58aa7baf5a6ad1015901bb0d0186da3241a4af2e9db939ffce89cc94ae280d
+[capacities] max_sun_nodes=10000 max_planet_nodes_per_sun=1000 max_satellite_nodes_per_planet=1000
+[rt 0] chunks=191 dropped=19 nodes=172 added=145 calls=699 cd_nodes=145
+[rt 1] chunks=297 dropped=181 nodes=116 added=100 calls=593 cd_nodes=245
+[rt 2] chunks=327 dropped=97 nodes=230 added=205 calls=832 cd_nodes=450
+[rt 3] chunks=36 dropped=4 nodes=32 added=24 calls=115 cd_nodes=474
+[rt 4] chunks=24 dropped=3 nodes=21 added=14 calls=79 cd_nodes=488
+[rt 5] chunks=71 dropped=14 nodes=57 added=46 calls=200 cd_nodes=534
+[rt 6] chunks=362 dropped=135 nodes=227 added=157 calls=1022 cd_nodes=691
+[rt 7] chunks=19 dropped=4 nodes=15 added=9 calls=45 cd_nodes=700
+[rt 8] chunks=31 dropped=5 nodes=26 added=23 calls=113 cd_nodes=723
+[rt 9] chunks=13 dropped=2 nodes=11 added=9 calls=43 cd_nodes=732
+[rt 10] chunks=423 dropped=125 nodes=298 added=180 calls=1434 cd_nodes=912
+[rt 11] chunks=326 dropped=113 nodes=213 added=135 calls=896 cd_nodes=1047
+[rt 12] chunks=83 dropped=15 nodes=68 added=55 calls=309 cd_nodes=1102
+[rt 13] chunks=151 dropped=74 nodes=77 added=43 calls=444 cd_nodes=1145
+[rt 14] chunks=37 dropped=5 nodes=32 added=11 calls=133 cd_nodes=1156
+[rt 15] chunks=11 dropped=4 nodes=7 added=5 calls=26 cd_nodes=1161
+[rt 16] chunks=119 dropped=70 nodes=49 added=37 calls=319 cd_nodes=1198
+[rt 17] chunks=46 dropped=11 nodes=35 added=28 calls=159 cd_nodes=1226
+[rt 18] chunks=11 dropped=2 nodes=9 added=5 calls=37 cd_nodes=1231
+[rt 19] chunks=81 dropped=24 nodes=57 added=37 calls=304 cd_nodes=1268
+[rt 20] chunks=31 dropped=11 nodes=20 added=13 calls=133 cd_nodes=1281
+[rt 21] chunks=18 dropped=6 nodes=12 added=6 calls=56 cd_nodes=1287
+[rt 22] chunks=19 dropped=3 nodes=16 added=10 calls=66 cd_nodes=1297
+[rt 23] chunks=61 dropped=12 nodes=49 added=34 calls=281 cd_nodes=1331
+[rt 24] chunks=123 dropped=27 nodes=96 added=76 calls=398 cd_nodes=1407
+[rt 25] chunks=26 dropped=6 nodes=20 added=9 calls=109 cd_nodes=1416
+[rt 26] chunks=55 dropped=12 nodes=43 added=32 calls=281 cd_nodes=1448
+[rt 27] chunks=14 dropped=3 nodes=11 added=6 calls=48 cd_nodes=1454
+[rt 28] chunks=48 dropped=8 nodes=40 added=16 calls=172 cd_nodes=1470
+[rt 29] chunks=36 dropped=2 nodes=34 added=15 calls=135 cd_nodes=1485
+[rt 30] chunks=76 dropped=27 nodes=49 added=29 calls=202 cd_nodes=1514
+[rt 31] chunks=45 dropped=13 nodes=32 added=22 calls=141 cd_nodes=1536
+[rt 32] chunks=96 dropped=30 nodes=66 added=36 calls=413 cd_nodes=1572
+[rt 33] chunks=64 dropped=15 nodes=49 added=24 calls=247 cd_nodes=1596
+[rt 34] chunks=2 dropped=0 nodes=2 added=1 calls=13 cd_nodes=1597
+[rt 35] chunks=15 dropped=1 nodes=14 added=9 calls=74 cd_nodes=1606
+--- build summary ---
+round trips: 36  dropped chunks: 1083
+nodes: sun=389 planet=414 satellite=803 total=1606
+harness calls: belongs=3828 node=3388 same=3355
+harness quality: attached=838 defaulted=0 node_fallback=92 unparsed=0 vanished=699
+jev requests=10571 tokens: in=42153677 out=9795924 cost_usd=1.7705  wall=6292.5s
+jev budget: requests 10571/20000 input_tokens 42153677/100000000
+wrote: /workspace/mcb/runs/v4_36rt/cd.json

@@ -1,0 +1,22 @@
+# Force LF line endings for text files (prevents autocrlf issues on
+# Windows/macOS clones from breaking sha256 checksums in CODEX_TASK.md
+# and similar reproducibility artifacts).
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Binary-safe — never touch these
+*.pdf binary
+*.png binary
+*.jpg binary
+*.safetensors binary
+*.bin binary
+*.pt binary
+*.sh text eol=lf
+
+# Raw experiment records must stay byte-exact: raw_manifest.json pins their sha256.
+benchmark/mcbuild_bench/results/** -text

@@ -1,0 +1,930 @@
+BENCHMARK SESSION SUMMARY — 6x COMPRESSED
+Generated from: benchmark/bineval/results/audit/_sessions/session_01.txt .. session_40.txt
+Budget: ≤28,500 tokens (~114,000 chars)
+Method: dense fact-bullet per session, ~700 tokens/session target
+=========================================================
+
+=== Session 1 (March 5, 2025) — Initial idea: quitting Marubeni, opening Italian restaurant ===
+- User: Kenta Morishita, 34, employed 11 years at Marubeni Corporation (food and agribusiness division)
+- Concept: small Italian trattoria, 20-25 seats, Emilia-Romagna inspiration (Bologna sourcing trip 2019; 3-week program at Hotel School of Bologna)
+- Working name: "Ginza Trattoria"; target area Ginza or adjacent (Higashi-Ginza, Tsukiji fringe)
+- Wife: Ayako Morishita, stable income, supportive but not directly involved; apartment paid off
+- Capital: 28 million yen savings available to risk
+- Plan to be owner-operator (sourcing/FOH); hire skilled chef, not cook himself
+- Failure scenario explicitly modeled with Ayako: lose savings but survive on her income; Kenta estimates re-employment possible within 6 months
+- Pre-opening plan: resign April, 6-9 months planning, open late 2025 or early 2026
+- Broker friend from university: informally alerted, Kenta plans to formally activate him
+- 90-day calendar outlined: Month 1 = financial model + market intel + staging contacts; Month 2 = staging + chef search + location scouting; Month 3 = convergence, first commitment (chef or lease letter of intent)
+- Chef search: no candidate yet; plan to find via staging network and word-of-mouth, not job postings
+- AI emphasized: chef dependency is highest-risk variable; search must run from Month 1, not Month 3
+- Cost rough estimates: deposit/key money 4-6M yen; fit-out 8-15M; equipment 3-5M; pre-opening 1.5-3M; operating reserve 3-5M; total ~20-22M conservative open
+
+=== Session 2 (March 18, 2025) — Market research debrief: 14 Tokyo Italian restaurants visited ===
+- User visited 14 Italian restaurants over 2 weeks: ~9 dinners, ~5 lunches
+- Premium anchors visited: Ristorante Aso (Daikanyama), Faro Ginza (Shiseido-operated), Heinz Beck (Marunouchi, 3 Michelin stars at La Pergola Rome)
+- Ristorante Aso: chef-personal, regionally rooted (Hiroyuki Aso trained in Italy), not didactic
+- Faro Ginza: institutional, post-regional, sustainability/Japanese-Italian dialogue framing
+- Heinz Beck: Roman/Lazio influenced, internationally branded
+- 11 other places: "Italian in general" — carbonara, tiramisu, arrabbiata, no geographic specificity
+- KEY FINDING: zero of 14 restaurants clearly positioned around Emilia-Romagna cuisine
+- Guest behavior at Aso: observed couple spending 10 min asking sommelier about regional wine provenance — signal of engaged audience
+- Mid-range generic Italian: 40-55% weeknight occupancy; commercially solid but not destination
+- Dinner ticket ranges: casual Ebisu/Nakameguro 4,000-6,000 yen; Aso/Faro/Beck 18,000-25,000+ yen
+- Target price point: 8,500 yen/person dinner food-only (14,000-15,000 yen all-in with wine); 1,800 yen lunch set
+- 1,800 yen lunch as loss-leader customer acquisition strategy (validated by mid-range FOH manager in conversation)
+- AI warning: food cost math at 1,800 yen could be uncomfortable with genuine Emilian ingredients (Parmigiano, prosciutto di Parma)
+- Location: Ginza = expensive + Faro (Shiseido-backed, unfair competition); Daikanyama = Aso's shadow; Azabu-Juban emerging favorite (affluent, foreign residents with European culinary experience)
+- Research gap flagged: no investigation of past failed Emilia-Romagna restaurants in Tokyo (survivor bias risk)
+- Next steps: fill survivor bias gap; build financial model; location research with Azabu-Juban as primary
+
+=== Session 3 (April 2, 2025) — Business plan financials and breakeven analysis ===
+- Accountant: Hiroshi Tanabe, Tanabe & Partners, 2-7-3 Shibuya, Daiichi-Bunko Building 5F; 3 prior restaurant startup clients (1 Italian, 2 Japanese); referral via Marubeni contact
+- 3-hour session held; financial model completed
+- Revenue model: 24 seats (firmed from 20-25 range); dinner Tue-Sun; lunch Thu/Fri/Sat
+  - Average dinner ticket: 8,500 yen all-in (food + drinks combined, revised from food-only)
+  - Lunch: 1,800 yen per person
+  - Full capacity monthly revenue: 4.2 million yen
+- Cost structure: food 30%, labor 35%, rent+utilities 18%, other 12% = total 95%; operating margin 5% at 70% utilization
+- Month-3 projected revenue (70% utilization): 2.94 million yen
+- Breakeven: 38 covers per day average across all services
+- Ramp-up: Month 1 = 40%, Month 2 = 55%, Month 3 = 70% utilization; cumulative shortfall ~3.5M yen
+- Loan: Japan Finance Corporation (JFC), 15 million yen at 1.85%; monthly debt service ~200,000-210,000 yen (7% of month-3 revenue)
+- Pre-opening budget total: 22-25M yen; breakdown: renovation/fit-out 8-10M, equipment 3-4M, key money/deposits 4-5M, pre-opening inventory/licensing 1-1.5M, misc 0.5-1M
+- Personal contribution: 12-13M yen; JFC 15M; total capital 27-28M vs 22-25M spend → 3-6M working capital reserve
+- Tanabe targets 6M yen minimum reserve; considers less than that high-risk
+- JFC submission target: end of April; review 6-10 weeks; approval expected late June or early July
+- Kenta must write: market research section + personal background statement for JFC application
+- AI flagged: weekday revenue concentration risk (38 covers/day impossible from single dinner service on Tue/Wed); day-of-week breakeven model not yet built
+- AI flagged: 30% food cost achievable but fragile with imported Italian ingredients; need menu-level cost engineering
+- AI noted: Nishi-Azabu/Daikanyama rent at 85,000-105,000 per tsubo = above/at Tanabe's ceiling; Azabu-Juban still preferred candidate
+- JFC interview prep: must derive figures from first principles, not recite; Tanabe said most rejections = applicants who cannot explain their own assumptions
+
+=== Session 4 (April 19, 2025) — Location scouting: 5 neighborhoods, 23 properties ===
+- Broker: Yusuke Hamada, Plaza Homes Commercial; referred by college friend Daichi Sasaki (who used Hamada for Ebisu wine bar opening 2 years prior)
+- Scope: 23 properties physically walked across 5 neighborhoods over 3 weeks
+- Neighborhoods: Nishi-Azabu, Higashi-Azabu, Hiroo, Yoyogi-Uehara, Kagurazaka
+- Target footprint: 40-55 tsubo net floor area; Tanabe's rent ceiling 95,000 yen/tsubo
+
+NISHI-AZABU:
+- 3 spaces, ~right footprint; 2 had prior restaurant tenants (exhaust, grease traps in place; 3-5M yen avoided cost)
+- Rent: 85,000-105,000 yen/tsubo — at or above Tanabe ceiling
+- Saturday 7pm foot traffic: couples 30s-40s, expense-account groups, foreign residents — exactly target demographic
+- Corner unit: vacant 8 months; individual landlord (older man, late 60s, inherited building); Hamada suggests direct personal meeting rather than agent negotiation
+- AI: gap between 85K and 105K/tsubo = 900K yen/month rent = 10.8M yen/year; absorbing that requires ~2,000 additional covers/year
+
+HIGASHI-AZABU:
+- Rent: 68,000-78,000 yen/tsubo — under ceiling
+- Character: quiet, residential, no chains; existing restaurants run on reservations/word-of-mouth only
+- Best unit: 2nd floor, proper staircase, good ceiling height, kitchen exhaust already spec'd
+- Risk: discovery-dependent newcomer won't benefit from foot traffic; neighborhood rewards pre-existing reputation
+- AI: 2nd floor entry functions as "occasion filter" — eliminates walk-ins (low cost in this neighborhood) but creates arrival experience; net positive
+
+HIROO:
+- 4 properties; rent 72,000-82,000 yen/tsubo — under ceiling
+- Demographics: French school families, embassy staff, international professionals with genuine European food experience
+- Best unit: ground floor, prior F&B tenant, extraction system in and functioning
+- Parking: no dedicated parking at any unit; Hamada suggests 4-5 contracted spaces at nearby structure at ~30,000-40,000 yen/space/month (150K-200K yen/month total)
+- AI: parking low in decision hierarchy; target customers will take train/taxi to preserve wine drinking
+- AI: embassy/French school community = strong word-of-mouth network; 2-3 families → 40-50 household referrals
+
+YOYOGI-UEHARA:
+- Rent: 55,000-68,000 yen/tsubo — most attractive economics
+- Character: organic food culture, chef-owner spots, natural wine bars; younger demographic (late 20s-early 40s), food-literate
+- Risk: brand register mismatch — "Ginza Trattoria" signals formal/establishment; Yoyogi-Uehara culture is anti-establishment/discovery-oriented
+- AI: economics belong to a different concept; would require renaming/repositioning
+- Ranked LOW unless Kenta reopens brand name discussion
+
+KAGURAZAKA:
+- Kenta's current top pick (session ended before full detail — to be continued)
+- Context: pre-existing European culinary identity (French heritage), cobblestone alleys, ryotei alongside Western dining
+- AI flagged: idiosyncratic landlord culture in older buildings; basement kitchens have ventilation challenges
+
+=== Session 5 (May 4, 2025) — Lease signed: 3-14-7 Higashi-Azabu, Azabu Heights Building ===
+- Lease signed at notary; process ~2 hours including doc review, countersignatures, build-out rider, seal registration, key handover
+- Address: 3-14-7 Higashi-Azabu, Minato-ku; Building: Azabu Heights Building
+- Floor area: 64.5 sq meters = 19.5 tsubo; ground floor
+- Monthly base rent: 487,000 yen; common area fee: 73,000 yen; total occupancy: 560,000 yen/month
+- Per-tsubo: ~25,000 yen/tsubo (reasonable for Minato-ku ground floor)
+- Key money: 2,922,000 yen = exactly 6 months base rent (Tanabe verified as slightly favorable)
+- Lease term: 4 years renewable
+- Previous tenant: French bistro that closed October 2024 (60% through their HVAC duct installation before shutting down)
+- Landlord concession: landlord agreed to complete remaining HVAC pre-duct work at own expense; Suzuki-san (contractor) estimated avoided cost 400,000-500,000 yen
+- Space features: brick accent wall on north dining area side (from previous tenant); west-facing windows with afternoon light
+- Layout plan: entrance from south; vestibule ~4 sqm; bar/counter along east wall; kitchen in northern third (~18-20 sqm); pass-through partition; 28 covers main target (32 with bar stools)
+- Chef candidate: Fujita-san (name only, female); trained 4 years at Michelin-starred trattoria in Torino; returned to Tokyo last autumn; coffee conversations ongoing but no formal offer yet
+- Decision to skip wood-fired oven: fire safety certification + 2-3 month delay + cost; gas deck oven chosen instead; noted guest can't distinguish from wood fire with proper fermentation technique
+- JFC loan decision expected within 2-3 weeks of session date
+- Next contractor walkaround: that afternoon (3pm at Azabu Heights) with contractor Suzuki-san
+- Critical structural question for Suzuki: can pass-through shift 1.5m laterally without hitting structural elements in west wall?
+- Opening target: September-October optimistic; November if delays; not announced publicly yet
+
+=== Session 6 (May 17, 2025) — Contractor selection: 3 renovation bids ===
+- Renovation budget: 8.4 million yen (stated as hard ceiling to all 3 firms upfront in writing)
+- Three bids received:
+  1. Kenchiku Plus (mid-size, Minato-ku): 9.6M yen — 1.2M over budget; generic design, template-based proposal; Marubeni-days referral; professional but uninspiring
+  2. Yamamoto Koumuten (small specialist, owner Tetsuo Yamamoto): 8.2M yen — under budget; referred by Hamada (broker)
+  3. Sasaki Design Build (design-forward): 11.1M yen — 2.7M over budget; visually stunning renderings but two unilateral scope changes without client approval
+- Sasaki unilateral changes: (a) drain line relocation not in spec; (b) 800K yen Italian stone for bar/dining surfaces "integral to their design vision" — PM refused to remove it
+- AI assessment: Sasaki's attitude = designer preferences over client constraints = red flag for construction relationship
+- Yamamoto Koumuten strengths: Tetsuo Yamamoto did 2 site visits; brought junior site manager; 2 hours examining ceiling, drainage, HVAC; already knows Azabu Heights Building (prior work in same building); caught that electrical panel is undersized (flagged proactively); proposed open kitchen with brick-faced pizza oven facing dining room as centerpiece visual
+- Oven: Yamamoto recommended Forno Bravo Japan supplier (Italian-manufactured ovens, local service); mid-range model; installed cost 1.2-1.4M yen included within 8.2M bid; ventilation + floor load + fire suppression all already specified
+- Kenta's decision: Yamamoto Koumuten selected
+- Timeline: 14 weeks from permit issuance (Kenchiku Plus said 12, Sasaki 16 — AI noted 12 likely underestimate)
+- Kenta worried about firm size (12 people total) — AI countered: owner personal involvement > headcount for this scale
+- Next steps: contact Yamamoto within 48 hrs; contract must include: milestone-based payment schedule, written scope with model numbers, change orders require written approval >50K yen, timeline with float provision; decline other firms promptly; begin permit application immediately (wood-fired oven + ventilation = not trivial approval)
+
+=== Session 7 (May 30, 2025) — JFC loan decision and budget gap resolution ===
+- JFC APPROVED 12 million yen at 1.95% (applied for 15M at expected ~1.65-1.7%)
+- Shortfall: 3M yen less than expected; rate 0.25-0.3% higher than preliminary quote
+- Rate impact: difference in monthly debt service = ~2,500-3,500 yen/month (minor)
+- Monthly debt service at 12M/1.95%/7yr: ~195,000-210,000 yen
+- TOTAL CAPITAL STACK (confirmed): 36 million yen total
+  - Personal savings (liquidated over 18 months)
+  - Uncle's investment (came in ~8 months prior, during lease negotiations)
+  - Equipment leasing (main combi oven + refrigeration units — off balance sheet, converted to monthly payments)
+  - JFC loan: 12M yen
+- 15M yen breakdown originally: 10M construction (8.4M Yamamoto contract + 1.6M contingency), 5M = equipment (non-leased) + pre-opening costs + working capital
+- Working capital gap to close: 2.2M yen (after 3M shortfall - 800K contingency recapture = 2.2M)
+- Contingency analysis: 1.6M originally; Kenta assesses 800K is real risk protection, 800K was conservative padding → can recapture 800K safely (based on Tetsuo Yamamoto's reputation for budget discipline)
+- Three finish items identified for possible savings:
+  1. Dining room floor: Gifu limestone tile → domestic ceramic tile = save ~400-700K yen; recoverable later
+  2. Venetian plaster walls → fine-coat plaster + mineral topcoat = save ~300-600K yen; recoverable later
+  3. Custom banquette millwork: AI said ask Yamamoto "minimum spec that still looks intentional" not "cheapest version"
+- Estimated savings from (1)+(2): ~950K yen; total with contingency = ~1.75M → remaining gap ~450K yen
+- AI advice on JFC rate renegotiation: ~10-15% probability of movement; don't let it delay scope decisions
+- AI advice on uncle for more capital: not recommended as first resort; preserves option for year-2 success-mode investment; demonstrates operational credibility by solving gap through scope management
+- Action: Yamamoto scope meeting before June 13th (his deadline for final scope confirmation)
+
+=== Session 8 (June 12, 2025) — Renovation kickoff and design decisions ===
+- Construction officially started June 9, 2025; Yamamoto Koumuten crew on site
+- By June 12: old suspended ceiling and partitions stripped; slab height good; structural columns where drawings indicated
+- Projected completion: August 22, 2025 (10 weeks from June 9)
+- Potential issue: non-standard plumbing routing in back kitchen wall from previous tenant; team opening wall carefully that week; if clean = on schedule; if remediation needed = +1 week
+- Contingency for in-wall surprises: 800K yen (pre-built into budget)
+- FLOOR DECISION: White oak engineered plank (straight-run parallel to main window wall)
+  - Rejected architect's original walnut parquet
+  - Rationale: "light and genuinely Milanese/Brera district" feel; engineered handles Tokyo humidity + kitchen steam load better than solid hardwood
+  - Supplier: Toyo Wood Works (Yokohama importer, hospitality specialist)
+  - Lead time: 6 weeks from order confirmation; order going in Friday
+  - Plank width: 120-180mm range; board length variation (not uniform) planned
+  - Finish: "natural oil finish" on spec sheet — need to confirm it's hardener oil (hard-wax oil), not raw linseed
+- WALL DECISION: Marmorino limestone-finish Venetian polished plaster for dining room walls
+  - Importer: Tokai Sangyo, Nagoya; lead time 3 weeks
+  - Previous project: architect used Marmorino on boutique hotel in Minami-Aoyama — guests commented positively
+  - Applicator: Chiba-based, 12+ Marmorino installations, certified by Tokai Sangyo; meeting Tuesday for site walkthrough with samples at 2 densities
+  - Cannot color-match second order → quantity finalized after Tuesday walkthrough
+  - Tokai Sangyo order going in Wednesday/Thursday of following week
+- LAYOUT DECISION: Single accessible unisex bathroom (architect's suggestion)
+  - Recovers 3.2 sqm; architect's dual arguments: inclusive design + space recovery for bar
+  - Kenta's concern about peak bottleneck resolved by utilization math (~100min dinner, 1 visit/guest, natural distribution)
+  - AI agreement: two small rooms don't solve the queue problem meaningfully
+  - Compliance: architect must confirm in writing it meets Tokyo Metropolitan Government requirements + Tokyo Barrier-Free Ordinance + Building Standards Law dimensional minimums BEFORE rough-in
+  - Space allocation: AI suggested 2/3 to bar extension, 1/3 to dedicated coat alcove near entrance (brushed brass hooks, shelf, matching materials)
+  - Kenta accepted this split; will put to architect
+- Next session topic planned: kitchen equipment installation sequencing (lead times)
+
+=== Session 9 (June 25, 2025) — Kitchen equipment sourcing ===
+- Space confirmed 38 seats; single dinner seating (no turns in year 1); kitchen team: 2 cooks (head chef from Friuli-Venezia Giulia + 1 junior Japanese cook who staged in Italy)
+- Chef background: serious credentials, two-Michelin-starred restaurants in Italy and Tokyo
+- Menu structure: 8-10 antipasti, 4-5 pasta courses (guests choose individually), 3-4 secondi, 2 desserts; no pizza
+- Gas vs. wood oven: building management restrictions on wood combustion; upgrade to handle both = 500-700K yen extra; chose gas for budget and operational reasons (90-min preheat vs noon wood fire start)
+
+OVEN — Forno Bravo Japan, Modena 100:
+- Gas-fired refractory oven; 100cm interior cooking diameter (deck area ~7,850 sqcm = 4-6 half-sheet pans)
+- Quoted price: 1.6M yen (includes galvanized stand, full flue assembly, certified installation by Forno Bravo Japan technician in coordination with Yamamoto crew)
+- Kenta had budgeted 1.2-1.3M yen; 400K premium justified by thermal mass/stability, bundled installation
+- Warranty extension: 1 yr standard → 18 months if ordered before end of June (no additional cost)
+- Yamamoto recommended Forno Bravo Japan; has done 2 prior restaurant projects with them
+
+PASTA EXTRUDER — La Monferrina P3 via Reizou Sangyo:
+- La Monferrina = Piedmontese manufacturer, making professional pasta equipment since 1970s
+- Key feature: bronze extrusion dies (surface texture for sauce adhesion vs. teflon's slick surface)
+- Target shapes: rigatoni (primary anchor), mafaldine, paccheri (for branzino dish); hand-rolled also: tajarin, seasonal filled pasta, hand-torn
+- Price: 580K yen (machine + 4-die starter set + 1-yr parts warranty); additional bronze dies = 18K yen each
+- Reizou Sangyo = specialized Italian kitchen equipment importer in Japan; local service and parts
+- Next steps: confirm replacement die lead time before order; add paccheri die + bigoli + penne as first purchases (72K yen total for 4 additional dies)
+
+REFRIGERATION — Hoshizaki, 4 units:
+- 2× under-counter (cold/pasta station), 1× upright 2-door reach-in (general), 1× blast chiller
+- Total quoted: 720K yen
+- Chef endorsement: "never saw a Hoshizaki unit fail during service" in Tokyo kitchens; dense service network in Tokyo, next-day/same-day parts
+- Rejected: Liebherr (European, thinner Japan service network), Zanussi Professional (Italian but same issue)
+- Blast chiller value: force multiplier for 2-person kitchen; extend prep window, enable controlled mise en place
+- Action: confirm blast chiller amperage with Yamamoto before electrical rough-in finalized
+
+ROTISSERIE — REJECTED:
+- Originally planned for theatrical appeal (visible through kitchen window)
+- 3 reasons to drop: (1) hood upgrade cost 380K yen (Yamamoto estimate); (2) menu identity — Friuli/Liguria cuisine is lighter/seafood, not Tuscan arrosto tradition; (3) chef's expertise is not rotisserie
+- Whole roasted items will use Modena 100 instead
+
+Total major equipment: 2.9M yen (Modena 100: 1.6M + P3: 580K + Hoshizaki: 720K)
+
+=== Session 10 (July 7, 2025) — Supplier sourcing: dry goods and produce ===
+- Flooring delay: subfloor issue pushed back ~4 days; not cascading (equipment install schedule had buffer week)
+- Italian equipment (pasta extruder etc.) clearing customs early next week
+
+OLIVE OIL — Frantoio Franci via Solleone Japan:
+- Solleone Japan = specialist Italian oil importer (Italian oil only, not generalist); focus on cold-chain and vintage tracking
+- Producer: Frantoio Franci, Maremma hills, southern Tuscany; Flos Olei award winner; Frantoio cultivar; cold extraction, single-estate, full lot traceability with pressing dates
+- Price: 4,200 yen per 500ml; usage: finishing oil and raw preparations only (not cooking)
+- Delivery: min 6 bottles/delivery (~3 weeks inventory); Tokyo delivery route twice/month; climate-controlled vehicle in summer (maintained below 20°C)
+- Vintage flexibility: Solleone sends tasting samples from each new harvest before committing; maintains 2-3 backup Tuscan producers
+- Cost: ~25K-34K yen/month on finishing oil
+
+FLOUR — Caputo 00 via Suzuki Foods:
+- Suzuki Foods: mid-size food importer, Osaka HQ, Tokyo distribution hub in Koto-ku; importing Caputo for ~15 years
+- Price: 3,800 yen/25kg sack (vs. 4,100 yen that chef colleague pays through different importer for same product)
+- Delivery: Tue/Thu/Sat to central Tokyo; same-day noon cutoff for next delivery; min 2 sacks/delivery
+- Usage: ~1 sack per 10-14 days; 2-sack order = 3-4 weeks inventory; dedicated dry goods room in basement (temperature controlled)
+- Documentation: pushed for milling dates (not just best-before); Suzuki confirmed available on request
+
+PRODUCE — Kenji Ueno, Ueno Seika (broker at Tsukiji-Ota Market):
+- Origin: Hiroshi Tanabe's wife runs catering business, switched to Ueno → Tanabe introduced Kenta
+- Kenji Ueno: mid-50s; 20+ years at Tsukiji-Ota Market every morning; specializes in European-style vegetables for Western cuisine restaurants
+- Spec-based ordering: monthly produce list from Kenta (radicchio, cavolo nero, castelfranco, treviso, fennel, cardoons, seasonal squash, fresh peas); Ueno sources to spec
+- Proactive intelligence: contacts Kenta about exceptional seasonal arrivals; Sunday evening text briefing on coming week's market outlook (scarcity, pricing)
+- Delivery: Ueno does delivery himself in refrigerated van; Higashi-Azabu = 2nd or 3rd stop on Minato-ku route; arrives 5:30-7:00 AM; order by 8 PM night before; Tsukiji sourcing at 3 AM same morning
+- Pricing: broker margin 8-12% above market rate depending on item
+- Contract approach: Solleone Japan and Suzuki Foods on standard vendor purchase order terms; Ueno Seika = memo of understanding (documents margin range, delivery, Sunday briefing, ordering process, quality standards); Tanabe to review
+
+=== Session 11 (July 21, 2025) — Wine program development ===
+- Renovation done (last Thursday before session); wood paneling exact match to Piedmontese feel; kitchen equipment installed and tested
+- Pasta cooker came 2 days late from Italian vendor but installed without issues; tested day before session
+- Opening target: September
+
+WINE SUPPLIER — Nakata Shoji:
+- Mid-size importer/distributor, Minato-ku HQ, since late 1980s; strong on Italian and French
+- Account manager: Mariko Nakata (daughter of company president); recommended by Reiko Igarashi (head sommelier, Hotel Okura, Tokyo)
+- Igarashi's introduction was sent immediately at dinner table (strong signal of genuine endorsement)
+- 3 meetings total before finalizing order: (1) tasting + initial; (2) appellations + samples + quantities; (3) finalization + logistics
+
+OPENING CELLAR — 280 bottles, 47 labels:
+- Total cost: 1.85M yen (landed); avg cost per bottle ~6,600 yen; implied retail with 2.5-3x markup = 16,500-20,000 yen per bottle
+- ~6 bottles per label on average (avoids single-night sell-out of any label)
+- Kenta initially wanted ~55-60 labels but Nakata argued for broader; Kenta held at 47 (coherent story)
+- Geographic breakdown: 60% Italian, 25% French, 15% Japanese
+  - Italian: Piedmont anchor (Barolo, Barbaresco, single-vineyard Nebbiolo, Dolcetto, Barbera, Gavi di Gavi, Roero Arneis); Franciacorta (preferred over Prosecco); Lugana, Alto Adige whites; some central Italian Sangiovese
+  - French: Burgundy + Champagne for anniversary/prestige occasion demand (Nakata's argument from comparable accounts)
+  - Japanese: Kenta's initiative; Fattoria AL Fiore (Miyagi, Pinot Noir — getting international attention), Grace Wine (Yamanashi, consistent quality); staff can articulate rationale with conviction
+- Glass program: 8 by the glass (2 sparkling, 3 white, 3 red); all others bottle-only
+  - Coravin for wines ≥7,000 yen retail
+  - Seasonal rotation every 6-8 weeks; Nakata proactively flags candidates
+  - Standing order arrangement for "high-velocity" labels (Nakata's proposal)
+- Reorder system: trigger at 2 bottles remaining; weekly Monday inventory check; flags go to Kenta AND Mariko Nakata directly
+
+CELLAR SETUP:
+- Purpose-built commercial cooling unit (not home wine cooler); 13-14°C; 68-72% humidity; cedar racking
+- Floor-to-ceiling on 2 long walls + central island unit; total capacity 350 bottles → 80% full at opening (room to receive new stock)
+- Geographic organization: Piemonte (left wall) → east across northern Italy → central Italy → France → Japanese (island unit); reds and whites separated within regions
+- Bar fridge behind bar for active-service bottles (server never walks to cellar during service)
+
+=== Session 12 (August 3, 2025) — Name change and branding ===
+- DECISION: Official rename from "Ginza Trattoria" → "Osteria Morishita"
+- Problem: address is 3-14-7 Higashi-Azabu, not Ginza; every introduction required "but it's in Azabu" correction; hospitality PR friend laughed and called it confusing
+- Signage vendor, designer Aiko Fujimoto, and web developer all waiting for resolution
+
+NAME RATIONALE:
+- "Osteria del Nord" / "Trattoria Piemonte" rejected: generic, searchable duplicates worldwide, no personal equity, trademark weakness
+- Neighborhood-based names rejected: "too casual" or "developer-branding" register; neighborhood associations change
+- "Osteria Morishita" chosen: osteria register = owner's personal hospitality + wine curation (vs. trattoria); distinctive globally; stakes personal reputation on door; aligns with Dal Pescatore / Ristorante Cracco tradition of chef-owner family names
+
+BRAND IDENTITY — Brief for Aiko Fujimoto:
+- Aiko Fujimoto: freelance logo designer; did visual identity for well-regarded kaiseki in Minami-Aoyama; fee 320K yen (3 phases: 4-6 concepts + mood boards → refinement → production files + brand guidelines); unlimited revisions within phases; full direction change between phases = extra fee
+- Color: terracotta + ivory (primary); earth tones referencing northern Italian landscape, ceramics, Piemontese stone farmhouses
+- Typography: humanist serif (calligraphic warmth + Italian heritage) + minimal grotesque (secondary/functional)
+- Logo: typographic, not illustrative; must scale from exterior signage to favicon
+- Positioning sentence for brief: "chef-owner-driven northern Italian osteria in Higashi-Azabu, opening 2025, rooted in Piemonte and Lombardia, natural wine and seasonal ingredients from Italian importers and Japanese producers"
+- Brief must include: positive AND negative visual references (negative often more useful); primary applications in priority order (exterior signage → printed menu → website header → business cards)
+- Before finalizing: confirm SVG web exports, favicon sizes, social media templates included in 320K yen scope
+
+WEB:
+- Domain registered: osteria-morishita.tokyo (still available; surprised); .tokyo TLD chosen deliberately
+- Pre-opening phase: minimal single-page site (name, address, 2-3 sentences, email signup with early reservation access incentive, opening window but not exact date); go live within 2-3 weeks of receiving Aiko's final logo files
+- Email list goal: 300-600 addresses from genuinely interested guests before opening week
+- Avoid: "going dark" vs. "over-documenting construction"; avoid placeholder copy, countdown clocks more than 3 weeks out, stock photography
+- Domain must resolve somewhere immediately (not return error = reads as abandoned)
+- Pre-reservation intake form (name, party size, 2-3 preferred dates) for list subscribers; proper booking platform needed 6 weeks before opening
+- Full post-opening site: wait for Aiko's brand guidelines before building
+
+=== Session 13 (August 16, 2025) — Head chef hire ===
+- HIRE: Marco Petrelli, 38, originally from Modena, Emilia-Romagna
+- Most recent role: Ristorante Acqua Pazza, Daikanyama; 4 years total (3 years sous chef, 1 year head chef after previous head left to open own restaurant)
+- Contract signed last week before session; start date September 1, 2025 (2 weeks before soft opening)
+- Salary: 720,000 yen/month + 13-month bonus tied to quarterly performance (kitchen cost management, guest feedback scores, quarterly revenue targets — Marco's own proposal)
+- Background: 8 years serious Italian restaurant work, including time in Italy; two-Michelin-starred restaurants experience
+
+TRIAL COOK (half-day at Osteria Morishita kitchen):
+- Arrived 40 min early; asked 2 precise questions (oven calibration, copper pan location); no showmanship
+- 3 dishes: (1) tagliatelle al ragù (handmade, exceptional technique, ragù clearly cooked many hours); (2) tortellini in brodo from grandmother's recipe, Modena (luminous capon+beef broth, tortellini thumb-tip sized, almost translucent pasta) — nearly hired him on this alone; (3) roasted duck breast, Lambrusco reduction, shaved truffle (demonstrated contemporary capability without losing discipline)
+- Kitchen staff watched entire trial without distraction — "brutally honest audience" signal
+
+SEARCH PROCESS (6 weeks):
+- First round via culinary recruitment agency: 4 candidates over 3 weeks, all wrong for different reasons:
+  1. Strong technically but career primarily Japanese-Italian fusion (wrong culinary DNA)
+  2. Same issue
+  3. Impressive CV, burned out — "talked about cooking in transactional terms"
+  4. Promising (29, staged in Turin) but not ready to head a kitchen; referred to a colleague
+- Breakthrough: Mariko Nakata (Nakata Shoji wine supplier) mentioned to Kenta offhand during wine tasting session that search was frustrating; 3 days later Nakata called (not emailed) with Marco's name — she'd heard from him at an Acqua Pazza delivery that he was ready for "his own project to build"
+- AI note: wine supplier accounts manager knows talent market better than formal recruiters (sees kitchens, knows who's restless)
+
+MANAGEMENT CONSIDERATIONS:
+- "Wants something that feels like his own project" = extraordinary energy + ownership; also requires clear definition of where creative authority lies vs. owner's decisions
+- AI recommended: establish written decision-making structure before first service; schedule joint session with Marco + Mariko Nakata (she introduced them; wine program work ongoing); document bonus criteria metrics now while aligned
+
+=== Session 14 (August 28, 2025) — Renovation completion and health inspection ===
+- Renovation completed: August 26, 2025 (4 days past contractual August 22 target); clean handover
+- Contractor: Shimizu Construction (note: previous sessions mentioned Yamamoto Koumuten; possibly same contractor by owner name)
+
+TIMELINE SLIP ROOT CAUSE — Electrical panel upgrade:
+- Previous tenant: small clothing boutique (60-amp residential-grade panel)
+- Required: 200-amp three-phase commercial panel (code requirement for range, hood, walk-in compressor, dishwasher, lighting, POS)
+- Discovery: week 3 of renovation (last week of June)
+- Process: panel swap = 1 day labor; but required Tokyo Electric scheduling for line switchover → ~1 week wait time = dead time for electrical work
+- Total cost: 280K yen panel + 90K yen Tokyo Electric fees + 50K yen re-routing additional runs = 420K yen total
+- Shimizu called Kenta within 24 hours of discovery; presented two options before proceeding
+
+BUDGET FINAL:
+- Original budget: 8.4M yen (including 300K yen contingency = 3.6%)
+- Final cost: 8.87M yen; overage: 470K yen
+- Breakdown of overage: 420K yen electrical panel + 30K yen extra epoxy coat on kitchen subfloor + 20K yen fixture substitutions
+- 300K contingency absorbed 300K; net extra: 170K yen over contingency
+- AI lesson: for full commercial kitchen conversion in re-tenanted space, 5-8% contingency more appropriate; 3.6% too low
+
+HEALTH INSPECTION (August 27, Minato Ward Health Department):
+- Inspector: Mr. Ogawa; arrived exactly 9:00 AM; duration: 2 hrs 15 min; result: zero critical violations
+- Items checked: ventilation hood CFM, refrigeration temperatures (calibrated thermometer against log sheets), handwashing stations, food storage, fire suppression (service tags), grease trap (size/installation/maintenance access), waste handling/outdoor trash enclosure
+- Inspector comment: space well-prepared, contractor clearly knew commercial kitchen installations
+
+TWO MINOR ITEMS (compliance gaps, not safety issues):
+1. Handwashing signage: Minato Ward requires posted instructional signs at every handwashing station; stations compliant on equipment/water temp; fix = print Minato Ward approved format, laminate, post at both stations
+2. Grease trap label: grease trap compliant on capacity/installation/access; missing = label specifying cleaning schedule and responsible party; fix = Shimizu-san to install correct format label (Friday August 29)
+- Resolution path: photo evidence submitted to Minato Ward Health Department; deadline September 5; Kenta targets September 1-2 submission
+- Shimizu-san confirmed for Friday August 29 for grease trap label; handwashing signs done by weekend; photos on Friday afternoon; cover note submitted Monday/Tuesday
+
+MARCO PETRELLI STATUS: starts September 1 (4 days from session); informed of inspection status; first week = kitchen prep, recipe testing, mise en place setup; no food service until health certificate issued
+
+LESSONS LEARNED:
+1. Pre-project electrical audit (30-60K yen) should be prerequisite for any commercial kitchen conversion
+2. Contingency: 5-8% minimum for re-tenanted spaces; 3.6% (300K on 8.4M) was insufficient
+3. Request pre-opening regulatory walkthrough with ward health department before renovation complete (not after)
+4. Three-week buffer between renovation handover and first irrevocable staff commitment (Kenta had 9 days; 4-day slip used half of it)
+5. Contractor communication benchmark: Shimizu's 24-hr call + options = set this as standard for future contractors
+
+=== Session 15 (September 8, 2025) — Menu finalization with Marco Petrelli ===
+- Menu finalized after session with Marco; last major decision before opening
+- Final dinner menu structure: 6 antipasti, 5 primi (3 pasta + 2 risotto), 4 secondi, 3 desserts = 18 dishes total (deliberately tight)
+
+PASTA (3):
+1. Tagliatelle al ragù bolognese — "anchor of entire menu"; non-negotiable for Marco; hand-cut only (texture difference vs machine-cut); price: 2,400 yen
+2. Tortellini in brodo (Parmigiano Reggiano broth) — technically demanding, classical, luminous broth; price: 2,200 yen (broth labor justifies premium over garganelli)
+3. Garganelli with prosciutto di Parma and butter — most approachable; price: 2,000 yen
+
+RISOTTO (2):
+1. Porcini risotto — year-round constant
+2. Seasonal risotto (rotating) — September/opening: late-summer corn and saffron
+
+PIZZA DECISION — REJECTED:
+- Marco's reasoning: (1) Emilia-Romagna ≠ pizza region; (2) oven spec'd for focaccia/roasted dishes, not sustained 400°C+ for pizza; mediocre pizza worse than no pizza
+- AI agreement: regional coherence argument strongest; target guests will respect restraint; oven will be used for focaccia + roasted secondi (oven not idle)
+- Focaccia: Ligurian olive oil, overnight slow proof; Marco plans to come to dining room on slow nights to discuss it
+
+LUNCH MENU:
+- 2-course set: 1,800 yen (antipasto + primo)
+- 3-course set: 2,400 yen (adds dessert, shorter list — 2 options vs dinner's 3)
+- Curated subset of dinner menu (2-3 antipasti choices, 3-4 primi)
+- AI flagged: same 2,400 yen number appears at lunch (3-course) and dinner (tagliatelle); need FOH language to distinguish clearly
+- Volume concern: need 30-40 covers at lunch to justify mise en place effort; marketing problem, not menu problem
+
+DINNER TICKET:
+- Revised down to 7,800 yen/person food-only (was higher earlier in planning); Marco arrived at same number independently
+- All-in with drinks (0.5 drinks multiple): ~11,700 yen/person
+
+REMAINING OPEN ITEMS (AI flagged before closing):
+1. Desserts not yet discussed — push Marco to include regional anchor (zuppa inglese, torta di riso, zabaglione-based); suggest passito/Vin Santo pairing on menu
+2. 4 secondi content not discussed — needs roasted/braised meat using Modena 100; cotechino or bollito would reinforce Emilian identity
+3. Wine list balance — Lambrusco positioning needs dedicated conversation (most iconic Emilian wine; can read cheap if poorly positioned)
+
+=== Session 16 (September 19, 2025) — Staffing: sous chef and front of house ===
+- Menu locked (signed off 3 days before session; Kenta and Marco had dinner at Marco's apartment to mark the occasion)
+- Interviews and reference checks running 2-3 per day; Tanabe-san benchmarked salary figures against Tokyo independent restaurant market
+
+SOUS CHEF — Haruki Nakajima, 29:
+- Background: Trattoria Goccia (Shibuya, 8 years consistent reputation), 4 years including 2 as junior sous chef; prior 6-month stage in Bologna
+- Bologna stage = shared culinary vocabulary with Marco (both independently ate at same Modena trattoria ragù; 40-min spontaneous conversation)
+- Authority: full pass authority on 3 nights/week Marco not in service; cannot change menu or pricing without Marco
+- Salary: 380,000 yen/month (lower end of market; mutual understanding that opening experience is part of the package); 6-month review commitment → must be in written contract
+- Scope formally documented in job description
+
+SERVICE MANAGER — Eiko Sawada, 41:
+- Background: 7 years Michelin 2-star kaiseki Kyoto → 4 years two Minato-ku western fine dining restaurants
+- Service philosophy: "invisible competence" (her phrase; exactly matched what Kenta described as "ease")
+- Salary: 460,000 yen/month (Kenta offered 440K; Sawada pushed back; justified by reference quality: "dining room ran better on nights Sawada-san was managing than when I was there myself")
+- Initiatives: (1) pre-service briefing every single shift regardless of occupancy; (2) "shadow system" — experienced full-time staff paired with part-time every shift for first month (mentorship, not supervision)
+
+PART-TIME STAFF:
+- Yui Tachibana: 3rd-year Rikkyo University hospitality management; referred by program coordinator; 3 evenings/week + weekend lunch; self-studying Italian; came prepared with researched questions
+- Naoki Hirose: full-time IT project management + 6 years part-time floor work at Shibuya restaurants; 2 evenings/week; "most focused part-time staff member" per reference
+
+TOTAL OPENING TEAM: 7 people (5 FT + 2 PT)
+- FT: Marco Petrelli (head chef), Haruki Nakajima (sous chef), Eiko Sawada (service mgr), 1 pasta specialist (Marco's network contact), 1 commis chef (culinary school grad; Marco auditioned and approved)
+- PT: Yui Tachibana, Naoki Hirose
+
+ONBOARDING TIMELINE:
+- All contracts signed by end of September
+- October = full onboarding month; team together from October 6
+- Rehearsal service through mid-October (~10 days real food, real plating, real service)
+- Soft opening (invited guests, no public bookings): first week of November
+- Documentation: Eiko writing service briefing document (philosophy in writing, not just verbal); Marco writing kitchen standards document (Haruki requested it; "works better when standards are written down")
+
+=== Session 17 (September 30, 2025) — Soft opening planning ===
+- Soft opening: October 8-11, 2025 (4 nights, Wednesday-Saturday); dinner only; 80 total guests, 20/night
+- Opening kitchen brigade: Marco Petrelli (head chef), Haruki Nakajima (sous chef), Fabio Ricci (chef de partie, from Marco's previous posting), Chiyo Matsuda (garde manger, 3-week stage), Tomoya Watanabe (commis)
+- FOH: Eiko Sawada (floor manager), 2 experienced fine-dining servers, 1 floor runner
+- Dress rehearsal: October 6 (staff and family, ~12 covers, real menu/wine/ticketing)
+- Guest list structure: nights 1-2 = close friends/family (honest feedback, no press); night 3 = 3 food media (critics, framed as soft opening not review); night 4 = industry (other chefs, distributors, potential regulars)
+- Media management: critics told not to publish without checking first (2 agreed explicitly); soft opening framing = "actively learning, inviting candid response"
+- Wine: 6-8 curated wines, charged at cost (no markup); Eiko's framing: "wanted every guest to enjoy wine without constraint during opening period"
+- Feedback forms: 6 questions (overall, food, service, atmosphere, value, open-ended); hand out during dessert course (not with bill); nightly team debrief after service
+- Debrief structure: Marco and Eiko each bring 3 specific observations (not free-form conversation)
+- Soft waiting list: 10 people for no-show coverage
+- Pre-soft-opening note: AI flagged that Kenta was avoiding frank conversation with Marco about his anxiety; AI framed it as "align on communication procedures if something goes sideways" not welfare check
+- Full public opening: October 20, 2025
+
+=== Session 18 (October 14, 2025) — Soft opening debrief ===
+- Feedback result: 73 of 80 guests rated 8/10 or higher (91% satisfaction) — strong foundation
+- KITCHEN PROBLEM: Average ticket time 38 minutes vs. target 22 minutes (73% overshoot)
+  - Root cause: single 8-liter pasta water pot on one induction burner; cannot handle 4-5 simultaneous pasta orders
+  - Recovery time between batches cascades across all subsequent tickets
+  - Marco identified after night 1 but could not fix mid-run
+  - Worst offenders: carbonara and cacio e pepe (cannot be pre-cooked at all)
+  - Solution: add second induction unit (counter space exists; electrician confirmed panel can support, no upgrade needed)
+  - Interim: cap carbonara and cacio e pepe per service (not yet revealed to guests; "sold out before service" reads as intentionality)
+- MEDIA WIN: Night 2 — Akira Mochizuki (food critic, Tokyo Calendar) arrived unannounced; sat at table 4; ordered full tasting progression; 2.5 hours; positive Instagram post next morning ("doing something careful and specific"); ~300 engagements in 24 hrs; reservation inquiries increased
+  - Eiko recognized him during service, did not alert anyone, briefed Kenta calmly after service — "instinct, hard to train"
+- ACOUSTIC PROBLEM: Table 7 — AC vent directly above; noise cycles during AC operation; guests lean in; particularly evident night 3 (group of 4)
+  - Table 7 has premium kitchen sightline (selling point) but AC noise undercuts it
+  - Solutions: HVAC specialist to assess redirect baffle/diffuser; interim = Eiko reserves table 7 for "management discretion" guests (kitchen-curious, noise-tolerant)
+  - Timeline: 3 weeks before November 7 grand opening; assessment should fit
+- TEAM MEETING FRAMING (Thursday after session):
+  1. Lead with 73/80 stat — food is working, stated as fact not reassurance
+  2. Name 38-min ticket time plainly + root cause + fix plan (naming it reduces psychological weight vs. avoiding it)
+  3. Akira Mochizuki + Tokyo Calendar Instagram note (lands as real because it follows honest assessment, not before it)
+  4. Table 7 as Eiko's proactive flag = early catch before guest complaint
+- Grand opening: November 7, 2025
+
+=== Session 19 (October 22, 2025) — OFF-TOPIC: Novel revision session (unrelated to Osteria Morishita) ===
+Entirely different subject: discussion of beta reader feedback on a literary novel. Characters include Eleanor (marine biologist → marine ecologist, eelgrass die-off research), Brent Halloran (antagonist being humanized with sick wife subplot), Owen Trask, Marcus (beta reader). Title "The Hollow Years" decided to be replaced. No restaurant content.
+
+=== Session 20 (November 6, 2025) — Grand opening first 3 days: November 4-6, 2025 ===
+- Grand opening: November 4, 2025; first night fully booked, 28 covers; service held together; team nervous but professional
+- Sleep: Kenta averaging <5 hours/night since opening
+
+DINNER PERFORMANCE (Nov 4-6):
+- Covers: 22, 26, 24 (target: 28/night); avg 24 = 86% of target
+  - Night 1: 2 no-shows + 1 table 45 min late disrupted flow
+- Actual average dinner ticket: 8,100 yen (vs. 7,800 yen projection = +3.8%)
+- Guest behavior: 70% ordering pasta + secondi (vs. projected 50%); more wine pairings than expected; guests settling in
+- Revenue estimate: 24 covers × 8,100 yen = ~194,400 yen/night vs. target 28×7,800=218,400 (≈89% of projected revenue despite 86% of target covers)
+- Assessment: top-of-funnel problem (awareness), not conversion problem (experience working well)
+
+LUNCH PERFORMANCE (Nov 5-6, only 2 days):
+- Covers: 14, 18 (target: 30); 47% and 60% of target
+- Actual lunch ticket: 1,950 yen (on projection — correct ticket, thin covers)
+- Day 2: 4-person walk-in business group (no reservation) seated successfully
+- Assessment: awareness gap more likely than structural problem (guests who come are ordering correctly)
+
+TABELOG:
+- 3 reviews; initial score: 3.42
+- Concern: users who filter at 3.5+ won't see Osteria Morishita in searches
+- Problem: Kenta not converting warm in-person feedback to review requests; had ~12 personal conversations with tables, none asked to write reviews
+- Notable compliment: woman said it was "best tortellini in brodo outside of Italy"
+
+ACTIONS DECIDED:
+1. Review cultivation: warm personal mention for lingering guests who had meaningful experiences (not transactional card at checkout)
+2. Lunch awareness outreach: personally visit 5-6 nearby office buildings/design firms with lunch menu Monday
+3. Lunch Instagram: show daytime offer (pasta set, natural light at noon) not just dinner plates
+4. Follow up on walk-in group from lunch day 2 (thread to regular weekday cohort)
+5. Walk neighborhood at lunch hour Sat/Sun to observe foot traffic, where people eat
+6. Solo diner opportunity: bar/counter seats, make solo lunch guests feel genuinely welcome (undercovered segment in Italian at this price point)
+7. Hold 3.42 Tabelog lightly until 15+ reviews
+- Dinner: do NOT change anything structural; machine is calibrating correctly
+
+=== Session 21 (November 19, 2025) — Operations week 2: staffing pressure ===
+- Two simultaneous personnel problems in week 2
+
+PROBLEM 1 — Naoki Hirose quit after 2 weeks:
+- Offered higher-paying hotel banquet job in Shiodome; gave 2 days' notice; gone by Wednesday
+- Left floor with only Eiko Sawada + Yui Tachibana for full bookings through weekend
+- Replacement hired: Sara Komatsu, 23, started November 17 (referred by Yui from previous job)
+  - Trial shift Sunday; no Italian restaurant experience but quick and attentive to Eiko's feedback
+  - 4 nights/week availability (more than Naoki had)
+  - AI: Yui referral = informal culture briefing + Yui has professional stake in it working
+  - AI: Eiko should invest specific deliberate attention in Sara this week; check-in 5 min after each shift for questions
+
+PROBLEM 2 — Haruki Nakajima back pain, reducing hours temporarily:
+- Told Marco and Kenta Tuesday; avoiding heavy lifting; no large stockpots, no extended bending
+- Self-estimate: 2-3 weeks to full capacity (without seeing a doctor)
+- Marco's response: calm; redistribute mise en place, restructure prep; adequate if no cover increases
+- AI: Kenta must push Nakajima to see physician this week — self-diagnosis is unexaminable assumption
+- If more serious than muscle strain (disc, etc.), need to know now not week 4
+
+DISHWASHER NEED:
+- Kitchen staff rotating dish duty; bottlenecks occur on full service (Marco/Nakajima waiting for clean pans)
+- Marco had raised it unprompted before this week
+- Candidate: Mrs. Yoneda, 58, lives in Azabu Heights Building (Kenta's building at 3-14-7 Higashi-Azabu)
+  - Prior kitchen experience (non-restaurant); commute = essentially zero (same building)
+  - Informal interest expressed; formal conversation not yet had
+  - AI: proximity = huge operational advantage; at 58 with kitchen experience = likely stamina + discipline
+  - AI: formally engage within 48 hours; proposed structure: dinner service window + 1hr before/after, 4-5 nights/week, ~1,150-1,350 yen/hour, 4-week probationary period
+
+DECISION GATE FOR DECEMBER EXPANSION:
+- December Saturday lunch possible only if by December 5: Sara integrated independently, Nakajima cleared by physician at full hours, dishwasher role filled and past first week
+- AI: restaurant expanding at 2 weeks old almost always making a mistake; stabilize first
+
+=== Session 22 (December 3, 2025) — First full month P&L review (November) ===
+REVENUE:
+- November total: 3.42M yen (target: 4.0M; shortfall: 580K yen = 14.5% below)
+- Dinner: ~70% of revenue; lunch: ~30%
+- Strong: Friday/Saturday dinner; Thursday dinner decent
+- Weak: weekday lunch, especially Monday (worst days = 5 covers; full kitchen crew cost for 5 covers)
+- Weeks 1-2 weaker overall; weeks 3-4 improved (word-of-mouth building)
+- Average dinner ticket: 14,500-15,000 yen/head (target-appropriate)
+- Average lunch ticket: 4,000-4,500 yen/head (expected)
+- Thursday dinner check average ≈ Friday (difference is covers, not spend per guest)
+
+COSTS (November):
+- Food: 31% (target 30-32%; within range; purchasing disciplined, minimal waste)
+- Labor: 38% (target 33%; contingency model 35%; real problem)
+  - AI analysis: same absolute labor spend ÷ target revenue 4.0M = 32.5% → within target → revenue shortfall IS the labor % problem
+- Rent + utilities: 18% (fixed; 10-year lease; unmovable)
+- Other: 9% (supplies, CC fees, insurance, professional services)
+- Total: 96% (implies 4% margin, but actual different — see below)
+
+OPERATING RESULT:
+- November operating loss: 312,000 yen
+- Cash runway: 14 months at current burn
+- AI warning: 14 months sounds comfortable but operators who wait lose runway faster than expected
+
+DECISIONS MADE:
+1. CUT MONDAY LUNCH — permanently
+   - Labor saving: ~80K yen/month
+   - Lost gross margin: ~30-40K yen/month
+   - Net improvement: 40-50K yen/month (~480-600K yen/year)
+   - Communication: 2-3 weeks notice to regulars; personal messages to reservation holders
+   - Staff hours redistributed to Friday/Saturday support (not eliminated)
+
+2. ADD LATE SEATING Friday/Saturday — 9:30 PM
+   - Demographic fit: international/diplomatic/finance households; 9:30 PM normal for this crowd
+   - Format: ~4 courses (not full experience), tighter menu
+   - Launch: reservations-only for first 4-6 weeks (not walk-in)
+   - Risk: staff fatigue (kitchen until midnight both nights); must discuss with Marco BEFORE external announcement
+   - Risk: menu must use components from main service; no additional prep burden initially
+
+REVIEW TRIGGER: if losses still >200K yen/month by end of February, revisit full schedule and staffing model
+
+=== Session 23 (December 15, 2025) — Holiday season prep and corporate bookings ===
+- Emotional opening: Kenta received Marubeni Corporation corporate year-end dinner booking for Dec 22 (worked there ~9 years before leaving to open restaurant)
+
+DECEMBER PRIVATE EVENTS (4 total, projected 1.1M yen private booking revenue):
+1. December 7: law firm partners' year-end dinner
+2. December 13: 60th birthday celebration for regular who has dined since first month
+3. December 22: Marubeni Corporation executive year-end dinner (largest and most emotionally significant)
+4. December 28: media company (~14 guests, casual tone)
+
+MARUBENI BOOKING DETAILS:
+- Contact: Ms. Hayashi, corporate administration; very organized, responded within hours, everything in writing
+- Group: 24 guests, executive and senior management level
+- Brief: "refined but relaxed"
+- Price: 12,000 yen/person (new ceiling; previous highest 10,500)
+- Menu: 5 courses — cold antipasto → soup → handmade pasta (primo) → secondi (whole roasted protein) → dessert + coffee + petit fours
+- Format: full space buyout
+- Revenue: 24×12,000 = 288,000 yen food minimum; beverage likely higher
+- Chef appearance: brief exit after pasta course
+- FOH briefing planned before Dec 22
+
+CHRISTMAS PROGRAMMING (Dec 24-25 only):
+- Regular à la carte on surrounding nights; Christmas menu ONLY on Dec 24-25
+- Christmas menu: 5 courses, 9,800 yen (below 10,000 psychological threshold deliberately)
+  - Area comparables: 10,500-13,000 yen
+- Optional Christmas wine pairing: 4,500 yen (5 glasses: Champagne → Vermentino → Fiano → Barolo → late-harvest Riesling)
+- Total with pairing: 14,300 yen/head
+- DEPOSIT POLICY (new): 3,000 yen/person; forfeited on no-show or cancellation <48 hrs
+
+DISHWASHER HIRE — CONFIRMED:
+- Mrs. Yoneda; starts next week; rate: 1,400 yen/hour × 4 hours/night ≈ 5,600 yen/service; ~112K yen/month
+- Same building (3-14-7 Higashi-Azabu); reference: previous employer expressed "real regret at losing her"
+
+=== Session 24 (December 29, 2025) — OFF-TOPIC: Novel querying session (unrelated to Osteria Morishita) ===
+Entirely different subject: querying a novel titled "Salt and Compass" to literary agents (Renata Goldfarb requested partial within 48 hours; Anders Krishnamurthy auto-rejected; Sloane Whitford-Jeong, Hattie Macreadie, Joon-Ho Park still pending). No restaurant content.
+
+=== Session 25 (January 12, 2026) — January slump, Square Plus inventory, guinea fowl replacement ===
+JANUARY REVENUE/COVERS:
+- January first-week revenue: down 42% vs December average
+- Capacity utilization: 40-45% on good nights (vs near-full in late December)
+- Guests spending less per head; more à la carte vs full tasting menu orders
+
+OPERATIONAL IMPROVEMENTS:
+- Square Plus inventory module: implemented ~3 weeks prior to Jan 12; 18,000 yen/month
+- Petrelli logging via tablet since just before Christmas; initial friction, now adopted
+- Food waste: currently 8% (benchmark for this price point: 2-3%); target 4% by end of Q1
+- Food waste reduction lever: tighter/more frequent ordering cadence + staging through week
+
+MENU CHANGE:
+- Branzino DROPPED: margin below threshold + inconsistent sourcing (two suppliers, unstable quality)
+- Guinea fowl ADDED: Petrelli's slow-roasted leg with chestnut and porcini stuffing; better food cost, suits winter service
+
+CUSTOMER RETENTION GAP:
+- ~15-20 guests who've dined 3+ times not being actively nurtured
+- January generic newsletter email → small 2-day uptick in reservations then quiet
+- Planned Feb actions: segment top-tier guests, personal notes referencing specific visits; no discounts but exclusive tasting events as loyalty recognition
+
+=== Session 26 (January 26, 2026) — OFF-TOPIC: Novel agent offer session (unrelated to Osteria Morishita) ===
+Entirely different subject: Renata Goldfarb offered representation for novel "Salt and Compass" on Dec 22, 2025; discussion of agent notification protocol when offer received, which agents still reading (Sloane Whitford-Jeong, Hattie Macreadie), what to ask Renata before accepting. No restaurant content.
+
+=== Session 27 (February 9, 2026) — Petrelli Italy trip coverage (Feb 14-28) and Nakajima promotion ===
+PETRELLI VACATION COVERAGE (February 14-28, 2026):
+- Marco Petrelli to Italy; Haruki Nakajima (sous chef, 26, Kyoto-trained, 1 stage in Modena) to run kitchen
+- NAKAJIMA COMPENSATION: 80,000 yen/month bump prorated for 2 weeks → ~40,000 yen extra in Feb paycheck; framed as "head chef compensation"
+- KEY CONCERN: Nakajima quiet under stress; tends to go silent — risk at the pass; needs explicit public handover from Marco
+- PUBLIC HANDOVER: Marco to address full team Feb 13 with Nakajima present, explicitly naming him as person in charge; specific language: "running" not "holding down"
+
+GUINEA FOWL SUBSTITUTION:
+- Guinea fowl timing window too narrow without Marco; two near-misses in past month
+- DECISION: drop guinea fowl during coverage; replace with Haruki's braised duck leg (juniper + citrus); cooked for team twice, excellent
+- Duck framed as Nakajima's signature dish during his tenure, not as gap-filling
+
+TEMP HIRE: Toshiya Inoue (23, culinary school graduate); starts Feb 10-11 (2 services before Marco leaves); recommended by trusted Azabu Juban chef; support role only, not peer
+
+LUNCH SERVICE PAUSE: Feb 17-21 (first full coverage week) — dinner-only to reduce complexity during leadership transition
+
+TEAM MEETING: Feb 13, full team (FOH + kitchen), Marco formally introduces Nakajima as acting head chef
+
+KENTA'S ACTION ITEMS:
+1. Talk to Marco about plan to direct-contact Nakajima
+2. One-on-one with Nakajima (ask career ambitions + announce 80K bump)
+3. Confirm Inoue start Feb 10; brief on support-only role
+4. Drop guinea fowl, run duck braised secondi, staff tasting first
+5. Pause lunch Feb 17-21
+6. Feb 13 all-team handover meeting
+7. Check-in with Nakajima end of week 1 (~Feb 20-21)
+
+=== Session 28 (February 23, 2026) — Mid-Nakajima coverage: Hiroko Sano (Asahi Shimbun Weekly) surprise visit ===
+NAKAJIMA PERFORMANCE (mid-coverage):
+- Average ticket time: 24 minutes (Marco baseline ~22 min; only 2-min slip)
+- Calling the pass cleanly; Eiko (FOH manager) noted handoff smoother than with Marco
+- Nakajima more methodical vs Marco improvisational — positive for floor rhythm
+
+HIROKO SANO VISIT (restaurant critic, Asahi Shimbun Weekly):
+- Seated at table 11 unannounced under different name; Sawada (server) recognized her from a panel
+- Kenta's decision: no visible changes — no amuse-bouche, no extra passes — avoid performing for critic
+- Briefed Nakajima: "elevate the whole room, not table 11"
+- Sano ordered full tasting menu; wine: Vernaccia di San Gimignano + Barolo; took notes between courses
+- 4/7 courses in at time of check-in; positive signals from Eiko
+- Sano left without identifying herself
+- Article publication expected: late March (overheard by Eiko)
+
+POST-SANO PLAN:
+- Marco back: March 3
+- Hold menu changes until April (don't introduce new dishes during review inflow window)
+- Tabelog: currently 3.61 / 24 reviews; surge expected post-article
+- Schedule Yuki (weaker part-time server on late shifts of long weeks) strategically in March
+- No contact with Sano before publication
+- Tell Nakajima tonight with specifics (ticket times, Eiko's feedback, Sano's visit context)
+
+=== Session 29 (March 8, 2026) — Petrelli returns, Q1 picture, Acetaia Giusti, Cantina Morishita, pricing ===
+TEAM:
+- Marco Petrelli back March 1; kitchen energy immediately restored
+- Petrelli brought direct contact at Acetaia Giusti (Modena balsamic producer, est. 1605); potential 18% saving vs current import costs
+- Petrelli also brought private family balsamic → used as special on Fri/Sat → guest conversation starter
+- Next step: freight forwarder consultation (via sake supplier contact) on direct import feasibility
+- Arrangement still at handshake stage; not yet in writing
+
+Q1 FINANCIALS:
+- Q1 cumulative revenue through March 8: 11.8M yen vs plan 12.5M (700K short)
+- Root cause: 3 large reservation cancellations in Feb; 2 within 48 hrs
+- March projection: close Q1 at 12.0-12.2M (won't chase missing 700K)
+
+NEW CANCELLATION POLICY:
+- Deposit required for groups of 5+ (previously 8+)
+- Full refund if canceled 48+ hrs in advance; 50% per-cover charge inside 48 hrs
+
+CANTINA MORISHITA (wine club):
+- Current members: 23 signed; target 40 by April
+- Member acquisition: 16 from in-restaurant conversations, 7 from Feb announcement email
+- Planned tactics: structured referral offer (complimentary bottle per conversion); invite 8-10 prospects to April 12 inaugural member event as guests
+- Social media: wine-forward content (bottles, producer visits), not direct club promotion
+- April 12 first quarterly event: target ~8 prospect seats among ~17+ paying members
+
+PRICING REVIEW (spring menu refresh, late March):
+- Spring menu to anchor price changes as "seasonal evolution"
+- 4 menu items targeted for increase (not decided which); 10-15% range typical
+- Three-bucket framework: high perceived value (safe to raise) → important staples (careful) → low margin + low order frequency (remove/reformulate)
+- Acetaia Giusti sourcing story may accompany spring menu pricing narrative
+
+=== Session 30 (March 21, 2026) — Asahi Shimbun Weekly review published ===
+REVIEW PUBLICATION:
+- Date: March 19, 2026; Hiroko Sano, Asahi Shimbun Weekly food section
+- Headline: "Azabu's Quiet Modena: A Trattoria With Conviction"
+- Notable phrases: "unfussy precision"; named tagliatelle al ragu bolognese; praised wine list
+- First-48-hour effect: reservation requests spiked 4x; fully booked 3 weeks out Fri/Sat
+
+DECISIONS:
+1. Hold capacity at 38 covers (not 40-44+); "38 is where we're honest"
+2. RAGU BOLOGNESE: Kenta to cook Tuesday morning with Takashi from scratch, narrate every decision, codify the process — emotional transfer of authorship to Takashi
+3. Wine list: call importers tomorrow; honest conversation about new consumption pace; no reactive "convenience" purchases; consider third specialty importer if needed
+4. Write one paragraph for website + reservation confirmation — factual, not aspirational; review by Yuki (Kenta's wife, works in publishing)
+5. Kenji (server) wine knowledge gap: 20-min pre-service wine narration sessions 2-3x/week
+6. Yuki (part-time server): schedule on stronger shifts; avoid long-week late shifts during post-review high-discernment guest surge
+
+KEY FACTS:
+- Current Tabelog: 3.61 / 24 reviews
+- Floor team: Miho (senior), Kenji (18 months, wine knowledge developing), Natsuki (6 months, kaiseki background, strong table presence)
+- Website paragraph to include: "seats 38," "ragu in limited quantity each evening," "wine list changes with imports"
+
+=== Session 31 (April 3, 2026) — April 1 price revision live, olive oil supply chain switch ===
+APRIL 1 PRICE CHANGES (3 days of data):
+- Dinner average ticket target: raised to 9,200 yen
+- Tagliatelle al ragu bolognese: 2,400 → 2,700 yen (+12.5%)
+- Lunch 2-course: → 2,000 yen; lunch 3-course: → 2,600 yen
+- Dinner ticket running 9,100-9,400 yen (brackets target); ordering depth correct
+- Customer response: minimal pushback; no review impact on Tabelog or Google after 3 days
+- Regulars noticed bolognese increase, ordered anyway — ritualization effect
+
+LUNCH PRICE RATIONALE:
+- Benchmarked 5 other trattorias/osterie within 10 min of 3-14-7 Higashi-Azabu
+- New prices at or slightly below neighborhood average; competitive reference frame protects from sticker shock
+
+OLIVE OIL SUPPLY CHAIN:
+- Previous: Solleone Japan importing Frantoio Franci (Tuscan IGP Toscano)
+- Switch: Solleone direct blend; ~22% cost saving
+- RISK IDENTIFIED: bread service and pass-drizzle (20-25% of volume) — oil fully uncooked; guest can taste quality difference
+- SOLUTION: two-SKU approach — Solleone blend for all cooking (75-80%); premium finishing oil retained for bread service + pass
+- Net saving after split: ~16-17% (vs 22% single-product)
+- Two-SKU framing: not overcomplication; analogous to table salt vs finishing salt already in use
+
+=== Session 32 (April 16, 2026) — OFF-TOPIC: Novel editorial meeting (Felicity Gainsborough / Riverstone Press) ===
+Entirely different subject: 70-min Zoom with Riverstone Press editor Felicity Gainsborough re novel "Salt and Compass" (The Eelgrass Year); chapter 5 journal-device concerns (down to 2-3 from 5 fragments); Felicity signaled possible pre-emptive acquisition offer. No restaurant content.
+
+=== Session 33 (April 28, 2026) — OFF-TOPIC: Novel auction (three houses bidding) ===
+Entirely different subject: Renata Goldfarb announced auction for "The Eelgrass Year" starting April 1, 2026; three publishers bidding: Riverstone Press, Holloway Greenwood, Marsh & Lark. No restaurant content.
+
+=== Session 34 (May 9, 2026) — Six-month milestone review: customer data and financials ===
+SIX-MONTH EVENT (May 4, 2026):
+- Private 30-guest invitation-only dinner for founding regulars; 6-course special menu (unique dishes, not returning to regular menu); handwritten invitations left at tables in advance
+
+TABLECHECK DATA (through April 30, first 6 months):
+- 412 unique guests (excludes unreserved walk-ins)
+- 87 repeat customers (visited 2+ times) = 21% repeat rate
+- Distribution: ~60 guests at 2-3 visits; ~20 guests at 4-6 visits; small core 7+ visits
+- Top guest: Mr. Hiroyuki Tachibana, 10 visits in 6 months; Azabu resident, walks to restaurant; knows his preferred table and order preferences; anchor presence that other guests sense
+
+FINANCIAL PICTURE (6-month cumulative):
+- Total cumulative revenue: 28.4M yen (avg ~4.73M yen/month)
+- Cumulative net loss: 1.1M yen (down from 1.8M at month 4)
+- Months 5-6 were net-positive (surplus reduced prior deficit by 700K)
+- Projected cumulative breakeven: month 8-9 if pace holds
+- Revenue driver for acceleration: two major private events in April
+  1. Pharmaceutical company corporate dinner: 18 guests, high wine spend
+  2. Milestone birthday private booking: 12 guests, additional courses + wine
+- Food cost ratio: currently 34-36% (2-3 pts above ideal for this price point); flagged as area to tighten
+
+GEOGRAPHIC CUSTOMER SEGMENTATION:
+- Local (Azabu, Motoazabu, Minami-Azabu): highest-probability repeat cohort; low friction; Tachibana archetype
+- Out-of-area (Shibuya, Shinjuku, outside central wards): occasion-driven, lower repeat frequency; value lies in referrals and occasion anchoring
+
+TACHIBANA RELATIONSHIP:
+- Plan: personal handwritten note acknowledging relationship; framed as genuine gratitude, not loyalty tactic
+- Test: "primary purpose = honoring the existing relationship, not extracting future visits"
+
+=== Session 35 (May 22, 2026) — OFF-TOPIC: Novel editorial letter from Felicity Gainsborough ===
+Entirely different subject: 14-page editorial letter from Riverstone Press re "The Eelgrass Year"; discussion of specific structural revisions, eelgrass metaphor chapters 3 and 9, deeper editorial engagement. No restaurant content.
+
+=== Session 36 (June 5, 2026) — Sala Modena private room conversion planning ===
+PROJECT: Convert rear storage area into 8-seat private dining room named "Sala Modena"
+
+CONSTRUCTION (Yamamoto Koumuten / Tetsuo Yamamoto):
+- Estimate: 1.4M yen (partition, soundproofing, electrical/dedicated lighting circuit, wine service station carpentry, privacy door)
+- Permits included; interior alteration classification (no load-bearing changes, no footprint change)
+- Timeline: July 14 – August 9 (4 weeks); main dining room stays open throughout
+- Heavy work scheduled mornings before service to manage noise/dust
+
+PRICING MODEL (Sala Modena):
+- Fixed menu: 18,000 yen/person
+- Room fee: 30,000 yen
+- 8 guests: 174,000 yen/booking floor
+- At 2 nights/week: ~1.4-1.5M yen/month (70% occupancy assumption → ~980K net after storage cost)
+- Payback: ~2 months at 70% occupancy; under 4 months at 50%
+
+STORAGE DISPLACEMENT:
+- Lost storage: rear area
+- New storage: basement of adjacent building; 15 tsubo; 38,000 yen/month (verbal agreement, signing soon)
+
+FURNITURE (Nishi-Ogikubo contact — Italian contract furniture dealer):
+- 8 Pedrali chairs + custom walnut table (200×100cm); ~450,000 yen
+- Dedicated stemware, decanters, pendant lighting: ~150,000 yen
+- Total startup cost: ~2M yen (1.4M build + 450K furniture + 150K serviceware)
+
+OPERATIONS:
+- Staggered seating: Sala Modena 7:00 PM fixed time; main room peaks at different moments
+- Dedicated server for Sala Modena nights (not rotating from main room floor)
+- Sala Modena debut announcement: mailing list (~400 guests, 3+ visits) first; target September 1 booking open
+- Leave one buffer week after August 9 for room staging and staff rehearsal before booking opens
+
+NEXT STEPS:
+- Confirm July 14-Aug 9 with Yamamoto by Monday
+- Sign basement storage agreement
+- Talk to sous chef Kenji before end of week (staggered timing + kitchen capacity)
+- Mailing list announcement timed to September 1
+
+=== Session 37 (June 18, 2026) — HR formalization, social insurance, employee handbook ===
+STAFF SIZE AT TIME OF SESSION: 7 full-time, 4 part-time (restaurant name used as "Trattoria Modena" in this session)
+
+SOCIAL INSURANCE:
+- All full-time staff enrolled; completed (was overdue)
+- Shift in staff perception: "this is a real job" noted by Kenta
+
+EMPLOYEE HANDBOOK:
+- Hired labor consultant Mr. Endo; fee 280,000 yen
+- Drafted after 3-hour interview about how restaurant operates
+- Covers: working hours, overtime, disciplinary procedures, resignation, resignation/termination processes
+- Part-time staff also covered; acknowledgment page required
+
+FIRST PERFORMANCE REVIEWS:
+- Scheduled: July 1 (all 7 full-time; lighter check-in format for 4 part-time)
+- Most anxious review: Marco Petrelli (strong-willed Italian head chef, 7 months tenure)
+
+PETRELLI SPECIFIC CONCERNS:
+- Working visa expires in ~18 months; Kenta hasn't asked about plans directly
+- Succession candidate quietly identified: Nakajima (full-time kitchen staff; technically sharp, learning fast, Petrelli likes him)
+- Plan: talk to Petrelli about visa in early July (separate from review); frame as "how can we support you"; Kenta can provide documentation to support visa renewal
+- Build Nakajima's exposure quietly (ordering, vendor relationships, training junior cooks); don't name succession role to either party yet
+
+REVIEW FORMAT:
+- Petrelli review: open with specific praise → ask where he wants to develop → then business needs framing for any concerns
+- Part-time: lighter check-in conversations in July, not formal review structure
+- Part-time hours audit needed: check if any consistently >30 hrs/week (social insurance threshold)
+
+=== Session 38 (July 2, 2026) — Performance reviews complete, salary decisions ===
+REVIEWS COMPLETED for all 7 full-time staff; process: individual one-on-ones, contributions discussed before numbers presented
+
+KEY SALARY DECISIONS:
+- Nakajima: raised to 440,000 yen/month (from 380,000; +15.8% = ~60,000/month)
+  - 2 years without significant raise; responsibilities expanded (ordering, mentoring junior cooks)
+  - Market range Tokyo sous chef: 400,000-480,000 yen; 440,000 is mid-range
+  - Risk: Petrelli may notice gap closing; confidentiality is first defense
+- Petrelli: TWO-YEAR CONTRACT EXTENSION signed; to October 2027
+  - New monthly base: 780,000 yen (up from prior)
+  - Performance bonus tied to monthly covers AND review score threshold on aggregated platforms
+  - Benefits: meal provision each shift, transportation covered, 2 weeks paid leave beyond legal minimum
+  - Market range head chef Tokyo premium: 650,000-900,000 yen; 780,000 is upper-middle
+- Yui Tachibana (part-time FOH): raised to 1,500 yen/hour (from 1,350; +11%)
+  - Working 4 shifts/week, 18 months tenure; regulars ask for her by name; handles wine better than 2 full-timers
+  - Retention risk: considering going full-time somewhere eventually
+  - RETENTION TOOL: two-year retention bonus — 200,000 yen lump sum at 24-month anniversary mark
+  - Conversation framing: milestone recognition, not bribe; present alongside hourly raise
+- Remaining 4 full-time staff: mostly 3-5% increases
+- Takeda (floor staff, 3 years): ZERO increase
+  - Issues: multiple late arrivals, one regular complaint about attitude, table management slipping
+  - 2 prior informal conversations (not documented)
+  - Review conversation: acknowledge tenure, state zero increase directly, give concrete behavioral pathway (punctuality for 6 months, no complaints, table turnover improvement), 6-month check-in committed, post-review memo to file
+  - Legal note: zero increase ≠ disciplinary action under Japanese labor law; employer has compensation discretion if non-discriminatory
+
+=== Session 39 (July 17, 2026) — Sala Modena construction update, Marubeni booking, marketing plan ===
+CONSTRUCTION STATUS:
+- On schedule for August 28 handover (originally Aug 9; slight slip due to permit delays)
+- Structural work complete; acoustic paneling mostly in; lighting rig installing this week (indirect warm system)
+- Outstanding: custom millwork wine cabinet + upholstered wall sections — off-site fabrication, arriving first week of August
+- Contingency risk: fabrication items could slip 5+ days; punch list then compresses
+
+PRE-BOOKING MOMENTUM:
+- 6 private events already booked for September (before formal launch)
+- Mix: 2 corporate + 4 private celebrations
+- Largest: 50th birthday dinner, 20 guests, organized by guest's daughter
+
+SOFT LAUNCH PLAN:
+- Internal rehearsal dinner: Petrelli + full FOH team; full service conditions, full menu, full wine service
+- Marubeni booking makes tight rehearsal essential (can't learn on the job)
+
+MARUBENI BOOKING (October 14, 2026):
+- 14-person dinner; corporate strategy division; senior director (not Kenta's former direct colleague)
+- Came inbound via preferred vendor list Kenta added ~1 year ago
+- Terms confirmed without pushback: 18,000 yen/person + 50,000 yen venue fee
+- Floor revenue: 302,000 yen + wine + supplements; estimated total well above 400,000 yen
+- Custom welcome letter with director's name + menu concept note planned
+- Menu concept: 12-course; autumn vegetables + game birds (matsutake, sudachi, quail, roasted squash) in first half; dry-aged beef from Tochigi family producer (6-week sourcing conversation ongoing) as centerpiece
+- Wine: considering external sommelier consultant for this event; corporate group likely includes serious wine drinkers
+- Kenta presence: greet + brief intro, midpoint check-in, personal close; no hovering
+
+SALA MODENA MARKETING PLAN (priority order):
+1. Sala Modena dedicated website page (build first; all other marketing sends people online)
+   - Content: capacity, dimensions, 18,000 yen/person minimum, 50,000 yen venue fee, photos, inquiry form
+   - Timeline: 2-3 weeks; before any outreach
+2. Direct outreach to HR directors + EA networks at large Tokyo corporations
+   - EA/coordinators are actual decision-makers on private dining venue selection
+   - Start in October after Marubeni dinner (have reference point + contact)
+3. Press coverage targeting corporate entertaining angle (November, after Q1 Sala Modena data)
+   - Publications that reach Tokyo senior businesspeople, not general food media
+
+=== Session 40 (August 1, 2026) — OFF-TOPIC: Novel celebration / final session (unrelated to Osteria Morishita) ===
+Entirely different subject: "The Eelgrass Year" sold; celebration dinner at Higgins restaurant in Portland (June 17) with Davinia Okafor; Willamette Valley pinot noir; session 40 of 40 described as the final one. No restaurant content.
+

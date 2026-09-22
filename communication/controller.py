@@ -1,18 +1,10 @@
 """
-Controller: HTTP client-side orchestrator (reference implementation showing
-the server / management split — see README "Architecture" section).
+Controller: CMSクライアント側のメインオーケストレーター。
 
-Status: UNWIRED. Nothing in this repository imports ``Controller``. The
-default in-process orchestrator used by the benchmarks and ``server/main.py``
-is ``server/hamib_session.py:HAMIBSession``, which runs the same management and
-evaluation flow without a network hop. Controller is kept to document the
-client / server boundary: the same management pipeline could be deployed as
-a separate service that POSTs to the FastAPI inference server.
-
-Responsibilities (when wired in):
-  1. Send user input to the server (with the CD payload).
-  2. Receive the server response and update the CD via the management unit.
-  3. Trigger the evaluation unit every 5 round trips.
+責務:
+  1. ユーザー入力をサーバーへ送信（CDペイロード付き）
+  2. サーバー応答を受け取り、管理ユニットでCD更新
+  3. 5ラウンドトリップごとに評価ユニットを起動
 """
 from __future__ import annotations
 import httpx
@@ -38,6 +30,7 @@ class Controller:
         self._replacer = Replacer(store)
 
         cfg = load_config()
+        server_cfg = cfg.get("server", {})
         client_cfg = cfg.get("client", {})
         host = client_cfg.get("host", "localhost")
         port = client_cfg.get("server_port", 8080)
@@ -48,24 +41,24 @@ class Controller:
 
     def chat(self, user_text: str) -> str:
         """
-        Process the user's utterance and return the assistant's reply string.
+        ユーザーの発話を処理してアシスタントの返答文字列を返す。
         """
         cd = self._store.get_current()
         payload = self._serializer.to_api_payload(cd)
 
-        # Send the request to the server
+        # サーバーへリクエスト
         response_text = self._call_server(user_text, payload)
 
-        # Update the CD (management unit)
+        # CD更新（管理ユニット）
         self._update_cd(user_text, response_text)
 
-        # Round-trip bookkeeping
+        # ラウンドトリップ管理
         turn = self._store.increment_round_trip()
         self._recent_turns.append((user_text, response_text))
         if len(self._recent_turns) > self._eval_interval:
             self._recent_turns.pop(0)
 
-        # Evaluation unit (every 5 rounds)
+        # 評価ユニット（5ラウンドごと）
         if turn % self._eval_interval == 0:
             self._run_evaluation(turn)
 
@@ -109,7 +102,7 @@ class Controller:
               f"eval={result.get('eval_score', {}).get('total', '?')}")
 
     def _server_extract(self, text: str) -> list[dict]:
-        """Call the server's node extraction endpoint."""
+        """サーバーのノード抽出エンドポイントを呼ぶ。"""
         try:
             resp = httpx.post(
                 f"{self._server_url}/extract_nodes",

@@ -1,0 +1,17 @@
+{
+ "yes_no_form": [
+  "rest_s15_05",
+  "novel_s09_05",
+  "novel_s19_03"
+ ],
+ "near_dups": [
+  [
+   "novel_s04_01",
+   "novel_s08_04"
+  ],
+  [
+   "novel_s07_03",
+   "novel_s13_04"
+  ]
+ ]
+}

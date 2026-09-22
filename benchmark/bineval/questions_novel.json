@@ -1,0 +1,2103 @@
+[
+  {
+    "qid": "novel_q01",
+    "source_session": 1,
+    "fact_quote": "working title 'The Hollow Years'",
+    "question": "What was the original working title Maya was using for her novel when she first described the concept in session 1?",
+    "gold_short": "The Hollow Years",
+    "tier1_aliases": [
+      "Hollow Years"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q02",
+    "source_session": 1,
+    "fact_quote": "protagonist Eleanor Reyes, a marine biologist",
+    "question": "What was Eleanor Reyes's profession as described in the original session 1 concept pitch?",
+    "gold_short": "marine biologist",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q03",
+    "source_session": 1,
+    "fact_quote": "initial word count target 50000",
+    "question": "What word count target did Maya set for her novel in session 1?",
+    "gold_short": "50,000 words",
+    "tier1_aliases": [
+      "50,000",
+      "50000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q04",
+    "source_session": 1,
+    "fact_quote": "setting: Stonington, Maine",
+    "question": "In what Maine town is the novel set?",
+    "gold_short": "Stonington, Maine",
+    "tier1_aliases": [
+      "Stonington"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q05",
+    "source_session": 18,
+    "fact_quote": "at Annie Bloom's Books for eleven years",
+    "question": "At which bookstore did beta reader Quentin Marsh work, according to session 18?",
+    "gold_short": "Annie Bloom's Books",
+    "tier1_aliases": [
+      "Annie Bloom"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q06",
+    "source_session": 20,
+    "fact_quote": "tentatively chose 'Salt and Compass' as new working title",
+    "question": "What new working title did Maya tentatively choose during the title brainstorm session in session 20?",
+    "gold_short": "Salt and Compass",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q07",
+    "source_session": 14,
+    "fact_quote": "revised word count after structural pass: 81200",
+    "question": "What was the revised word count of the manuscript after Maya completed the structural revision pass in session 14?",
+    "gold_short": "81200",
+    "tier1_aliases": [
+      "81,200"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q08",
+    "source_session": 15,
+    "fact_quote": "provided 12-question feedback form",
+    "question": "How many questions did Maya include in the feedback form she sent to beta readers in session 15?",
+    "gold_short": "12-question feedback form",
+    "tier1_aliases": [
+      "12-question",
+      "12 questions",
+      "12"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q09",
+    "source_session": 37,
+    "fact_quote": "final title locked as 'The Eelgrass Year'",
+    "question": "What is the FINAL locked title of Maya's novel as confirmed in session 37?",
+    "gold_short": "The Eelgrass Year",
+    "tier1_aliases": [
+      "Eelgrass Year"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q10",
+    "source_session": 19,
+    "fact_quote": "revise Eleanor's profession from marine biologist to marine ecologist studying eelgrass die-off",
+    "question": "What is Eleanor Reyes's profession in the revised manuscript, after the change implemented in session 19?",
+    "gold_short": "marine ecologist studying eelgrass die-off",
+    "tier1_aliases": [
+      "marine ecologist"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q11",
+    "source_session": 30,
+    "fact_quote": "the research vessel renamed Cordelia",
+    "question": "What is the name of Eleanor's research vessel in the final pre-submission manuscript (session 30), after it was renamed?",
+    "gold_short": "Cordelia",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q12",
+    "source_session": 37,
+    "fact_quote": "publication date pushed from March 9 2027 to September 14, 2027",
+    "question": "What is the FINAL confirmed publication date for The Eelgrass Year, after it was moved from the originally proposed date?",
+    "gold_short": "September 14, 2027",
+    "tier1_aliases": [
+      "September 14 2027"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q13",
+    "source_session": 38,
+    "fact_quote": "confirmed launch event for September 16, 2027",
+    "question": "Quentin Marsh offered to host a launch event for Maya's novel. What specific date was that launch event confirmed for in session 38?",
+    "gold_short": "September 16, 2027",
+    "tier1_aliases": [
+      "September 16 2027"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q14",
+    "source_session": 5,
+    "fact_quote": "Eleanor's research vessel named Persephone",
+    "question": "Eleanor's research vessel was introduced under a name in session 5. What was that original name before it was renamed in session 30?",
+    "gold_short": "Persephone",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q15",
+    "source_session": 14,
+    "fact_quote": "Lillian reveals she always blamed Camille for father's stress",
+    "question": "When Eleanor visits her mother Lillian in session 14, which sister does Lillian reveal she always blamed for their father's stress?",
+    "gold_short": "Camille",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_q16",
+    "source_session": 30,
+    "fact_quote": "final pre-submission word count 89700",
+    "question": "What was the actual word count of the manuscript when it was sent to editors on submission in session 30?",
+    "gold_short": "89700",
+    "tier1_aliases": [
+      "89,700"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "novel_s01_01",
+    "source_session": 1,
+    "fact_quote": "working title 'The Hollow Years'",
+    "question": "What working title was Maya using for her novel in session 1?",
+    "gold_short": "The Hollow Years",
+    "tier1_aliases": [
+      "Hollow Years"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s01_02",
+    "source_session": 1,
+    "fact_quote": "protagonist Eleanor Reyes, a marine biologist",
+    "question": "What is the name of the novel's protagonist?",
+    "gold_short": "Eleanor Reyes",
+    "tier1_aliases": [
+      "Eleanor"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s01_03",
+    "source_session": 1,
+    "fact_quote": "setting: Stonington, Maine",
+    "question": "In which Maine town is the novel set?",
+    "gold_short": "Stonington, Maine",
+    "tier1_aliases": [
+      "Stonington"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s01_04",
+    "source_session": 1,
+    "fact_quote": "antagonist: her estranged sister Camille Reyes",
+    "question": "Who is the novel's antagonist, Eleanor's estranged sister?",
+    "gold_short": "Camille Reyes",
+    "tier1_aliases": [
+      "Camille"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s01_05",
+    "source_session": 1,
+    "fact_quote": "initial word count target 50000",
+    "question": "What was Maya's initial word count target in session 1?",
+    "gold_short": "50,000 words",
+    "tier1_aliases": [
+      "50,000",
+      "50000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s01_06",
+    "source_session": 1,
+    "fact_quote": "central conflict: a family lighthouse inheritance dispute",
+    "question": "What is the central conflict of the novel?",
+    "gold_short": "lighthouse inheritance dispute",
+    "tier1_aliases": [
+      "inheritance dispute"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s02_01",
+    "source_session": 2,
+    "fact_quote": "12-chapter outline",
+    "question": "How many chapters were in the outline Maya drafted in session 2?",
+    "gold_short": "12-chapter",
+    "tier1_aliases": [
+      "12 chapters",
+      "12"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s02_02",
+    "source_session": 2,
+    "fact_quote": "Act 2 climax: lighthouse fire",
+    "question": "What event is the Act 2 climax of the novel?",
+    "gold_short": "lighthouse fire",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s02_03",
+    "source_session": 2,
+    "fact_quote": "grandmother named Iris Penhallow",
+    "question": "What is the name of the grandmother character in the novel?",
+    "gold_short": "Iris Penhallow",
+    "tier1_aliases": [
+      "Iris"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s02_04",
+    "source_session": 2,
+    "fact_quote": "Act 3 resolution: sisters reconcile through grandmother's journal",
+    "question": "Through what object do the sisters reconcile in the Act 3 resolution?",
+    "gold_short": "grandmother's journal",
+    "tier1_aliases": [
+      "journal"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s02_05",
+    "source_session": 2,
+    "fact_quote": "Act 1 ends with arrival in Stonington",
+    "question": "With what event does Act 1 of the novel end?",
+    "gold_short": "arrival in Stonington",
+    "tier1_aliases": [
+      "arrival"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s03_01",
+    "source_session": 3,
+    "fact_quote": "Eleanor age 38, divorced, no children",
+    "question": "How old is Eleanor Reyes in the character backstory?",
+    "gold_short": "38",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s03_02",
+    "source_session": 3,
+    "fact_quote": "Camille age 41, two kids, lives in Boston",
+    "question": "In which city does Eleanor's sister Camille live?",
+    "gold_short": "Boston",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s03_03",
+    "source_session": 3,
+    "fact_quote": "father Hector Reyes died 2019 of pancreatic cancer",
+    "question": "What is the name of Eleanor's father in the backstory?",
+    "gold_short": "Hector Reyes",
+    "tier1_aliases": [
+      "Hector"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s03_04",
+    "source_session": 3,
+    "fact_quote": "mother Lillian Reyes lives in assisted care in Bangor",
+    "question": "In which town does Eleanor's mother Lillian live in assisted care?",
+    "gold_short": "Bangor",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s03_05",
+    "source_session": 3,
+    "fact_quote": "Eleanor's best friend: Davinia Okafor, a Portland-based veterinarian",
+    "question": "What is the profession of Eleanor's best friend Davinia Okafor?",
+    "gold_short": "veterinarian",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s04_01",
+    "source_session": 4,
+    "fact_quote": "Chapter 1 word count 4200",
+    "question": "What was the word count of Chapter 1 in session 4?",
+    "gold_short": "4200",
+    "tier1_aliases": [
+      "4,200"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s04_02",
+    "source_session": 4,
+    "fact_quote": "opening scene: Eleanor receiving lawyer's letter in Portland",
+    "question": "In which city does the opening scene take place, where Eleanor receives a lawyer's letter?",
+    "gold_short": "Portland",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s04_03",
+    "source_session": 4,
+    "fact_quote": "lawyer character named Theodore Whitcomb of Whitcomb & Beale",
+    "question": "What is the name of the lawyer character introduced in session 4?",
+    "gold_short": "Theodore Whitcomb",
+    "tier1_aliases": [
+      "Whitcomb"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s04_04",
+    "source_session": 4,
+    "fact_quote": "feedback: cut opening weather paragraph",
+    "question": "What did the session 4 feedback suggest cutting from the opening?",
+    "gold_short": "opening weather paragraph",
+    "tier1_aliases": [
+      "weather paragraph"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s04_05",
+    "source_session": 4,
+    "fact_quote": "introduce Camille's voice via voicemail earlier",
+    "question": "How did the feedback suggest introducing Camille's voice earlier?",
+    "gold_short": "voicemail",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s05_01",
+    "source_session": 5,
+    "fact_quote": "interviewed retired lobsterman Earl Stenholm via Zoom",
+    "question": "What is the name of the retired lobsterman Maya interviewed for research?",
+    "gold_short": "Earl Stenholm",
+    "tier1_aliases": [
+      "Stenholm"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s05_02",
+    "source_session": 5,
+    "fact_quote": "lighthouse modeled on real Mark Island Light",
+    "question": "On which real lighthouse is the novel's lighthouse modeled?",
+    "gold_short": "Mark Island Light",
+    "tier1_aliases": [
+      "Mark Island"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s05_03",
+    "source_session": 5,
+    "fact_quote": "Eleanor's research vessel named Persephone",
+    "question": "What is the original name of Eleanor's research vessel, introduced in session 5?",
+    "gold_short": "Persephone",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s05_04",
+    "source_session": 5,
+    "fact_quote": "added seasonal detail: novel set across one autumn",
+    "question": "Across which single season is the novel set?",
+    "gold_short": "one autumn",
+    "tier1_aliases": [
+      "autumn"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s05_05",
+    "source_session": 5,
+    "fact_quote": "read three books on Maine lobstering culture",
+    "question": "How many books on Maine lobstering culture did Maya read for research?",
+    "gold_short": "three books",
+    "tier1_aliases": [
+      "3 books",
+      "three",
+      "3"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s06_01",
+    "source_session": 6,
+    "fact_quote": "diner named The Salt Cod Cafe",
+    "question": "What is the name of the diner introduced in the chapter 3 scene?",
+    "gold_short": "The Salt Cod Cafe",
+    "tier1_aliases": [
+      "Salt Cod Cafe"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s06_02",
+    "source_session": 6,
+    "fact_quote": "added local sheriff character: Sheriff Margaret 'Maggie' Boudreau",
+    "question": "What is the name of the local sheriff character added in session 6?",
+    "gold_short": "Margaret Boudreau",
+    "tier1_aliases": [
+      "Maggie Boudreau",
+      "Boudreau"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s06_03",
+    "source_session": 6,
+    "fact_quote": "combined word count chapters 1-3: 13800",
+    "question": "What was the combined word count of chapters 1-3 in session 6?",
+    "gold_short": "13800",
+    "tier1_aliases": [
+      "13,800"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s06_04",
+    "source_session": 6,
+    "fact_quote": "introduced antagonist Camille in chapter 3 diner scene",
+    "question": "In which chapter's diner scene is antagonist Camille introduced?",
+    "gold_short": "chapter 3",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s06_05",
+    "source_session": 6,
+    "fact_quote": "first sister confrontation in chapter 3",
+    "question": "In which chapter does the first sister confrontation occur?",
+    "gold_short": "chapter 3",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s07_01",
+    "source_session": 7,
+    "fact_quote": "decided to add subplot: Eleanor reconnects with high school flame Owen Trask",
+    "question": "What is the name of Eleanor's high school flame added as a subplot in session 7?",
+    "gold_short": "Owen Trask",
+    "tier1_aliases": [
+      "Owen"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s07_02",
+    "source_session": 7,
+    "fact_quote": "Owen is a wooden boat builder",
+    "question": "What is Owen Trask's occupation?",
+    "gold_short": "wooden boat builder",
+    "tier1_aliases": [
+      "boat builder"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s07_03",
+    "source_session": 7,
+    "fact_quote": "raised target word count from 50000 to 80000",
+    "question": "To what figure did Maya raise the target word count in session 7?",
+    "gold_short": "80000",
+    "tier1_aliases": [
+      "80,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s07_04",
+    "source_session": 7,
+    "fact_quote": "added a secondary antagonist: developer Brent Halloran of Halloran Coastal LLC",
+    "question": "What is the name of the secondary antagonist developer added in session 7?",
+    "gold_short": "Brent Halloran",
+    "tier1_aliases": [
+      "Halloran"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s07_05",
+    "source_session": 7,
+    "fact_quote": "developer Brent Halloran of Halloran Coastal LLC",
+    "question": "For which company does the developer antagonist Brent Halloran work?",
+    "gold_short": "Halloran Coastal LLC",
+    "tier1_aliases": [
+      "Halloran Coastal"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s08_01",
+    "source_session": 8,
+    "fact_quote": "Iris Penhallow's journal entries dated 1962-1971",
+    "question": "What year range do grandmother Iris Penhallow's journal entries span?",
+    "gold_short": "1962-1971",
+    "tier1_aliases": [
+      "1962"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s08_02",
+    "source_session": 8,
+    "fact_quote": "grandmother had a stillborn son named Wendell in 1965",
+    "question": "What is the name of the grandmother's stillborn son revealed as a family secret?",
+    "gold_short": "Wendell",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s08_03",
+    "source_session": 8,
+    "fact_quote": "chapter 5 contains the lighthouse-keeper journal discovery",
+    "question": "In which chapter does the lighthouse-keeper journal discovery occur?",
+    "gold_short": "chapter 5",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s08_04",
+    "source_session": 8,
+    "fact_quote": "chapter 5 word count 5400",
+    "question": "What was the word count of chapter 5 in session 8?",
+    "gold_short": "5400",
+    "tier1_aliases": [
+      "5,400"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s08_05",
+    "source_session": 8,
+    "fact_quote": "stillborn son named Wendell in 1965",
+    "question": "In what year did the grandmother have her stillborn son, per the journal?",
+    "gold_short": "1965",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s09_01",
+    "source_session": 9,
+    "fact_quote": "confirmed close third-person POV throughout",
+    "question": "What point of view did Maya confirm for the novel in session 9?",
+    "gold_short": "close third-person",
+    "tier1_aliases": [
+      "third-person"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s09_02",
+    "source_session": 9,
+    "fact_quote": "journal excerpts as italicized fragments",
+    "question": "How are the journal excerpts to be presented in the novel?",
+    "gold_short": "italicized fragments",
+    "tier1_aliases": [
+      "italicized"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s09_03",
+    "source_session": 9,
+    "fact_quote": "considered Toni Morrison and Marilynne Robinson as influences",
+    "question": "Name one of the two authors Maya considered as influences in session 9 (Toni ...).",
+    "gold_short": "Toni Morrison",
+    "tier1_aliases": [
+      "Marilynne Robinson",
+      "Morrison",
+      "Robinson"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s09_04",
+    "source_session": 9,
+    "fact_quote": "narrator filtered through Eleanor",
+    "question": "Through which character is the narrator filtered?",
+    "gold_short": "Eleanor",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s09_05",
+    "source_session": 9,
+    "fact_quote": "decided against journal chapters being first-person",
+    "question": "Did Maya decide to make the journal chapters first-person?",
+    "gold_short": "against first-person",
+    "tier1_aliases": [
+      "decided against",
+      "no"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s10_01",
+    "source_session": 10,
+    "fact_quote": "developer Brent Halloran reveals offer of 1.8 million for lighthouse property",
+    "question": "How much did developer Brent Halloran offer for the lighthouse property?",
+    "gold_short": "1.8 million",
+    "tier1_aliases": [
+      "1.8 million dollars"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s10_02",
+    "source_session": 10,
+    "fact_quote": "total word count now 47000",
+    "question": "What was the total word count reported in session 10?",
+    "gold_short": "47000",
+    "tier1_aliases": [
+      "47,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s10_03",
+    "source_session": 10,
+    "fact_quote": "lighthouse fire in chapter 8",
+    "question": "In which chapter does the lighthouse fire occur?",
+    "gold_short": "chapter 8",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s10_04",
+    "source_session": 10,
+    "fact_quote": "Owen Trask first appears chapter 6",
+    "question": "In which chapter does Owen Trask first appear?",
+    "gold_short": "chapter 6",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s10_05",
+    "source_session": 10,
+    "fact_quote": "Camille initially wants to accept the offer",
+    "question": "Who initially wants to accept the developer's offer for the property?",
+    "gold_short": "Camille",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s11_01",
+    "source_session": 11,
+    "fact_quote": "decided pivotal scene: shared swim at Crescent Beach in chapter 10",
+    "question": "At which beach does the pivotal shared-swim reconciliation scene take place?",
+    "gold_short": "Crescent Beach",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s11_02",
+    "source_session": 11,
+    "fact_quote": "added object motif: grandmother's brass compass",
+    "question": "What object motif did Maya add in session 11?",
+    "gold_short": "grandmother's brass compass",
+    "tier1_aliases": [
+      "brass compass",
+      "compass"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s11_03",
+    "source_session": 11,
+    "fact_quote": "compass passes between sisters three times in novel",
+    "question": "How many times does the compass pass between the sisters in the novel?",
+    "gold_short": "three times",
+    "tier1_aliases": [
+      "3 times",
+      "three",
+      "3"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s11_04",
+    "source_session": 11,
+    "fact_quote": "shared swim at Crescent Beach in chapter 10",
+    "question": "In which chapter is the pivotal shared-swim scene set?",
+    "gold_short": "chapter 10",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s11_05",
+    "source_session": 11,
+    "fact_quote": "Eleanor's profession noted as marine biologist still",
+    "question": "As of session 11, what was Eleanor's profession still noted as?",
+    "gold_short": "marine biologist",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s12_01",
+    "source_session": 12,
+    "fact_quote": "completed first draft June 9, 2025",
+    "question": "On what date did Maya complete the first draft?",
+    "gold_short": "June 9, 2025",
+    "tier1_aliases": [
+      "June 9"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s12_02",
+    "source_session": 12,
+    "fact_quote": "final first-draft word count 83400",
+    "question": "What was the final first-draft word count?",
+    "gold_short": "83400",
+    "tier1_aliases": [
+      "83,400"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s12_03",
+    "source_session": 12,
+    "fact_quote": "12 chapters plus epilogue",
+    "question": "The completed first draft had 12 chapters plus what?",
+    "gold_short": "epilogue",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s12_04",
+    "source_session": 12,
+    "fact_quote": "epilogue set 3 years after main events",
+    "question": "How many years after the main events is the epilogue set?",
+    "gold_short": "3 years",
+    "tier1_aliases": [
+      "three years"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s12_05",
+    "source_session": 12,
+    "fact_quote": "celebrating with self at Powell's Books",
+    "question": "At which bookstore did Maya celebrate finishing the first draft?",
+    "gold_short": "Powell's Books",
+    "tier1_aliases": [
+      "Powell"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s13_01",
+    "source_session": 13,
+    "fact_quote": "plan three revision passes: structural, line, polish",
+    "question": "How many revision passes did Maya plan in session 13?",
+    "gold_short": "three revision passes",
+    "tier1_aliases": [
+      "3 passes",
+      "three",
+      "3"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s13_02",
+    "source_session": 13,
+    "fact_quote": "deleted entire subplot about a missing dog",
+    "question": "What subplot did Maya delete in session 13?",
+    "gold_short": "missing dog",
+    "tier1_aliases": [
+      "dog"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s13_03",
+    "source_session": 13,
+    "fact_quote": "tightened Owen Trask appearances from 9 scenes to 6",
+    "question": "To how many scenes did Maya tighten Owen Trask's appearances in session 13?",
+    "gold_short": "6 scenes",
+    "tier1_aliases": [
+      "6",
+      "six"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s13_04",
+    "source_session": 13,
+    "fact_quote": "raised target word count to 95000",
+    "question": "To what figure did Maya raise the target word count in session 13?",
+    "gold_short": "95000",
+    "tier1_aliases": [
+      "95,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s13_05",
+    "source_session": 13,
+    "fact_quote": "estimated 8 weeks for full revision",
+    "question": "How many weeks did Maya estimate for the full revision?",
+    "gold_short": "8 weeks",
+    "tier1_aliases": [
+      "eight weeks"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s14_01",
+    "source_session": 14,
+    "fact_quote": "added new chapter (now chapter 9) about Eleanor visiting mother Lillian in Bangor care home",
+    "question": "In which town's care home does Eleanor visit her mother in the new chapter 9?",
+    "gold_short": "Bangor",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s14_02",
+    "source_session": 14,
+    "fact_quote": "Lillian reveals she always blamed Camille for father's stress",
+    "question": "Whom does Lillian reveal she always blamed for their father's stress?",
+    "gold_short": "Camille",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s14_03",
+    "source_session": 14,
+    "fact_quote": "revised word count after structural pass: 81200",
+    "question": "What was the revised word count after the structural pass in session 14?",
+    "gold_short": "81200",
+    "tier1_aliases": [
+      "81,200"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s14_04",
+    "source_session": 14,
+    "fact_quote": "cut 6000 words from middle act",
+    "question": "How many words did Maya cut from the middle act in the structural pass?",
+    "gold_short": "6000",
+    "tier1_aliases": [
+      "6,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s14_05",
+    "source_session": 14,
+    "fact_quote": "reordered chapters 4 and 5 to put journal discovery earlier",
+    "question": "Which two chapters did Maya reorder to put the journal discovery earlier?",
+    "gold_short": "chapters 4 and 5",
+    "tier1_aliases": [
+      "4 and 5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s15_01",
+    "source_session": 15,
+    "fact_quote": "recruited five beta readers",
+    "question": "How many beta readers did Maya recruit in session 15?",
+    "gold_short": "five beta readers",
+    "tier1_aliases": [
+      "5 beta readers",
+      "five",
+      "5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s15_02",
+    "source_session": 15,
+    "fact_quote": "indie bookseller Quentin Marsh of Annie Bloom's Books",
+    "question": "At which bookstore does beta reader Quentin Marsh work?",
+    "gold_short": "Annie Bloom's Books",
+    "tier1_aliases": [
+      "Annie Bloom"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s15_03",
+    "source_session": 15,
+    "fact_quote": "provided 12-question feedback form",
+    "question": "How many questions were in the feedback form Maya sent to beta readers?",
+    "gold_short": "12-question",
+    "tier1_aliases": [
+      "12 questions",
+      "12"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s15_04",
+    "source_session": 15,
+    "fact_quote": "asked for 4-week turnaround",
+    "question": "What turnaround time did Maya ask beta readers for?",
+    "gold_short": "4-week",
+    "tier1_aliases": [
+      "4 weeks",
+      "four weeks"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s15_05",
+    "source_session": 15,
+    "fact_quote": "beta readers: Davinia Okafor (friend), Priya Ramanathan (writing group)",
+    "question": "Name one beta reader from Maya's writing group (Priya ...).",
+    "gold_short": "Priya Ramanathan",
+    "tier1_aliases": [
+      "Marcus Holloway",
+      "Priya",
+      "Marcus"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s16_01",
+    "source_session": 16,
+    "fact_quote": "Davinia recommended making Eleanor a marine ecologist studying eelgrass die-off",
+    "question": "What profession did Davinia recommend changing Eleanor to?",
+    "gold_short": "marine ecologist",
+    "tier1_aliases": [
+      "marine ecologist studying eelgrass die-off"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s16_02",
+    "source_session": 16,
+    "fact_quote": "Davinia returned feedback in 10 days",
+    "question": "In how many days did Davinia return her beta feedback?",
+    "gold_short": "10 days",
+    "tier1_aliases": [
+      "ten days"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s16_03",
+    "source_session": 16,
+    "fact_quote": "Davinia confused by the lawyer Theodore Whitcomb's motives in chapter 4",
+    "question": "About which character's motives in chapter 4 was Davinia confused?",
+    "gold_short": "Theodore Whitcomb",
+    "tier1_aliases": [
+      "Whitcomb"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s16_04",
+    "source_session": 16,
+    "fact_quote": "Davinia loved opening 30 pages",
+    "question": "How many opening pages did Davinia say she loved?",
+    "gold_short": "30 pages",
+    "tier1_aliases": [
+      "30"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s16_05",
+    "source_session": 16,
+    "fact_quote": "Davinia suggested protagonist's profession felt thin and underused",
+    "question": "What did Davinia say about the protagonist's profession?",
+    "gold_short": "thin and underused",
+    "tier1_aliases": [
+      "thin",
+      "underused"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s17_01",
+    "source_session": 17,
+    "fact_quote": "Priya flagged anachronistic word 'doomscroll' in 1965 journal entry",
+    "question": "Which anachronistic word did Priya flag in a 1965 journal entry?",
+    "gold_short": "doomscroll",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s17_02",
+    "source_session": 17,
+    "fact_quote": "Marcus Holloway thought Owen Trask was the strongest minor character",
+    "question": "Which minor character did Marcus Holloway think was the strongest?",
+    "gold_short": "Owen Trask",
+    "tier1_aliases": [
+      "Owen"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s17_03",
+    "source_session": 17,
+    "fact_quote": "Marcus suggested an ambiguous ending rather than full reconciliation",
+    "question": "What kind of ending did Marcus suggest instead of full reconciliation?",
+    "gold_short": "ambiguous ending",
+    "tier1_aliases": [
+      "ambiguous"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s17_04",
+    "source_session": 17,
+    "fact_quote": "both flagged that the antagonist Brent Halloran felt cartoonish",
+    "question": "How did both Priya and Marcus describe the antagonist Brent Halloran?",
+    "gold_short": "cartoonish",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s17_05",
+    "source_session": 17,
+    "fact_quote": "Priya Ramanathan thought chapter 7 dialogue felt expository",
+    "question": "Which chapter's dialogue did Priya think felt expository?",
+    "gold_short": "chapter 7",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s18_01",
+    "source_session": 18,
+    "fact_quote": "Quentin Marsh said it reminded him of Elizabeth Strout meets Andre Dubus III",
+    "question": "Quentin Marsh compared the novel to Elizabeth Strout meets which author?",
+    "gold_short": "Andre Dubus III",
+    "tier1_aliases": [
+      "Andre Dubus"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s18_02",
+    "source_session": 18,
+    "fact_quote": "Quentin offered to host launch event if it gets published",
+    "question": "What did Quentin Marsh offer to host if the book gets published?",
+    "gold_short": "launch event",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s18_03",
+    "source_session": 18,
+    "fact_quote": "Jennifer Calloway praised the prose but found pacing slow until chapter 6",
+    "question": "Until which chapter did Jennifer Calloway find the pacing slow?",
+    "gold_short": "chapter 6",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s18_04",
+    "source_session": 18,
+    "fact_quote": "Jennifer's biggest note: title 'The Hollow Years' too generic",
+    "question": "What was Jennifer's biggest note about the title 'The Hollow Years'?",
+    "gold_short": "too generic",
+    "tier1_aliases": [
+      "generic"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s18_05",
+    "source_session": 18,
+    "fact_quote": "Jennifer suggested cutting chapters 2 and 3 down by half",
+    "question": "Which chapters did Jennifer suggest cutting down by half?",
+    "gold_short": "chapters 2 and 3",
+    "tier1_aliases": [
+      "2 and 3"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s19_01",
+    "source_session": 19,
+    "fact_quote": "revise Eleanor's profession from marine biologist to marine ecologist studying eelgrass die-off",
+    "question": "To what profession was Eleanor revised in session 19?",
+    "gold_short": "marine ecologist studying eelgrass die-off",
+    "tier1_aliases": [
+      "marine ecologist"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s19_02",
+    "source_session": 19,
+    "fact_quote": "decided to soften antagonist Brent Halloran by giving him a sick wife",
+    "question": "How did Maya decide to soften antagonist Brent Halloran in session 19?",
+    "gold_short": "giving him a sick wife",
+    "tier1_aliases": [
+      "sick wife"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s19_03",
+    "source_session": 19,
+    "fact_quote": "did NOT change ending to ambiguous",
+    "question": "Did Maya change the ending to ambiguous in session 19?",
+    "gold_short": "did NOT change",
+    "tier1_aliases": [
+      "no",
+      "did not change"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s19_04",
+    "source_session": 19,
+    "fact_quote": "kept Owen Trask scenes as Marcus suggested",
+    "question": "Whose suggestion led Maya to keep the Owen Trask scenes?",
+    "gold_short": "Marcus",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s19_05",
+    "source_session": 19,
+    "fact_quote": "agreed title 'The Hollow Years' needs to change",
+    "question": "About which title did Maya agree it needs to change in session 19?",
+    "gold_short": "The Hollow Years",
+    "tier1_aliases": [
+      "Hollow Years"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s20_01",
+    "source_session": 20,
+    "fact_quote": "tentatively chose 'Salt and Compass' as new working title",
+    "question": "What new working title did Maya tentatively choose in session 20?",
+    "gold_short": "Salt and Compass",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s20_02",
+    "source_session": 20,
+    "fact_quote": "brainstormed 30 candidate titles",
+    "question": "How many candidate titles did Maya brainstorm in session 20?",
+    "gold_short": "30 candidate titles",
+    "tier1_aliases": [
+      "30"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s20_03",
+    "source_session": 20,
+    "fact_quote": "shortlist: 'Eelgrass Light', 'The Tender of Mark Island', 'The Penhallow Inheritance', 'Salt and Compass'",
+    "question": "Name one shortlisted title from session 20 besides 'Salt and Compass' (Eelgrass ...).",
+    "gold_short": "Eelgrass Light",
+    "tier1_aliases": [
+      "The Penhallow Inheritance",
+      "The Tender of Mark Island"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s20_04",
+    "source_session": 20,
+    "fact_quote": "added a scene of Eleanor sampling eelgrass off the Persephone",
+    "question": "What is Eleanor sampling in the new scene off the Persephone?",
+    "gold_short": "eelgrass",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s20_05",
+    "source_session": 20,
+    "fact_quote": "the eelgrass research subplot now informs chapter 6 in detail",
+    "question": "Which chapter does the eelgrass research subplot now inform in detail?",
+    "gold_short": "chapter 6",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s21_01",
+    "source_session": 21,
+    "fact_quote": "now using Vellum for formatting",
+    "question": "Which software is Maya now using for formatting?",
+    "gold_short": "Vellum",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s21_02",
+    "source_session": 21,
+    "fact_quote": "started line edit on October 12",
+    "question": "On what date did Maya start the line edit?",
+    "gold_short": "October 12",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s21_03",
+    "source_session": 21,
+    "fact_quote": "averaging 8 pages per day at line-edit pace",
+    "question": "How many pages per day was Maya averaging at line-edit pace?",
+    "gold_short": "8 pages",
+    "tier1_aliases": [
+      "eight pages"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s21_04",
+    "source_session": 21,
+    "fact_quote": "found and fixed the doomscroll anachronism Priya flagged",
+    "question": "Which anachronism did Maya find and fix during the line edit?",
+    "gold_short": "doomscroll",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s21_05",
+    "source_session": 21,
+    "fact_quote": "cut 4 adverbs per page average",
+    "question": "How many adverbs per page on average did Maya cut in the line edit?",
+    "gold_short": "4 adverbs",
+    "tier1_aliases": [
+      "four adverbs",
+      "4"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s22_01",
+    "source_session": 22,
+    "fact_quote": "drafted 250-word query letter",
+    "question": "How many words was the query letter Maya drafted?",
+    "gold_short": "250-word",
+    "tier1_aliases": [
+      "250 words",
+      "250"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s22_02",
+    "source_session": 22,
+    "fact_quote": "comp titles: 'Olive Kitteridge' and 'House of Sand and Fog'",
+    "question": "Name one comp title Maya used in the query letter (Olive ...).",
+    "gold_short": "Olive Kitteridge",
+    "tier1_aliases": [
+      "House of Sand and Fog"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s22_03",
+    "source_session": 22,
+    "fact_quote": "current title 'Salt and Compass'",
+    "question": "What was the novel's title as of the query-letter session 22?",
+    "gold_short": "Salt and Compass",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s22_04",
+    "source_session": 22,
+    "fact_quote": "word count after line edits: 92100",
+    "question": "What was the word count after the line edits in session 22?",
+    "gold_short": "92100",
+    "tier1_aliases": [
+      "92,100"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s22_05",
+    "source_session": 22,
+    "fact_quote": "logline focuses on sister rivalry over inheritance and ecological stakes",
+    "question": "On what two themes does the query logline focus (sister rivalry and ...)?",
+    "gold_short": "ecological stakes",
+    "tier1_aliases": [
+      "ecological"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s23_01",
+    "source_session": 23,
+    "fact_quote": "researched 40 literary agents",
+    "question": "How many literary agents did Maya research in session 23?",
+    "gold_short": "40 literary agents",
+    "tier1_aliases": [
+      "40"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s23_02",
+    "source_session": 23,
+    "fact_quote": "shortlisted 15 to query in first batch",
+    "question": "How many agents did Maya shortlist to query in the first batch?",
+    "gold_short": "15",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s23_03",
+    "source_session": 23,
+    "fact_quote": "Renata Goldfarb of Goldfarb Literary",
+    "question": "Name the agent from Goldfarb Literary in Maya's first query batch.",
+    "gold_short": "Renata Goldfarb",
+    "tier1_aliases": [
+      "Goldfarb"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s23_04",
+    "source_session": 23,
+    "fact_quote": "all five have made deals with debut authors in past 18 months",
+    "question": "Within what recent time window had all five first-batch agents made debut-author deals?",
+    "gold_short": "past 18 months",
+    "tier1_aliases": [
+      "18 months"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s23_05",
+    "source_session": 23,
+    "fact_quote": "Joon-Ho Park of Crescent Atlantic Agency",
+    "question": "For which agency does Joon-Ho Park work?",
+    "gold_short": "Crescent Atlantic Agency",
+    "tier1_aliases": [
+      "Crescent Atlantic"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s24_01",
+    "source_session": 24,
+    "fact_quote": "sent first batch of 5 queries November 24, 2025",
+    "question": "On what date did Maya send the first batch of queries?",
+    "gold_short": "November 24, 2025",
+    "tier1_aliases": [
+      "November 24"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s24_02",
+    "source_session": 24,
+    "fact_quote": "Renata Goldfarb requested partial within 6 days",
+    "question": "Within how many days did Renata Goldfarb request a partial?",
+    "gold_short": "6 days",
+    "tier1_aliases": [
+      "six days"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s24_03",
+    "source_session": 24,
+    "fact_quote": "Anders Krishnamurthy auto-rejected within 48 hours",
+    "question": "Which agent auto-rejected Maya within 48 hours?",
+    "gold_short": "Anders Krishnamurthy",
+    "tier1_aliases": [
+      "Krishnamurthy"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s24_04",
+    "source_session": 24,
+    "fact_quote": "sent first batch of 5 queries",
+    "question": "How many queries were in the first batch Maya sent?",
+    "gold_short": "5 queries",
+    "tier1_aliases": [
+      "five queries",
+      "5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s24_05",
+    "source_session": 24,
+    "fact_quote": "Sloane Whitford-Jeong, Hattie Macreadie, and Joon-Ho Park have not responded",
+    "question": "Name one first-batch agent who had not responded (Hattie ...).",
+    "gold_short": "Hattie Macreadie",
+    "tier1_aliases": [
+      "Sloane Whitford-Jeong",
+      "Macreadie"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s25_01",
+    "source_session": 25,
+    "fact_quote": "Joon-Ho Park requested full manuscript December 8",
+    "question": "On what date did Joon-Ho Park request the full manuscript?",
+    "gold_short": "December 8",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s25_02",
+    "source_session": 25,
+    "fact_quote": "Hattie Macreadie passed with form rejection on December 6",
+    "question": "Which agent passed with a form rejection on December 6?",
+    "gold_short": "Hattie Macreadie",
+    "tier1_aliases": [
+      "Macreadie"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s25_03",
+    "source_session": 25,
+    "fact_quote": "sent partial (first 50 pages) to Renata Goldfarb",
+    "question": "How many pages were in the partial Maya sent to Renata Goldfarb?",
+    "gold_short": "50 pages",
+    "tier1_aliases": [
+      "fifty pages",
+      "50"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s25_04",
+    "source_session": 25,
+    "fact_quote": "sent second batch of 5 queries",
+    "question": "How many queries were in the second batch Maya sent?",
+    "gold_short": "5 queries",
+    "tier1_aliases": [
+      "five queries",
+      "5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s25_05",
+    "source_session": 25,
+    "fact_quote": "second batch of 5 queries to: Mireille Asante of Northbeam Literary",
+    "question": "Name the agent from Northbeam Literary in the second query batch.",
+    "gold_short": "Mireille Asante",
+    "tier1_aliases": [
+      "Asante"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s26_01",
+    "source_session": 26,
+    "fact_quote": "Renata Goldfarb offered representation December 22, 2025",
+    "question": "On what date did Renata Goldfarb offer representation?",
+    "gold_short": "December 22, 2025",
+    "tier1_aliases": [
+      "December 22"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s26_02",
+    "source_session": 26,
+    "fact_quote": "Renata Goldfarb requested full manuscript December 18",
+    "question": "On what date did Renata Goldfarb request the full manuscript?",
+    "gold_short": "December 18",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s26_03",
+    "source_session": 26,
+    "fact_quote": "decided to give other agents until January 12 to respond",
+    "question": "Until what date did Maya give other agents to respond after the offer?",
+    "gold_short": "January 12",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s26_04",
+    "source_session": 26,
+    "fact_quote": "Joon-Ho Park, Pavithra Sundaram, and Esme Calabrese all stepped up with reads",
+    "question": "Name one agent besides Renata who stepped up with a read after the offer (Pavithra ...).",
+    "gold_short": "Pavithra Sundaram",
+    "tier1_aliases": [
+      "Joon-Ho Park",
+      "Esme Calabrese",
+      "Sundaram"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s26_05",
+    "source_session": 26,
+    "fact_quote": "now under 'offer of representation' notification to others",
+    "question": "What notification status was Maya under after Renata's offer?",
+    "gold_short": "offer of representation",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s27_01",
+    "source_session": 27,
+    "fact_quote": "chose Renata Goldfarb of Goldfarb Literary",
+    "question": "Which agent did Maya ultimately choose to represent her?",
+    "gold_short": "Renata Goldfarb",
+    "tier1_aliases": [
+      "Goldfarb"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s27_02",
+    "source_session": 27,
+    "fact_quote": "Pavithra Sundaram also offered representation January 5, 2026",
+    "question": "On what date did Pavithra Sundaram also offer representation?",
+    "gold_short": "January 5, 2026",
+    "tier1_aliases": [
+      "January 5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s27_03",
+    "source_session": 27,
+    "fact_quote": "Joon-Ho Park ultimately passed citing too crowded literary list",
+    "question": "Which agent passed citing a too-crowded literary list?",
+    "gold_short": "Joon-Ho Park",
+    "tier1_aliases": [
+      "Park"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s27_04",
+    "source_session": 27,
+    "fact_quote": "Esme Calabrese passed citing 'voice mismatch'",
+    "question": "What reason did Esme Calabrese give for passing?",
+    "gold_short": "voice mismatch",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s27_05",
+    "source_session": 27,
+    "fact_quote": "had calls with Renata Goldfarb (1 hour) and Pavithra Sundaram (45 minutes)",
+    "question": "How long was Maya's call with Pavithra Sundaram?",
+    "gold_short": "45 minutes",
+    "tier1_aliases": [
+      "45"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s28_01",
+    "source_session": 28,
+    "fact_quote": "Renata sent 9-page editorial letter January 18",
+    "question": "How many pages was Renata's editorial letter?",
+    "gold_short": "9-page",
+    "tier1_aliases": [
+      "9 pages",
+      "nine pages",
+      "9"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s28_02",
+    "source_session": 28,
+    "fact_quote": "Renata flagged chapter 5 journal device as overused",
+    "question": "Which chapter's journal device did Renata flag as overused?",
+    "gold_short": "chapter 5",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s28_03",
+    "source_session": 28,
+    "fact_quote": "Renata recommended adding a present-day chapter from Camille's POV",
+    "question": "From which character's POV did Renata recommend adding a present-day chapter?",
+    "gold_short": "Camille",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s28_04",
+    "source_session": 28,
+    "fact_quote": "Renata sent 9-page editorial letter January 18",
+    "question": "On what date did Renata send the editorial letter?",
+    "gold_short": "January 18",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s28_05",
+    "source_session": 28,
+    "fact_quote": "Renata suggested cutting Owen Trask subplot in half",
+    "question": "Whose subplot did Renata suggest cutting in half?",
+    "gold_short": "Owen Trask",
+    "tier1_aliases": [
+      "Owen"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s29_01",
+    "source_session": 29,
+    "fact_quote": "tentative new title 'The Eelgrass Year' replacing 'Salt and Compass'",
+    "question": "What tentative new title replaced 'Salt and Compass' in session 29?",
+    "gold_short": "The Eelgrass Year",
+    "tier1_aliases": [
+      "Eelgrass Year"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s29_02",
+    "source_session": 29,
+    "fact_quote": "adding one Camille POV chapter as chapter 11",
+    "question": "As which chapter number was the new Camille POV chapter added?",
+    "gold_short": "chapter 11",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s29_03",
+    "source_session": 29,
+    "fact_quote": "cutting Owen Trask scenes to 4 from 6",
+    "question": "To how many scenes were Owen Trask's appearances cut in session 29?",
+    "gold_short": "4",
+    "tier1_aliases": [
+      "four"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s29_04",
+    "source_session": 29,
+    "fact_quote": "Renata Goldfarb approved 'The Eelgrass Year' on February 2",
+    "question": "On what date did Renata approve 'The Eelgrass Year'?",
+    "gold_short": "February 2",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s29_05",
+    "source_session": 29,
+    "fact_quote": "trimming journal device to 5 italicized fragments total",
+    "question": "To how many italicized fragments was the journal device trimmed?",
+    "gold_short": "5 italicized fragments",
+    "tier1_aliases": [
+      "5 fragments",
+      "5",
+      "five"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s30_01",
+    "source_session": 30,
+    "fact_quote": "final pre-submission word count 89700",
+    "question": "What was the final pre-submission word count in session 30?",
+    "gold_short": "89700",
+    "tier1_aliases": [
+      "89,700"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s30_02",
+    "source_session": 30,
+    "fact_quote": "Persephone the research vessel renamed Cordelia",
+    "question": "To what name was the research vessel Persephone renamed in session 30?",
+    "gold_short": "Cordelia",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s30_03",
+    "source_session": 30,
+    "fact_quote": "Renata's submission list of 14 editors finalized",
+    "question": "How many editors were on Renata's finalized submission list?",
+    "gold_short": "14 editors",
+    "tier1_aliases": [
+      "14"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s30_04",
+    "source_session": 30,
+    "fact_quote": "submission planned for February 25, 2026",
+    "question": "On what date was the manuscript submission planned?",
+    "gold_short": "February 25, 2026",
+    "tier1_aliases": [
+      "February 25"
+    ],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  },
+  {
+    "qid": "novel_s30_05",
+    "source_session": 30,
+    "fact_quote": "comp titles updated to 'Olive Kitteridge' and 'Migrations' by Charlotte McConaghy",
+    "question": "Which Charlotte McConaghy novel became an updated comp title in session 30?",
+    "gold_short": "Migrations",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "novel layer dropped v1.1: novel_chat.json data defect (sessions 1-18 duplicate restaurant chat; true novel thread ~20K tokens)",
+    "legacy": false
+  }
+]

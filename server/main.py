@@ -1,14 +1,14 @@
 """
-FastAPI server.
+FastAPI サーバー（友達PC で動かす）
 
-Endpoints:
-  POST /chat           -- HAMIB inference (CD payload + user_text)
-  POST /chat_baseline  -- plain Gemma inference (full history kept as context)
-  POST /extract_nodes  -- extract node candidates from text
-  GET  /health         -- connectivity check
+エンドポイント:
+  POST /chat           -- CMS推論 (CDペイロード + user_text)
+  POST /chat_baseline  -- 通常Gemma推論（全履歴をそのままコンテキストに）
+  POST /extract_nodes  -- テキストからノード候補抽出
+  GET  /health         -- 疎通確認
 
-Launch:
-  cd hamib_prototype
+起動:
+  cd cms_prototype
   uvicorn server.main:app --host 0.0.0.0 --port 8080
 """
 from __future__ import annotations
@@ -28,8 +28,10 @@ from pydantic import BaseModel
 
 from server.mass_weighted_gemma import MassWeightedGemma
 from server.cd_parser import parse_node_list, extract_nodes_prompt, find_pn_positions
+from server.mass_vector import positions_to_mass_vector
+from utils.config import load_config, get
 
-app = FastAPI(title="HAMIB LLM Server")
+app = FastAPI(title="CMS LLM Server")
 
 _gemma: MassWeightedGemma | None = None
 
@@ -41,12 +43,12 @@ async def startup():
     _gemma.load()
 
 
-# ── Request / Response models ─────────────────────────────────────────
+# ── Request / Response モデル ─────────────────────────────────────────
 
 class ServerMetrics(BaseModel):
     input_tokens: int
     inference_ms: float
-    peak_memory_mb: float          # peak memory increase on the server side
+    peak_memory_mb: float          # サーバー側ピークメモリ増分
 
 
 class ChatRequest(BaseModel):
@@ -78,7 +80,7 @@ class ExtractResponse(BaseModel):
     nodes: list[dict]
 
 
-# ── Helpers ──────────────────────────────────────────────────────────
+# ── ヘルパー ──────────────────────────────────────────────────────────
 
 def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=None) -> tuple[str, ServerMetrics]:
     tokenizer = _gemma.tokenizer
@@ -89,15 +91,20 @@ def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=No
     _gemma.clear_mass_vector()
 
     if use_m:
-        # Use the 1D mass vector (decode-only, guarded by seq_q==1) rather than a
-        # 2D M matrix applied at prefill+decode.
+        # 実験L検証済み: 2D M行列（prefill+decode適用）は0%に崩壊するため廃止。
+        # 1D マスベクトル（decode専用, seq_q==1 ガード）を使用する。
         pn_positions = find_pn_positions(ids, tokenizer)
-        if pn_positions:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-            vec = torch.zeros(len(ids), dtype=torch.float32, device=device)
-            for pos, mass in pn_positions:
-                if 0 <= pos < len(vec):
-                    vec[pos] += mass
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        # F3: D-3 の上限 min(cap, mass*scale) と max による衝突解決は
+        # server/mass_vector.py に一本化されている（手書きの += ループは廃止）。
+        vec = positions_to_mass_vector(
+            pn_positions,
+            len(ids),
+            cap=float(get("attention", "mass_cap", 3.0)),
+            scale=float(get("attention", "mass_scale", 1.0)),
+            device=device,
+        )
+        if vec is not None:
             _gemma.set_mass_vector(vec)
 
     tracemalloc.start()
@@ -119,7 +126,7 @@ def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=No
     return response_text, metrics
 
 
-# ── Endpoints ────────────────────────────────────────────────────
+# ── エンドポイント ────────────────────────────────────────────────────
 
 @app.get("/health")
 def health():
@@ -128,7 +135,7 @@ def health():
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
-    """HAMIB mode: send only the correlation-diagram tokens plus the current message."""
+    """CMS方式: 相関図トークン + 現在のメッセージのみ送信。"""
     nodes = parse_node_list(req.node_list)
 
     prompt = ""
@@ -146,7 +153,7 @@ def chat(req: ChatRequest):
 
 @app.post("/chat_baseline", response_model=BaselineChatResponse)
 def chat_baseline(req: BaselineChatRequest):
-    """Plain Gemma mode: stack the entire conversation history as context."""
+    """通常Gemma方式: 全会話履歴をそのままコンテキストに積む。"""
     history_block = ""
     for turn in req.history:
         role = "User" if turn["role"] == "user" else "Assistant"

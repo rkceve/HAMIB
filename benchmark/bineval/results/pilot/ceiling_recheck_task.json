@@ -1,0 +1,210 @@
+[
+ {
+  "qid": "rest_s03_06",
+  "question": "On which street address is the office of Kenta's accountant located?"
+ },
+ {
+  "qid": "rest_s04_03",
+  "question": "Which college friend introduced Kenta to his real estate broker?"
+ },
+ {
+  "qid": "rest_s04_05",
+  "question": "For which agency does Kenta's real estate broker work?"
+ },
+ {
+  "qid": "rest_s10_06",
+  "question": "Through which of Kenta's advisers was the produce broker introduced to him?"
+ },
+ {
+  "qid": "rest_s11_02",
+  "question": "Who is Kenta's wine account manager at the cellar supplier?"
+ },
+ {
+  "qid": "rest_s11_03",
+  "question": "What is the name of the sommelier friend who introduced Kenta's wine account manager to him?"
+ },
+ {
+  "qid": "rest_s12_02",
+  "question": "In which district is the restaurant located, a mismatch that made its original working name confusing?"
+ },
+ {
+  "qid": "rest_s13_02",
+  "question": "How old is the head chef?"
+ },
+ {
+  "qid": "rest_s13_03",
+  "question": "From which Italian city is the head chef?"
+ },
+ {
+  "qid": "rest_s13_04",
+  "question": "For how many years was the head chef a sous chef at Ristorante Acqua Pazza before joining?"
+ },
+ {
+  "qid": "rest_s13_05",
+  "question": "What monthly salary was the head chef hired at?"
+ },
+ {
+  "qid": "rest_s13_06",
+  "question": "On what date did the head chef start?"
+ },
+ {
+  "qid": "rest_s15_01",
+  "question": "What was the initial price of the restaurant's signature hand-cut pasta dish?"
+ },
+ {
+  "qid": "rest_s16_02",
+  "question": "What monthly salary was the sous chef hired at?"
+ },
+ {
+  "qid": "rest_s16_04",
+  "question": "What monthly salary was the service manager hired at?"
+ },
+ {
+  "qid": "rest_s18_04",
+  "question": "How many of the soft-opening guests rated the meal 8/10 or higher?"
+ },
+ {
+  "qid": "rest_s18_06",
+  "question": "Which table did the service manager flag as having an acoustic issue?"
+ },
+ {
+  "qid": "rest_s20_04",
+  "question": "What was the restaurant's very first Tabelog rating, recorded after only a handful of reviews?"
+ },
+ {
+  "qid": "rest_s21_05",
+  "question": "How old is the replacement part-time server hired that season?"
+ },
+ {
+  "qid": "rest_s23_03",
+  "question": "At what hourly rate was the dishwasher hired?"
+ },
+ {
+  "qid": "rest_s23_04",
+  "question": "How many hours nightly does the dishwasher work?"
+ },
+ {
+  "qid": "rest_s25_05",
+  "question": "Which low-margin dish did the head chef drop from the menu in January?"
+ },
+ {
+  "qid": "rest_s25_06",
+  "question": "Which new dish did the head chef add to the menu in January?"
+ },
+ {
+  "qid": "rest_s27_01",
+  "question": "During what dates was the head chef on vacation?"
+ },
+ {
+  "qid": "rest_s27_02",
+  "question": "Who ran the kitchen during the head chef's February vacation?"
+ },
+ {
+  "qid": "rest_s27_03",
+  "question": "What temporary monthly pay bump did the sous chef get while running the kitchen?"
+ },
+ {
+  "qid": "rest_s27_05",
+  "question": "Which dish was dropped temporarily during the head chef's vacation coverage?"
+ },
+ {
+  "qid": "rest_s27_06",
+  "question": "During which dates was lunch service paused for the head chef's coverage period?"
+ },
+ {
+  "qid": "rest_s28_01",
+  "question": "To what Tabelog rating did the restaurant climb by the time it had accumulated roughly two dozen reviews?"
+ },
+ {
+  "qid": "rest_s28_02",
+  "question": "How many Tabelog reviews had the restaurant accumulated at the rating check-in that followed the head chef's February vacation?"
+ },
+ {
+  "qid": "rest_s28_03",
+  "question": "Which restaurant critic made an unexpected visit during the head chef's absence?"
+ },
+ {
+  "qid": "rest_s28_04",
+  "question": "For which publication does the restaurant critic who paid the unexpected visit write?"
+ },
+ {
+  "qid": "rest_s28_05",
+  "question": "What was the average dinner ticket time under the sous chef during coverage?"
+ },
+ {
+  "qid": "rest_s28_06",
+  "question": "When was the visiting critic's article expected to be published?"
+ },
+ {
+  "qid": "rest_s29_05",
+  "question": "On what date did the head chef return from vacation?"
+ },
+ {
+  "qid": "rest_s30_01",
+  "question": "On what date was the critic's review actually published?"
+ },
+ {
+  "qid": "rest_s30_02",
+  "question": "What was the headline of the critic's published review?"
+ },
+ {
+  "qid": "rest_s30_06",
+  "question": "In which publication was the restaurant critic's review published?"
+ },
+ {
+  "qid": "rest_s31_01",
+  "question": "To what price was the signature hand-cut pasta dish raised in the April 2026 revision?"
+ },
+ {
+  "qid": "rest_s31_03",
+  "question": "To what price was the longer of the two lunch course sets raised in the April 2026 revision?"
+ },
+ {
+  "qid": "rest_s36_02",
+  "question": "What was the chosen construction company's cost estimate for the private-room conversion?"
+ },
+ {
+  "qid": "rest_s37_03",
+  "question": "What fee did the labor consultant charge for the employee handbook?"
+ },
+ {
+  "qid": "rest_s37_05",
+  "question": "Who was identified as head-chef successor if the head chef leaves?"
+ },
+ {
+  "qid": "rest_s38_01",
+  "question": "To what monthly salary was the sous chef raised in the performance-review adjustments?"
+ },
+ {
+  "qid": "rest_s38_02",
+  "question": "To what hourly rate was the longest-tenured part-time server raised in the performance-review adjustments?"
+ },
+ {
+  "qid": "rest_s38_03",
+  "question": "What retention bonus was formalized under the two-year tenure milestone?"
+ },
+ {
+  "qid": "rest_s38_05",
+  "question": "What is the head chef's new monthly base salary after his contract extension?"
+ },
+ {
+  "qid": "rest_s39_01",
+  "question": "On what date did Marubeni book the restaurant's private dining room?"
+ },
+ {
+  "qid": "rest_s39_02",
+  "question": "For how many people did Marubeni book the private-room dinner?"
+ },
+ {
+  "qid": "rest_s39_04",
+  "question": "What venue fee applies to the private dining room?"
+ },
+ {
+  "qid": "rest_s39_05",
+  "question": "At what price do the private-room wine pairings start?"
+ },
+ {
+  "qid": "rest_s39_06",
+  "question": "How many private events were pre-booked for September in the private dining room?"
+ }
+]

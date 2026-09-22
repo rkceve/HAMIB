@@ -1,0 +1,16 @@
+[00:07:39] 1/4 summarizer (transformers server, Qwen3.5-4B bf16, reader venv; vLLM cannot run on this driver — H27) in tmux
+[00:07:59] summarizer up after 30 s
+{"id": "chatcmpl-1789949280873", "object": "chat.completion", "model": "summarizer", "choices": [{"index": 0, "message": {"role": "assistant", "content": "OK\n"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 15, "completion_tokens": 4, "total_tokens": 19}, "latency_ms": 1379.6533904969692}
+[00:08:00] 2/4 build_cd on the first 36 round trips (budget: 20000 requests / 100000000 input tokens)
+[01:52:56] build_cd exit=0
+harness calls: belongs=3828 node=3388 same=3355
+harness quality: attached=838 defaulted=0 node_fallback=92 unparsed=0 vanished=699
+jev requests=10571 tokens: in=42153677 out=9795924 cost_usd=1.7705  wall=6292.5s
+jev budget: requests 10571/20000 input_tokens 42153677/100000000
+wrote: /workspace/mcb/runs/v4_36rt/cd.json
+[01:52:56] 3/4 stop the summarizer
+[01:52:56] 4/4 summary
+cd.json | summary: {'sun': 389, 'planet': 414, 'satellite': 803, 'total': 1606, 'turns': 36, 'dropped_chunks': 1083, 'harness_calls': {'node': 3388, 'belongs': 3828, 'same': 3355}, 'harness_quality': {'unparsed': 0, 'defaulted': 0, 'node_fallback': 92, 'vanished': 699, 'attached': 838}} | stopped: None
+  jev: {'jev_requests': 10571, 'jev_input_tokens_total': 42153677, 'jev_output_tokens_total': 9795924, 'jev_cost_usd': 1.7704544340000001, 'jev_budget': {'max_requests': 20000, 'max_input_tokens': 100000000, 'requests_sent': 10571, 'input_tokens': 42153677}}
+  summarizer: {'summarizer_calls': 2433, 'summarizer_prompt_tokens': 267708, 'summarizer_completion_tokens': 62275} | wall_s: 6292.499243311584
+V4_DONE

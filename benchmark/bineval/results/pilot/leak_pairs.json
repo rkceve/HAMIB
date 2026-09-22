@@ -1,0 +1,252 @@
+[
+ {
+  "victim": "rest_s03_03",
+  "gold": "Hiroshi Tanabe",
+  "leaking_questions": [
+   "rest_s03_06"
+  ]
+ },
+ {
+  "victim": "rest_s04_02",
+  "gold": "Yusuke Hamada",
+  "leaking_questions": [
+   "rest_s04_03",
+   "rest_s04_05"
+  ]
+ },
+ {
+  "victim": "rest_s06_01",
+  "gold": "Yamamoto Koumuten",
+  "leaking_questions": [
+   "rest_s36_02"
+  ]
+ },
+ {
+  "victim": "rest_s06_02",
+  "gold": "Tetsuo Yamamoto",
+  "leaking_questions": [
+   "rest_s36_02"
+  ]
+ },
+ {
+  "victim": "rest_s06_05",
+  "gold": "three quotes",
+  "leaking_questions": [
+   "rest_s07_06",
+   "rest_s20_04",
+   "rest_s28_02",
+   "rest_s31_03"
+  ]
+ },
+ {
+  "victim": "rest_s07_03",
+  "gold": "36 million yen",
+  "leaking_questions": [
+   "rest_s07_06"
+  ]
+ },
+ {
+  "victim": "rest_s07_06",
+  "gold": "loan",
+  "leaking_questions": [
+   "rest_s03_04",
+   "rest_s03_05",
+   "rest_s07_01",
+   "rest_s07_02",
+   "rest_s07_03",
+   "rest_s07_04",
+   "rest_s07_05"
+  ]
+ },
+ {
+  "victim": "rest_s10_04",
+  "gold": "Kenji Ueno",
+  "leaking_questions": [
+   "rest_s10_06"
+  ]
+ },
+ {
+  "victim": "rest_s11_01",
+  "gold": "Nakata Shoji",
+  "leaking_questions": [
+   "rest_s11_02"
+  ]
+ },
+ {
+  "victim": "rest_s11_02",
+  "gold": "Mariko Nakata",
+  "leaking_questions": [
+   "rest_s11_03"
+  ]
+ },
+ {
+  "victim": "rest_s12_02",
+  "gold": "Azabu",
+  "leaking_questions": [
+   "rest_s04_06",
+   "rest_s30_02"
+  ]
+ },
+ {
+  "victim": "rest_s13_01",
+  "gold": "Marco Petrelli",
+  "leaking_questions": [
+   "rest_s13_02",
+   "rest_s13_03",
+   "rest_s13_04",
+   "rest_s13_05",
+   "rest_s13_06",
+   "rest_s25_05",
+   "rest_s25_06",
+   "rest_s27_01",
+   "rest_s27_02",
+   "rest_s27_05",
+   "rest_s27_06",
+   "rest_s28_03",
+   "rest_s29_03",
+   "rest_s29_05",
+   "rest_s37_05",
+   "rest_s38_04",
+   "rest_s38_05"
+  ]
+ },
+ {
+  "victim": "rest_s15_06",
+  "gold": "tagliatelle al ragu bolognese",
+  "leaking_questions": [
+   "rest_s15_01",
+   "rest_s31_01"
+  ]
+ },
+ {
+  "victim": "rest_s16_01",
+  "gold": "Haruki Nakajima",
+  "leaking_questions": [
+   "rest_s16_02",
+   "rest_s21_03",
+   "rest_s27_03",
+   "rest_s28_05",
+   "rest_s38_01"
+  ]
+ },
+ {
+  "victim": "rest_s16_03",
+  "gold": "Eiko Sawada",
+  "leaking_questions": [
+   "rest_s16_04",
+   "rest_s18_06"
+  ]
+ },
+ {
+  "victim": "rest_s16_06",
+  "gold": "Yui Tachibana",
+  "leaking_questions": [
+   "rest_s38_02"
+  ]
+ },
+ {
+  "victim": "rest_s17_03",
+  "gold": "80",
+  "leaking_questions": [
+   "rest_s18_04"
+  ]
+ },
+ {
+  "victim": "rest_s21_02",
+  "gold": "Sara Komatsu",
+  "leaking_questions": [
+   "rest_s21_05"
+  ]
+ },
+ {
+  "victim": "rest_s21_04",
+  "gold": "Mrs. Yoneda",
+  "leaking_questions": [
+   "rest_s21_06",
+   "rest_s23_03",
+   "rest_s23_04"
+  ]
+ },
+ {
+  "victim": "rest_s27_02",
+  "gold": "Nakajima",
+  "leaking_questions": [
+   "rest_s16_02",
+   "rest_s21_03",
+   "rest_s27_03",
+   "rest_s28_05",
+   "rest_s38_01"
+  ]
+ },
+ {
+  "victim": "rest_s28_01",
+  "gold": "3.61",
+  "leaking_questions": [
+   "rest_s28_02"
+  ]
+ },
+ {
+  "victim": "rest_s28_02",
+  "gold": "24 reviews",
+  "leaking_questions": [
+   "rest_s28_01",
+   "rest_s38_03"
+  ]
+ },
+ {
+  "victim": "rest_s28_03",
+  "gold": "Hiroko Sano",
+  "leaking_questions": [
+   "rest_s28_04",
+   "rest_s30_06"
+  ]
+ },
+ {
+  "victim": "rest_s28_04",
+  "gold": "Asahi Shimbun Weekly",
+  "leaking_questions": [
+   "rest_s28_06",
+   "rest_s30_01",
+   "rest_s30_02"
+  ]
+ },
+ {
+  "victim": "rest_s30_06",
+  "gold": "Asahi Shimbun Weekly",
+  "leaking_questions": [
+   "rest_s28_06",
+   "rest_s30_01",
+   "rest_s30_02"
+  ]
+ },
+ {
+  "victim": "rest_s36_05",
+  "gold": "Sala Modena",
+  "leaking_questions": [
+   "rest_s39_01",
+   "rest_s39_02",
+   "rest_s39_04",
+   "rest_s39_05",
+   "rest_s39_06",
+   "rest_s40_03"
+  ]
+ },
+ {
+  "victim": "rest_s37_02",
+  "gold": "Mr. Endo",
+  "leaking_questions": [
+   "rest_s37_03"
+  ]
+ },
+ {
+  "victim": "rest_s37_05",
+  "gold": "Nakajima",
+  "leaking_questions": [
+   "rest_s16_02",
+   "rest_s21_03",
+   "rest_s27_03",
+   "rest_s28_05",
+   "rest_s38_01"
+  ]
+ }
+]

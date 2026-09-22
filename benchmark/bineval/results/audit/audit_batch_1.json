@@ -1,0 +1,371 @@
+[
+  {
+    "qid": "rest_s01_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We have 28 million yen in savings that I could realistically put toward this",
+    "notes": null
+  },
+  {
+    "qid": "rest_s02_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "My current thinking is an 8,500 yen dinner ticket as the average spend per person",
+    "notes": null
+  },
+  {
+    "qid": "rest_s03_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The projected monthly revenue at full capacity is 4.2 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s03_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "2-7-3 Shibuya, Daiichi-Bunko Building 5F",
+    "notes": null
+  },
+  {
+    "qid": "rest_s04_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Yusuke Hamada from Plaza Homes Commercial",
+    "notes": null
+  },
+  {
+    "qid": "rest_s05_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "a common area fee of 73,000 yen per month",
+    "notes": null
+  },
+  {
+    "qid": "rest_s06_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "My renovation budget is 8.4 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s07_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "approved the loan... at 1.95%",
+    "notes": null
+  },
+  {
+    "qid": "rest_s08_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Yamamoto-san confirmed the projected completion date is August 22",
+    "notes": null
+  },
+  {
+    "qid": "rest_s08_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "shift to a single accessible unisex bathroom layout",
+    "notes": null
+  },
+  {
+    "qid": "rest_s09_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Hoshizaki across four units... 720,000 yen",
+    "notes": "fact_quote says '2 Hoshizaki upright units' but session describes 4 units (2 under-counter + 1 upright 2-door + 1 blast chiller); gold 'Hoshizaki' is correct per session; fact_quote configuration diverges from session text"
+  },
+  {
+    "qid": "rest_s10_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "a man named Kenji Ueno, who operates as a produce broker out of a firm called Ueno Seika",
+    "notes": null
+  },
+  {
+    "qid": "rest_s11_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I had dinner with a friend of mine named Reiko Igarashi... She's currently the head sommelier at Hotel Okura",
+    "notes": null
+  },
+  {
+    "qid": "rest_s12_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the restaurant is in Azabu not Ginza at all",
+    "notes": null
+  },
+  {
+    "qid": "rest_s13_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "His name is Marco Petrelli. He is 38 years old... originally from Modena",
+    "notes": null
+  },
+  {
+    "qid": "rest_s13_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the start date is September 1, 2025",
+    "notes": null
+  },
+  {
+    "qid": "rest_s14_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the electrical panel upgrade. That's the thing that drove both the schedule slip and the budget overage",
+    "notes": null
+  },
+  {
+    "qid": "rest_s15_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "7,800 yen per person as the projected average dinner ticket. That's a revision downward",
+    "notes": null
+  },
+  {
+    "qid": "rest_s16_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Service manager: Eiko Sawada... salary 460,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s17_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The soft opening runs October 8-11, 2025 — four nights",
+    "notes": "session text uses 'four nights' not 'four days'; functionally equivalent (Oct 8-11 = 4 nights = 4 days); alias 'four' covers the count"
+  },
+  {
+    "qid": "rest_s18_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "we landed at 38 minutes kitchen ticket time average. Our target was 22",
+    "notes": null
+  },
+  {
+    "qid": "rest_s18_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "table 7 has acoustic issue near AC vent",
+    "notes": null
+  },
+  {
+    "qid": "rest_s20_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The November 4 grand opening went smoothly, fully booked",
+    "notes": null
+  },
+  {
+    "qid": "rest_s21_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "There is a woman named Mrs. Yoneda who lives in the same building as the restaurant",
+    "notes": null
+  },
+  {
+    "qid": "rest_s22_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I have 14 months of cash runway. Fourteen months.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s23_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We're bringing her in at 1,400 yen per hour, and she'll be working 4 hours nightly.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s25_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We implemented Square Plus inventory module about three weeks ago.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s26_01",
+    "answerable": "no",
+    "gold_correct": "ambiguous",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session 26 is a novelist session (Maya Tanaka / agent representation / 'Salt and Compass'); no restaurant content, no wine club mentioned; 'Cantina Morishita' first appears in session 29"
+  },
+  {
+    "qid": "rest_s26_06",
+    "answerable": "no",
+    "gold_correct": "ambiguous",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session 26 is a novelist session with zero restaurant content; Mariko Nakata and wine club sourcing do not appear; wrong source_session"
+  },
+  {
+    "qid": "rest_s27_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The guinea fowl dish is the one we're most uncertain about... We're thinking we just drop it from the menu during the coverage period",
+    "notes": null
+  },
+  {
+    "qid": "rest_s28_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Hiroko Sano. The restaurant critic from Asahi Shimbun Weekly.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s29_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "he connected with Acetaia Giusti... Marco now has a direct line to them for supply",
+    "notes": "at session 29 the arrangement is still at handshake stage (not yet formalized in writing); fact_quote says 'supplier added' which overstates — session says contact established, formal commitment pending"
+  },
+  {
+    "qid": "rest_s30_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "'Azabu's Quiet Modena: A Trattoria With Conviction.' That's the headline.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s31_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I raised from 2,400 to 2,700 yen... tagliatelle al ragu bolognese",
+    "notes": null
+  },
+  {
+    "qid": "rest_s31_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "it is now April 3 and I want to do a proper debrief on the April 1 price revision",
+    "notes": null
+  },
+  {
+    "qid": "rest_s34_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Cumulative revenue since opening is 28.4 million yen.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s36_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "four weeks is a realistic construction window. The dates he proposed are July 14 to August 9.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s37_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "a labor consultant, Mr. Endo, who drafted an employee handbook for a fee of 280,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s38_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Yui Tachibana raised to 1,500 yen per hour, up from 1,350.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s39_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Marubeni booked Sala Modena for October 14 for a 14-person dinner.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s40_02",
+    "answerable": "no",
+    "gold_correct": "ambiguous",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session 40 is the novelist's final session (Maya Tanaka, Portland, 'The Eelgrass Year'); no restaurant or Tabelog content; '91 reviews' has zero textual support in session 40"
+  }
+]

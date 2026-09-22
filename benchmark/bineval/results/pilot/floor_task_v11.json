@@ -1,0 +1,694 @@
+[
+ {
+  "qid": "rest_s01_03",
+  "question": "How much personal savings did Kenta have when he started planning the restaurant?"
+ },
+ {
+  "qid": "rest_s01_04",
+  "question": "What was Kenta's initial working name idea for the restaurant in session 1?"
+ },
+ {
+  "qid": "rest_s01_05",
+  "question": "For how long did Kenta study at the Hotel School of Bologna during his 2019 trip?"
+ },
+ {
+  "qid": "rest_s01_06",
+  "question": "What is the name of Kenta's wife who supports the restaurant plan?"
+ },
+ {
+  "qid": "rest_s02_01",
+  "question": "How many Italian restaurants did Kenta visit during his two weeks of market research?"
+ },
+ {
+  "qid": "rest_s02_02",
+  "question": "What dinner average ticket size per person did Kenta target during market research?"
+ },
+ {
+  "qid": "rest_s02_03",
+  "question": "What lunch set price did Kenta target during market research?"
+ },
+ {
+  "qid": "rest_s02_04",
+  "question": "Which Daikanyama benchmark restaurant did Kenta name during market research (Ristorante ...)?"
+ },
+ {
+  "qid": "rest_s02_05",
+  "question": "Which region of Italian cuisine did Kenta identify as an underrepresented gap in Tokyo?"
+ },
+ {
+  "qid": "rest_s02_06",
+  "question": "In which Tokyo district did Kenta name Heinz Beck as a benchmark restaurant?"
+ },
+ {
+  "qid": "rest_s03_01",
+  "question": "What monthly revenue at full capacity did Kenta's business plan project?"
+ },
+ {
+  "qid": "rest_s03_02",
+  "question": "How many covers per day on average did the business plan set as breakeven?"
+ },
+ {
+  "qid": "rest_s03_03",
+  "question": "What is the name of Kenta's accountant?"
+ },
+ {
+  "qid": "rest_s03_04",
+  "question": "How much loan did Kenta initially apply for from Japan Finance Corporation?"
+ },
+ {
+  "qid": "rest_s03_05",
+  "question": "At what interest rate did Kenta initially apply for the Japan Finance Corporation loan?"
+ },
+ {
+  "qid": "rest_s03_06",
+  "question": "On which street address is the office of Kenta's accountant located?"
+ },
+ {
+  "qid": "rest_s04_01",
+  "question": "How many properties did Kenta scout with his real estate broker?"
+ },
+ {
+  "qid": "rest_s04_02",
+  "question": "What is the name of the real estate broker who helped Kenta scout properties?"
+ },
+ {
+  "qid": "rest_s04_03",
+  "question": "Which college friend introduced Kenta to his real estate broker?"
+ },
+ {
+  "qid": "rest_s04_04",
+  "question": "Above what per-tsubo rent did Kenta rule out Ginza as a location?"
+ },
+ {
+  "qid": "rest_s04_05",
+  "question": "For which agency does Kenta's real estate broker work?"
+ },
+ {
+  "qid": "rest_s05_01",
+  "question": "In which building did Kenta sign the lease for his restaurant?"
+ },
+ {
+  "qid": "rest_s05_02",
+  "question": "What is the floor area in square meters of the leased restaurant space?"
+ },
+ {
+  "qid": "rest_s05_03",
+  "question": "What is the monthly rent for Kenta's restaurant space?"
+ },
+ {
+  "qid": "rest_s05_04",
+  "question": "What is the monthly common area fee for the restaurant space?"
+ },
+ {
+  "qid": "rest_s05_05",
+  "question": "What is the lease term length for the restaurant space?"
+ },
+ {
+  "qid": "rest_s05_06",
+  "question": "What kind of business was the previous tenant of the restaurant space?"
+ },
+ {
+  "qid": "rest_s06_01",
+  "question": "Which contractor did Kenta select for the renovation?"
+ },
+ {
+  "qid": "rest_s06_02",
+  "question": "Who leads the contractor firm Kenta selected for renovation?"
+ },
+ {
+  "qid": "rest_s06_03",
+  "question": "What was the initial renovation budget?"
+ },
+ {
+  "qid": "rest_s06_04",
+  "question": "Which supplier did the contractor suggest for the wood-fired oven?"
+ },
+ {
+  "qid": "rest_s06_05",
+  "question": "How many contractor quotes did Kenta obtain for the renovation?"
+ },
+ {
+  "qid": "rest_s07_01",
+  "question": "How much did the Japan Finance Corporation ultimately approve for Kenta's loan?"
+ },
+ {
+  "qid": "rest_s07_02",
+  "question": "At what interest rate was Kenta's Japan Finance Corporation loan finally approved?"
+ },
+ {
+  "qid": "rest_s07_03",
+  "question": "What total opening capital did Kenta secure after the loan approval?"
+ },
+ {
+  "qid": "rest_s07_04",
+  "question": "By how much was Kenta's approved loan below his original request?"
+ },
+ {
+  "qid": "rest_s07_05",
+  "question": "What did Kenta decide to scale back to compensate for the smaller loan?"
+ },
+ {
+  "qid": "rest_s08_01",
+  "question": "On what date was the renovation projected to be completed (at kickoff)?"
+ },
+ {
+  "qid": "rest_s08_02",
+  "question": "On what date did the renovation start?"
+ },
+ {
+  "qid": "rest_s08_03",
+  "question": "What flooring material was chosen for the restaurant?"
+ },
+ {
+  "qid": "rest_s08_04",
+  "question": "Which company supplied the restaurant's flooring?"
+ },
+ {
+  "qid": "rest_s09_01",
+  "question": "What is the model name of the wood-fired pizza oven Kenta ordered?"
+ },
+ {
+  "qid": "rest_s09_02",
+  "question": "How much did the wood-fired pizza oven cost?"
+ },
+ {
+  "qid": "rest_s09_04",
+  "question": "How much did the pasta extruder cost?"
+ },
+ {
+  "qid": "rest_s09_06",
+  "question": "What piece of equipment did Kenta decide against as too niche for the menu?"
+ },
+ {
+  "qid": "rest_s10_02",
+  "question": "What was the price per 500ml of the opening olive oil?"
+ },
+ {
+  "qid": "rest_s10_04",
+  "question": "What is the name of the produce broker who delivers to the restaurant each morning?"
+ },
+ {
+  "qid": "rest_s10_05",
+  "question": "What was the price per 25kg sack of the restaurant's flour?"
+ },
+ {
+  "qid": "rest_s10_06",
+  "question": "Through which of Kenta's advisers was the produce broker introduced to him?"
+ },
+ {
+  "qid": "rest_s11_01",
+  "question": "What is the name of Kenta's wine supplier company?"
+ },
+ {
+  "qid": "rest_s11_02",
+  "question": "Who is Kenta's wine account manager at the cellar supplier?"
+ },
+ {
+  "qid": "rest_s11_03",
+  "question": "What is the name of the sommelier friend who introduced Kenta's wine account manager to him?"
+ },
+ {
+  "qid": "rest_s11_04",
+  "question": "How many bottles were in the initial wine cellar?"
+ },
+ {
+  "qid": "rest_s11_05",
+  "question": "What percentage of the initial cellar was Italian wine?"
+ },
+ {
+  "qid": "rest_s11_06",
+  "question": "What was the opening cost for the wine inventory?"
+ },
+ {
+  "qid": "rest_s12_01",
+  "question": "To what name did Kenta rename the restaurant in session 12?"
+ },
+ {
+  "qid": "rest_s12_02",
+  "question": "In which district is the restaurant located, a mismatch that made its original working name confusing?"
+ },
+ {
+  "qid": "rest_s12_03",
+  "question": "Who designed the restaurant's logo?"
+ },
+ {
+  "qid": "rest_s12_04",
+  "question": "What fee did the logo designer charge?"
+ },
+ {
+  "qid": "rest_s12_06",
+  "question": "What web domain did Kenta register for the restaurant?"
+ },
+ {
+  "qid": "rest_s13_01",
+  "question": "What is the name of the head chef Kenta hired?"
+ },
+ {
+  "qid": "rest_s13_02",
+  "question": "How old is the head chef?"
+ },
+ {
+  "qid": "rest_s13_03",
+  "question": "From which Italian city is the head chef?"
+ },
+ {
+  "qid": "rest_s13_04",
+  "question": "For how many years was the head chef a sous chef at Ristorante Acqua Pazza before joining?"
+ },
+ {
+  "qid": "rest_s13_05",
+  "question": "What monthly salary was the head chef hired at?"
+ },
+ {
+  "qid": "rest_s13_06",
+  "question": "On what date did the head chef start?"
+ },
+ {
+  "qid": "rest_s14_01",
+  "question": "On what date was the renovation actually completed?"
+ },
+ {
+  "qid": "rest_s14_02",
+  "question": "What was the final total renovation cost?"
+ },
+ {
+  "qid": "rest_s14_03",
+  "question": "By how much did the final renovation cost exceed budget?"
+ },
+ {
+  "qid": "rest_s14_05",
+  "question": "What upgrade caused the renovation budget overage?"
+ },
+ {
+  "qid": "rest_s14_06",
+  "question": "How many days late was the renovation completed?"
+ },
+ {
+  "qid": "rest_s15_01",
+  "question": "What was the initial price of the restaurant's signature hand-cut pasta dish?"
+ },
+ {
+  "qid": "rest_s15_02",
+  "question": "How many antipasti were on the finalized menu?"
+ },
+ {
+  "qid": "rest_s15_03",
+  "question": "What was the initial price of the 2-course lunch menu?"
+ },
+ {
+  "qid": "rest_s15_04",
+  "question": "To what per-person figure was the dinner average ticket projection revised down at menu finalization?"
+ },
+ {
+  "qid": "rest_s15_06",
+  "question": "What is the signature pasta dish on the menu?"
+ },
+ {
+  "qid": "rest_s16_01",
+  "question": "What is the name of the sous chef Kenta hired?"
+ },
+ {
+  "qid": "rest_s16_02",
+  "question": "What monthly salary was the sous chef hired at?"
+ },
+ {
+  "qid": "rest_s16_03",
+  "question": "What is the name of the service manager Kenta hired?"
+ },
+ {
+  "qid": "rest_s16_04",
+  "question": "What monthly salary was the service manager hired at?"
+ },
+ {
+  "qid": "rest_s16_05",
+  "question": "How many full-time staff did the restaurant have at opening?"
+ },
+ {
+  "qid": "rest_s16_06",
+  "question": "Name one of the two part-time servers hired at opening (Yui ...)."
+ },
+ {
+  "qid": "rest_s17_01",
+  "question": "On what dates was the soft opening held?"
+ },
+ {
+  "qid": "rest_s17_02",
+  "question": "How many days did the soft opening run?"
+ },
+ {
+  "qid": "rest_s17_03",
+  "question": "How many guests in total were invited to the soft opening?"
+ },
+ {
+  "qid": "rest_s17_04",
+  "question": "How many guests were invited per night during the soft opening?"
+ },
+ {
+  "qid": "rest_s17_05",
+  "question": "How many food critics were among the invited soft-opening guests?"
+ },
+ {
+  "qid": "rest_s17_06",
+  "question": "How was wine pairing handled at the soft opening?"
+ },
+ {
+  "qid": "rest_s18_01",
+  "question": "What was the average kitchen ticket time during the soft opening?"
+ },
+ {
+  "qid": "rest_s18_02",
+  "question": "What was the target kitchen ticket time at the soft opening?"
+ },
+ {
+  "qid": "rest_s18_03",
+  "question": "What was identified as the cause of the soft-opening kitchen bottleneck?"
+ },
+ {
+  "qid": "rest_s18_04",
+  "question": "How many of the soft-opening guests rated the meal 8/10 or higher?"
+ },
+ {
+  "qid": "rest_s18_05",
+  "question": "Which food critic from Tokyo Calendar posted a positive note about the soft opening?"
+ },
+ {
+  "qid": "rest_s18_06",
+  "question": "Which table did the service manager flag as having an acoustic issue?"
+ },
+ {
+  "qid": "rest_s20_01",
+  "question": "What was the dinner cover target during grand opening week?"
+ },
+ {
+  "qid": "rest_s20_02",
+  "question": "What was the actual dinner average ticket during grand opening week?"
+ },
+ {
+  "qid": "rest_s20_03",
+  "question": "What was the actual lunch average ticket during grand opening week?"
+ },
+ {
+  "qid": "rest_s20_04",
+  "question": "What was the restaurant's very first Tabelog rating, recorded after only a handful of reviews?"
+ },
+ {
+  "qid": "rest_s20_06",
+  "question": "On what date did lunch service start during grand opening week?"
+ },
+ {
+  "qid": "rest_s21_01",
+  "question": "Which part-time server quit after two weeks, having found a higher-paying job?"
+ },
+ {
+  "qid": "rest_s21_02",
+  "question": "Who replaced the part-time server who quit?"
+ },
+ {
+  "qid": "rest_s21_04",
+  "question": "What is the name of the dishwasher candidate who lives in the same building?"
+ },
+ {
+  "qid": "rest_s21_05",
+  "question": "How old is the replacement part-time server hired that season?"
+ },
+ {
+  "qid": "rest_s22_01",
+  "question": "What was the restaurant's revenue in its first full month, November?"
+ },
+ {
+  "qid": "rest_s22_02",
+  "question": "What was the restaurant's loss in November?"
+ },
+ {
+  "qid": "rest_s22_03",
+  "question": "Roughly how many months of cash runway did the restaurant have after November?"
+ },
+ {
+  "qid": "rest_s22_04",
+  "question": "What percentage of costs was labor in the November financial review?"
+ },
+ {
+  "qid": "rest_s22_05",
+  "question": "Which meal service did Kenta cut to change opening hours after November?"
+ },
+ {
+  "qid": "rest_s22_06",
+  "question": "What percentage of costs was food in the November financial review?"
+ },
+ {
+  "qid": "rest_s23_01",
+  "question": "How many guests attended the Marubeni private dinner on December 22?"
+ },
+ {
+  "qid": "rest_s23_03",
+  "question": "At what hourly rate was the dishwasher hired?"
+ },
+ {
+  "qid": "rest_s23_04",
+  "question": "How many hours nightly does the dishwasher work?"
+ },
+ {
+  "qid": "rest_s23_05",
+  "question": "What was the price of the 5-course Christmas menu?"
+ },
+ {
+  "qid": "rest_s23_06",
+  "question": "How many private booking events were projected for December in total?"
+ },
+ {
+  "qid": "rest_s25_01",
+  "question": "By what percentage was January's first-week revenue down versus the December average?"
+ },
+ {
+  "qid": "rest_s25_02",
+  "question": "To what inventory system did the restaurant switch in January?"
+ },
+ {
+  "qid": "rest_s25_03",
+  "question": "What is the monthly subscription cost of the new inventory module?"
+ },
+ {
+  "qid": "rest_s25_04",
+  "question": "What food-waste percentage did the restaurant discover in January?"
+ },
+ {
+  "qid": "rest_s25_05",
+  "question": "Which low-margin dish did the head chef drop from the menu in January?"
+ },
+ {
+  "qid": "rest_s25_06",
+  "question": "Which new dish did the head chef add to the menu in January?"
+ },
+ {
+  "qid": "rest_s27_01",
+  "question": "During what dates was the head chef on vacation?"
+ },
+ {
+  "qid": "rest_s27_02",
+  "question": "Who ran the kitchen during the head chef's February vacation?"
+ },
+ {
+  "qid": "rest_s27_03",
+  "question": "What temporary monthly pay bump did the sous chef get while running the kitchen?"
+ },
+ {
+  "qid": "rest_s27_04",
+  "question": "Who was hired as a part-time line cook for vacation coverage?"
+ },
+ {
+  "qid": "rest_s27_05",
+  "question": "Which dish was dropped temporarily during the head chef's vacation coverage?"
+ },
+ {
+  "qid": "rest_s27_06",
+  "question": "During which dates was lunch service paused for the head chef's coverage period?"
+ },
+ {
+  "qid": "rest_s28_01",
+  "question": "To what Tabelog rating did the restaurant climb by the time it had accumulated roughly two dozen reviews?"
+ },
+ {
+  "qid": "rest_s28_02",
+  "question": "How many Tabelog reviews had the restaurant accumulated at the rating check-in that followed the head chef's February vacation?"
+ },
+ {
+  "qid": "rest_s28_03",
+  "question": "Which restaurant critic made an unexpected visit during the head chef's absence?"
+ },
+ {
+  "qid": "rest_s28_04",
+  "question": "For which publication does the restaurant critic who paid the unexpected visit write?"
+ },
+ {
+  "qid": "rest_s28_05",
+  "question": "What was the average dinner ticket time under the sous chef during coverage?"
+ },
+ {
+  "qid": "rest_s28_06",
+  "question": "When was the visiting critic's article expected to be published?"
+ },
+ {
+  "qid": "rest_s29_01",
+  "question": "How many members had signed up for the wine club Cantina Morishita by the Q1 review?"
+ },
+ {
+  "qid": "rest_s29_02",
+  "question": "What was the restaurant's Q1 revenue total?"
+ },
+ {
+  "qid": "rest_s29_04",
+  "question": "By what percentage does the new balsamic supplier save versus the current import?"
+ },
+ {
+  "qid": "rest_s29_05",
+  "question": "On what date did the head chef return from vacation?"
+ },
+ {
+  "qid": "rest_s29_06",
+  "question": "On how many menu items was Kenta considering raising prices at the Q1 review?"
+ },
+ {
+  "qid": "rest_s30_01",
+  "question": "On what date was the critic's review actually published?"
+ },
+ {
+  "qid": "rest_s30_02",
+  "question": "What was the headline of the critic's published review?"
+ },
+ {
+  "qid": "rest_s30_03",
+  "question": "By what factor did reservation requests spike in the 48 hours after the review?"
+ },
+ {
+  "qid": "rest_s30_05",
+  "question": "Which two-word phrase did the review use to praise the restaurant's style ('unfussy ...')?"
+ },
+ {
+  "qid": "rest_s30_06",
+  "question": "In which publication was the restaurant critic's review published?"
+ },
+ {
+  "qid": "rest_s31_01",
+  "question": "To what price was the signature hand-cut pasta dish raised in the April 2026 revision?"
+ },
+ {
+  "qid": "rest_s31_02",
+  "question": "To what price was the 2-course lunch raised in the April 2026 revision?"
+ },
+ {
+  "qid": "rest_s31_03",
+  "question": "To what price was the longer of the two lunch course sets raised in the April 2026 revision?"
+ },
+ {
+  "qid": "rest_s31_04",
+  "question": "To what figure was the dinner average ticket target raised in April 2026?"
+ },
+ {
+  "qid": "rest_s31_05",
+  "question": "By what percentage did switching olive oil save on cost in the April 2026 adjustment?"
+ },
+ {
+  "qid": "rest_s34_01",
+  "question": "How many unique guests did the customer database show at the six-month celebration?"
+ },
+ {
+  "qid": "rest_s34_02",
+  "question": "How many repeat customers did the customer database show at the six-month celebration?"
+ },
+ {
+  "qid": "rest_s34_03",
+  "question": "Who is the restaurant's top repeat customer?"
+ },
+ {
+  "qid": "rest_s34_04",
+  "question": "How many visits had the top repeat customer made by the six-month celebration?"
+ },
+ {
+  "qid": "rest_s34_05",
+  "question": "What was the cumulative revenue since opening at the six-month celebration?"
+ },
+ {
+  "qid": "rest_s36_01",
+  "question": "How many seats will the new private dining room have?"
+ },
+ {
+  "qid": "rest_s36_02",
+  "question": "What was the chosen construction company's cost estimate for the private-room conversion?"
+ },
+ {
+  "qid": "rest_s36_03",
+  "question": "What monthly cost is the nearby basement rental needed after the storage conversion?"
+ },
+ {
+  "qid": "rest_s36_04",
+  "question": "How many weeks was the private-room construction window?"
+ },
+ {
+  "qid": "rest_s36_05",
+  "question": "What is the name of the new private dining room?"
+ },
+ {
+  "qid": "rest_s36_06",
+  "question": "On what date was the private-room construction scheduled to start?"
+ },
+ {
+  "qid": "rest_s37_01",
+  "question": "How many full-time staff did the restaurant have at the HR-formalization stage?"
+ },
+ {
+  "qid": "rest_s37_02",
+  "question": "Which labor consultant helped draft the employee handbook?"
+ },
+ {
+  "qid": "rest_s37_03",
+  "question": "What fee did the labor consultant charge for the employee handbook?"
+ },
+ {
+  "qid": "rest_s37_05",
+  "question": "Who was identified as head-chef successor if the head chef leaves?"
+ },
+ {
+  "qid": "rest_s37_06",
+  "question": "What benefit was added for all full-time staff during HR formalization?"
+ },
+ {
+  "qid": "rest_s38_01",
+  "question": "To what monthly salary was the sous chef raised in the performance-review adjustments?"
+ },
+ {
+  "qid": "rest_s38_02",
+  "question": "To what hourly rate was the longest-tenured part-time server raised in the performance-review adjustments?"
+ },
+ {
+  "qid": "rest_s38_03",
+  "question": "What retention bonus was formalized under the two-year tenure milestone?"
+ },
+ {
+  "qid": "rest_s38_05",
+  "question": "What is the head chef's new monthly base salary after his contract extension?"
+ },
+ {
+  "qid": "rest_s38_06",
+  "question": "For how many full-time staff were performance reviews completed?"
+ },
+ {
+  "qid": "rest_s39_01",
+  "question": "On what date did Marubeni book the restaurant's private dining room?"
+ },
+ {
+  "qid": "rest_s39_02",
+  "question": "For how many people did Marubeni book the private-room dinner?"
+ },
+ {
+  "qid": "rest_s39_04",
+  "question": "What venue fee applies to the private dining room?"
+ },
+ {
+  "qid": "rest_s39_05",
+  "question": "At what price do the private-room wine pairings start?"
+ },
+ {
+  "qid": "rest_s39_06",
+  "question": "How many private events were pre-booked for September in the private dining room?"
+ }
+]

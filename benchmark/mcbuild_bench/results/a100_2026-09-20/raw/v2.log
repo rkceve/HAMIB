@@ -1,0 +1,60 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[MassWeightedGemma] checkpoint architectures: ['Qwen3_5ForConditionalGeneration'] (model_type='qwen3_5', quantized=False) -> AutoModelForCausalLM
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 446.17it/s]
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:   0%|          | 1/851 [00:00<04:45,  2.98it/s]Loading weights:   0%|          | 2/851 [00:00<05:45,  2.46it/s]Loading weights:   2%|▏         | 13/851 [00:00<00:41, 20.35it/s]Loading weights:   3%|▎         | 23/851 [00:01<00:23, 34.63it/s]Loading weights:   4%|▎         | 30/851 [00:01<00:23, 35.22it/s]Loading weights:   5%|▍         | 41/851 [00:01<00:16, 48.25it/s]Loading weights:   6%|▌         | 48/851 [00:01<00:19, 40.30it/s]Loading weights:   7%|▋         | 61/851 [00:01<00:16, 47.54it/s]Loading weights:   8%|▊         | 67/851 [00:01<00:16, 46.37it/s]Loading weights:   9%|▉         | 79/851 [00:02<00:13, 58.63it/s]Loading weights:  10%|█         | 86/851 [00:02<00:14, 54.60it/s]Loading weights:  11%|█         | 94/851 [00:02<00:13, 57.90it/s]Loading weights:  12%|█▏        | 101/851 [00:02<00:15, 47.17it/s]Loading weights:  14%|█▍        | 118/851 [00:02<00:10, 69.81it/s]Loading weights:  15%|█▍        | 127/851 [00:03<00:15, 47.68it/s]Loading weights:  16%|█▌        | 134/851 [00:03<00:15, 47.07it/s]Loading weights:  17%|█▋        | 146/851 [00:03<00:11, 59.00it/s]Loading weights:  18%|█▊        | 154/851 [00:03<00:15, 45.79it/s]Loading weights:  20%|█▉        | 168/851 [00:03<00:11, 61.65it/s]Loading weights:  21%|██        | 177/851 [00:03<00:11, 60.96it/s]Loading weights:  22%|██▏       | 186/851 [00:03<00:10, 65.83it/s]Loading weights:  23%|██▎       | 194/851 [00:04<00:14, 44.99it/s]Loading weights:  24%|██▎       | 201/851 [00:04<00:14, 44.70it/s]Loading weights:  24%|██▍       | 207/851 [00:04<00:14, 44.27it/s]Loading weights:  26%|██▌       | 222/851 [00:04<00:10, 62.23it/s]Loading weights:  27%|██▋       | 230/851 [00:04<00:10, 59.49it/s]Loading weights:  28%|██▊       | 239/851 [00:04<00:09, 65.68it/s]Loading weights:  29%|██▉       | 249/851 [00:05<00:08, 68.05it/s]Loading weights:  30%|███       | 257/851 [00:05<00:09, 62.92it/s]Loading weights:  31%|███       | 264/851 [00:05<00:10, 54.38it/s]Loading weights:  32%|███▏      | 275/851 [00:05<00:08, 66.10it/s]Loading weights:  33%|███▎      | 283/851 [00:05<00:09, 62.49it/s]Loading weights:  34%|███▍      | 291/851 [00:05<00:09, 58.77it/s]Loading weights:  36%|███▌      | 305/851 [00:05<00:07, 74.08it/s]Loading weights:  37%|███▋      | 313/851 [00:06<00:10, 49.59it/s]Loading weights:  39%|███▊      | 328/851 [00:06<00:07, 65.63it/s]Loading weights:  40%|███▉      | 337/851 [00:06<00:08, 61.36it/s]Loading weights:  41%|████      | 345/851 [00:06<00:10, 47.24it/s]Loading weights:  41%|████      | 351/851 [00:06<00:10, 49.40it/s]Loading weights:  42%|████▏     | 357/851 [00:07<00:09, 50.52it/s]Loading weights:  43%|████▎     | 364/851 [00:07<00:09, 50.81it/s]Loading weights:  43%|████▎     | 370/851 [00:07<00:09, 51.48it/s]Loading weights:  45%|████▌     | 384/851 [00:07<00:06, 67.52it/s]Loading weights:  46%|████▋     | 394/851 [00:07<00:06, 72.65it/s]Loading weights:  47%|████▋     | 402/851 [00:07<00:07, 60.55it/s]Loading weights:  48%|████▊     | 409/851 [00:08<00:09, 46.26it/s]Loading weights:  49%|████▉     | 415/851 [00:08<00:10, 43.27it/s]Loading weights:  49%|████▉     | 420/851 [00:08<00:10, 41.93it/s]Loading weights:  51%|█████     | 434/851 [00:08<00:06, 60.67it/s]Loading weights:  52%|█████▏    | 441/851 [00:08<00:07, 55.70it/s]Loading weights:  53%|█████▎    | 451/851 [00:08<00:06, 62.15it/s]Loading weights:  54%|█████▍    | 461/851 [00:08<00:05, 67.42it/s]Loading weights:  55%|█████▌    | 469/851 [00:08<00:06, 59.27it/s]Loading weights:  56%|█████▌    | 476/851 [00:09<00:06, 53.60it/s]Loading weights:  57%|█████▋    | 489/851 [00:09<00:05, 69.98it/s]Loading weights:  58%|█████▊    | 497/851 [00:09<00:05, 62.57it/s]Loading weights:  59%|█████▉    | 504/851 [00:09<00:05, 62.64it/s]Loading weights:  60%|██████    | 511/851 [00:09<00:05, 63.07it/s]Loading weights:  61%|██████    | 518/851 [00:09<00:05, 63.81it/s]Loading weights:  62%|██████▏   | 525/851 [00:09<00:06, 48.62it/s]Loading weights:  63%|██████▎   | 537/851 [00:10<00:04, 63.91it/s]Loading weights:  64%|██████▍   | 545/851 [00:10<00:05, 54.96it/s]Loading weights:  65%|██████▌   | 557/851 [00:10<00:04, 66.37it/s]Loading weights:  66%|██████▋   | 565/851 [00:10<00:04, 68.74it/s]Loading weights:  67%|██████▋   | 573/851 [00:10<00:05, 54.15it/s]Loading weights:  68%|██████▊   | 580/851 [00:10<00:05, 51.43it/s]Loading weights:  70%|██████▉   | 593/851 [00:11<00:03, 66.10it/s]Loading weights:  71%|███████   | 601/851 [00:11<00:04, 60.28it/s]Loading weights:  72%|███████▏  | 610/851 [00:11<00:03, 64.11it/s]Loading weights:  73%|███████▎  | 617/851 [00:11<00:03, 64.12it/s]Loading weights:  73%|███████▎  | 624/851 [00:11<00:03, 65.08it/s]Loading weights:  74%|███████▍  | 631/851 [00:11<00:04, 50.17it/s]Loading weights:  76%|███████▌  | 646/851 [00:11<00:02, 69.82it/s]Loading weights:  77%|███████▋  | 654/851 [00:12<00:03, 62.64it/s]Loading weights:  78%|███████▊  | 662/851 [00:12<00:02, 66.52it/s]Loading weights:  79%|███████▉  | 672/851 [00:12<00:02, 70.21it/s]Loading weights:  80%|███████▉  | 680/851 [00:12<00:02, 58.55it/s]Loading weights:  81%|████████  | 687/851 [00:12<00:03, 53.77it/s]Loading weights:  82%|████████▏ | 701/851 [00:12<00:02, 72.29it/s]Loading weights:  83%|████████▎ | 710/851 [00:12<00:02, 55.81it/s]Loading weights:  84%|████████▍ | 717/851 [00:13<00:02, 58.39it/s]Loading weights:  85%|████████▌ | 727/851 [00:13<00:01, 64.08it/s]Loading weights:  86%|████████▋ | 735/851 [00:13<00:02, 56.25it/s]Loading weights:  87%|████████▋ | 742/851 [00:13<00:01, 55.48it/s]Loading weights:  89%|████████▊ | 755/851 [00:13<00:01, 67.46it/s]Loading weights:  90%|████████▉ | 763/851 [00:13<00:01, 69.28it/s]Loading weights:  91%|█████████ | 771/851 [00:13<00:01, 57.80it/s]Loading weights:  91%|█████████▏| 778/851 [00:14<00:01, 47.52it/s]Loading weights:  92%|█████████▏| 784/851 [00:14<00:01, 46.52it/s]Loading weights:  93%|█████████▎| 790/851 [00:14<00:01, 39.82it/s]Loading weights:  95%|█████████▍| 805/851 [00:14<00:00, 59.87it/s]Loading weights:  96%|█████████▌| 813/851 [00:14<00:00, 54.85it/s]Loading weights:  97%|█████████▋| 822/851 [00:14<00:00, 59.65it/s]Loading weights:  97%|█████████▋| 829/851 [00:15<00:00, 61.56it/s]Loading weights:  98%|█████████▊| 836/851 [00:15<00:00, 63.12it/s]Loading weights:  99%|█████████▉| 843/851 [00:15<00:00, 49.85it/s]Loading weights: 100%|██████████| 851/851 [00:15<00:00, 55.22it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[MassWeightedGemma] patched scaled_dot_product_attention
+[MassWeightedGemma] loaded: Qwen/Qwen3.8-27B as Qwen3_5ForCausalLM loading_info={'missing': 0, 'unexpected': 0, 'mismatched': 0}
+{
+ "model_id": "Qwen/Qwen3.8-27B",
+ "torch": "2.11.0+cu128",
+ "transformers": "5.17.0",
+ "kernels": {
+  "fla_importable": true,
+  "fla_version": "0.5.2",
+  "causal_conv1d_importable": false,
+  "torch_cuda_available": true,
+  "fast_path_available": false,
+  "would_use_torch_fallback": true,
+  "error": null
+ },
+ "load_s": 27.2,
+ "loaded_class_name": "Qwen3_5ForCausalLM",
+ "loading_info": {
+  "missing": 0,
+  "unexpected": 0,
+  "mismatched": 0
+ },
+ "attn_implementation": "sdpa",
+ "n_sdpa_layers": 16,
+ "n_linear_layers": 48,
+ "linear_module_classes": [
+  "Linear"
+ ],
+ "mem_after_load_gb": 50.1,
+ "forward_512_s": 39.08,
+ "answer_512": "\n\nfox",
+ "peak_mem_after_512_gb": 50.47,
+ "stats_after_512": {
+  "bias_applied_calls": 0,
+  "bias_skipped_prefill_calls": 0,
+  "bias_skipped_sliding_calls": 0
+ },
+ "last_generated_tokens": 3,
+ "last_prefill_ms": 38296.77976295352,
+ "last_decode_ms": 769.3251222372055,
+ "gen_2000_total_s": 10.03,
+ "gen_2000_prefill_ms": 9846.374329179525,
+ "gen_2000_s_per_token": 0.087,
+ "peak_mem_gb": 50.81,
+ "checks": {
+  "sdpa": true,
+  "n_sdpa_layers_16": true,
+  "fla_importable": true,
+  "no_missing_weights": true,
+  "packed_memory": true
+ },
+ "pass": true
+}
+V2 PASS

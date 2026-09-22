@@ -1,0 +1,3251 @@
+[
+  {
+    "qid": "rest_q01",
+    "source_session": 1,
+    "fact_quote": "working at Marubeni Corporation for 11 years",
+    "question": "How many years had Kenta Morishita worked at Marubeni Corporation before deciding to open a restaurant?",
+    "gold_short": "11 years",
+    "tier1_aliases": [
+      "11"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q02",
+    "source_session": 3,
+    "fact_quote": "office is at 2-7-3 Shibuya, Daiichi-Bunko Building 5F",
+    "question": "In which building and floor is the office of Kenta's accountant Hiroshi Tanabe located?",
+    "gold_short": "Daiichi-Bunko Building 5F",
+    "tier1_aliases": [
+      "Daiichi-Bunko Building",
+      "5F"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q03",
+    "source_session": 5,
+    "fact_quote": "key money came out to 2,922,000 yen",
+    "question": "What was the key money amount Kenta paid when signing the lease for the Higashi-Azabu restaurant space?",
+    "gold_short": "2,922,000 yen",
+    "tier1_aliases": [
+      "2,922,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q04",
+    "source_session": 11,
+    "fact_quote": "we settled on 47 labels for the opening list",
+    "question": "How many distinct wine labels were included in Osteria Morishita's opening cellar order from Nakata Shoji?",
+    "gold_short": "47 labels",
+    "tier1_aliases": [
+      "47"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q05",
+    "source_session": 13,
+    "fact_quote": "most recent position was at Ristorante Acqua Pazza",
+    "question": "At which Daikanyama restaurant had head chef Marco Petrelli worked most recently before joining Osteria Morishita?",
+    "gold_short": "Ristorante Acqua Pazza",
+    "tier1_aliases": [
+      "Acqua Pazza"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q06",
+    "source_session": 14,
+    "fact_quote": "The health inspector's name was Mr. Ogawa",
+    "question": "What was the name of the health inspector who conducted the initial permit inspection of Osteria Morishita?",
+    "gold_short": "Mr. Ogawa",
+    "tier1_aliases": [
+      "Ogawa"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q07",
+    "source_session": 15,
+    "fact_quote": "2,400 yen for the tagliatelle",
+    "question": "What was the original price of the signature tagliatelle al ragu bolognese when the menu was first finalized?",
+    "gold_short": "2,400 yen",
+    "tier1_aliases": [
+      "2,400"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q08",
+    "source_session": 23,
+    "fact_quote": "bringing her in at 1,400 yen per hour",
+    "question": "What hourly rate was Mrs. Yoneda hired at when she joined Osteria Morishita as dishwasher in December 2025?",
+    "gold_short": "1,400 yen per hour",
+    "tier1_aliases": [
+      "1,400 yen",
+      "1,400"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q09",
+    "source_session": 12,
+    "fact_quote": "Decision to rename from 'Ginza Trattoria' to 'Osteria Morishita'",
+    "question": "What is the current name of Kenta's restaurant? (It was changed from the original working name.)",
+    "gold_short": "Osteria Morishita",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q10",
+    "source_session": 31,
+    "fact_quote": "raised from 2,400 to 2,700 yen",
+    "question": "What is the current price of the tagliatelle al ragu bolognese after the April 2026 menu revision?",
+    "gold_short": "2,700 yen",
+    "tier1_aliases": [
+      "2,700"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q11",
+    "source_session": 28,
+    "fact_quote": "currently sitting at a 3.61 rating after 24 reviews",
+    "question": "What is Osteria Morishita's most recent Tabelog rating mentioned in the chat? (It started at 3.42 and rose over time.)",
+    "gold_short": "3.61",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q12",
+    "source_session": 31,
+    "fact_quote": "the 2-course went up to 2,000 yen",
+    "question": "What is the current price of the 2-course lunch set at Osteria Morishita after the April 2026 revision? (It was originally 1,800 yen.)",
+    "gold_short": "2,000 yen",
+    "tier1_aliases": [
+      "2,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q13",
+    "source_session": 23,
+    "fact_quote": "We landed on a 12,000 yen per person fixed menu",
+    "question": "Kenta worked for years at a large trading company before opening his restaurant. That same former employer later hosted a private dinner at Osteria Morishita. What per-person price was charged for that corporate dinner?",
+    "gold_short": "12,000 yen per person",
+    "tier1_aliases": [
+      "12,000 yen",
+      "12,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q14",
+    "source_session": 14,
+    "fact_quote": "four days past the contractual target",
+    "question": "The renovation of Kenta's Higashi-Azabu property was completed late. How many days past the projected completion date did the renovation finish?",
+    "gold_short": "four days",
+    "tier1_aliases": [
+      "4 days",
+      "four",
+      "4"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q15",
+    "source_session": 11,
+    "fact_quote": "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura",
+    "question": "Kenta's wine account manager Mariko Nakata was originally introduced to Kenta by a sommelier friend. Where did that sommelier friend work?",
+    "gold_short": "Hotel Okura",
+    "tier1_aliases": [
+      "Okura"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_q16",
+    "source_session": 29,
+    "fact_quote": "Cantina Morishita ... currently has 23 members signed",
+    "question": "When Kenta reviewed Q1 2026 results, how many members had signed up for the wine club Cantina Morishita?",
+    "gold_short": "23 members",
+    "tier1_aliases": [
+      "23"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": true
+  },
+  {
+    "qid": "rest_s01_01",
+    "source_session": 1,
+    "fact_quote": "User name: Kenta Morishita, age 34",
+    "question": "What is the age of Kenta Morishita, the user planning the restaurant, as stated at the start?",
+    "gold_short": "34",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s01_02",
+    "source_session": 1,
+    "fact_quote": "Quitting job at Marubeni Corporation after 11 years",
+    "question": "How many years did Kenta work at Marubeni Corporation before quitting?",
+    "gold_short": "11 years",
+    "tier1_aliases": [
+      "11"
+    ],
+    "excluded": true,
+    "exclusion_reason": "the '11 vs 15 years at Marubeni' inconsistency (legacy Q1); generated duplicate excluded",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s01_03",
+    "source_session": 1,
+    "fact_quote": "Savings: 28 million yen",
+    "question": "How much personal savings did Kenta have when he started planning the restaurant?",
+    "gold_short": "28 million yen",
+    "tier1_aliases": [
+      "28 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s01_04",
+    "source_session": 1,
+    "fact_quote": "Initial restaurant name idea: 'Ginza Trattoria'",
+    "question": "What was Kenta's initial working name idea for the restaurant in session 1?",
+    "gold_short": "Ginza Trattoria",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s01_05",
+    "source_session": 1,
+    "fact_quote": "studied at Hotel School of Bologna for 3 weeks",
+    "question": "For how long did Kenta study at the Hotel School of Bologna during his 2019 trip?",
+    "gold_short": "3 weeks",
+    "tier1_aliases": [
+      "three weeks"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s01_06",
+    "source_session": 1,
+    "fact_quote": "Wife: Ayako Morishita",
+    "question": "What is the name of Kenta's wife who supports the restaurant plan?",
+    "gold_short": "Ayako Morishita",
+    "tier1_aliases": [
+      "Ayako"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_01",
+    "source_session": 2,
+    "fact_quote": "Visited 14 Italian restaurants in 2 weeks",
+    "question": "How many Italian restaurants did Kenta visit during his two weeks of market research?",
+    "gold_short": "14",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_02",
+    "source_session": 2,
+    "fact_quote": "Average ticket size target: 8,500 yen per person dinner",
+    "question": "What dinner average ticket size per person did Kenta target during market research?",
+    "gold_short": "8,500 yen",
+    "tier1_aliases": [
+      "8,500"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_03",
+    "source_session": 2,
+    "fact_quote": "Lunch target: 1,800 yen set",
+    "question": "What lunch set price did Kenta target during market research?",
+    "gold_short": "1,800 yen",
+    "tier1_aliases": [
+      "1,800"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_04",
+    "source_session": 2,
+    "fact_quote": "Benchmark restaurants: Ristorante Aso in Daikanyama",
+    "question": "Which Daikanyama benchmark restaurant did Kenta name during market research (Ristorante ...)?",
+    "gold_short": "Ristorante Aso",
+    "tier1_aliases": [
+      "Aso"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_05",
+    "source_session": 2,
+    "fact_quote": "Identified gap: northern Italian (Emilia-Romagna) underrepresented",
+    "question": "Which region of Italian cuisine did Kenta identify as an underrepresented gap in Tokyo?",
+    "gold_short": "Emilia-Romagna",
+    "tier1_aliases": [
+      "northern Italian"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s02_06",
+    "source_session": 2,
+    "fact_quote": "Heinz Beck in Marunouchi",
+    "question": "In which Tokyo district did Kenta name Heinz Beck as a benchmark restaurant?",
+    "gold_short": "Marunouchi",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_01",
+    "source_session": 3,
+    "fact_quote": "Projected monthly revenue at full capacity: 4.2 million yen",
+    "question": "What monthly revenue at full capacity did Kenta's business plan project?",
+    "gold_short": "4.2 million yen",
+    "tier1_aliases": [
+      "4.2 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_02",
+    "source_session": 3,
+    "fact_quote": "Breakeven: 38 covers per day average",
+    "question": "How many covers per day on average did the business plan set as breakeven?",
+    "gold_short": "38 covers",
+    "tier1_aliases": [
+      "38"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_03",
+    "source_session": 3,
+    "fact_quote": "Working with accountant: Hiroshi Tanabe of Tanabe & Partners",
+    "question": "What is the name of Kenta's accountant?",
+    "gold_short": "Hiroshi Tanabe",
+    "tier1_aliases": [
+      "Tanabe"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_04",
+    "source_session": 3,
+    "fact_quote": "Loan plan: Japan Finance Corporation, applying for 15 million yen at 1.85%",
+    "question": "How much loan did Kenta initially apply for from Japan Finance Corporation?",
+    "gold_short": "15 million yen",
+    "tier1_aliases": [
+      "15 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_05",
+    "source_session": 3,
+    "fact_quote": "applying for 15 million yen at 1.85%",
+    "question": "At what interest rate did Kenta initially apply for the Japan Finance Corporation loan?",
+    "gold_short": "1.85%",
+    "tier1_aliases": [
+      "1.85"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s03_06",
+    "source_session": 3,
+    "fact_quote": "Tanabe office address: 2-7-3 Shibuya",
+    "question": "On which street address is the office of Kenta's accountant located?",
+    "gold_short": "2-7-3 Shibuya",
+    "tier1_aliases": [
+      "Shibuya"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_01",
+    "source_session": 4,
+    "fact_quote": "Scouted 23 properties via real estate broker Yusuke Hamada of Plaza Homes Commercial",
+    "question": "How many properties did Kenta scout with his real estate broker?",
+    "gold_short": "23 properties",
+    "tier1_aliases": [
+      "23"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_02",
+    "source_session": 4,
+    "fact_quote": "real estate broker Yusuke Hamada of Plaza Homes Commercial",
+    "question": "What is the name of the real estate broker who helped Kenta scout properties?",
+    "gold_short": "Yusuke Hamada",
+    "tier1_aliases": [
+      "Hamada"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_03",
+    "source_session": 4,
+    "fact_quote": "Hamada cellphone introduced through college friend Daichi Sasaki",
+    "question": "Which college friend introduced Kenta to his real estate broker?",
+    "gold_short": "Daichi Sasaki",
+    "tier1_aliases": [
+      "Sasaki"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_04",
+    "source_session": 4,
+    "fact_quote": "Ruled out Ginza due to rent (above 95,000 yen per tsubo)",
+    "question": "Above what per-tsubo rent did Kenta rule out Ginza as a location?",
+    "gold_short": "95,000 yen per tsubo",
+    "tier1_aliases": [
+      "95,000 yen",
+      "95,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_05",
+    "source_session": 4,
+    "fact_quote": "broker Yusuke Hamada of Plaza Homes Commercial",
+    "question": "For which agency does Kenta's real estate broker work?",
+    "gold_short": "Plaza Homes Commercial",
+    "tier1_aliases": [
+      "Plaza Homes"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s04_06",
+    "source_session": 4,
+    "fact_quote": "Areas considered: Nishi-Azabu, Higashi-Azabu, Hiroo, Yoyogi-Uehara, Kagurazaka",
+    "question": "Name one of the neighborhoods Kenta considered besides Higashi-Azabu (e.g. Yoyogi-...).",
+    "gold_short": "Yoyogi-Uehara",
+    "tier1_aliases": [
+      "Nishi-Azabu",
+      "Hiroo",
+      "Kagurazaka"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_01",
+    "source_session": 5,
+    "fact_quote": "Signed lease at 3-14-7 Higashi-Azabu, Minato-ku, 1st floor of Azabu Heights Building",
+    "question": "In which building did Kenta sign the lease for his restaurant?",
+    "gold_short": "Azabu Heights Building",
+    "tier1_aliases": [
+      "Azabu Heights"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_02",
+    "source_session": 5,
+    "fact_quote": "Floor area: 64.5 square meters (about 19.5 tsubo)",
+    "question": "What is the floor area in square meters of the leased restaurant space?",
+    "gold_short": "64.5 square meters",
+    "tier1_aliases": [
+      "64.5"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_03",
+    "source_session": 5,
+    "fact_quote": "Rent: 487,000 yen per month",
+    "question": "What is the monthly rent for Kenta's restaurant space?",
+    "gold_short": "487,000 yen",
+    "tier1_aliases": [
+      "487,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_04",
+    "source_session": 5,
+    "fact_quote": "plus 73,000 yen common area fee",
+    "question": "What is the monthly common area fee for the restaurant space?",
+    "gold_short": "73,000 yen",
+    "tier1_aliases": [
+      "73,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_05",
+    "source_session": 5,
+    "fact_quote": "Lease term: 4 years renewable",
+    "question": "What is the lease term length for the restaurant space?",
+    "gold_short": "4 years",
+    "tier1_aliases": [
+      "four years"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s05_06",
+    "source_session": 5,
+    "fact_quote": "Previous tenant: small French bistro that closed October 2024",
+    "question": "What kind of business was the previous tenant of the restaurant space?",
+    "gold_short": "French bistro",
+    "tier1_aliases": [
+      "bistro"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_01",
+    "source_session": 6,
+    "fact_quote": "Selected Yamamoto Koumuten led by Tetsuo Yamamoto",
+    "question": "Which contractor did Kenta select for the renovation?",
+    "gold_short": "Yamamoto Koumuten",
+    "tier1_aliases": [
+      "Yamamoto"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_02",
+    "source_session": 6,
+    "fact_quote": "led by Tetsuo Yamamoto",
+    "question": "Who leads the contractor firm Kenta selected for renovation?",
+    "gold_short": "Tetsuo Yamamoto",
+    "tier1_aliases": [
+      "Yamamoto"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_03",
+    "source_session": 6,
+    "fact_quote": "Renovation budget: 8.4 million yen",
+    "question": "What was the initial renovation budget?",
+    "gold_short": "8.4 million yen",
+    "tier1_aliases": [
+      "8.4 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_04",
+    "source_session": 6,
+    "fact_quote": "Yamamoto suggested supplier 'Forno Bravo Japan' for the wood-fired oven",
+    "question": "Which supplier did the contractor suggest for the wood-fired oven?",
+    "gold_short": "Forno Bravo Japan",
+    "tier1_aliases": [
+      "Forno Bravo"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_05",
+    "source_session": 6,
+    "fact_quote": "Three quotes from contractors: Kenchiku Plus, Yamamoto Koumuten, Sasaki Design Build",
+    "question": "How many contractor quotes did Kenta obtain for the renovation?",
+    "gold_short": "three quotes",
+    "tier1_aliases": [
+      "3 quotes",
+      "three",
+      "3"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s06_06",
+    "source_session": 6,
+    "fact_quote": "use open kitchen with brick-faced pizza oven facing dining room",
+    "question": "What kitchen layout did the contractor recommend (with the oven facing the dining room)?",
+    "gold_short": "open kitchen",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_01",
+    "source_session": 7,
+    "fact_quote": "Japan Finance Corporation approved 12 million yen (3 million below request) at 1.95%",
+    "question": "How much did the Japan Finance Corporation ultimately approve for Kenta's loan?",
+    "gold_short": "12 million yen",
+    "tier1_aliases": [
+      "12 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_02",
+    "source_session": 7,
+    "fact_quote": "approved 12 million yen (3 million below request) at 1.95%",
+    "question": "At what interest rate was Kenta's Japan Finance Corporation loan finally approved?",
+    "gold_short": "1.95%",
+    "tier1_aliases": [
+      "1.95"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_03",
+    "source_session": 7,
+    "fact_quote": "Total opening capital secured: 36 million yen",
+    "question": "What total opening capital did Kenta secure after the loan approval?",
+    "gold_short": "36 million yen",
+    "tier1_aliases": [
+      "36 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_04",
+    "source_session": 7,
+    "fact_quote": "12 million yen (3 million below request)",
+    "question": "By how much was Kenta's approved loan below his original request?",
+    "gold_short": "3 million",
+    "tier1_aliases": [
+      "3 million yen",
+      "three million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_05",
+    "source_session": 7,
+    "fact_quote": "Decision to scale back interior finishing to compensate",
+    "question": "What did Kenta decide to scale back to compensate for the smaller loan?",
+    "gold_short": "interior finishing",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s07_06",
+    "source_session": 7,
+    "fact_quote": "28M savings + 12M loan minus expenses already incurred",
+    "question": "The 36 million opening capital combined savings with what other source?",
+    "gold_short": "loan",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "gold not uniquely determined: session names four capital sources, so 'what other source' has no single answer (results/audit/audit_batch_0.json rest_s07_06)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_01",
+    "source_session": 8,
+    "fact_quote": "Renovation started June 9, 2025, projected completion August 22",
+    "question": "On what date was the renovation projected to be completed (at kickoff)?",
+    "gold_short": "August 22",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_02",
+    "source_session": 8,
+    "fact_quote": "Renovation started June 9, 2025",
+    "question": "On what date did the renovation start?",
+    "gold_short": "June 9, 2025",
+    "tier1_aliases": [
+      "June 9"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_03",
+    "source_session": 8,
+    "fact_quote": "Floor: white oak engineered plank from Toyo Wood Works",
+    "question": "What flooring material was chosen for the restaurant?",
+    "gold_short": "white oak engineered plank",
+    "tier1_aliases": [
+      "white oak"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_04",
+    "source_session": 8,
+    "fact_quote": "white oak engineered plank from Toyo Wood Works",
+    "question": "Which company supplied the restaurant's flooring?",
+    "gold_short": "Toyo Wood Works",
+    "tier1_aliases": [
+      "Toyo Wood"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_05",
+    "source_session": 8,
+    "fact_quote": "Walls: limestone-finish plaster (Italian product Marmorino imported via Tokai Sangyo)",
+    "question": "What Italian wall-plaster product was used in the restaurant?",
+    "gold_short": "Marmorino",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s08_06",
+    "source_session": 8,
+    "fact_quote": "single accessible unisex instead of split",
+    "question": "What bathroom layout did the architect suggest instead of a split layout?",
+    "gold_short": "single accessible unisex",
+    "tier1_aliases": [
+      "unisex"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_01",
+    "source_session": 9,
+    "fact_quote": "Wood-fired pizza oven ordered from Forno Bravo Japan: model 'Modena 100', cost 1.6 million yen",
+    "question": "What is the model name of the wood-fired pizza oven Kenta ordered?",
+    "gold_short": "Modena 100",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_02",
+    "source_session": 9,
+    "fact_quote": "model 'Modena 100', cost 1.6 million yen",
+    "question": "How much did the wood-fired pizza oven cost?",
+    "gold_short": "1.6 million yen",
+    "tier1_aliases": [
+      "1.6 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_03",
+    "source_session": 9,
+    "fact_quote": "Pasta extruder: La Monferrina P3, cost 580,000 yen",
+    "question": "What model of pasta extruder did Kenta buy?",
+    "gold_short": "La Monferrina P3",
+    "tier1_aliases": [
+      "La Monferrina"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_04",
+    "source_session": 9,
+    "fact_quote": "Pasta extruder: La Monferrina P3, cost 580,000 yen",
+    "question": "How much did the pasta extruder cost?",
+    "gold_short": "580,000 yen",
+    "tier1_aliases": [
+      "580,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_05",
+    "source_session": 9,
+    "fact_quote": "Refrigeration: 2 Hoshizaki upright units, total 720,000 yen",
+    "question": "Which brand of refrigeration units did Kenta buy?",
+    "gold_short": "Hoshizaki",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s09_06",
+    "source_session": 9,
+    "fact_quote": "Decided against rotisserie - too niche for menu",
+    "question": "What piece of equipment did Kenta decide against as too niche for the menu?",
+    "gold_short": "rotisserie",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_01",
+    "source_session": 10,
+    "fact_quote": "Olive oil supplier: Solleone Japan, sourcing Frantoio Franci EVOO at 4,200 yen per 500ml",
+    "question": "Which olive oil brand did Kenta source at opening (Frantoio ...)?",
+    "gold_short": "Frantoio Franci",
+    "tier1_aliases": [
+      "Frantoio"
+    ],
+    "excluded": true,
+    "exclusion_reason": "self-leak: question text contains its own gold (results/pilot/floor_leak_analysis.json 'self_leak')",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_02",
+    "source_session": 10,
+    "fact_quote": "Frantoio Franci EVOO at 4,200 yen per 500ml",
+    "question": "What was the price per 500ml of the opening olive oil?",
+    "gold_short": "4,200 yen",
+    "tier1_aliases": [
+      "4,200"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_03",
+    "source_session": 10,
+    "fact_quote": "Flour: Caputo 00 imported through Suzuki Foods, 3,800 yen per 25kg sack",
+    "question": "Which flour did Kenta use, imported through Suzuki Foods?",
+    "gold_short": "Caputo 00",
+    "tier1_aliases": [
+      "Caputo"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_04",
+    "source_session": 10,
+    "fact_quote": "Produce: morning delivery from Tsukiji-Ota Market via broker Kenji Ueno of Ueno Seika",
+    "question": "What is the name of the produce broker who delivers to the restaurant each morning?",
+    "gold_short": "Kenji Ueno",
+    "tier1_aliases": [
+      "Ueno"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_05",
+    "source_session": 10,
+    "fact_quote": "3,800 yen per 25kg sack",
+    "question": "What was the price per 25kg sack of the restaurant's flour?",
+    "gold_short": "3,800 yen",
+    "tier1_aliases": [
+      "3,800"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s10_06",
+    "source_session": 10,
+    "fact_quote": "Ueno introduced through accountant Tanabe",
+    "question": "Through which of Kenta's advisers was the produce broker introduced to him?",
+    "gold_short": "Tanabe",
+    "tier1_aliases": [
+      "accountant Tanabe"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_01",
+    "source_session": 11,
+    "fact_quote": "Wine supplier: Nakata Shoji",
+    "question": "What is the name of Kenta's wine supplier company?",
+    "gold_short": "Nakata Shoji",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_02",
+    "source_session": 11,
+    "fact_quote": "Account manager: Mariko Nakata, daughter of company president",
+    "question": "Who is Kenta's wine account manager at the cellar supplier?",
+    "gold_short": "Mariko Nakata",
+    "tier1_aliases": [
+      "Mariko"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_03",
+    "source_session": 11,
+    "fact_quote": "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura",
+    "question": "What is the name of the sommelier friend who introduced Kenta's wine account manager to him?",
+    "gold_short": "Reiko Igarashi",
+    "tier1_aliases": [
+      "Igarashi"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_04",
+    "source_session": 11,
+    "fact_quote": "Initial cellar: 280 bottles across 47 labels",
+    "question": "How many bottles were in the initial wine cellar?",
+    "gold_short": "280 bottles",
+    "tier1_aliases": [
+      "280"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_05",
+    "source_session": 11,
+    "fact_quote": "60% Italian, 25% French, 15% Japanese",
+    "question": "What percentage of the initial cellar was Italian wine?",
+    "gold_short": "60%",
+    "tier1_aliases": [
+      "60"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s11_06",
+    "source_session": 11,
+    "fact_quote": "Opening cost for wine inventory: 1.85 million yen",
+    "question": "What was the opening cost for the wine inventory?",
+    "gold_short": "1.85 million yen",
+    "tier1_aliases": [
+      "1.85 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_01",
+    "source_session": 12,
+    "fact_quote": "Decision to rename from 'Ginza Trattoria' to 'Osteria Morishita'",
+    "question": "To what name did Kenta rename the restaurant in session 12?",
+    "gold_short": "Osteria Morishita",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_02",
+    "source_session": 12,
+    "fact_quote": "'Ginza Trattoria' confusing since restaurant is in Azabu",
+    "question": "In which district is the restaurant located, a mismatch that made its original working name confusing?",
+    "gold_short": "Azabu",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_03",
+    "source_session": 12,
+    "fact_quote": "Logo designed by Aiko Fujimoto, freelance designer, fee 320,000 yen",
+    "question": "Who designed the restaurant's logo?",
+    "gold_short": "Aiko Fujimoto",
+    "tier1_aliases": [
+      "Fujimoto"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_04",
+    "source_session": 12,
+    "fact_quote": "fee 320,000 yen",
+    "question": "What fee did the logo designer charge?",
+    "gold_short": "320,000 yen",
+    "tier1_aliases": [
+      "320,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_05",
+    "source_session": 12,
+    "fact_quote": "Brand colors: terracotta and ivory",
+    "question": "What two brand colors were chosen for the restaurant?",
+    "gold_short": "terracotta and ivory",
+    "tier1_aliases": [
+      "terracotta",
+      "ivory"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s12_06",
+    "source_session": 12,
+    "fact_quote": "Domain registered: osteria-morishita.tokyo",
+    "question": "What web domain did Kenta register for the restaurant?",
+    "gold_short": "osteria-morishita.tokyo",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_01",
+    "source_session": 13,
+    "fact_quote": "Hired head chef: Marco Petrelli, 38 years old, Italian national from Modena",
+    "question": "What is the name of the head chef Kenta hired?",
+    "gold_short": "Marco Petrelli",
+    "tier1_aliases": [
+      "Petrelli"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_02",
+    "source_session": 13,
+    "fact_quote": "Marco Petrelli, 38 years old",
+    "question": "How old is the head chef?",
+    "gold_short": "38",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_03",
+    "source_session": 13,
+    "fact_quote": "Italian national from Modena",
+    "question": "From which Italian city is the head chef?",
+    "gold_short": "Modena",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_04",
+    "source_session": 13,
+    "fact_quote": "Petrelli previously sous chef at Ristorante Acqua Pazza in Daikanyama for 4 years",
+    "question": "For how many years was the head chef a sous chef at Ristorante Acqua Pazza before joining?",
+    "gold_short": "3 years",
+    "tier1_aliases": [
+      "three years"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_05",
+    "source_session": 13,
+    "fact_quote": "Salary: 720,000 yen monthly, 13-month bonus structure",
+    "question": "What monthly salary was the head chef hired at?",
+    "gold_short": "720,000 yen",
+    "tier1_aliases": [
+      "720,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s13_06",
+    "source_session": 13,
+    "fact_quote": "Petrelli will start September 1, 2025",
+    "question": "On what date did the head chef start?",
+    "gold_short": "September 1, 2025",
+    "tier1_aliases": [
+      "September 1"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_01",
+    "source_session": 14,
+    "fact_quote": "Renovation completed August 26 (4 days late)",
+    "question": "On what date was the renovation actually completed?",
+    "gold_short": "August 26",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_02",
+    "source_session": 14,
+    "fact_quote": "Final renovation cost: 8.87 million yen (470,000 yen over budget)",
+    "question": "What was the final total renovation cost?",
+    "gold_short": "8.87 million yen",
+    "tier1_aliases": [
+      "8.87 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_03",
+    "source_session": 14,
+    "fact_quote": "470,000 yen over budget",
+    "question": "By how much did the final renovation cost exceed budget?",
+    "gold_short": "470,000 yen",
+    "tier1_aliases": [
+      "470,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_04",
+    "source_session": 14,
+    "fact_quote": "Health permit inspector: Mr. Ogawa, Minato Ward Health Department",
+    "question": "From which ward's health department did inspector Mr. Ogawa come?",
+    "gold_short": "Minato Ward",
+    "tier1_aliases": [
+      "Minato"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_05",
+    "source_session": 14,
+    "fact_quote": "Overage due to electrical panel upgrade required by inspection",
+    "question": "What upgrade caused the renovation budget overage?",
+    "gold_short": "electrical panel upgrade",
+    "tier1_aliases": [
+      "electrical panel"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s14_06",
+    "source_session": 14,
+    "fact_quote": "renovation finished ... four days past the contractual target",
+    "question": "How many days late was the renovation completed?",
+    "gold_short": "4 days",
+    "tier1_aliases": [
+      "four days",
+      "four",
+      "4"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_01",
+    "source_session": 15,
+    "fact_quote": "Signature dish: tagliatelle al ragu bolognese, hand-cut, 2,400 yen",
+    "question": "What was the initial price of the restaurant's signature hand-cut pasta dish?",
+    "gold_short": "2,400 yen",
+    "tier1_aliases": [
+      "2,400"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_02",
+    "source_session": 15,
+    "fact_quote": "Final menu: 6 antipasti, 5 primi (3 pasta + 2 risotto), 4 secondi, 3 desserts",
+    "question": "How many antipasti were on the finalized menu?",
+    "gold_short": "6 antipasti",
+    "tier1_aliases": [
+      "6"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_03",
+    "source_session": 15,
+    "fact_quote": "Lunch menu: 2 courses 1,800 yen, 3 courses 2,400 yen",
+    "question": "What was the initial price of the 2-course lunch menu?",
+    "gold_short": "1,800 yen",
+    "tier1_aliases": [
+      "1,800"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_04",
+    "source_session": 15,
+    "fact_quote": "Dinner average ticket projection revised down: 7,800 yen per person",
+    "question": "To what per-person figure was the dinner average ticket projection revised down at menu finalization?",
+    "gold_short": "7,800 yen",
+    "tier1_aliases": [
+      "7,800"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_05",
+    "source_session": 15,
+    "fact_quote": "Pizza: not on menu - oven used for focaccia and roasted secondi only",
+    "question": "Was pizza on the finalized menu? (State what the oven is used for instead.)",
+    "gold_short": "focaccia",
+    "tier1_aliases": [
+      "not on menu",
+      "roasted secondi"
+    ],
+    "excluded": true,
+    "exclusion_reason": "yes/no surface form and non-unique answer (results/audit/mechanical_screens.json 'yes_no_form'; audit uniquely_determined=no)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s15_06",
+    "source_session": 15,
+    "fact_quote": "Signature dish: tagliatelle al ragu bolognese, hand-cut",
+    "question": "What is the signature pasta dish on the menu?",
+    "gold_short": "tagliatelle al ragu bolognese",
+    "tier1_aliases": [
+      "tagliatelle"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_01",
+    "source_session": 16,
+    "fact_quote": "Sous chef hired: Haruki Nakajima, 29 years old, previously at Trattoria Goccia",
+    "question": "What is the name of the sous chef Kenta hired?",
+    "gold_short": "Haruki Nakajima",
+    "tier1_aliases": [
+      "Nakajima"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_02",
+    "source_session": 16,
+    "fact_quote": "Nakajima salary: 380,000 yen monthly",
+    "question": "What monthly salary was the sous chef hired at?",
+    "gold_short": "380,000 yen",
+    "tier1_aliases": [
+      "380,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_03",
+    "source_session": 16,
+    "fact_quote": "Service manager: Eiko Sawada, 41 years old, hotel background, salary 460,000 yen",
+    "question": "What is the name of the service manager Kenta hired?",
+    "gold_short": "Eiko Sawada",
+    "tier1_aliases": [
+      "Sawada"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_04",
+    "source_session": 16,
+    "fact_quote": "salary 460,000 yen",
+    "question": "What monthly salary was the service manager hired at?",
+    "gold_short": "460,000 yen",
+    "tier1_aliases": [
+      "460,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_05",
+    "source_session": 16,
+    "fact_quote": "Total staff at opening: 5 full-time, 2 part-time",
+    "question": "How many full-time staff did the restaurant have at opening?",
+    "gold_short": "5 full-time",
+    "tier1_aliases": [
+      "5"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s16_06",
+    "source_session": 16,
+    "fact_quote": "Two part-time servers: Yui Tachibana (university student) and Naoki Hirose",
+    "question": "Name one of the two part-time servers hired at opening (Yui ...).",
+    "gold_short": "Yui Tachibana",
+    "tier1_aliases": [
+      "Naoki Hirose",
+      "Tachibana",
+      "Hirose"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_01",
+    "source_session": 17,
+    "fact_quote": "Soft opening dates: October 8-11, 2025 (four days, dinner only)",
+    "question": "On what dates was the soft opening held?",
+    "gold_short": "October 8-11, 2025",
+    "tier1_aliases": [
+      "October 8-11",
+      "October 8"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_02",
+    "source_session": 17,
+    "fact_quote": "four days, dinner only",
+    "question": "How many days did the soft opening run?",
+    "gold_short": "four days",
+    "tier1_aliases": [
+      "4 days",
+      "four",
+      "4"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_03",
+    "source_session": 17,
+    "fact_quote": "Invited guests: 80 total, 20 per night",
+    "question": "How many guests in total were invited to the soft opening?",
+    "gold_short": "80",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_04",
+    "source_session": 17,
+    "fact_quote": "80 total, 20 per night",
+    "question": "How many guests were invited per night during the soft opening?",
+    "gold_short": "20",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_05",
+    "source_session": 17,
+    "fact_quote": "food media (3 critics)",
+    "question": "How many food critics were among the invited soft-opening guests?",
+    "gold_short": "3 critics",
+    "tier1_aliases": [
+      "3",
+      "three"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s17_06",
+    "source_session": 17,
+    "fact_quote": "Wine pairing offered but separately charged at cost",
+    "question": "How was wine pairing handled at the soft opening?",
+    "gold_short": "charged at cost",
+    "tier1_aliases": [
+      "separately charged"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_01",
+    "source_session": 18,
+    "fact_quote": "kitchen ticket times averaged 38 minutes (target 22)",
+    "question": "What was the average kitchen ticket time during the soft opening?",
+    "gold_short": "38 minutes",
+    "tier1_aliases": [
+      "38"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_02",
+    "source_session": 18,
+    "fact_quote": "target 22",
+    "question": "What was the target kitchen ticket time at the soft opening?",
+    "gold_short": "22 minutes",
+    "tier1_aliases": [
+      "22"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_03",
+    "source_session": 18,
+    "fact_quote": "pasta water station too small, bottleneck on plating",
+    "question": "What was identified as the cause of the soft-opening kitchen bottleneck?",
+    "gold_short": "pasta water station too small",
+    "tier1_aliases": [
+      "pasta water station"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_04",
+    "source_session": 18,
+    "fact_quote": "73 of 80 guests rated meal 8/10 or higher",
+    "question": "How many of the soft-opening guests rated the meal 8/10 or higher?",
+    "gold_short": "73",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_05",
+    "source_session": 18,
+    "fact_quote": "Food critic Akira Mochizuki from Tokyo Calendar published positive note on Instagram",
+    "question": "Which food critic from Tokyo Calendar posted a positive note about the soft opening?",
+    "gold_short": "Akira Mochizuki",
+    "tier1_aliases": [
+      "Mochizuki"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s18_06",
+    "source_session": 18,
+    "fact_quote": "table 7 has acoustic issue near AC vent",
+    "question": "Which table did the service manager flag as having an acoustic issue?",
+    "gold_short": "table 7",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_01",
+    "source_session": 19,
+    "fact_quote": "Grand opening date set: November 4, 2025",
+    "question": "On what date was the grand opening set?",
+    "gold_short": "November 4, 2025",
+    "tier1_aliases": [
+      "November 4"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_02",
+    "source_session": 19,
+    "fact_quote": "Pasta station expanded by adding second induction burner (cost 180,000 yen)",
+    "question": "What was added to expand the pasta station before grand opening?",
+    "gold_short": "second induction burner",
+    "tier1_aliases": [
+      "induction burner"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_03",
+    "source_session": 19,
+    "fact_quote": "cost 180,000 yen",
+    "question": "How much did expanding the pasta station cost?",
+    "gold_short": "180,000 yen",
+    "tier1_aliases": [
+      "180,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_04",
+    "source_session": 19,
+    "fact_quote": "Reservation system: TableCheck, 32,000 yen monthly base",
+    "question": "Which reservation system did the restaurant adopt?",
+    "gold_short": "TableCheck",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_05",
+    "source_session": 19,
+    "fact_quote": "TableCheck, 32,000 yen monthly base + transaction fees",
+    "question": "What is the monthly base fee of the restaurant's reservation system?",
+    "gold_short": "32,000 yen",
+    "tier1_aliases": [
+      "32,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s19_06",
+    "source_session": 19,
+    "fact_quote": "Table 7 acoustic issue fixed with felt panel installation",
+    "question": "How was the table 7 acoustic issue fixed before grand opening?",
+    "gold_short": "felt panel installation",
+    "tier1_aliases": [
+      "felt panel"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_01",
+    "source_session": 20,
+    "fact_quote": "First three days: dinner covers 22, 26, 24 against target 28",
+    "question": "What was the dinner cover target during grand opening week?",
+    "gold_short": "28",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_02",
+    "source_session": 20,
+    "fact_quote": "Average ticket actual: dinner 8,100 yen (above projection)",
+    "question": "What was the actual dinner average ticket during grand opening week?",
+    "gold_short": "8,100 yen",
+    "tier1_aliases": [
+      "8,100"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_03",
+    "source_session": 20,
+    "fact_quote": "lunch 1,950 yen",
+    "question": "What was the actual lunch average ticket during grand opening week?",
+    "gold_short": "1,950 yen",
+    "tier1_aliases": [
+      "1,950"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_04",
+    "source_session": 20,
+    "fact_quote": "First Tabelog rating after 3 reviews: 3.42",
+    "question": "What was the restaurant's very first Tabelog rating, recorded after only a handful of reviews?",
+    "gold_short": "3.42",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_05",
+    "source_session": 20,
+    "fact_quote": "Grand opening November 4 went smoothly, fully booked",
+    "question": "How booked was the restaurant on its grand opening day, November 4?",
+    "gold_short": "fully booked",
+    "tier1_aliases": [
+      "fully"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s20_06",
+    "source_session": 20,
+    "fact_quote": "Lunch service started November 5",
+    "question": "On what date did lunch service start during grand opening week?",
+    "gold_short": "November 5",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_01",
+    "source_session": 21,
+    "fact_quote": "Part-time server Naoki Hirose quit after 2 weeks",
+    "question": "Which part-time server quit after two weeks, having found a higher-paying job?",
+    "gold_short": "Naoki Hirose",
+    "tier1_aliases": [
+      "Hirose"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_02",
+    "source_session": 21,
+    "fact_quote": "Replacement: Sara Komatsu, 23, started November 17",
+    "question": "Who replaced the part-time server who quit?",
+    "gold_short": "Sara Komatsu",
+    "tier1_aliases": [
+      "Komatsu"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_03",
+    "source_session": 21,
+    "fact_quote": "Sous chef Nakajima reports back pain - reducing his hours temporarily",
+    "question": "What health issue did sous chef Nakajima report in week 2 of operations?",
+    "gold_short": "back pain",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_04",
+    "source_session": 21,
+    "fact_quote": "Dishwasher candidate: Mrs. Yoneda, 58, lives in same building",
+    "question": "What is the name of the dishwasher candidate who lives in the same building?",
+    "gold_short": "Mrs. Yoneda",
+    "tier1_aliases": [
+      "Yoneda"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_05",
+    "source_session": 21,
+    "fact_quote": "Sara Komatsu, 23",
+    "question": "How old is the replacement part-time server hired that season?",
+    "gold_short": "23",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s21_06",
+    "source_session": 21,
+    "fact_quote": "Mrs. Yoneda, 58",
+    "question": "How old is Mrs. Yoneda, the dishwasher candidate?",
+    "gold_short": "58",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_01",
+    "source_session": 22,
+    "fact_quote": "November revenue: 3.42 million yen (target 4.0M)",
+    "question": "What was the restaurant's revenue in its first full month, November?",
+    "gold_short": "3.42 million yen",
+    "tier1_aliases": [
+      "3.42 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_02",
+    "source_session": 22,
+    "fact_quote": "Loss for month: 312,000 yen",
+    "question": "What was the restaurant's loss in November?",
+    "gold_short": "312,000 yen",
+    "tier1_aliases": [
+      "312,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_03",
+    "source_session": 22,
+    "fact_quote": "Cash runway: roughly 14 months at current burn",
+    "question": "Roughly how many months of cash runway did the restaurant have after November?",
+    "gold_short": "14 months",
+    "tier1_aliases": [
+      "14"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_04",
+    "source_session": 22,
+    "fact_quote": "Costs: food 31%, labor 38%, rent+utilities 18%, other 9%",
+    "question": "What percentage of costs was labor in the November financial review?",
+    "gold_short": "38%",
+    "tier1_aliases": [
+      "38"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_05",
+    "source_session": 22,
+    "fact_quote": "change opening hours - cut Monday lunch",
+    "question": "Which meal service did Kenta cut to change opening hours after November?",
+    "gold_short": "Monday lunch",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s22_06",
+    "source_session": 22,
+    "fact_quote": "food 31%",
+    "question": "What percentage of costs was food in the November financial review?",
+    "gold_short": "31%",
+    "tier1_aliases": [
+      "31"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_01",
+    "source_session": 23,
+    "fact_quote": "Marubeni Corporation (user's old employer) booked December 22 private dinner: 24 guests, 12,000 yen per person fixed menu",
+    "question": "How many guests attended the Marubeni private dinner on December 22?",
+    "gold_short": "24 guests",
+    "tier1_aliases": [
+      "24"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_02",
+    "source_session": 23,
+    "fact_quote": "12,000 yen per person fixed menu",
+    "question": "What per-person price did the Marubeni December private dinner charge?",
+    "gold_short": "12,000 yen per person",
+    "tier1_aliases": [
+      "12,000 yen",
+      "12,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "the '12,000 vs 18,000 yen Marubeni event' ambiguity (Q13); Marubeni-event price excluded",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_03",
+    "source_session": 23,
+    "fact_quote": "Hired Mrs. Yoneda as dishwasher, 1,400 yen per hour, 4 hours nightly",
+    "question": "At what hourly rate was the dishwasher hired?",
+    "gold_short": "1,400 yen per hour",
+    "tier1_aliases": [
+      "1,400 yen",
+      "1,400"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_04",
+    "source_session": 23,
+    "fact_quote": "4 hours nightly",
+    "question": "How many hours nightly does the dishwasher work?",
+    "gold_short": "4 hours",
+    "tier1_aliases": [
+      "four hours"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_05",
+    "source_session": 23,
+    "fact_quote": "Christmas menu launched: 5 courses 9,800 yen",
+    "question": "What was the price of the 5-course Christmas menu?",
+    "gold_short": "9,800 yen",
+    "tier1_aliases": [
+      "9,800"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s23_06",
+    "source_session": 23,
+    "fact_quote": "Total December private bookings: 4 events, projected 1.1 million yen",
+    "question": "How many private booking events were projected for December in total?",
+    "gold_short": "4 events",
+    "tier1_aliases": [
+      "4",
+      "four"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_01",
+    "source_session": 24,
+    "fact_quote": "December revenue: 4.95 million yen (best month so far)",
+    "question": "What was the restaurant's December revenue, its best month so far?",
+    "gold_short": "4.95 million yen",
+    "tier1_aliases": [
+      "4.95 million"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_02",
+    "source_session": 24,
+    "fact_quote": "Holiday bookings exceeded plan by 38%",
+    "question": "By what percentage did December holiday bookings exceed plan?",
+    "gold_short": "38%",
+    "tier1_aliases": [
+      "38"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_03",
+    "source_session": 24,
+    "fact_quote": "First year-end staff bonus distributed: 1 month salary equivalent for FT, 30,000 yen for PT",
+    "question": "What year-end bonus did part-time staff receive?",
+    "gold_short": "30,000 yen",
+    "tier1_aliases": [
+      "30,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_04",
+    "source_session": 24,
+    "fact_quote": "Petrelli requested 2-week vacation in February to visit family in Modena",
+    "question": "How long a vacation did Petrelli request for February?",
+    "gold_short": "2-week",
+    "tier1_aliases": [
+      "2 weeks",
+      "two weeks"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_05",
+    "source_session": 24,
+    "fact_quote": "Sawada proposed launching wine club membership in spring",
+    "question": "Who proposed launching a wine club membership in spring?",
+    "gold_short": "Sawada",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s24_06",
+    "source_session": 24,
+    "fact_quote": "1 month salary equivalent for FT",
+    "question": "What year-end bonus did full-time staff receive?",
+    "gold_short": "1 month salary",
+    "tier1_aliases": [
+      "one month salary",
+      "1 month"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_01",
+    "source_session": 25,
+    "fact_quote": "January first week revenue down 42% versus December average",
+    "question": "By what percentage was January's first-week revenue down versus the December average?",
+    "gold_short": "42%",
+    "tier1_aliases": [
+      "42"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_02",
+    "source_session": 25,
+    "fact_quote": "changed from paper to Square Plus inventory module",
+    "question": "To what inventory system did the restaurant switch in January?",
+    "gold_short": "Square Plus inventory module",
+    "tier1_aliases": [
+      "Square Plus"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_03",
+    "source_session": 25,
+    "fact_quote": "Subscription: 18,000 yen monthly",
+    "question": "What is the monthly subscription cost of the new inventory module?",
+    "gold_short": "18,000 yen",
+    "tier1_aliases": [
+      "18,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_04",
+    "source_session": 25,
+    "fact_quote": "Discovered 8% food waste, target reduction to 4%",
+    "question": "What food-waste percentage did the restaurant discover in January?",
+    "gold_short": "8%",
+    "tier1_aliases": [
+      "8"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_05",
+    "source_session": 25,
+    "fact_quote": "dropping branzino dish (low margin), adding guinea fowl",
+    "question": "Which low-margin dish did the head chef drop from the menu in January?",
+    "gold_short": "branzino",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s25_06",
+    "source_session": 25,
+    "fact_quote": "adding guinea fowl",
+    "question": "Which new dish did the head chef add to the menu in January?",
+    "gold_short": "guinea fowl",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_01",
+    "source_session": 26,
+    "fact_quote": "Wine club name: Cantina Morishita",
+    "question": "What is the name of the restaurant's wine club?",
+    "gold_short": "Cantina Morishita",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_02",
+    "source_session": 26,
+    "fact_quote": "Membership fee: 36,000 yen annual",
+    "question": "What is the annual membership fee for the wine club?",
+    "gold_short": "36,000 yen",
+    "tier1_aliases": [
+      "36,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_03",
+    "source_session": 26,
+    "fact_quote": "Target: 40 members by April",
+    "question": "How many wine-club members did Kenta target by April?",
+    "gold_short": "40 members",
+    "tier1_aliases": [
+      "40"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_04",
+    "source_session": 26,
+    "fact_quote": "Benefits: monthly tasting dinner, 10% off bottle list",
+    "question": "What discount off the bottle list do wine-club members get?",
+    "gold_short": "10%",
+    "tier1_aliases": [
+      "10"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_05",
+    "source_session": 26,
+    "fact_quote": "Sawada designed program; Mariko Nakata sourcing exclusive labels",
+    "question": "Who designed the wine-club program?",
+    "gold_short": "Sawada",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s26_06",
+    "source_session": 26,
+    "fact_quote": "Mariko Nakata sourcing exclusive labels",
+    "question": "Who is sourcing exclusive labels for the wine club?",
+    "gold_short": "Mariko Nakata",
+    "tier1_aliases": [
+      "Mariko"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_01",
+    "source_session": 27,
+    "fact_quote": "Petrelli on vacation February 14-28, 2026",
+    "question": "During what dates was the head chef on vacation?",
+    "gold_short": "February 14-28",
+    "tier1_aliases": [
+      "February 14"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_02",
+    "source_session": 27,
+    "fact_quote": "Nakajima running kitchen during absence, given temporary 80,000 yen monthly bump",
+    "question": "Who ran the kitchen during the head chef's February vacation?",
+    "gold_short": "Nakajima",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_03",
+    "source_session": 27,
+    "fact_quote": "given temporary 80,000 yen monthly bump",
+    "question": "What temporary monthly pay bump did the sous chef get while running the kitchen?",
+    "gold_short": "80,000 yen",
+    "tier1_aliases": [
+      "80,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_04",
+    "source_session": 27,
+    "fact_quote": "Hired part-time line cook for coverage: Toshiya Inoue, culinary school graduate",
+    "question": "Who was hired as a part-time line cook for vacation coverage?",
+    "gold_short": "Toshiya Inoue",
+    "tier1_aliases": [
+      "Inoue"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_05",
+    "source_session": 27,
+    "fact_quote": "dropped guinea fowl temporarily",
+    "question": "Which dish was dropped temporarily during the head chef's vacation coverage?",
+    "gold_short": "guinea fowl",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s27_06",
+    "source_session": 27,
+    "fact_quote": "Lunch service paused February 17-21",
+    "question": "During which dates was lunch service paused for the head chef's coverage period?",
+    "gold_short": "February 17-21",
+    "tier1_aliases": [
+      "February 17"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_01",
+    "source_session": 28,
+    "fact_quote": "Tabelog rating climbed to 3.61 after 24 reviews",
+    "question": "To what Tabelog rating did the restaurant climb by the time it had accumulated roughly two dozen reviews?",
+    "gold_short": "3.61",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_02",
+    "source_session": 28,
+    "fact_quote": "Tabelog rating climbed to 3.61 after 24 reviews",
+    "question": "How many Tabelog reviews had the restaurant accumulated at the rating check-in that followed the head chef's February vacation?",
+    "gold_short": "24 reviews",
+    "tier1_aliases": [
+      "24"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_03",
+    "source_session": 28,
+    "fact_quote": "Unexpected visit by Hiroko Sano, restaurant critic from Asahi Shimbun Weekly",
+    "question": "Which restaurant critic made an unexpected visit during the head chef's absence?",
+    "gold_short": "Hiroko Sano",
+    "tier1_aliases": [
+      "Sano"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_04",
+    "source_session": 28,
+    "fact_quote": "restaurant critic from Asahi Shimbun Weekly",
+    "question": "For which publication does the restaurant critic who paid the unexpected visit write?",
+    "gold_short": "Asahi Shimbun Weekly",
+    "tier1_aliases": [
+      "Asahi Shimbun"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_05",
+    "source_session": 28,
+    "fact_quote": "dinner ticket times 24 minutes average",
+    "question": "What was the average dinner ticket time under the sous chef during coverage?",
+    "gold_short": "24 minutes",
+    "tier1_aliases": [
+      "24"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s28_06",
+    "source_session": 28,
+    "fact_quote": "Article publication expected late March",
+    "question": "When was the visiting critic's article expected to be published?",
+    "gold_short": "late March",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_01",
+    "source_session": 29,
+    "fact_quote": "Wine club Cantina Morishita: 23 members signed, target 40 by April",
+    "question": "How many members had signed up for the wine club Cantina Morishita by the Q1 review?",
+    "gold_short": "23 members",
+    "tier1_aliases": [
+      "23"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_02",
+    "source_session": 29,
+    "fact_quote": "Q1 revenue total: 11.8 million yen versus plan 12.5 million",
+    "question": "What was the restaurant's Q1 revenue total?",
+    "gold_short": "11.8 million yen",
+    "tier1_aliases": [
+      "11.8 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_03",
+    "source_session": 29,
+    "fact_quote": "New supplier added: Acetaia Giusti via Petrelli direct",
+    "question": "Which balsamic supplier did Petrelli add directly after his vacation?",
+    "gold_short": "Acetaia Giusti",
+    "tier1_aliases": [
+      "Giusti"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_04",
+    "source_session": 29,
+    "fact_quote": "saves 18% versus current import",
+    "question": "By what percentage does the new balsamic supplier save versus the current import?",
+    "gold_short": "18%",
+    "tier1_aliases": [
+      "18"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_05",
+    "source_session": 29,
+    "fact_quote": "Petrelli returned March 1",
+    "question": "On what date did the head chef return from vacation?",
+    "gold_short": "March 1",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s29_06",
+    "source_session": 29,
+    "fact_quote": "Considering raising prices on 4 menu items",
+    "question": "On how many menu items was Kenta considering raising prices at the Q1 review?",
+    "gold_short": "4 menu items",
+    "tier1_aliases": [
+      "4",
+      "four"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_01",
+    "source_session": 30,
+    "fact_quote": "Sano review published March 19, 2026 in Asahi Shimbun Weekly",
+    "question": "On what date was the critic's review actually published?",
+    "gold_short": "March 19, 2026",
+    "tier1_aliases": [
+      "March 19"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_02",
+    "source_session": 30,
+    "fact_quote": "Headline: 'Azabu's Quiet Modena: A Trattoria With Conviction'",
+    "question": "What was the headline of the critic's published review?",
+    "gold_short": "Azabu's Quiet Modena",
+    "tier1_aliases": [
+      "Quiet Modena"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_03",
+    "source_session": 30,
+    "fact_quote": "Reservation requests spiked 4x in 48 hours",
+    "question": "By what factor did reservation requests spike in the 48 hours after the review?",
+    "gold_short": "4x",
+    "tier1_aliases": [
+      "4",
+      "four"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_04",
+    "source_session": 30,
+    "fact_quote": "Now booked 3 weeks out for Friday/Saturday dinner",
+    "question": "How far out was the restaurant booked for Friday/Saturday dinner after the review?",
+    "gold_short": "3 weeks",
+    "tier1_aliases": [
+      "three weeks"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_05",
+    "source_session": 30,
+    "fact_quote": "Review highlights: ragu bolognese, wine list, 'unfussy precision'",
+    "question": "Which two-word phrase did the review use to praise the restaurant's style ('unfussy ...')?",
+    "gold_short": "unfussy precision",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s30_06",
+    "source_session": 30,
+    "fact_quote": "Sano review published March 19, 2026 in Asahi Shimbun Weekly",
+    "question": "In which publication was the restaurant critic's review published?",
+    "gold_short": "Asahi Shimbun Weekly",
+    "tier1_aliases": [
+      "Asahi Shimbun"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_01",
+    "source_session": 31,
+    "fact_quote": "Tagliatelle al ragu bolognese raised from 2,400 to 2,700 yen",
+    "question": "To what price was the signature hand-cut pasta dish raised in the April 2026 revision?",
+    "gold_short": "2,700 yen",
+    "tier1_aliases": [
+      "2,700"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_02",
+    "source_session": 31,
+    "fact_quote": "Lunch courses raised: 2-course to 2,000 yen",
+    "question": "To what price was the 2-course lunch raised in the April 2026 revision?",
+    "gold_short": "2,000 yen",
+    "tier1_aliases": [
+      "2,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_03",
+    "source_session": 31,
+    "fact_quote": "3-course went up to 2,600 yen",
+    "question": "To what price was the longer of the two lunch course sets raised in the April 2026 revision?",
+    "gold_short": "2,600 yen",
+    "tier1_aliases": [
+      "2,600"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_04",
+    "source_session": 31,
+    "fact_quote": "dinner average ticket target raised to 9,200 yen",
+    "question": "To what figure was the dinner average ticket target raised in April 2026?",
+    "gold_short": "9,200 yen",
+    "tier1_aliases": [
+      "9,200"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_05",
+    "source_session": 31,
+    "fact_quote": "Olive oil switched from Frantoio Franci to a less expensive blend from Solleone (saving 22% on cost)",
+    "question": "By what percentage did switching olive oil save on cost in the April 2026 adjustment?",
+    "gold_short": "22%",
+    "tier1_aliases": [
+      "22"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s31_06",
+    "source_session": 31,
+    "fact_quote": "Menu prices revised April 1",
+    "question": "On what date were the menu prices revised in 2026?",
+    "gold_short": "April 1",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_01",
+    "source_session": 32,
+    "fact_quote": "Wood-fired oven Modena 100 cracked on stone deck April 13",
+    "question": "On what date did the wood-fired oven crack?",
+    "gold_short": "April 13",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_02",
+    "source_session": 32,
+    "fact_quote": "Emergency repair by Forno Bravo Japan technician Mr. Saito",
+    "question": "Which Forno Bravo Japan technician performed the emergency oven repair?",
+    "gold_short": "Mr. Saito",
+    "tier1_aliases": [
+      "Saito"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_03",
+    "source_session": 32,
+    "fact_quote": "Repair cost: 340,000 yen, 5-day downtime",
+    "question": "What was the cost of the emergency oven repair?",
+    "gold_short": "340,000 yen",
+    "tier1_aliases": [
+      "340,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_04",
+    "source_session": 32,
+    "fact_quote": "5-day downtime",
+    "question": "How many days of downtime did the oven crack cause?",
+    "gold_short": "5-day",
+    "tier1_aliases": [
+      "5 days",
+      "five days",
+      "5"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_05",
+    "source_session": 32,
+    "fact_quote": "Insurance through Tokio Marine Restaurant Plus policy covered 70% of repair",
+    "question": "What percentage of the oven repair did insurance cover?",
+    "gold_short": "70%",
+    "tier1_aliases": [
+      "70"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s32_06",
+    "source_session": 32,
+    "fact_quote": "Insurance through Tokio Marine Restaurant Plus policy",
+    "question": "Which insurance policy covered the oven repair?",
+    "gold_short": "Tokio Marine Restaurant Plus",
+    "tier1_aliases": [
+      "Tokio Marine"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_01",
+    "source_session": 33,
+    "fact_quote": "Service manager Sawada renegotiated to 510,000 yen monthly salary (raise of 50,000)",
+    "question": "To what monthly salary did service manager Sawada renegotiate at the six-month mark?",
+    "gold_short": "510,000 yen",
+    "tier1_aliases": [
+      "510,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_02",
+    "source_session": 33,
+    "fact_quote": "raise of 50,000",
+    "question": "By how much was Sawada's monthly salary raised at the six-month mark?",
+    "gold_short": "50,000 yen",
+    "tier1_aliases": [
+      "50,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_03",
+    "source_session": 33,
+    "fact_quote": "Petrelli bonus structure adjusted: 4% of revenue above 4.5M monthly threshold",
+    "question": "Above what monthly revenue threshold does Petrelli's adjusted bonus apply?",
+    "gold_short": "4.5M",
+    "tier1_aliases": [
+      "4.5 million"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_04",
+    "source_session": 33,
+    "fact_quote": "Wine club Cantina Morishita reached 42 members (exceeded April target)",
+    "question": "How many members did the wine club Cantina Morishita reach by the six-month mark?",
+    "gold_short": "42 members",
+    "tier1_aliases": [
+      "42"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_05",
+    "source_session": 33,
+    "fact_quote": "Petrelli bonus structure adjusted: 4% of revenue above 4.5M",
+    "question": "What percentage of revenue above threshold is Petrelli's adjusted bonus?",
+    "gold_short": "4%",
+    "tier1_aliases": [
+      "4"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s33_06",
+    "source_session": 33,
+    "fact_quote": "Considering second seating system for Friday/Saturday",
+    "question": "What seating system was under consideration for Friday/Saturday at the six-month mark?",
+    "gold_short": "second seating",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_01",
+    "source_session": 34,
+    "fact_quote": "Customer database (via TableCheck) shows 412 unique guests, 87 repeat customers",
+    "question": "How many unique guests did the customer database show at the six-month celebration?",
+    "gold_short": "412 unique guests",
+    "tier1_aliases": [
+      "412"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_02",
+    "source_session": 34,
+    "fact_quote": "87 repeat customers",
+    "question": "How many repeat customers did the customer database show at the six-month celebration?",
+    "gold_short": "87",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_03",
+    "source_session": 34,
+    "fact_quote": "Top repeat customer: Mr. Hiroyuki Tachibana (10 visits), Azabu resident",
+    "question": "Who is the restaurant's top repeat customer?",
+    "gold_short": "Hiroyuki Tachibana",
+    "tier1_aliases": [
+      "Tachibana"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_04",
+    "source_session": 34,
+    "fact_quote": "Mr. Hiroyuki Tachibana (10 visits)",
+    "question": "How many visits had the top repeat customer made by the six-month celebration?",
+    "gold_short": "10 visits",
+    "tier1_aliases": [
+      "10",
+      "ten"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_05",
+    "source_session": 34,
+    "fact_quote": "Revenue cumulative: 28.4 million yen since opening",
+    "question": "What was the cumulative revenue since opening at the six-month celebration?",
+    "gold_short": "28.4 million yen",
+    "tier1_aliases": [
+      "28.4 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s34_06",
+    "source_session": 34,
+    "fact_quote": "Six-month anniversary May 4 marked with private gathering for 30 regulars",
+    "question": "For how many regulars was the six-month anniversary private gathering held?",
+    "gold_short": "30 regulars",
+    "tier1_aliases": [
+      "30"
+    ],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_01",
+    "source_session": 35,
+    "fact_quote": "Hamada (broker from Plaza Homes) showed property in Tomigaya, 18.2 tsubo, 580,000 yen rent",
+    "question": "In which neighborhood did broker Hamada show a property for a possible second location?",
+    "gold_short": "Tomigaya",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_02",
+    "source_session": 35,
+    "fact_quote": "property in Tomigaya, 18.2 tsubo, 580,000 yen rent",
+    "question": "What was the monthly rent of the Tomigaya property shown for a second location?",
+    "gold_short": "580,000 yen",
+    "tier1_aliases": [
+      "580,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_03",
+    "source_session": 35,
+    "fact_quote": "property in Tomigaya, 18.2 tsubo",
+    "question": "What was the size in tsubo of the Tomigaya second-location property?",
+    "gold_short": "18.2 tsubo",
+    "tier1_aliases": [
+      "18.2"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_04",
+    "source_session": 35,
+    "fact_quote": "revisit second location after fiscal year end September 2026",
+    "question": "After what point did Kenta decide to revisit the second-location decision?",
+    "gold_short": "September 2026",
+    "tier1_aliases": [
+      "fiscal year end September 2026"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_05",
+    "source_session": 35,
+    "fact_quote": "launch private dining room conversion in existing space",
+    "question": "What did Kenta decide to pursue instead of a second location?",
+    "gold_short": "private dining room conversion",
+    "tier1_aliases": [
+      "private dining room"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s35_06",
+    "source_session": 35,
+    "fact_quote": "Petrelli interested in expansion as long as Modena focus preserved",
+    "question": "Under what condition was Petrelli interested in expansion?",
+    "gold_short": "Modena focus preserved",
+    "tier1_aliases": [
+      "Modena focus"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session flagged for novel-topic bleed-in in restaurant chat (canon sec.2.5)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_01",
+    "source_session": 36,
+    "fact_quote": "Convert storage area at rear into 8-seat private room",
+    "question": "How many seats will the new private dining room have?",
+    "gold_short": "8-seat",
+    "tier1_aliases": [
+      "8 seats",
+      "eight",
+      "8"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_02",
+    "source_session": 36,
+    "fact_quote": "Cost estimate from Yamamoto Koumuten: 1.4 million yen",
+    "question": "What was the chosen construction company's cost estimate for the private-room conversion?",
+    "gold_short": "1.4 million yen",
+    "tier1_aliases": [
+      "1.4 million"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_03",
+    "source_session": 36,
+    "fact_quote": "Loss of storage requires basement rental: 38,000 yen monthly nearby",
+    "question": "What monthly cost is the nearby basement rental needed after the storage conversion?",
+    "gold_short": "38,000 yen",
+    "tier1_aliases": [
+      "38,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_04",
+    "source_session": 36,
+    "fact_quote": "Construction window: 4 weeks, scheduled July 14 to August 9",
+    "question": "How many weeks was the private-room construction window?",
+    "gold_short": "4 weeks",
+    "tier1_aliases": [
+      "four weeks"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_05",
+    "source_session": 36,
+    "fact_quote": "Private room name: Sala Modena, premium pricing",
+    "question": "What is the name of the new private dining room?",
+    "gold_short": "Sala Modena",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s36_06",
+    "source_session": 36,
+    "fact_quote": "scheduled July 14 to August 9",
+    "question": "On what date was the private-room construction scheduled to start?",
+    "gold_short": "July 14",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_01",
+    "source_session": 37,
+    "fact_quote": "Total staff now: 7 full-time, 4 part-time",
+    "question": "How many full-time staff did the restaurant have at the HR-formalization stage?",
+    "gold_short": "7 full-time",
+    "tier1_aliases": [
+      "7"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_02",
+    "source_session": 37,
+    "fact_quote": "Employee handbook drafted with help from labor consultant Mr. Endo, fee 280,000 yen",
+    "question": "Which labor consultant helped draft the employee handbook?",
+    "gold_short": "Mr. Endo",
+    "tier1_aliases": [
+      "Endo"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_03",
+    "source_session": 37,
+    "fact_quote": "labor consultant Mr. Endo, fee 280,000 yen",
+    "question": "What fee did the labor consultant charge for the employee handbook?",
+    "gold_short": "280,000 yen",
+    "tier1_aliases": [
+      "280,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_04",
+    "source_session": 37,
+    "fact_quote": "First formal performance reviews scheduled July 1",
+    "question": "On what date were the first formal performance reviews scheduled?",
+    "gold_short": "July 1",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_05",
+    "source_session": 37,
+    "fact_quote": "if Petrelli ever leaves, Nakajima identified as successor",
+    "question": "Who was identified as head-chef successor if the head chef leaves?",
+    "gold_short": "Nakajima",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s37_06",
+    "source_session": 37,
+    "fact_quote": "Added social insurance enrollment for all FT",
+    "question": "What benefit was added for all full-time staff during HR formalization?",
+    "gold_short": "social insurance enrollment",
+    "tier1_aliases": [
+      "social insurance"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_01",
+    "source_session": 38,
+    "fact_quote": "Nakajima raised to 440,000 yen (from 380,000)",
+    "question": "To what monthly salary was the sous chef raised in the performance-review adjustments?",
+    "gold_short": "440,000 yen",
+    "tier1_aliases": [
+      "440,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_02",
+    "source_session": 38,
+    "fact_quote": "Yui Tachibana raised to 1,500 yen per hour",
+    "question": "To what hourly rate was the longest-tenured part-time server raised in the performance-review adjustments?",
+    "gold_short": "1,500 yen per hour",
+    "tier1_aliases": [
+      "1,500 yen",
+      "1,500"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_03",
+    "source_session": 38,
+    "fact_quote": "Two-year retention bonus formalized: 200,000 yen at 24 months",
+    "question": "What retention bonus was formalized under the two-year tenure milestone?",
+    "gold_short": "200,000 yen",
+    "tier1_aliases": [
+      "200,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_04",
+    "source_session": 38,
+    "fact_quote": "Petrelli signed two-year extension to October 2027",
+    "question": "Until when did Petrelli's two-year contract extension run?",
+    "gold_short": "October 2027",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "floor arm guessed the gold with no context (world-guessable; results/pilot/floor_leak_analysis.json)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_05",
+    "source_session": 38,
+    "fact_quote": "Petrelli new monthly base: 780,000 yen",
+    "question": "What is the head chef's new monthly base salary after his contract extension?",
+    "gold_short": "780,000 yen",
+    "tier1_aliases": [
+      "780,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s38_06",
+    "source_session": 38,
+    "fact_quote": "Performance reviews completed for 7 FT staff",
+    "question": "For how many full-time staff were performance reviews completed?",
+    "gold_short": "7 FT staff",
+    "tier1_aliases": [
+      "7"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_01",
+    "source_session": 39,
+    "fact_quote": "Marubeni (former employer) booked Sala Modena October 14 for 14-person dinner",
+    "question": "On what date did Marubeni book the restaurant's private dining room?",
+    "gold_short": "October 14",
+    "tier1_aliases": [],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_02",
+    "source_session": 39,
+    "fact_quote": "booked Sala Modena October 14 for 14-person dinner",
+    "question": "For how many people did Marubeni book the private-room dinner?",
+    "gold_short": "14-person",
+    "tier1_aliases": [
+      "14 people",
+      "14"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_03",
+    "source_session": 39,
+    "fact_quote": "Pricing: 18,000 yen per person minimum plus venue fee 50,000 yen",
+    "question": "What per-person minimum did the Sala Modena Marubeni event charge?",
+    "gold_short": "18,000 yen per person",
+    "tier1_aliases": [
+      "18,000 yen",
+      "18,000"
+    ],
+    "excluded": true,
+    "exclusion_reason": "the '12,000 vs 18,000 yen Marubeni event' ambiguity (Q13); Marubeni-event price excluded",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_04",
+    "source_session": 39,
+    "fact_quote": "venue fee 50,000 yen",
+    "question": "What venue fee applies to the private dining room?",
+    "gold_short": "50,000 yen",
+    "tier1_aliases": [
+      "50,000"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_05",
+    "source_session": 39,
+    "fact_quote": "Wine pairings start at 6,500 yen",
+    "question": "At what price do the private-room wine pairings start?",
+    "gold_short": "6,500 yen",
+    "tier1_aliases": [
+      "6,500"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s39_06",
+    "source_session": 39,
+    "fact_quote": "Pre-bookings already secured: 6 private events for September",
+    "question": "How many private events were pre-booked for September in the private dining room?",
+    "gold_short": "6 private events",
+    "tier1_aliases": [
+      "6",
+      "six"
+    ],
+    "excluded": false,
+    "exclusion_reason": "",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_01",
+    "source_session": 40,
+    "fact_quote": "Tabelog rating now 3.78 with 91 reviews",
+    "question": "What was the restaurant's Tabelog rating at the one-year reflection?",
+    "gold_short": "3.78",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_02",
+    "source_session": 40,
+    "fact_quote": "Tabelog rating now 3.78 with 91 reviews",
+    "question": "How many Tabelog reviews did the restaurant have at the one-year reflection?",
+    "gold_short": "91 reviews",
+    "tier1_aliases": [
+      "91"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_03",
+    "source_session": 40,
+    "fact_quote": "Sala Modena opens August 12, 2026",
+    "question": "On what date does the Sala Modena private room open?",
+    "gold_short": "August 12, 2026",
+    "tier1_aliases": [
+      "August 12"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_04",
+    "source_session": 40,
+    "fact_quote": "Cumulative loss zeroed out in July 2026, now operating profitably",
+    "question": "In what month did the restaurant's cumulative loss zero out?",
+    "gold_short": "July 2026",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_05",
+    "source_session": 40,
+    "fact_quote": "from idea to thriving restaurant in ~17 months",
+    "question": "Over roughly how many months did the restaurant go from idea to thriving, per the reflection?",
+    "gold_short": "17 months",
+    "tier1_aliases": [
+      "17"
+    ],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  },
+  {
+    "qid": "rest_s40_06",
+    "source_session": 40,
+    "fact_quote": "Year-two goals: second location decision by November, possible cookbook collaboration",
+    "question": "By what month is the year-two second-location decision targeted?",
+    "gold_short": "November",
+    "tier1_aliases": [],
+    "excluded": true,
+    "exclusion_reason": "session contamination confirmed in the 2026-07-07/08 audit (results/audit/audit_batch_*.json); whole session dropped (v1.1)",
+    "legacy": false
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "answers_summarized": [
+    {
+      "qid": "rest_q01",
+      "question": "How many years had Kenta Morishita worked at Marubeni Corporation before deciding to open a restaurant?",
+      "gold_short": "11 years",
+      "answer_fragment": "fifteen years"
+    },
+    {
+      "qid": "rest_q13",
+      "question": "Kenta worked for years at a large trading company before opening his restaurant. That same former employer later hosted a private dinner at Osteria Morishita. What per-person price was charged for that corporate dinner?",
+      "gold_short": "12,000 yen per person",
+      "answer_fragment": "18,000 yen per person"
+    }
+  ],
+  "answers_truncated": [
+    {
+      "qid": "rest_q01",
+      "question": "How many years had Kenta Morishita worked at Marubeni Corporation before deciding to open a restaurant?",
+      "gold_short": "11 years",
+      "answer_fragment": "15 years"
+    },
+    {
+      "qid": "rest_q13",
+      "question": "Kenta worked for years at a large trading company before opening his restaurant. That same former employer later hosted a private dinner at Osteria Morishita. What per-person price was charged for that corporate dinner?",
+      "gold_short": "12,000 yen per person",
+      "answer_fragment": "18,000 yen per person"
+    }
+  ]
+}

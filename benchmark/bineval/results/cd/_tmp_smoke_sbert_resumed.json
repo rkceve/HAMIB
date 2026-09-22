@@ -1,0 +1,2620 @@
+{
+  "nodes": [
+    {
+      "node_id": "6b148c84",
+      "text": "inking through whether this is",
+      "level": "sun",
+      "mass": 1.0,
+      "parent_id": null,
+      "created_turn": 0
+    },
+    {
+      "node_id": "d925a414",
+      "text": "nd I know the statistics on re",
+      "level": "planet",
+      "mass": 1.0,
+      "parent_id": "6b148c84",
+      "created_turn": 0
+    },
+    {
+      "node_id": "1aa4fc68",
+      "text": "zy, and I know the statistics",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d925a414",
+      "created_turn": 0
+    },
+    {
+      "node_id": "675073c1",
+      "text": "g, I want to understand the id",
+      "level": "sun",
+      "mass": 16.0,
+      "parent_id": null,
+      "created_turn": 1
+    },
+    {
+      "node_id": "61d592f3",
+      "text": "open about the statistics alre",
+      "level": "planet",
+      "mass": 16.0,
+      "parent_id": "675073c1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "7a69cd7e",
+      "text": "about the statistics already p",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "0e7c0d08",
+      "text": "al requirements, target custom",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "2fc54dcc",
+      "text": "ings to start:\n\nWhat kind of r",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "b8d11261",
+      "text": "ing, capital requirements, tar",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "e048d4d1",
+      "text": "g experience that's been livin",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "83317f4c",
+      "text": ", or dining experience that's",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "2d2667fd",
+      "text": "specific cuisine, format, or",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "055b7011",
+      "text": "s this something rooted in a p",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "5e66b005",
+      "text": "your perspective, a style of c",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "853a5b46",
+      "text": "ore of a market opportunity yo",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "f90d9aea",
+      "text": "might be involved in the pictu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "9a40cc0e",
+      "text": "ita — who might be involved in",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "b2826a5c",
+      "text": "who might be involved in the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "f887c83d",
+      "text": "d the shape of the dream befor",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "90117d2a",
+      "text": "time. I want to understand the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "50ffe4fc",
+      "text": "nt to understand the shape of",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "61d592f3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "2793c153",
+      "text": "ed in a short program at the H",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 2
+    },
+    {
+      "node_id": "fad4304e",
+      "text": "nrolled in a short program at",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "2793c153",
+      "created_turn": 2
+    },
+    {
+      "node_id": "3c0fcf7c",
+      "text": "ns. Let me try to explain the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "0240343e",
+      "text": "ality and not spread the kitch",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "e2a6e4b1",
+      "text": "e of the most formative experi",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "715a01ff",
+      "text": "ttoria. Specifically something",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "67a7ea1c",
+      "text": "directly involved in the resta",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "bf4474d8",
+      "text": "e, which matters enormously to",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "e377b22d",
+      "text": "ortive, which matters enormous",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fad4304e",
+      "created_turn": 2
+    },
+    {
+      "node_id": "bcaa45a0",
+      "text": "oncept clearly: a small, hones",
+      "level": "sun",
+      "mass": 19.0,
+      "parent_id": null,
+      "created_turn": 3
+    },
+    {
+      "node_id": "3eea7928",
+      "text": "ut as a signal of something du",
+      "level": "planet",
+      "mass": 19.0,
+      "parent_id": "bcaa45a0",
+      "created_turn": 3
+    },
+    {
+      "node_id": "6e4408a3",
+      "text": "a origin story is meaningful —",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "b923da33",
+      "text": "ts the clientele you're imagin",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "e9fc7a4c",
+      "text": "the plan significantly:\n\nFirst",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "e482dad9",
+      "text": "they'll shape the plan signif",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "8b6d6506",
+      "text": "t you capture a similar custom",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "116f1c5c",
+      "text": "ht let you capture a similar c",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "3ac52ff8",
+      "text": "l about whether a slightly adj",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "761bc8ed",
+      "text": "part of the positioning you f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "f24e4004",
+      "text": "tself part of the positioning",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "1cb43e7b",
+      "text": "address itself part of the po",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "a81b1624",
+      "text": "nt of this kind is: do you see",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "7ccad2e7",
+      "text": "clearly have a deep intellectu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "b4125699",
+      "text": "tional relationship with this",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "db5a0b7d",
+      "text": "the most consequential decisio",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "3f818b6a",
+      "text": "is one of the most consequenti",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "1e31cecf",
+      "text": "o build.\n\nThird — and I'll ask",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "cc7312e1",
+      "text": "onservative the planning needs",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "cce148ae",
+      "text": "planning needs to be from the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "212bbeac",
+      "text": "t understanding the financial",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "3eea7928",
+      "created_turn": 3
+    },
+    {
+      "node_id": "ae2fc7c3",
+      "text": "enter — I've seen that work fo",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 4
+    },
+    {
+      "node_id": "72f93b7d",
+      "text": "y more manageable. The name \"G",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "ae2fc7c3",
+      "created_turn": 4
+    },
+    {
+      "node_id": "1259ceb0",
+      "text": "of those questions are things",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "2b3f151e",
+      "text": "arubeni background is most dir",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "37e780f2",
+      "text": "und is most directly useful) —",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "89a97eb5",
+      "text": "s most directly useful) — and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "1f387c31",
+      "text": "ed about it carefully — that's",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "7c3a92e3",
+      "text": ". I know that's a significant",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "b7c7db8d",
+      "text": "cumulated over many years and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "72f93b7d",
+      "created_turn": 4
+    },
+    {
+      "node_id": "c04608ff",
+      "text": "y workable — the name function",
+      "level": "sun",
+      "mass": 16.0,
+      "parent_id": null,
+      "created_turn": 5
+    },
+    {
+      "node_id": "aedc4014",
+      "text": "e name functions as an aspirat",
+      "level": "planet",
+      "mass": 16.0,
+      "parent_id": "c04608ff",
+      "created_turn": 5
+    },
+    {
+      "node_id": "3fb86fd4",
+      "text": "— the name functions as an as",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "44610e62",
+      "text": "is genuinely valuable here — t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "abc9840e",
+      "text": "ly valuable here — the ability",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "b1fd3c53",
+      "text": "to understand quality signals",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "ed34fab8",
+      "text": "iture, and the small details t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "ac2bdba9",
+      "text": ", and the small details that m",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "59c2d9c2",
+      "text": "small details that make the at",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "42d29e00",
+      "text": "this with significant financia",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "b6f48e71",
+      "text": "ed as a buffer.\n\nAdding the co",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "aef7d7ea",
+      "text": "starting this with significan",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "45e1ed65",
+      "text": "the planning and early groundw",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "ef970c1b",
+      "text": "enario where you do the planni",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "bddacdcd",
+      "text": "want to understand better: are",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "bb137dcd",
+      "text": "s real implications for both y",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "d1f97f65",
+      "text": "on has real implications for b",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "f1f3c881",
+      "text": "ecision has real implications",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "aedc4014",
+      "created_turn": 5
+    },
+    {
+      "node_id": "e4fe09e7",
+      "text": "ing a side project. The work i",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 6
+    },
+    {
+      "node_id": "d56a7c64",
+      "text": "building a side project. The w",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "e4fe09e7",
+      "created_turn": 6
+    },
+    {
+      "node_id": "09f42428",
+      "text": "side project. The work is gen",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "c54f1aeb",
+      "text": "tand the operational reality a",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "214ccc93",
+      "text": ", but to understand the operat",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "67433fef",
+      "text": "the bulk of the planning whil",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "928305ff",
+      "text": "that a reasonable idea, or doe",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "c3548227",
+      "text": "sonable idea, or does it sound",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "7ef26e4e",
+      "text": "a reasonable idea, or does it",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "d56a7c64",
+      "created_turn": 6
+    },
+    {
+      "node_id": "9e313379",
+      "text": "ef, that fluency matters enorm",
+      "level": "sun",
+      "mass": 13.0,
+      "parent_id": null,
+      "created_turn": 7
+    },
+    {
+      "node_id": "c6563183",
+      "text": "y matters enormously. It's the",
+      "level": "planet",
+      "mass": 13.0,
+      "parent_id": "9e313379",
+      "created_turn": 7
+    },
+    {
+      "node_id": "00a9e47e",
+      "text": "operator who is going to be wo",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "6f1a89a3",
+      "text": "tage will also give you: exact",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "e40e3e21",
+      "text": "also give you: exactly the net",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "cf425acd",
+      "text": "hs working in a well-regarded",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "e66fa6d2",
+      "text": "ntation, and you should frame",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "85129f34",
+      "text": "by a significant margin. Also",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "7dad8733",
+      "text": "significant margin. Also, it",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "68a9ffc7",
+      "text": "model in detail — that is genu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "bb8c8347",
+      "text": "in detail — that is genuinely",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "2cd3feff",
+      "text": "d want you to name explicitly",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "51021e70",
+      "text": "this with more seriousness and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "5c2b0e25",
+      "text": "e built with that scenario mod",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "0e9a6801",
+      "text": "seriousness and preparation th",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c6563183",
+      "created_turn": 7
+    },
+    {
+      "node_id": "19f3fac5",
+      "text": "real skills and real relations",
+      "level": "sun",
+      "mass": 10.0,
+      "parent_id": null,
+      "created_turn": 8
+    },
+    {
+      "node_id": "fbb0a36d",
+      "text": "hink it through rather than av",
+      "level": "planet",
+      "mass": 10.0,
+      "parent_id": "19f3fac5",
+      "created_turn": 8
+    },
+    {
+      "node_id": "d1fed1f1",
+      "text": "the same level immediately, b",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "42c3c6a2",
+      "text": "a significant portion of our s",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "efa1fbaf",
+      "text": "ying, in terms of what it woul",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "821d7c1f",
+      "text": "at out, is: what do you actual",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "a73cf522",
+      "text": "this a sensible enough foundat",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "59049f42",
+      "text": ", but as someone who has heard",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "81f49eeb",
+      "text": "as someone who has heard what",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "7b01cd5d",
+      "text": "ings you're hearing that conce",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "77a07494",
+      "text": "re things you're hearing that",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "aff2a417",
+      "text": "e there things you're hearing",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fbb0a36d",
+      "created_turn": 8
+    },
+    {
+      "node_id": "fc7de7c0",
+      "text": "genuinely relevant. Eleven yea",
+      "level": "sun",
+      "mass": 16.0,
+      "parent_id": null,
+      "created_turn": 9
+    },
+    {
+      "node_id": "b083d130",
+      "text": "d is genuinely relevant. Eleve",
+      "level": "planet",
+      "mass": 16.0,
+      "parent_id": "fc7de7c0",
+      "created_turn": 9
+    },
+    {
+      "node_id": "21318893",
+      "text": "be specific about what I find",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "4f1a9441",
+      "text": "g the industrial reality of in",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "c7a62e3a",
+      "text": "l reality of ingredients. Most",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "1e206cc1",
+      "text": "anding the industrial reality",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "7c37f06c",
+      "text": "ary knowledge is real but it's",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "fd0d702f",
+      "text": "it needs to actually happen —",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "0203e99d",
+      "text": "Everything about this concept",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "b30dd8e0",
+      "text": "ia format. This is the one I w",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "05261601",
+      "text": "pend you'd need to project hon",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "fda7f85a",
+      "text": "to project honestly — does th",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "84a45eab",
+      "text": "the specific things that need",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "679fb49d",
+      "text": ". They're the specific things",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "85e005cc",
+      "text": "y're the specific things that",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "c11ab02d",
+      "text": "like — a sequenced plan for t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "2903b786",
+      "text": "— a sequenced plan for the ne",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "01bd6d1f",
+      "text": "look like — a sequenced plan",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b083d130",
+      "created_turn": 9
+    },
+    {
+      "node_id": "31d10fbc",
+      "text": "financial modeling, actually r",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 10
+    },
+    {
+      "node_id": "73f92600",
+      "text": "o do things in, or what depend",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "31d10fbc",
+      "created_turn": 10
+    },
+    {
+      "node_id": "cf2b910c",
+      "text": "things in, or what depends on",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "8a36e10f",
+      "text": "ctually be doing, week by week",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "30721488",
+      "text": "d I actually be doing, week by",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "5109ad73",
+      "text": "doing, week by week or month",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "2b1750da",
+      "text": "e when something suitable appe",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "b96a8c09",
+      "text": "thing I haven't mentioned yet:",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "53519350",
+      "text": "n something suitable appears.",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "73f92600",
+      "created_turn": 10
+    },
+    {
+      "node_id": "e94b96c0",
+      "text": "look like, what the range of r",
+      "level": "sun",
+      "mass": 31.0,
+      "parent_id": null,
+      "created_turn": 11
+    },
+    {
+      "node_id": "1d86e118",
+      "text": "ou want to understand what's r",
+      "level": "planet",
+      "mass": 31.0,
+      "parent_id": "e94b96c0",
+      "created_turn": 11
+    },
+    {
+      "node_id": "dafd231d",
+      "text": "understand what's realistic o",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "944367cd",
+      "text": "tchen. That information will f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "aa3b0752",
+      "text": ". That information will feed d",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "a08dc128",
+      "text": "ess accurate inputs. The resta",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "6b0b0c69",
+      "text": "nd variable costs, primarily f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "f5f03936",
+      "text": "e — and variable costs, primar",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "debd3334",
+      "text": "format you'd want to target ar",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "be7502b6",
+      "text": "At what utilization rate do yo",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "39892bfa",
+      "text": "at utilization rate do you sto",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "00818804",
+      "text": "tion rate do you stop losing m",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "a236a751",
+      "text": "tal cover before you run out o",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "a6ec0b83",
+      "text": "of losses does your capital c",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "f95b3768",
+      "text": "osses does your capital cover",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "cbf23447",
+      "text": "ave the substantive conversati",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "c70d15ff",
+      "text": "intelligence: have the substan",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "a2d83443",
+      "text": "ligence: have the substantive",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "aa032f41",
+      "text": "You're gathering knowledge tha",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "3d9f2454",
+      "text": "echnique, but communication, m",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "2b17b94e",
+      "text": "e gathering knowledge that no",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "4e87f326",
+      "text": "ntelligence to have defined yo",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "ed46a7b1",
+      "text": "h what you're trying to build,",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "c3af25f2",
+      "text": "requires exposure and word-of-",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "d44ecaaa",
+      "text": "alerts you to something that f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "a1fcdad2",
+      "text": "ons.\n\nThe thing I'd say most f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "fcbe1138",
+      "text": ", a clear picture of the real",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "938992a5",
+      "text": "the hardest variable to contro",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "ec46ae45",
+      "text": "ardest variable to control and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "d9a11b3c",
+      "text": "the first exploratory convers",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "dfeaf010",
+      "text": "And is there any piece of it y",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "382b9609",
+      "text": "re any piece of it you want to",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "38832aa7",
+      "text": "s there any piece of it you wa",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1d86e118",
+      "created_turn": 11
+    },
+    {
+      "node_id": "73895235",
+      "text": "e of the reality from people w",
+      "level": "sun",
+      "mass": 1.0,
+      "parent_id": null,
+      "created_turn": 12
+    },
+    {
+      "node_id": "4f0ebaa7",
+      "text": "the reality from people who've",
+      "level": "planet",
+      "mass": 1.0,
+      "parent_id": "73895235",
+      "created_turn": 12
+    },
+    {
+      "node_id": "97f7407c",
+      "text": "get a sense of the reality fro",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "4f0ebaa7",
+      "created_turn": 12
+    },
+    {
+      "node_id": "27538481",
+      "text": ", granular, lived knowledge th",
+      "level": "sun",
+      "mass": 16.0,
+      "parent_id": null,
+      "created_turn": 13
+    },
+    {
+      "node_id": "470d149f",
+      "text": ". That asymmetry of knowledge",
+      "level": "planet",
+      "mass": 16.0,
+      "parent_id": "27538481",
+      "created_turn": 13
+    },
+    {
+      "node_id": "83f6e147",
+      "text": "t to matter, and which things",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "aafa81bd",
+      "text": "matters more than the disclosu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "ee873fbe",
+      "text": "r disclosure: the good news is",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "52c5e898",
+      "text": "od news is that the context in",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "6e3aac2d",
+      "text": "g interesting, honest work and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "fcaacaea",
+      "text": "even a carefully worded messa",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "f14c076a",
+      "text": "a carefully worded message th",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "f38922da",
+      "text": "gues, at industry events, in c",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "bb99e34b",
+      "text": "ndustry events, in conversatio",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "469e02bb",
+      "text": "at industry events, in conver",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "3fcf1294",
+      "text": "of those things at this stage.",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "d999e1c4",
+      "text": "ling to stake — is a real asse",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "5424889d",
+      "text": "all of those things at this s",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "60faa503",
+      "text": "ted when it meets reality. Tha",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "c430692f",
+      "text": "hen it meets reality. That's n",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "ffb9bc5b",
+      "text": "ncial model you've built and w",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "470d149f",
+      "created_turn": 13
+    },
+    {
+      "node_id": "e8e0b100",
+      "text": "showing up in the data. Are yo",
+      "level": "sun",
+      "mass": 1.0,
+      "parent_id": null,
+      "created_turn": 14
+    },
+    {
+      "node_id": "667ec64e",
+      "text": "arate what's actually signal f",
+      "level": "planet",
+      "mass": 1.0,
+      "parent_id": "e8e0b100",
+      "created_turn": 14
+    },
+    {
+      "node_id": "c60026e7",
+      "text": "in the data. Are you ready to",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "667ec64e",
+      "created_turn": 14
+    },
+    {
+      "node_id": "673274ad",
+      "text": "primary research at this stage",
+      "level": "sun",
+      "mass": 1.0,
+      "parent_id": null,
+      "created_turn": 15
+    },
+    {
+      "node_id": "fb20fd97",
+      "text": "for primary research at this",
+      "level": "planet",
+      "mass": 1.0,
+      "parent_id": "673274ad",
+      "created_turn": 15
+    },
+    {
+      "node_id": "f9021fea",
+      "text": "compelling concept and close",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "fb20fd97",
+      "created_turn": 15
+    },
+    {
+      "node_id": "a07500dc",
+      "text": "ach and depth, the service sty",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 16
+    },
+    {
+      "node_id": "7b3adde8",
+      "text": "ture and how it was described,",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "a07500dc",
+      "created_turn": 16
+    },
+    {
+      "node_id": "42fae2ef",
+      "text": "list approach and depth, the s",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "7b3adde8",
+      "created_turn": 16
+    },
+    {
+      "node_id": "a5efaaaa",
+      "text": "f places I happened to know fr",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "7b3adde8",
+      "created_turn": 16
+    },
+    {
+      "node_id": "bb7308a6",
+      "text": "ces I happened to know from be",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "7b3adde8",
+      "created_turn": 16
+    },
+    {
+      "node_id": "ced92e1e",
+      "text": "happened to know from before.",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "7b3adde8",
+      "created_turn": 16
+    },
+    {
+      "node_id": "eede5f1f",
+      "text": "ng it with structured observat",
+      "level": "sun",
+      "mass": 5.0,
+      "parent_id": null,
+      "created_turn": 17
+    },
+    {
+      "node_id": "9fdd1b86",
+      "text": "d doing it with structured obs",
+      "level": "planet",
+      "mass": 5.0,
+      "parent_id": "eede5f1f",
+      "created_turn": 17
+    },
+    {
+      "node_id": "27157c4e",
+      "text": "the methodology shapes what w",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fdd1b86",
+      "created_turn": 17
+    },
+    {
+      "node_id": "3666a014",
+      "text": "r, lunch, or both at these pla",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fdd1b86",
+      "created_turn": 17
+    },
+    {
+      "node_id": "92fd0208",
+      "text": "istinction matters quite a bit",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fdd1b86",
+      "created_turn": 17
+    },
+    {
+      "node_id": "147d77cc",
+      "text": "The distinction matters quite",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fdd1b86",
+      "created_turn": 17
+    },
+    {
+      "node_id": "be17d94d",
+      "text": "matters quite a bit because t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fdd1b86",
+      "created_turn": 17
+    },
+    {
+      "node_id": "0bc085dd",
+      "text": "ocused most of the research en",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 18
+    },
+    {
+      "node_id": "de3d4c72",
+      "text": "al positioning and identity wo",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "0bc085dd",
+      "created_turn": 18
+    },
+    {
+      "node_id": "9987dad5",
+      "text": "e in the category in terms of",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "de3d4c72",
+      "created_turn": 18
+    },
+    {
+      "node_id": "0ada0cc3",
+      "text": "nchors for understanding the u",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "de3d4c72",
+      "created_turn": 18
+    },
+    {
+      "node_id": "b95610b0",
+      "text": "bility messaging, beautiful ro",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "de3d4c72",
+      "created_turn": 18
+    },
+    {
+      "node_id": "4967861d",
+      "text": "the anchors for understanding",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "de3d4c72",
+      "created_turn": 18
+    },
+    {
+      "node_id": "246da18f",
+      "text": "egic logics underneath. Ristor",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 19
+    },
+    {
+      "node_id": "994504b6",
+      "text": "fic biographical authenticity.",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "246da18f",
+      "created_turn": 19
+    },
+    {
+      "node_id": "df9f3499",
+      "text": "ry craft and a very specific b",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "299e822f",
+      "text": "stant credibility with certain",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "c1a09528",
+      "text": "f seriousness, and a conceptua",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "33035ef1",
+      "text": "ef identity, which gives it a",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "3b6c4089",
+      "text": "lian identity — particular pro",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "2ad89f5d",
+      "text": "as the positioning more about",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "70561a8f",
+      "text": "and technique in general term",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "994504b6",
+      "created_turn": 19
+    },
+    {
+      "node_id": "665552fc",
+      "text": "hrough genuine knowledge and l",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 20
+    },
+    {
+      "node_id": "5c2b9297",
+      "text": "filtered through genuine knowl",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "665552fc",
+      "created_turn": 20
+    },
+    {
+      "node_id": "57d3907a",
+      "text": "red through genuine knowledge",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "eb428e2e",
+      "text": "c specificity to speak of. You",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "8a075035",
+      "text": "a, which is fine and clearly w",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "47ba9dfb",
+      "text": "personal and quite technical",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "3fdfe870",
+      "text": "as clearly and primarily posit",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "f3c20661",
+      "text": "like a genuinely significant g",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "86198fca",
+      "text": "ted was clearly and primarily",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "5c2b9297",
+      "created_turn": 20
+    },
+    {
+      "node_id": "47b5cfc7",
+      "text": "as straightforwardly good news",
+      "level": "sun",
+      "mass": 10.0,
+      "parent_id": null,
+      "created_turn": 21
+    },
+    {
+      "node_id": "c9366b7f",
+      "text": "That's a significant observati",
+      "level": "planet",
+      "mass": 10.0,
+      "parent_id": "47b5cfc7",
+      "created_turn": 21
+    },
+    {
+      "node_id": "07c7b3d3",
+      "text": "tforwardly good news, because",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "a828b38b",
+      "text": "across any evidence — from tal",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "eb31af4c",
+      "text": "s any evidence — from talking",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "7d7e7a0b",
+      "text": "evidence — from talking to pe",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "51420ac3",
+      "text": "ith the provenance storytellin",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "e885606e",
+      "text": "ing with the provenance storyt",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "cae3c047",
+      "text": "he provenance storytelling, as",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "d419f7d9",
+      "text": "e from observable signals like",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "1bf84813",
+      "text": "m observable signals like occu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "47d71f63",
+      "text": "le signals like occupancy, tab",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "c9366b7f",
+      "created_turn": 21
+    },
+    {
+      "node_id": "bcdd2224",
+      "text": "hat's a genuine research gap I",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 22
+    },
+    {
+      "node_id": "b92630dd",
+      "text": "direct evidence of places tha",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "bcdd2224",
+      "created_turn": 22
+    },
+    {
+      "node_id": "48a648e0",
+      "text": "a genuine research gap I need",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "a0aee2c5",
+      "text": "background to the social occa",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "6c4b8abe",
+      "text": "lier detailed questions about",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "e2576b0a",
+      "text": "the sommelier detailed questi",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "783d0153",
+      "text": "o obvious distress signals. Bu",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "a269ace8",
+      "text": "odel in some ways — but it's n",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "e00d37b7",
+      "text": "than the high-stakes destinat",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "b92630dd",
+      "created_turn": 22
+    },
+    {
+      "node_id": "b2a652ec",
+      "text": "' — is one of the most importa",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 23
+    },
+    {
+      "node_id": "8aa8e334",
+      "text": ". You've essentially identifie",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "b2a652ec",
+      "created_turn": 23
+    },
+    {
+      "node_id": "0eed1a2f",
+      "text": "and how you communicate the c",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "b332bca9",
+      "text": "remarkable enough and specific",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "561d3258",
+      "text": "eads, that critics and serious",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "55d19eb1",
+      "text": "that critics and serious food",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "89a87b53",
+      "text": "een a compelling concept and a",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "bdbf3445",
+      "text": "l identity as the differentiat",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "cbaa3db4",
+      "text": "estaurant projects either get",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "8aa8e334",
+      "created_turn": 23
+    },
+    {
+      "node_id": "d5c520c5",
+      "text": "— that lets us showcase what E",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 24
+    },
+    {
+      "node_id": "352680cb",
+      "text": "c is that it acts as a lower-b",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "d5c520c5",
+      "created_turn": 24
+    },
+    {
+      "node_id": "b15c88a2",
+      "text": "to calibrate against what I w",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "352680cb",
+      "created_turn": 24
+    },
+    {
+      "node_id": "9276eec3",
+      "text": "verything I've described about",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "352680cb",
+      "created_turn": 24
+    },
+    {
+      "node_id": "6fff2016",
+      "text": "I've described about the compe",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "352680cb",
+      "created_turn": 24
+    },
+    {
+      "node_id": "42cef5e3",
+      "text": "hing I've described about the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "352680cb",
+      "created_turn": 24
+    },
+    {
+      "node_id": "17a6dd9c",
+      "text": "stinctive enough to have an id",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 25
+    },
+    {
+      "node_id": "a96c0207",
+      "text": "e think through both numbers c",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "17a6dd9c",
+      "created_turn": 25
+    },
+    {
+      "node_id": "79e33276",
+      "text": "e of 0.5 to 0.7 is realistic a",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "a96c0207",
+      "created_turn": 25
+    },
+    {
+      "node_id": "8b8be820",
+      "text": "t to flag that number specific",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "a96c0207",
+      "created_turn": 25
+    },
+    {
+      "node_id": "52b15580",
+      "text": "ia-Romagna product commitments",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "a96c0207",
+      "created_turn": 25
+    },
+    {
+      "node_id": "ec95230d",
+      "text": "product commitments — handmad",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "a96c0207",
+      "created_turn": 25
+    },
+    {
+      "node_id": "89144777",
+      "text": "I'm working from is: set the b",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 26
+    },
+    {
+      "node_id": "0e061265",
+      "text": "he conversion rate he describe",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "89144777",
+      "created_turn": 26
+    },
+    {
+      "node_id": "41a78d30",
+      "text": "ogic I'm working from is: set",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "0e061265",
+      "created_turn": 26
+    },
+    {
+      "node_id": "18b2a513",
+      "text": "er thing I should mention — I'",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "0e061265",
+      "created_turn": 26
+    },
+    {
+      "node_id": "f6df2da8",
+      "text": "e point, and use it to build t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "0e061265",
+      "created_turn": 26
+    },
+    {
+      "node_id": "ba8fa502",
+      "text": "e other thing I should mention",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "0e061265",
+      "created_turn": 26
+    },
+    {
+      "node_id": "f2ae9f20",
+      "text": "ng it described in explicit st",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 27
+    },
+    {
+      "node_id": "01c84922",
+      "text": "ic terms by someone actually r",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "f2ae9f20",
+      "created_turn": 27
+    },
+    {
+      "node_id": "83afec69",
+      "text": "described in explicit strateg",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "01c84922",
+      "created_turn": 27
+    },
+    {
+      "node_id": "1f4dd4ff",
+      "text": "nstead, 'Ginza' in the name cr",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "01c84922",
+      "created_turn": 27
+    },
+    {
+      "node_id": "365faad4",
+      "text": "an identity. If you land in Gi",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "01c84922",
+      "created_turn": 27
+    },
+    {
+      "node_id": "2b166f0d",
+      "text": "positioning work: it signals",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "01c84922",
+      "created_turn": 27
+    },
+    {
+      "node_id": "f887ecd8",
+      "text": "ow that the research is mostly",
+      "level": "sun",
+      "mass": 7.0,
+      "parent_id": null,
+      "created_turn": 28
+    },
+    {
+      "node_id": "62c66fe2",
+      "text": "wn terms, and then figure out",
+      "level": "planet",
+      "mass": 7.0,
+      "parent_id": "f887ecd8",
+      "created_turn": 28
+    },
+    {
+      "node_id": "f17a87bd",
+      "text": "forming now that the research",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "c6186f6f",
+      "text": "there to a significant degree;",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "d23b7e09",
+      "text": "alian category there to a sign",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "4c0c2650",
+      "text": "s interesting as an emerging o",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "92d2152f",
+      "text": "hether identity can substitute",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "175c4134",
+      "text": "of whether identity can subst",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "3af93c8a",
+      "text": "r identity can substitute for",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "62c66fe2",
+      "created_turn": 28
+    },
+    {
+      "node_id": "6dc750af",
+      "text": "n model works when the identit",
+      "level": "sun",
+      "mass": 5.0,
+      "parent_id": null,
+      "created_turn": 29
+    },
+    {
+      "node_id": "9fe97b0b",
+      "text": "which even a compelling identi",
+      "level": "planet",
+      "mass": 5.0,
+      "parent_id": "6dc750af",
+      "created_turn": 29
+    },
+    {
+      "node_id": "61c5fd58",
+      "text": "compelling enough that people",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fe97b0b",
+      "created_turn": 29
+    },
+    {
+      "node_id": "c8502360",
+      "text": "ence point to recognize what y",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fe97b0b",
+      "created_turn": 29
+    },
+    {
+      "node_id": "bdfd4c13",
+      "text": "ve a reference point to recogn",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fe97b0b",
+      "created_turn": 29
+    },
+    {
+      "node_id": "12350fb5",
+      "text": "structured location evaluatio",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fe97b0b",
+      "created_turn": 29
+    },
+    {
+      "node_id": "e2a9ab31",
+      "text": "Stronger, weaker, or about the",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "9fe97b0b",
+      "created_turn": 29
+    },
+    {
+      "node_id": "1cec5f71",
+      "text": "xpect was that the evidence wo",
+      "level": "sun",
+      "mass": 4.0,
+      "parent_id": null,
+      "created_turn": 30
+    },
+    {
+      "node_id": "1facb337",
+      "text": "g the most rigorous work on It",
+      "level": "planet",
+      "mass": 4.0,
+      "parent_id": "1cec5f71",
+      "created_turn": 30
+    },
+    {
+      "node_id": "45c2f003",
+      "text": "that the evidence would be as",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1facb337",
+      "created_turn": 30
+    },
+    {
+      "node_id": "66384d45",
+      "text": "ng from evidence rather than f",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1facb337",
+      "created_turn": 30
+    },
+    {
+      "node_id": "d11075c5",
+      "text": "fidence is coming from evidenc",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1facb337",
+      "created_turn": 30
+    },
+    {
+      "node_id": "e1ded247",
+      "text": "coming from evidence rather t",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "1facb337",
+      "created_turn": 30
+    },
+    {
+      "node_id": "f3cbe0dd",
+      "text": "ction that comes from evidence",
+      "level": "sun",
+      "mass": 10.0,
+      "parent_id": null,
+      "created_turn": 31
+    },
+    {
+      "node_id": "99a8a658",
+      "text": "nts with a structured observat",
+      "level": "planet",
+      "mass": 10.0,
+      "parent_id": "f3cbe0dd",
+      "created_turn": 31
+    },
+    {
+      "node_id": "cfb1939c",
+      "text": "that comes from evidence and",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "d09c3bb8",
+      "text": "serious scrutiny. Here is wher",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "36f20bfc",
+      "text": "ter-evidence that's currently",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "ae5858eb",
+      "text": "s the counter-evidence that's",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "38ea8092",
+      "text": "The two weeks of research have",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "a7e9251f",
+      "text": "t the concept you've built in",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "da7fba46",
+      "text": "concept you've built in your",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "df23eb17",
+      "text": "rvive contact with the numbers",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "cb4802d6",
+      "text": "part of the strategic thinking",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    },
+    {
+      "node_id": "469608af",
+      "text": "of the strategic thinking. Now",
+      "level": "satellite",
+      "mass": 0.1,
+      "parent_id": "99a8a658",
+      "created_turn": 31
+    }
+  ],
+  "summary": {
+    "sun": 32,
+    "planet": 32,
+    "satellite": 262,
+    "total": 326,
+    "turns": 32,
+    "unbudgeted_tokens": 4687
+  }
+}

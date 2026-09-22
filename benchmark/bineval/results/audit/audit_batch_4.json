@@ -1,0 +1,371 @@
+[
+  {
+    "qid": "rest_s01_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "my wife Ayako Morishita is supportive",
+    "notes": null
+  },
+  {
+    "qid": "rest_s02_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "not a single restaurant...positioning itself around Emilia-Romagna cuisine. That felt like a genuinely significant gap.",
+    "notes": null
+  },
+  {
+    "qid": "rest_s03_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "applying to Japan Finance Corporation for 15 million yen at 1.85%",
+    "notes": null
+  },
+  {
+    "qid": "rest_s04_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "introduced to me by my college friend Daichi Sasaki",
+    "notes": null
+  },
+  {
+    "qid": "rest_s05_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Floor area is 64.5 square meters, which is 19.5 tsubo",
+    "notes": null
+  },
+  {
+    "qid": "rest_s06_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I'm going to go with Yamamoto Koumuten",
+    "notes": null
+  },
+  {
+    "qid": "rest_s06_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "he proposed an open kitchen with a brick-faced pizza oven facing dining room",
+    "notes": null
+  },
+  {
+    "qid": "rest_s07_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Scaling back interior finishing is one of the most common and recoverable ways to close a budget gap",
+    "notes": null
+  },
+  {
+    "qid": "rest_s08_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The supplier the architect lined up is Toyo Wood Works",
+    "notes": null
+  },
+  {
+    "qid": "rest_s09_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "La Monferrina P3 from Reizou Sangyo at 580,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s10_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "4,200 yen per 500ml bottle",
+    "notes": null
+  },
+  {
+    "qid": "rest_s11_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I went with a company called Nakata Shoji",
+    "notes": null
+  },
+  {
+    "qid": "rest_s11_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "total inventory cost for the opening purchase is 1.85 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s12_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "terracotta and ivory as your primary anchor colors",
+    "notes": null
+  },
+  {
+    "qid": "rest_s13_04",
+    "answerable": "yes",
+    "gold_correct": "no",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "no",
+    "evidence_quote": "first three as sous chef and the final year as head chef when the previous head left",
+    "notes": "Gold says '4 years' as sous chef; session says 3 years sous chef + 1 year head chef = 4 years total. Correct answer is 3 years. fact_quote contradicts session text."
+  },
+  {
+    "qid": "rest_s14_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "470,000 yen over the original 8.4 million yen budget",
+    "notes": null
+  },
+  {
+    "qid": "rest_s15_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "6 antipasti, 5 primi — which breaks down as 3 pasta and 2 risotto — 4 secondi, and 3 desserts",
+    "notes": null
+  },
+  {
+    "qid": "rest_s16_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The person we landed on is Haruki Nakajima. He is 29 years old",
+    "notes": null
+  },
+  {
+    "qid": "rest_s16_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The first is Yui Tachibana...The second part-time hire is Naoki Hirose",
+    "notes": null
+  },
+  {
+    "qid": "rest_s17_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Night three has 3 critics — food media on guest list",
+    "notes": "First user message is PLACEHOLDER_START; fact is recoverable from subsequent user turns."
+  },
+  {
+    "qid": "rest_s18_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "73 of 80 guests rated the meal 8/10 or higher",
+    "notes": null
+  },
+  {
+    "qid": "rest_s20_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The actual lunch average ticket came in at 1,950 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s21_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "A woman named Sara Komatsu, age 23, started November 17",
+    "notes": null
+  },
+  {
+    "qid": "rest_s22_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "November revenue came in at 3.42 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s22_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "food 31%, labor 38%, rent+utilities 18%, other 9%",
+    "notes": null
+  },
+  {
+    "qid": "rest_s23_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "In total for December, we have 4 events booked",
+    "notes": null
+  },
+  {
+    "qid": "rest_s25_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the branzino dish got dropped by Petrelli...The branzino was landing below a margin threshold",
+    "notes": null
+  },
+  {
+    "qid": "rest_s26_04",
+    "answerable": "no",
+    "gold_correct": "ambiguous",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session_26.txt contains a literary-agent narrative (Renata Goldfarb, book representation) unrelated to wine club. '10% off bottle list' appears in no session transcript. fact_quote is unverifiable."
+  },
+  {
+    "qid": "rest_s27_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "given temporary 80,000 yen monthly bump",
+    "notes": null
+  },
+  {
+    "qid": "rest_s28_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We're currently sitting at a 3.61 rating after 24 reviews",
+    "notes": null
+  },
+  {
+    "qid": "rest_s29_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Cantina Morishita — that's what we named it — currently has 23 members signed, and my target is 40 by April",
+    "notes": null
+  },
+  {
+    "qid": "rest_s29_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I'm looking at raising prices on 4 menu items",
+    "notes": null
+  },
+  {
+    "qid": "rest_s30_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "what she called our \"unfussy precision\"",
+    "notes": null
+  },
+  {
+    "qid": "rest_s31_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The structural anchor for the whole revision was the dinner average ticket target. I brought it up to 9,200 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s34_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the single most frequent guest in our entire database — is a man named Mr. Hiroyuki Tachibana, who has logged 10 visits",
+    "notes": null
+  },
+  {
+    "qid": "rest_s36_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The Yamamoto Koumuten estimate came in at 1.4 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s37_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "total staff: 7 full-time, 4 part-time",
+    "notes": null
+  },
+  {
+    "qid": "rest_s37_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "We've completed social insurance enrollment for all full-time staff",
+    "notes": null
+  },
+  {
+    "qid": "rest_s38_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Petrelli new monthly base is 780,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s39_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Wine pairings start at 6,500 yen per person",
+    "notes": null
+  },
+  {
+    "qid": "rest_s40_06",
+    "answerable": "no",
+    "gold_correct": "ambiguous",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session_40.txt contains a novelist narrative (Maya Tanaka, The Eelgrass Year, Portland) unrelated to the restaurant. 'Second location decision by November' and 'cookbook collaboration' appear in no session transcript. fact_quote is unverifiable."
+  }
+]

@@ -1,18 +1,18 @@
 """
-TextChunker: splits conversation text into semantic units (chunks).
+TextChunker: 会話テキストを意味の最小単位（チャンク）に分割する。
 
-Rather than splitting per sentence, boundaries are placed at connectives such
-as "また" or "例えば" and at points where the meaning vector changes sharply,
-producing compact semantic units.
+特許§0038 準拠:
+  「一文単位ではなく、『また』、『例えば』等といった接続詞や
+   意味のベクトルが急変する箇所を境界として、意味の最小単位に分割する」
 
-Implementation:
-  1. Split at connective boundaries (lightweight, runs immediately)
-  2. Auxiliary split at punctuation boundaries (。！？)
-  3. Force-split by character count when the configured max token limit is exceeded
-  4. Merge adjacent chunks that are too short
+実装方針:
+  1. 接続詞境界での分割（軽量・即時実行）
+  2. 句読点（。！？）境界での補助分割
+  3. 設定された最大トークン数を超える場合は文字数ベースで強制分割
+  4. 短すぎる隣接チャンクは結合する
 
-Embedding-based splitting on meaning-vector changes is offered as an option
-(uses SentenceTransformer when compute_embeddings=True).
+意味ベクトル変化（embedding）ベースの分割はオプションとして提供する
+（compute_embeddings=True 指定時に SentenceTransformer を使用）。
 """
 from __future__ import annotations
 import re
@@ -20,8 +20,8 @@ from dataclasses import dataclass
 from utils.config import get
 
 
-# Common Japanese connectives and transition words. When one appears mid-text,
-# the position right before it is used as a split boundary.
+# 特許§0038 で例示された接続詞と、典型的な日本語接続詞・転換語
+# 文中に現れた場合に、その直前を境界として分割するためのマーカー。
 _CONNECTIVES: tuple[str, ...] = (
     "また、",
     "また,",
@@ -60,20 +60,20 @@ _SENTENCE_END = re.compile(r"(?<=[。！？!?])")
 class Chunk:
     text: str
     source: str    # "user" | "assistant" | "combined"
-    turn: int      # round-trip number
+    turn: int      # ラウンドトリップ番号
 
 
 class TextChunker:
     def __init__(self):
         self._max_tokens: int = get("management", "chunk_max_tokens", 200)
-        self._min_chunk_chars: int = 12  # threshold below which a fragment is merged with its neighbor
+        self._min_chunk_chars: int = 12  # 短すぎる断片は隣と結合する閾値
 
     def chunk_turn(self, user_text: str, assistant_text: str, turn: int) -> list[Chunk]:
         """
-        Converts one round-trip of text into a list of Chunks.
+        1ラウンドトリップ分のテキストをChunkのリストに変換する。
 
-        Uses connective and punctuation boundaries to form semantic units,
-        splitting further only when max_tokens is exceeded.
+        特許§0038 準拠で接続詞・句読点境界を意味の最小単位として用い、
+        max_tokens を超える場合のみ更に分割する。
         """
         chunks: list[Chunk] = []
 
@@ -85,27 +85,25 @@ class TextChunker:
             for piece in self._split_to_meaning_units(assistant_text):
                 chunks.append(Chunk(text=piece, source="assistant", turn=turn))
 
-        # Merge fragments that are too short
+        # 短すぎる断片を後段で結合
         chunks = self._coalesce_short_chunks(chunks)
         return chunks
 
-    # ── Splitting logic ─────────────────────────────────────────────────
+    # ── 分割ロジック ───────────────────────────────────────────────────
 
     def _split_to_meaning_units(self, text: str) -> list[str]:
         """
-        Splits text into semantic units, progressively refining the
-        granularity: connective boundaries -> punctuation boundaries ->
-        forced split at max_tokens.
+        特許§0038 の「意味の最小単位」分割。
+        接続詞境界 → 句読点境界 → max_tokens 強制分割の順で粒度を細かくする。
         """
         text = text.strip()
         if not text:
             return []
 
-        # Step 1: split at connective boundaries (the connective itself stays at
-        # the start of the next chunk)
+        # Step 1: 接続詞境界で分割（接続詞自身は次のチャンクの先頭に残す）
         units = self._split_on_connectives(text)
 
-        # Step 2: re-split any unit exceeding max_tokens at punctuation
+        # Step 2: 各ユニットが max_tokens を超える場合は句読点で再分割
         refined: list[str] = []
         for u in units:
             if self._estimate_tokens(u) <= self._max_tokens:
@@ -113,7 +111,7 @@ class TextChunker:
             else:
                 refined.extend(self._split_on_sentences(u))
 
-        # Step 3: force-split by character count if still over the limit
+        # Step 3: それでも超える場合は文字数で強制分割
         final: list[str] = []
         max_chars = self._max_tokens * 4  # ~4 chars per token
         for u in refined:
@@ -127,10 +125,10 @@ class TextChunker:
 
     def _split_on_connectives(self, text: str) -> list[str]:
         """
-        Splits text using connectives as boundaries. The connective stays at
-        the start of the next chunk, since it semantically belongs to it.
+        接続詞を境界としてテキストを分割する。
+        接続詞は次のチャンクの先頭に残す（意味的にそのチャンクの一部だから）。
         """
-        # Collect the positions of each connective
+        # 各接続詞の出現位置を集める
         cuts: list[int] = []
         for conn in _CONNECTIVES:
             start = 0
@@ -138,7 +136,7 @@ class TextChunker:
                 idx = text.find(conn, start)
                 if idx == -1:
                     break
-                if idx > 0:  # do not split on a connective at the start of the text
+                if idx > 0:  # 文頭の接続詞は分割しない
                     cuts.append(idx)
                 start = idx + len(conn)
 
@@ -160,14 +158,14 @@ class TextChunker:
 
     @staticmethod
     def _split_on_sentences(text: str) -> list[str]:
-        """Splits into sentences at punctuation (。！？)."""
+        """句読点 (。！？) で文単位に分割する。"""
         parts = _SENTENCE_END.split(text)
         return [p.strip() for p in parts if p.strip()]
 
     def _coalesce_short_chunks(self, chunks: list[Chunk]) -> list[Chunk]:
         """
-        Merges extremely short chunks (e.g. a lone connective) into the
-        preceding chunk, so they do not hinder meaningful node extraction.
+        極端に短いチャンク（接続詞だけなど）を直前のチャンクに結合する。
+        意味のあるノード抽出を阻害しないようにするため。
         """
         if len(chunks) <= 1:
             return chunks
@@ -192,5 +190,5 @@ class TextChunker:
 
     @staticmethod
     def _estimate_tokens(text: str) -> int:
-        # Rough estimate: 4 characters ≈ 1 token
+        # 簡易推定: 4文字 ≈ 1トークン
         return max(1, len(text) // 4)

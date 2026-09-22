@@ -1,0 +1,1748 @@
+{
+  "nodes": [
+    {
+      "node_id": "s1",
+      "text": "Kenta Morishita (age 34, 11 years at Marubeni Corporation food-and-agribusiness division) is planning to leave his corporate job and open a small Italian trattoria in Tokyo.",
+      "level": "sun",
+      "parent_id": null,
+      "created_turn": 1
+    },
+    {
+      "node_id": "p1",
+      "text": "Kenta Morishita's personal background and motivation for the restaurant project.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t1",
+      "text": "In 2019, a Marubeni sourcing trip to the Emilia-Romagna region of northern Italy (Bologna) became a formative experience that sparked the restaurant idea.",
+      "level": "satellite",
+      "parent_id": "p1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t2",
+      "text": "Kenta enrolled in a 3-week program at the Hotel School of Bologna covering fundamentals of Italian culinary tradition, regional ingredients, and the philosophy of cucina povera.",
+      "level": "satellite",
+      "parent_id": "p1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t3",
+      "text": "Kenta's wife, Ayako Morishita, is supportive of the venture, has a stable job covering household expenses, and the couple owns a paid-off apartment, providing a financial safety net in a failure scenario.",
+      "level": "satellite",
+      "parent_id": "p1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t4",
+      "text": "In an explicit failure-scenario conversation, the couple concluded that if the restaurant fails within two years and most of the 28 million yen is lost, Kenta's Marubeni industry relationships would allow him to return to work within six months.",
+      "level": "satellite",
+      "parent_id": "p1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t5",
+      "text": "Kenta plans to resign from Marubeni around April 2025, give himself a 6-to-9-month pre-opening planning period, and target an opening in late 2025 or early 2026.",
+      "level": "satellite",
+      "parent_id": "p1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "p2",
+      "text": "The restaurant concept: a small, unpretentious Italian trattoria anchored in the Emilia-Romagna culinary tradition.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t6",
+      "text": "The working name is 'Ginza Trattoria,' targeting a 20–25 seat room (later firmed up to 28–30 seats) focused on handmade pasta, seasonal ingredients, and genuine hospitality without theatrical presentation.",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t7",
+      "text": "The ownership model is owner-operator (Kenta manages sourcing, front of house, and business) partnered with a skilled professional chef who shares the Emilia-Romagna philosophy, leveraging Kenta's Marubeni supply-chain expertise.",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t8",
+      "text": "The dinner positioning is the 'serious trattoria' tier at an average spend of approximately 8,500 yen per person (food only) or 12,000–15,000 yen all-in with drinks — well above casual trattorias (4,000–6,000 yen) but below premium anchors (18,000–25,000+ yen).",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t9",
+      "text": "A 1,800 yen lunch set menu (2–3 courses featuring handmade pasta) is planned as a low-barrier customer acquisition tool — modeled on a loss-leader strategy observed at mid-range Tokyo Italian restaurants.",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t10",
+      "text": "The wood-fired oven was considered for the concept but decided against: the Tokyo Fire Department certification process would add 2–3 months to build-out and significant cost; a gas-fired stone deck oven was chosen instead, with quality maintained through dough development and fermentation discipline.",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t71",
+      "text": "The head chef is from Friuli-Venezia Giulia, trained at two Michelin-starred restaurants in Italy and Tokyo; the junior cook is Japanese and has done stages in Italy; Kenta will be on the floor, making it a 2-person kitchen executing 38 covers in a single dinner seating.",
+      "level": "satellite",
+      "parent_id": "p2",
+      "created_turn": 9
+    },
+    {
+      "node_id": "p3",
+      "text": "Financial plan: capital structure, cost projections, revenue model, breakeven analysis, and Japan Finance Corporation loan application.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t11",
+      "text": "Total personal savings available for the venture: 28 million yen (Kenta's and Ayako's full accumulated savings).",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t12",
+      "text": "Total pre-opening capital budget is estimated at 22–25 million yen, broken down as: renovation/fit-out 8–10M yen, equipment 3–4M yen, key money and deposits 4–5M yen, pre-opening inventory and licensing 1–1.5M yen, miscellaneous 0.5–1M yen.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t13",
+      "text": "Personal savings contribution to pre-opening costs: 12–13 million yen; the balance is funded by a 15 million yen Japan Finance Corporation loan at 1.85% interest.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t14",
+      "text": "Monthly debt service on the 15 million yen JFC loan (7-year term at 1.85%): approximately 200,000–210,000 yen per month, representing about 7% of projected month-3 revenue.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t15",
+      "text": "Working capital reserve target is 6 million yen minimum (per accountant Hiroshi Tanabe's recommendation based on prior restaurant client experience); actual reserve after opening costs may land between 3–6 million yen depending on fit-out bids.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t16",
+      "text": "Revenue model is built on 24 seats (later adjusted to 28–30), dinner service Tuesday–Sunday, lunch Thursday–Saturday; projected full-capacity monthly revenue 4.2 million yen; month-3 working projection at 70% utilization: 2.94 million yen.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t17",
+      "text": "Operating cost structure: food cost 30% of revenue, labor 35%, rent and utilities 18%, other (admin, insurance, depreciation) 12%; projected operating margin 5% at 70% utilization.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t18",
+      "text": "Breakeven is 38 covers per day average across all services, derived by dividing the fixed cost base; this average conceals structural risk on weeknights (Tuesday/Wednesday) where single dinner service of 24 seats cannot reach 38 covers alone.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t19",
+      "text": "Ramp-up modeled in three stages: month 1 at 40% utilization, month 2 at 55%, month 3 at 70%; cumulative operating shortfall over the three months estimated at 3.5 million yen.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t20",
+      "text": "The JFC loan application was submitted with an April 2025 target; the review-and-interview process is expected to take 6–10 weeks, with approval expected in late June or early July 2025.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t21",
+      "text": "JFC interview preparation requires the founder to derive all key figures from first principles (not recite them): full-capacity revenue of 4.2M yen from component inputs, breakeven cover count from fixed cost base, and sensitivity analysis (e.g., effect of 20% rent increase on breakeven).",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t22",
+      "text": "Actual signed lease figures for Azabu Heights Building: floor area 64.5 sqm (19.5 tsubo), monthly base rent 487,000 yen, common area fee 73,000 yen, total occupancy cost 560,000 yen/month, key money 2,922,000 yen (6 months of base rent), lease term 4 years renewable.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t23",
+      "text": "At 28 covers with a 12,000–15,000 yen average spend, one full turn per service generates 336,000–420,000 yen in revenue; two turns on peak nights approach or exceed 800,000 yen daily, sufficient to sustain the 560,000 yen monthly occupancy cost.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t57",
+      "text": "JFC approved 12 million yen (applied for 15 million), a 3 million yen shortfall, at a final interest rate of 1.95% — higher than the preliminary consultation estimate of 1.6–1.7%.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 7
+    },
+    {
+      "node_id": "t58",
+      "text": "An uncle invested capital approximately 8 months before session 7 (during lease negotiations); main kitchen combi oven and refrigeration units are covered by a separate leasing arrangement, converting those capital costs to monthly lease payments and keeping them off the balance sheet.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 7
+    },
+    {
+      "node_id": "t59",
+      "text": "Total opening capital secured: 36 million yen, comprising personal savings, uncle's investment, equipment leasing arrangement, and the 12 million yen JFC loan.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 7
+    },
+    {
+      "node_id": "t60",
+      "text": "Budget gap reconciliation plan: release 800,000 yen of the 1.6 million yen construction contingency (justified by Yamamoto-san's track record); substitute domestic ceramic tile for Gifu limestone (~500,000 yen saving); substitute fine-coat plaster for Venetian plaster (~450,000 yen saving); possible modest banquette millwork reduction — together estimated to close ~1.75 million of the 2.2 million yen gap.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 7
+    },
+    {
+      "node_id": "t61",
+      "text": "Uncle's additional capital is kept as a reserve option rather than a first resort: approaching him first would consume that reserve before exploring construction scope management, and the uncle ask is preserved for a success-mode year-two investment rather than a gap-filling one.",
+      "level": "satellite",
+      "parent_id": "p3",
+      "created_turn": 7
+    },
+    {
+      "node_id": "p4",
+      "text": "Market research: Kenta's structured field study of 14 Tokyo Italian restaurants conducted in March 2025 to evaluate competitive positioning.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t24",
+      "text": "Kenta visited 14 Italian restaurants over two weeks (9 dinners, 5 lunches), tracking menu structure, wine list depth, service style, average check, and how each restaurant communicated its culinary identity.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t25",
+      "text": "Three premium benchmark restaurants studied: Ristorante Aso (Daikanyama) — chef-driven personal culinary craft rooted in Italian producer relationships; Faro (Ginza, Shiseido-operated) — sustainability-focused, Japanese-Italian dialogue, institutional backing; Heinz Beck (Marunouchi) — imported European chef brand with Roman/Lazio influence.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t26",
+      "text": "Key finding: not a single one of the 14 restaurants surveyed was clearly and primarily positioned around Emilia-Romagna cuisine — representing a genuine gap in the Tokyo Italian restaurant market.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t27",
+      "text": "At Ristorante Aso, a neighboring couple spent approximately 10 minutes asking the sommelier detailed questions about regional Italian wines, with the table visibly engaged — taken as evidence that a Tokyo audience exists for deep regional Italian specificity.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t28",
+      "text": "Mid-range generic Italian restaurants (11 of the 14 visited) showed solid commercial performance (decent weeknight occupancy, reasonable table turns) but lacked geographic specificity and functioned as social backdrop rather than culinary destinations.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 2
+    },
+    {
+      "node_id": "t29",
+      "text": "Weeknight (Tuesday/Wednesday) dinner occupancy at mid-range Italian restaurants ran at 40–55% of seats even at well-reviewed locations; restaurants holding solid weeknight numbers had either dense neighborhood regulars or corporate expense-account clients.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t30",
+      "text": "One Daikanyama Italian restaurant had built its entire Tuesday/Wednesday business around three or four companies whose account managers used it as their regular client-dinner venue.",
+      "level": "satellite",
+      "parent_id": "p4",
+      "created_turn": 3
+    },
+    {
+      "node_id": "p5",
+      "text": "Location scouting: three-week neighborhood survey of 23 properties across five Tokyo areas conducted in April 2025 with broker Yusuke Hamada.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t31",
+      "text": "Broker Yusuke Hamada (Plaza Homes Commercial), referred by college friend Daichi Sasaki who used him for a wine bar opening in Ebisu, assembled a list of 23 properties in five neighborhoods and walked every property with Kenta over three weeks.",
+      "level": "satellite",
+      "parent_id": "p5",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t32",
+      "text": "Nishi-Azabu rents: 85,000–105,000 yen per tsubo per month, at or above accountant Tanabe's ceiling of 95,000 yen/tsubo; strong evening foot traffic with the right demographic (couples 30s–40s, small business groups, mix of Japanese and foreign residents); one corner unit vacant for 8 months with individual elderly landlord who might negotiate.",
+      "level": "satellite",
+      "parent_id": "p5",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t33",
+      "text": "Higashi-Azabu rents: 68,000–78,000 yen per tsubo per month (comfortably under Tanabe's ceiling); quieter residential character, no chains, cluster of serious reservation-only restaurants; best unit is a second-floor space with good ceiling height and kitchen-spec exhaust system already installed.",
+      "level": "satellite",
+      "parent_id": "p5",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t34",
+      "text": "Hiroo rents: 72,000–82,000 yen per tsubo per month; highest foreign resident concentration in the survey, with French school families and embassy professionals who have genuine European culinary experience; parking unavailable at the properties but Hamada suggested contracting 4–5 spaces at a nearby structure at ~30,000–40,000 yen/space/month.",
+      "level": "satellite",
+      "parent_id": "p5",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t35",
+      "text": "Yoyogi-Uehara rents: 55,000–68,000 yen per tsubo per month (lowest of the five areas); emerging organic food culture with craft-focused younger residents; ruled out because 'Ginza Trattoria' brand register (formal, destination-facing) conflicts with the neighborhood's anti-establishment, discovery-driven dining culture.",
+      "level": "satellite",
+      "parent_id": "p5",
+      "created_turn": 4
+    },
+    {
+      "node_id": "p6",
+      "text": "Pre-opening action plan: 90-day structured calendar and key milestones following Kenta's April 2025 resignation from Marubeni.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t36",
+      "text": "Month 1 (May 2025) priorities: build a full operating financial model with conservative assumptions and stress tests; activate broker for market intelligence (visit 3–5 properties); make staging contacts at 4–5 high-quality Italian restaurants in Tokyo.",
+      "level": "satellite",
+      "parent_id": "p6",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t37",
+      "text": "Month 2 (June 2025): stage 3–4 days per week in a serious restaurant kitchen (primarily evenings) to gain operational fluency and build chef-search network through word-of-mouth in professional kitchen circles.",
+      "level": "satellite",
+      "parent_id": "p6",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t38",
+      "text": "Month 3 (July 2025): converge parallel threads — by end of July, commit to at least one major structural decision (letter of intent on a space or formal chef agreement or both).",
+      "level": "satellite",
+      "parent_id": "p6",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t39",
+      "text": "The chef search was flagged as the highest-priority, longest-lead-time item; must be started actively in Month 1, not deferred to Month 3 — finding the right chef is identified as the single most critical variable for the concept's success.",
+      "level": "satellite",
+      "parent_id": "p6",
+      "created_turn": 1
+    },
+    {
+      "node_id": "t40",
+      "text": "Staging is recommended for a minimum of 3 months in a high-standards Italian restaurant kitchen in Tokyo, in a junior/observer capacity; purpose is operational fluency and chef network access, not professional culinary training.",
+      "level": "satellite",
+      "parent_id": "p6",
+      "created_turn": 1
+    },
+    {
+      "node_id": "p7",
+      "text": "Key external partners and advisors supporting the project.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t41",
+      "text": "Accountant: Hiroshi Tanabe of Tanabe & Partners (2-7-3 Shibuya, Daiichi-Bunko Building 5F); referred by a Marubeni contact; has advised three prior Tokyo restaurant startups (one Italian, two Japanese); handling the financial modeling section and loan narrative for the JFC application.",
+      "level": "satellite",
+      "parent_id": "p7",
+      "created_turn": 3
+    },
+    {
+      "node_id": "t42",
+      "text": "Broker: Yusuke Hamada of Plaza Homes Commercial; referred by college friend Daichi Sasaki; distinguished by understanding hospitality-specific space requirements (ventilation, electrical load, grease traps, structural tolerances) rather than treating restaurant spaces as generic retail.",
+      "level": "satellite",
+      "parent_id": "p7",
+      "created_turn": 4
+    },
+    {
+      "node_id": "t43",
+      "text": "Head chef candidate: a woman named Fujita-san who trained for four years at a Michelin-starred trattoria in Torino and returned to Tokyo in autumn 2024; Kenta has been maintaining the relationship through periodic coffee conversations without making a formal offer pending lease signing.",
+      "level": "satellite",
+      "parent_id": "p7",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t44",
+      "text": "Contractor: Suzuki-san; a contractor familiar with commercial restaurant restoration in Minato-ku who reviews build-out restriction addenda as standard practice; scheduled for a full condition walk-through at the Azabu Heights Building on the afternoon of the lease signing day.",
+      "level": "satellite",
+      "parent_id": "p7",
+      "created_turn": 5
+    },
+    {
+      "node_id": "p8",
+      "text": "Property selection and lease signing: the chosen space at Azabu Heights Building, 3-14-7 Higashi-Azabu, Minato-ku.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t45",
+      "text": "The lease was signed on May 4, 2025 at a notary's office in a nearly two-hour process including document review, countersignatures on the main agreement and build-out rider, seal registration confirmation, and landlord representative walkthrough.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t46",
+      "text": "The space at Azabu Heights Building features a south-facing entrance with a vestibule (approx. 4 sqm), an existing brick accent wall on the north side of the dining area (left by the previous tenant), west-facing windows with good afternoon light, and kitchen infrastructure (extraction fan housing, gas stub-outs, grease trap) aligned with the planned northern-kitchen layout.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t47",
+      "text": "The previous tenant was a French bistro that closed in October 2024 after completing approximately 60% of their HVAC ducting installation; the landlord agreed as a lease condition to complete this remaining ductwork at his own expense, saving Kenta an estimated 400,000–500,000 yen.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t48",
+      "text": "Build-out restriction addendum terms: no modification of the shared corridor wall (east side) without written landlord consent; no electrical panel alteration without licensed electrician notification filing; all floor penetrations for plumbing require written pre-approval.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t49",
+      "text": "Planned interior layout: entrance from south into a ~4 sqm vestibule as an atmospheric threshold; bar and counter along the east wall; kitchen occupying the northern ~18–20 sqm with a low partition and centered pass-through; main dining floor in the middle section; targeting 28 covers (possibly 32 with bar stools) with the pasta preparation area in line-of-sight from the dining floor.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t50",
+      "text": "The target opening date is late autumn 2025 (September–October optimistic, November if build-out takes longer); Kenta is awaiting the JFC loan decision (expected 2–3 weeks from May 4) and Suzuki-san's full condition report with revised build-out cost estimate before setting a firm public date.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 5
+    },
+    {
+      "node_id": "t62",
+      "text": "Construction officially started June 9, 2025 with Yamamoto Koumuten's crew at 3-14-7 Higashi-Azabu; projected completion date is August 22, 2025 (approximately 10 weeks); a potential +1 week delay risk exists from suspected non-standard plumbing routing left by the previous tenant behind the kitchen wall, with 800,000 yen contingency reserved for in-wall surprises.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 8
+    },
+    {
+      "node_id": "t63",
+      "text": "Dining room floor: white oak engineered plank (120–180mm plank width, straight-run parallel to the main window wall, varied board lengths) with hardener/hard-wax oil finish, sourced from Toyo Wood Works (Yokohama specialty hospitality importer), 6-week lead time with order placed around June 12, 2025.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 8
+    },
+    {
+      "node_id": "t64",
+      "text": "Dining room walls: Marmorino limestone-finish polished plaster (Venetian tradition, subtle eggshell sheen, reacts to light angle), sourced from Tokai Sangyo (Nagoya importer), 3-week lead time; certified applicator is Chiba-based with approximately 12 prior Marmorino installations including restaurant projects, sourced from Tokai Sangyo's recommended list.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 8
+    },
+    {
+      "node_id": "t65",
+      "text": "The two gender-segregated bathrooms were replaced with a single accessible unisex bathroom, recovering approximately 3.2 sqm; written compliance confirmation with Tokyo Metropolitan Government requirements (Tokyo Barrier-Free Ordinance, Building Standards Law) was required before rough-in finalization.",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 8
+    },
+    {
+      "node_id": "t66",
+      "text": "The 3.2 sqm recovered from the bathroom reconfiguration is allocated between bar seating extension and a dedicated coat alcove near the entrance (recessed panel with brushed brass hooks and shelf, finished to match the entry material language).",
+      "level": "satellite",
+      "parent_id": "p8",
+      "created_turn": 8
+    },
+    {
+      "node_id": "p9",
+      "text": "Contractor selection: three-bid evaluation and selection of Yamamoto Koumuten for the 64.5 sqm restaurant fit-out at Azabu Heights Building.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t51",
+      "text": "Three renovation bids were obtained against a hard 8.4 million yen ceiling communicated in writing upfront: Kenchiku Plus at 9.6 million yen (1.2M over), Yamamoto Koumuten at 8.2 million yen (under ceiling), and Sasaki Design Build at 11.1 million yen (2.7M over).",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t52",
+      "text": "Kenchiku Plus: professionally presented with detailed line-item breakdown, strong commercial fit-out references, and technically competent kitchen layout — but entirely generic design (standard subway tile, off-the-shelf millwork) with no distinctive visual concept, and 1.2 million yen over the stated budget ceiling.",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t53",
+      "text": "Sasaki Design Build: visually stunning renderings with polished stone surfaces and warm northern Italian aesthetic, but two unilateral scope expansions — an unasked drain relocation and 800,000 yen of unspecified imported Italian stone — and the project manager stated both were 'integral to their design vision,' signaling that their aesthetic priorities overrode the client's budget constraint.",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t54",
+      "text": "Yamamoto Koumuten was selected: owner Tetsuo Yamamoto conducted two site visits (second bringing a junior site manager for a 2-hour infrastructure review), had prior working knowledge of Azabu Heights Building from a previous tenant job, proactively identified an undersized electrical panel before contract, and proposed an open kitchen with a brick-faced pizza oven facing the dining room as the central visual anchor.",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t55",
+      "text": "Yamamoto Koumuten's oven specification within the 8.2 million yen bid: sourced through Forno Bravo Japan (Italian-manufactured ovens with local installation and service support), installed cost 1.2–1.4 million yen already included in the total bid; Yamamoto had used Forno Bravo Japan on two previous restaurant projects and included ventilation requirements, floor load implications, and fire suppression coordination in the pre-contract specification.",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "t56",
+      "text": "Contract requirements negotiated with Yamamoto Koumuten: milestone-tied payment schedule (not calendar-date), full written scope specifying open kitchen and oven model number, change order clause requiring written approval for any cost change above 50,000 yen, and agreed timeline with float provision.",
+      "level": "satellite",
+      "parent_id": "p9",
+      "created_turn": 6
+    },
+    {
+      "node_id": "p10",
+      "text": "Kitchen equipment selection: oven, pasta extruder, and refrigeration decisions for the Higashi-Azabu restaurant kitchen.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 9
+    },
+    {
+      "node_id": "t67",
+      "text": "Oven: Forno Bravo Modena 100 (gas-fired refractory, 100cm interior cooking diameter, approximately 7,850 sqcm deck area) from Forno Bravo Japan at 1.6 million yen inclusive of galvanized steel stand, full flue assembly and ventilation kit, and certified installation; warranty extended to 18 months if ordered before end of June 2025 (vs. standard 1 year); wood-fired option was ruled out due to building management restrictions requiring 500,000–700,000 yen additional exhaust and filtration upgrade.",
+      "level": "satellite",
+      "parent_id": "p10",
+      "created_turn": 9
+    },
+    {
+      "node_id": "t68",
+      "text": "Pasta extruder: La Monferrina P3 (tabletop extruder with bronze extrusion dies, manufactured by La Monferrina, Piedmont, Italy) from Reizou Sangyo (Japanese importer of Italian professional kitchen equipment) at 580,000 yen inclusive of machine, 4-die bronze starter set, and 1-year parts warranty; additional bronze dies at 18,000 yen each; planned shapes: rigatoni (anchor), mafaldine, paccheri (for branzino dish), with bigoli and penne as future additions.",
+      "level": "satellite",
+      "parent_id": "p10",
+      "created_turn": 9
+    },
+    {
+      "node_id": "t69",
+      "text": "Refrigeration: 4 Hoshizaki units — 2 under-counter (cold/pasta station), 1 upright two-door reach-in, 1 blast chiller — at 720,000 yen total; European brands (Liebherr, Zanussi Professional) ruled out due to thinner Tokyo service network; blast chiller amperage confirmed with Yamamoto-san before electrical rough-in.",
+      "level": "satellite",
+      "parent_id": "p10",
+      "created_turn": 9
+    },
+    {
+      "node_id": "t70",
+      "text": "Rotisserie was rejected on three grounds: (1) additional ventilation/hood upgrade estimated at 380,000 yen; (2) concept is Friuli/Liguria (seafood, dairy sauces, vegetables, cured meats) — rotisserie belongs to Tuscan/Umbrian tradition and would contradict the restaurant's culinary identity; (3) the Friulian chef's expertise is not in rotisserie technique; whole-roasted items will use the Modena 100 instead.",
+      "level": "satellite",
+      "parent_id": "p10",
+      "created_turn": 9
+    },
+    {
+      "node_id": "t72",
+      "text": "Total major equipment subtotal for oven, pasta extruder, and refrigeration: 2.9 million yen (1.6M + 0.58M + 0.72M).",
+      "level": "satellite",
+      "parent_id": "p10",
+      "created_turn": 9
+    },
+    {
+      "node_id": "p11",
+      "text": "Supplier sourcing: dry goods and produce supply relationships established before opening.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 10
+    },
+    {
+      "node_id": "t73",
+      "text": "Olive oil: Frantoio Franci single-estate Tuscan oil (Maremma hills, Frantoio cultivar dominant, Flos Olei award-winner, cold extraction with lot traceability to pressing date) imported by Solleone Japan (premium Italian oil specialist importer) at 4,200 yen per 500ml; minimum order 6 bottles per delivery (~3-week inventory cycle); climate-controlled delivery maintaining below 20°C in transit; vintage flexibility: tasting samples before each harvest commitment with backup Tuscan producers maintained.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 10
+    },
+    {
+      "node_id": "t74",
+      "text": "Flour: Caputo 00 pasta flour imported by Suzuki Foods (mid-sized importer, Osaka HQ, Koto-ku Tokyo distribution hub, 15 years importing Caputo) at 3,800 yen per 25kg sack — lower than a chef colleague's reference price of 4,100 yen per sack from a different importer; Tuesday/Thursday/Saturday deliveries with same-week noon cutoff; minimum 2 sacks per order; milling date documentation available on request.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 10
+    },
+    {
+      "node_id": "t75",
+      "text": "Produce broker: Kenji Ueno of Ueno Seika, introduced via accountant Hiroshi Tanabe whose wife uses Ueno for her catering business; mid-50s, 20+ years at Tsukiji-Ota Market, specializes in European-style and Italian-style vegetables (radicchio, castelfranco, treviso, cavolo nero, cardoons, winter squash, fresh peas, fennel) sourced through daily market presence.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 10
+    },
+    {
+      "node_id": "t76",
+      "text": "Ueno Seika produce arrangement: spec-based monthly ordering plus proactive intelligence on exceptional market arrivals; broker margin 8–12% above Tsukiji-Ota Market rate depending on item; morning delivery to Higashi-Azabu as the second or third stop on the Minato-ku route, arriving 5:30–7 AM; order cutoff 8 PM the evening before; weekly Sunday evening text briefing on market conditions, scarcity, and upcoming exceptional items.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 10
+    },
+    {
+      "node_id": "t77",
+      "text": "Supplier contracts: Solleone Japan and Suzuki Foods are on standard vendor purchase order terms with no unusual exclusivity or liability clauses; Ueno Seika will be covered by a memo of understanding documenting broker margin range, delivery logistics, Sunday briefing arrangement, spec-based ordering process, and quality standards — to be reviewed by Tanabe given his network connection to Kenji Ueno.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 10
+    },
+    {
+      "node_id": "p12",
+      "text": "Wine program: opening cellar structure, supplier relationship, by-the-glass program, and reorder system for Osteria Morishita.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t78",
+      "text": "Wine supplier is Nakata Shoji (mid-size importer and distributor, Minato-ku headquarters, operating since the late 1980s, strongest reputation on Italian and French wine); account manager is Mariko Nakata, whose father is president of Nakata Shoji; introduction arranged by Reiko Igarashi, head sommelier at Hotel Okura, who described Mariko as the best account manager she has ever worked with for her depth on Italian wine.",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t79",
+      "text": "Opening cellar finalized after three structured meetings with Mariko Nakata: 280 bottles across 47 labels, arrived at through real conversation rather than accepting a first proposal; total landed cost 1.85 million yen; average cost approximately 6,600 yen per bottle, implying a list price of approximately 16,500–20,000 yen per bottle at standard 2.5–3x markup.",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t80",
+      "text": "Opening cellar geographic breakdown: 60% Italian (Piedmont-heavy: Barolo, Barbaresco, single-vineyard Nebbiolo, Dolcetto, Barbera, Gavi di Gavi, Roero Arneis, Franciacorta sparkling; also Lugana, Alto Adige whites, some Sangiovese-based central Italian), 25% French (Burgundy and Champagne as prestige-occasion anchors), 15% Japanese (Fattoria AL Fiore Miyagi Pinot Noir, Grace Wine Yamanashi).",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t81",
+      "text": "By-the-glass program: 8 wines at any time (2 sparkling, 3 white, 3 red); bottles priced above 7,000 yen retail are served via Coravin to prevent oxidation loss; remaining bottles managed by traditional open-and-pour with a minimum daily turnover requirement; Mariko Nakata recommended reviewing and rotating the glass list every 6–8 weeks based on sell-through data and incoming Nakata Shoji portfolio arrivals.",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t82",
+      "text": "Physical cellar: dedicated temperature-controlled room behind the main dining room running at 13–14°C and 68–72% humidity using a purpose-built commercial cooling unit; floor-to-ceiling cedar racking on two long walls plus a central freestanding island unit; total capacity approximately 350 bottles; geographic organization (Piemonte left-wall through northern Italy, central Italy, France by region, Japanese section on island unit) with reds and whites racked separately within each region.",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "t83",
+      "text": "Reorder system: any label reaching 2 bottles triggers an immediate reorder; weekly Monday morning cellar inventory check by the floor manager produces a flags list sent simultaneously to Kenta and directly to Mariko Nakata at Nakata Shoji; standing order cadence for high-velocity labels pre-established based on Mariko's predictions from comparable accounts, avoiding reactive restocking on fastest-moving bottles.",
+      "level": "satellite",
+      "parent_id": "p12",
+      "created_turn": 11
+    },
+    {
+      "node_id": "p13",
+      "text": "Restaurant naming and visual identity: official rename to Osteria Morishita and brand development with designer Aiko Fujimoto.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 12
+    },
+    {
+      "node_id": "t84",
+      "text": "The working name 'Ginza Trattoria' was officially retired and replaced with 'Osteria Morishita' in August 2025; the name change was driven by the location mismatch (restaurant is in Higashi-Azabu, not Ginza) and the decision to adopt a chef-owner name model that places personal reputation on the door and reflects the osteria register of personal hospitality.",
+      "level": "satellite",
+      "parent_id": "p13",
+      "created_turn": 12
+    },
+    {
+      "node_id": "t85",
+      "text": "Visual identity designer: Aiko Fujimoto (freelance); referred by a restaurateur who opened a well-regarded kaiseki restaurant in Minami-Aoyama; her 320,000 yen fee covers three phases — (1) 4–6 concept directions as mood boards and rough logo sketches, (2) refinement of one direction into finalized logo lockups, color system with defined values, and typography specimens, (3) production files, complete brand guidelines document, and print-ready artwork; unlimited revisions within each phase, but full direction changes between phases require renegotiation.",
+      "level": "satellite",
+      "parent_id": "p13",
+      "created_turn": 12
+    },
+    {
+      "node_id": "t86",
+      "text": "Visual identity direction for Osteria Morishita brief: primary color palette of terracotta and ivory (terracotta references Italian ceramics and Piemontese stone farmhouses; ivory provides breathing room); typographic logo using a humanist serif paired with a minimal grotesque for secondary text; emotional register described as 'rustic soul, precise execution'; primary applications in priority order: exterior signage, printed menu, osteria-morishita.tokyo website header, business cards.",
+      "level": "satellite",
+      "parent_id": "p13",
+      "created_turn": 12
+    },
+    {
+      "node_id": "t87",
+      "text": "Domain osteria-morishita.tokyo was registered by Kenta in August 2025; the .tokyo TLD was chosen as specific to place, elegant on print materials, and distinct from a generic .com; the pre-opening web strategy is a minimal single-page site (live once logo files are ready) with restaurant name, address, a brief positioning statement, an email signup with early reservation access as incentive, and a target opening window — not a countdown clock until within three weeks of a confirmed date.",
+      "level": "satellite",
+      "parent_id": "p13",
+      "created_turn": 12
+    },
+    {
+      "node_id": "t88",
+      "text": "Email list strategy for pre-opening: target 400–600 sign-ups from genuinely interested guests (not casual visitors) by offering priority reservation access as the signup incentive; full post-opening site (complete menu, wine list, reservations widget, sourcing notes, background story) to be built only after Aiko Fujimoto's brand guidelines are finalized to avoid visual inconsistency.",
+      "level": "satellite",
+      "parent_id": "p13",
+      "created_turn": 12
+    },
+    {
+      "node_id": "p14",
+      "text": "Head chef hire: search process and contract for Marco Petrelli as head chef of Osteria Morishita.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t89",
+      "text": "Head chef hired: Marco Petrelli, age 38, originally from Modena (Emilia-Romagna); most recent position was sous chef (3 years) then head chef (1 year) at Ristorante Acqua Pazza in Daikanyama, a well-regarded regional Italian kitchen in Tokyo; total 8 years of serious Italian restaurant work.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t90",
+      "text": "Trial cook at the Osteria Morishita kitchen: Marco prepared three dishes — tagliatelle al ragù bolognese (hand-formed pasta, multi-hour ragù), tortellini in brodo (capon-and-beef broth, thumb-tip-sized tortellini with translucent pasta, his grandmother's Modena recipe), and roasted duck breast with Lambrusco reduction and shaved truffle; the entire kitchen team watched without distraction throughout.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t91",
+      "text": "Chef search process before Marco: culinary recruitment agency used for first round; four candidates rejected over three weeks — two were technically strong but primarily trained in Japanese-Italian fusion (wrong concept fit), one was accomplished but burned out after years in demanding kitchens, and one young candidate (age 29, stage in Turin) showed genuine promise but was not yet ready to head a kitchen.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t92",
+      "text": "Marco Petrelli was introduced by Mariko Nakata of Nakata Shoji, who had encountered Marco during a routine wine delivery to Ristorante Acqua Pazza and learned he was ready to move on after 4 years; Mariko connected them approximately 3 days after Kenta mentioned the failed agency search during a wine tasting session, phoning rather than emailing to signal personal commitment to the introduction.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t93",
+      "text": "Contract terms: monthly base salary 720,000 yen (toward the higher end of Kenta's original budget, judged appropriate for Marco's experience profile); 13-month bonus structure tied to quarterly performance reviews covering kitchen cost management, guest feedback scores, and quarterly revenue targets — a structure Marco proposed himself to tie his compensation to restaurant performance.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "t94",
+      "text": "Marco Petrelli's start date is September 1, 2025, placing him in the restaurant two full weeks before the planned soft opening — present for final equipment calibration, the last supplier meetings, and menu finalization, ensuring the opening menu is genuinely his own rather than a specification handed to him by someone else.",
+      "level": "satellite",
+      "parent_id": "p14",
+      "created_turn": 13
+    },
+    {
+      "node_id": "p15",
+      "text": "Renovation completion and health inspection: final build-out close-out, budget final tally, and Minato Ward health inspection results for the Azabu Heights Building space.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 14
+    },
+    {
+      "node_id": "t95",
+      "text": "Renovation actual completion date: August 26, 2025, four days behind the August 22, 2025 contractual target with Shimizu Construction; handover was clean (contractor's internal punchlist fully resolved) rather than a partial handover carrying open items.",
+      "level": "satellite",
+      "parent_id": "p15",
+      "created_turn": 14
+    },
+    {
+      "node_id": "t96",
+      "text": "Root cause of the 4-day delay: electricians discovered the existing 60-amp residential-grade panel in the prior retail tenant's space was inadequate for the restaurant's commercial load (range, hood/exhaust, walk-in refrigerator compressor, commercial dishwasher); upgrade to a 200-amp three-phase commercial panel was a code requirement; Tokyo Electric scheduling added approximately one week of dead time waiting for their crew to complete the switchover.",
+      "level": "satellite",
+      "parent_id": "p15",
+      "created_turn": 14
+    },
+    {
+      "node_id": "t97",
+      "text": "Final renovation cost: 8.87 million yen vs. 8.4 million yen budget — 470,000 yen over; the electrical panel upgrade accounted for approximately 420,000 yen of the overage (panel hardware and installation ~280,000 yen, Tokyo Electric coordination fees ~90,000 yen, additional electrical re-routing labor ~50,000 yen); remaining ~50,000 yen from subfloor epoxy extra coat (~30,000 yen) and fixture substitutions (~20,000 yen); the original 300,000 yen contingency (3.6% of budget) absorbed 64% of the overage.",
+      "level": "satellite",
+      "parent_id": "p15",
+      "created_turn": 14
+    },
+    {
+      "node_id": "t98",
+      "text": "Health inspection conducted August 27, 2025 by Mr. Ogawa of the Minato Ward Health Department; inspection ran 2 hours 15 minutes covering ventilation hood CFM, refrigeration temperatures (verified with calibrated thermometer against log sheets), handwashing stations, fire suppression system service tags, grease trap installation and access clearance, and waste handling; zero critical violations found.",
+      "level": "satellite",
+      "parent_id": "p15",
+      "created_turn": 14
+    },
+    {
+      "node_id": "t99",
+      "text": "Two minor compliance items flagged by Mr. Ogawa requiring photo-evidence submission by September 5, 2025 (Kenta's target: September 1–2): (1) missing Minato Ward-format handwashing instructional signage at both kitchen handwashing stations — fix is printing, laminating, and posting the ward-recommended format; (2) grease trap lacks a required affixed label specifying cleaning schedule and responsible party — Shimizu-san scheduled to install the correct label on August 29.",
+      "level": "satellite",
+      "parent_id": "p15",
+      "created_turn": 14
+    },
+    {
+      "node_id": "p16",
+      "text": "Menu finalization: dinner and lunch menu structure, dish selection, pricing, and key culinary decisions made with head chef Marco Petrelli in the week before opening.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t100",
+      "text": "Dinner menu structure finalized as 18 dishes total: 6 antipasti, 5 primi (3 pasta + 2 risotto), 4 secondi, 3 desserts; Marco insisted on a tighter menu than earlier sketches to prioritize consistent execution over variety while the kitchen team finds its rhythm.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t101",
+      "text": "Three pasta dishes: tagliatelle al ragù bolognese (hand-cut, non-negotiable Emilia-Romagna anchor dish, priced at 2,400 yen); tortellini in brodo with Parmigiano Reggiano broth (classical, technically demanding, priced at 2,200 yen); garganelli with prosciutto di Parma and butter (most accessible dish, priced at 2,000 yen); all pasta made fresh and in-house.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t102",
+      "text": "Two risotto dishes: year-round porcini risotto as a fixed anchor; seasonal rotating risotto (opening selection: late-summer corn and saffron risotto for September 2025).",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t103",
+      "text": "Pizza explicitly excluded from the menu: Marco's reasoning was (1) Emilia-Romagna is not a pizza region and adding it would confuse the regional identity, (2) the oven was spec'd for focaccia and roasted dishes, not for the sustained temperatures above 400°C required for proper Neapolitan or Roman pizza; mediocre pizza was judged worse than no pizza; the oven is used for focaccia and roasted secondi only.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t104",
+      "text": "Focaccia serves as the oven's visible opening contribution to the guest experience: Marco developed a version using Ligurian olive oil with an overnight slow proof; it arrives at the table early in the meal and is already performing noticeably better than comparable Tokyo price-point offerings.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t105",
+      "text": "Lunch menu structure: 2-course set at 1,800 yen (antipasto + primo) and 3-course set at 2,400 yen (antipasto + primo + dessert); curated subset of the dinner menu with approximately 2–3 antipasti and 3–4 primi choices; shorter dessert list at lunch (2 options vs. dinner's 3); Marco uses lunch service to extend prep efficiency — the tagliatelle al ragù bolognese ragu batch runs more efficiently across the full day.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "t106",
+      "text": "Projected average dinner ticket: 7,800 yen per person (food only), revised downward from earlier projections; both Kenta and Marco independently arrived at the same number; positions the restaurant firmly in the 'serious trattoria' tier accessible enough not to trigger Michelin-bracket comparisons, with room to revise upward as reputation builds.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 15
+    },
+    {
+      "node_id": "p17",
+      "text": "Opening team staffing: sous chef, service manager, part-time floor staff, full team composition, and onboarding plan for Osteria Morishita.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t107",
+      "text": "Sous chef hired: Haruki Nakajima, age 29, previously junior sous chef for 2 years at Trattoria Goccia (Shibuya, 8-year-old serious Italian kitchen) and before that a 6-month stage in Bologna; monthly salary 380,000 yen with a commitment to review at the 6-month mark; holds full pass authority on the 3 nights per week Marco is not in service, but cannot change menu items or pricing without Marco's sign-off.",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t108",
+      "text": "Service manager hired: Eiko Sawada, age 41, with 7 years managing the dining room at a Michelin two-star kaiseki restaurant in Kyoto followed by 4 years at two western-concept fine dining restaurants in Minato-ku; monthly salary 460,000 yen (negotiated up from an initial offer of 440,000 yen); describes the service philosophy she was briefed on as 'invisible competence.'",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t109",
+      "text": "Part-time floor staff: Yui Tachibana (third-year hospitality management student at Rikkyo University, self-studying Italian, 3 evenings/week plus weekend lunch service, recommended by the Rikkyo program coordinator) and Naoki Hirose (full-time IT project manager, 6 years of part-time floor experience at Shibuya restaurants, 2 evenings/week).",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t110",
+      "text": "Full opening team: 5 full-time (Marco Petrelli as head chef, Haruki Nakajima as sous chef, Eiko Sawada as service manager, one pasta-specialist kitchen hire from Marco's network, one commis chef auditioned and approved by Marco) and 2 part-time (Yui Tachibana and Naoki Hirose), totaling 7 people.",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t111",
+      "text": "Onboarding plan: all contracts signed by end of September 2025; full team comes together starting October 6 for an internal rehearsal service (staff and family, approximately 12 covers); structured rehearsals through mid-October; soft opening (invited guests only, no public bookings) targeted for the first week of November 2025.",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "t112",
+      "text": "Eiko Sawada is designing a written service briefing document capturing the service philosophy for onboarding future part-time staff; Marco Petrelli is producing a parallel written kitchen standards document at Haruki Nakajima's request, who explicitly stated he works better when the chef's standards are written rather than implied.",
+      "level": "satellite",
+      "parent_id": "p17",
+      "created_turn": 16
+    },
+    {
+      "node_id": "p18",
+      "text": "Soft opening: planning, execution, and debrief for the four-night invited-guest series at Osteria Morishita, October 8–11, 2025.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t113",
+      "text": "Soft opening ran October 8–11, 2025, dinner only, 20 covers per night, 80 total invited guests; a dress rehearsal was held October 6 with staff and family (approximately 12 covers); a soft waiting list of 10 additional interested guests was maintained as a no-show buffer.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t114",
+      "text": "Guest list was structured by night: nights 1–2 were close friends and family (honest informal feedback, no publication risk); night 3 included 3 food media critics (framed explicitly as a learning context, two known personally with publication hold agreements, one new acquaintance); night 4 was industry relationships, other chefs, distributor contacts, and key potential regulars.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t115",
+      "text": "Soft opening kitchen brigade: Marco Petrelli as head chef, Haruki Nakajima (sous chef, hot section), Fabio Ricci (chef de partie, recruited by Marco from his previous posting), Chiyo Matsuda (garde manger, 3 weeks staging), and Tomoya Watanabe (commis) — 5 kitchen staff total.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t116",
+      "text": "Wine during the soft opening was offered at cost (no markup): a curated selection of 6–8 wines chosen with Nakata Shoji specifically for the soft opening menu; Eiko Sawada framed the at-cost pricing to guests as 'we wanted to make sure every guest who wanted wine could enjoy it without any constraint during this opening period.'",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t117",
+      "text": "Feedback system during soft opening: 6-question written feedback forms (overall impression, food, service, atmosphere, value, open-ended section) distributed by Eiko during the dessert course, with a personal note from Kenta; nightly all-team debrief (kitchen and floor together, in the dining room, over a late meal) after each of the 4 nights.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 17
+    },
+    {
+      "node_id": "t118",
+      "text": "Soft opening food result: 73 of 80 guests rated the meal 8/10 or higher (91% satisfaction rate); food quality was affirmed as working by the guest response even before the kitchen team had found full operational rhythm.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 18
+    },
+    {
+      "node_id": "t119",
+      "text": "Critical service failure during the soft opening: average kitchen ticket time was 38 minutes against a target of 22 minutes — a 73% overshoot; the bottleneck was identified as a single 8-liter pasta water pot on one induction burner, which could not recover fast enough when 4–5 pasta orders fired simultaneously; Eiko Sawada managed guest experience on the floor but could not fully compensate.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 18
+    },
+    {
+      "node_id": "t120",
+      "text": "Fix for the pasta water bottleneck: a second induction unit will be added (counter space exists, electrician confirmed the panel can support it without upgrade); carbonara and cacio e pepe are temporarily capped per service as they cannot be pre-cooked and are the worst offenders for simultaneous live execution.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 18
+    },
+    {
+      "node_id": "t121",
+      "text": "Unannounced soft opening visit by Akira Mochizuki (food critic, Tokyo Calendar): he sat at table 4 on night 2, ordered the full tasting progression, spent approximately 2.5 hours, and the next morning posted a positive Instagram note describing the kitchen as 'doing something careful and specific'; approximately 300 people engaged with the post within 24 hours and reservation inquiries rose noticeably.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 18
+    },
+    {
+      "node_id": "t122",
+      "text": "Table 7 acoustic problem identified by Eiko Sawada after night 1: an AC vent directly above the table causes noticeable noise during system cycles, forcing guests to lean in to converse; table 7 has a premium sightline to the open kitchen but is placed on management-discretion hold until an HVAC specialist assesses and installs a redirect baffle or diffuser — estimated 3-week timeline before grand opening.",
+      "level": "satellite",
+      "parent_id": "p18",
+      "created_turn": 18
+    },
+    {
+      "node_id": "p19",
+      "text": "Grand opening week: first operational results from Osteria Morishita's public opening on November 4, 2025.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 20
+    },
+    {
+      "node_id": "t123",
+      "text": "Grand opening night (November 4, 2025) was fully booked at 28 dinner covers and service held together despite first-night nerves; dinner covers over the first 3 nights were 22, 26, 24 against a target of 28 per night — averaging 86% of target; night 1's lower count was partly attributed to 2 no-shows and a table arriving 45 minutes late disrupting second seating flow.",
+      "level": "satellite",
+      "parent_id": "p19",
+      "created_turn": 20
+    },
+    {
+      "node_id": "t124",
+      "text": "Actual dinner average ticket in opening week: 8,100 yen per person (food only), exceeding the 7,800 yen projection by 3.8%; approximately 70% of dinner tables ordered a pasta-plus-secondi sequence (vs. the 50% anticipated), and wine pairing uptake was higher than expected, driving the ticket above projection.",
+      "level": "satellite",
+      "parent_id": "p19",
+      "created_turn": 20
+    },
+    {
+      "node_id": "t125",
+      "text": "Lunch covers in the first 2 days of service (November 5–6): 14 and 18 against a target of 30 per service — 47% and 60% of target respectively; actual lunch average ticket 1,950 yen (in line with projection); the shortfall was diagnosed as primarily an awareness gap rather than a product or price-point problem, since guests who did arrive ordered as expected.",
+      "level": "satellite",
+      "parent_id": "p19",
+      "created_turn": 20
+    },
+    {
+      "node_id": "t126",
+      "text": "Tabelog rating after first 3 reviews: 3.42; Kenta's reaction was mixed — below his eventual target of 3.7–3.8 but statistically premature given only 3 reviews; restaurants filtering at 3.5+ would not show Osteria Morishita in search results during opening weeks; review cultivation from warm guests identified as an immediate action item.",
+      "level": "satellite",
+      "parent_id": "p19",
+      "created_turn": 20
+    },
+    {
+      "node_id": "t127",
+      "text": "Post-opening lunch awareness actions planned: personal outreach to office buildings and design firms within a 10-minute walk carrying a printed lunch menu; adjusting Instagram cadence to show the daytime offer and the 1,950 yen pasta set clearly; following up with the 4-person walk-in group from day 2 to identify if they represent a nearby professional cohort.",
+      "level": "satellite",
+      "parent_id": "p19",
+      "created_turn": 20
+    },
+    {
+      "node_id": "p20",
+      "text": "Week-2 post-opening staffing problems: simultaneous personnel crises in November 2025 and decisions to stabilize the team.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t128",
+      "text": "Part-time server Naoki Hirose resigned after 2 weeks of operation (Monday, November 17, 2025), giving only 2 days' notice; he accepted a higher-paying job at a hotel banquet operation in Shiodome, leaving Kenta short one floor staff member heading into a fully booked weekend.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t129",
+      "text": "Sous chef Haruki Nakajima reported back pain the same week as Hirose's resignation (Tuesday), requiring modified duty for an estimated 2–3 weeks: no heavy lifting, no carrying large stockpots, no extended bending at lower stations; head chef Marco Petrelli responded calmly by redistributing mise en place tasks to avoid aggravating the condition.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t130",
+      "text": "Sara Komatsu, age 23, was hired as replacement part-time server starting November 17, 2025 — the same day Hirose departed; she was referred by Yui Tachibana (they know each other from a previous job) and passed a working trial shift on Sunday; she has no specific Italian restaurant experience but was assessed as quick and attentive to feedback; she committed to 4 nights per week availability, more than Hirose's prior arrangement.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t131",
+      "text": "Dishwasher candidate identified: Mrs. Yoneda, age 58, lives in the Azabu Heights Building (same building as the restaurant) — effectively zero commute time; has prior kitchen work experience outside restaurant settings; informal conversation about the role occurred approximately one week before session 21; formal offer was being prepared with terms of approximately 1,150–1,350 yen per hour, 4–5 nights per week, 4-week probationary period.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t132",
+      "text": "Kenta was advised to ask Nakajima to see a physician within the week and to return with a medically grounded timeline rather than relying on his self-estimated 2–3-week recovery; a physician assessment was framed as concern for wellbeing and was expected to produce either a clear return date or an earlier warning if the condition was more serious than a muscle strain.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "t133",
+      "text": "A formal decision gate for adding Saturday lunch service in December was set for December 5, 2025 — conditions required: Sara Komatsu operating confidently without close supervision, Nakajima back to full hours and physician-cleared, and the dishwasher role filled and past the first week of live service; if any condition unmet, the Saturday lunch expansion was to be deferred to January.",
+      "level": "satellite",
+      "parent_id": "p20",
+      "created_turn": 21
+    },
+    {
+      "node_id": "p21",
+      "text": "First full month P&L review, operating loss, and structural schedule changes decided after November 2025 results.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t134",
+      "text": "November 2025 total revenue: 3.42 million yen against a 4.0 million yen monthly target — a shortfall of 580,000 yen (14.5% below plan); revenue was concentrated with approximately 70% from dinner and 30% from lunch, with Friday and Saturday dinner described as genuinely strong and Monday lunch as extremely weak (as low as 5 covers on the worst Mondays).",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t135",
+      "text": "November 2025 actual dinner average ticket: 14,500–15,000 yen per head all-in; lunch average ticket: approximately 4,000–4,500 yen per head; Thursday dinner tracked close to Friday in average spend per guest, with the difference between weekday and weekend dinner showing up in covers rather than spend.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t136",
+      "text": "November 2025 cost breakdown: food cost 31% (within the 30–32% target range), labor 38% (5 percentage points above the 33% model; absolute labor spend of approximately 1.3 million yen would represent ~32.5% of the 4.0M target revenue — inside the target), rent and utilities 18% (fixed), other 9%; total costs 96%, implying a theoretical 4% margin before adjustments.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t137",
+      "text": "November 2025 actual operating result: a loss of 312,000 yen for the month; cash runway at this burn rate: 14 months; the loss was attributed primarily to the revenue shortfall rather than structural cost problems, since food cost was on target and labor in absolute terms was within model.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t138",
+      "text": "Structural schedule change 1 — Monday lunch elimination: cutting Monday lunch service saves approximately 80,000 yen per month in labor against approximately 30,000–40,000 yen in lost gross margin from the few covers served; net improvement estimated at 40,000–50,000 yen per month (480,000–600,000 yen annualized), reducing the monthly loss by 13–16%.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t139",
+      "text": "Structural schedule change 2 — Friday/Saturday late seating at 9:30 PM: a four-course tighter menu (vs. full experience) on the two strongest nights, targeting the diplomatic and international Higashi-Azabu demographic who tend toward later dining; to be soft-launched as reservations-only for the first 4–6 weeks; requires chef consultation before external announcement; adds staffing pressure for kitchen team working until midnight on back-to-back peak nights.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "t140",
+      "text": "A review trigger was set: if monthly operating losses are still running above 200,000 yen by end of February 2026, a full schedule and staffing model review should be conducted rather than waiting until cash runway drops below 6 months.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 22
+    },
+    {
+      "node_id": "p22",
+      "text": "Holiday season private event programming: four corporate and personal private dining bookings in December 2025 and Christmas menu launch.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t141",
+      "text": "December 2025 total private booking revenue projected at 1.1 million yen across 4 events: law firm partners' year-end dinner on December 7, a regular guest's 60th birthday celebration on December 13, Marubeni Corporation executive dinner on December 22, and a 14-person media company dinner on December 28.",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t142",
+      "text": "Marubeni Corporation booked Osteria Morishita for their annual year-end executive dinner on December 22, 2025: 24 guests at 12,000 yen per person (full space buyout, 288,000 yen minimum on food alone), five-course fixed menu (cold antipasto, soup, handmade pasta primo, whole-roasted protein secondi, dessert with coffee and petit fours); coordinated by Ms. Hayashi of Marubeni corporate administration, described as highly organized and specific in her requirements.",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t143",
+      "text": "Kenta planned a brief chef-owner appearance after the pasta course at the Marubeni dinner — not as a performance of his prior employment history but as a natural moment of hospitality; he explicitly rejected a narrative-heavy tableside moment, preferring the food itself to communicate his reasons for leaving Marubeni.",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t144",
+      "text": "Christmas menu ran exclusively on December 24 and 25, 2025: 5-course menu at 9,800 yen per person (amuse-bouche, antipasto, primo, secondi, dessert); optional Christmas wine pairing at 4,500 yen for 5 glasses curated by Marco Petrelli (Champagne on amuse-bouche, Vermentino with antipasto, Fiano with primo, Barolo with secondi, late-harvest Riesling with dessert); regular à la carte menu available on surrounding nights.",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t145",
+      "text": "Christmas reservation deposit policy introduced for the first time at Osteria Morishita: 3,000 yen per person, charged to a held credit card, forfeited on no-show or cancellation within 48 hours; this policy had not been applied previously, and Kenta stated intent to extend it to all high-demand dates going forward (Valentine's Day, Golden Week, New Year's Eve).",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "t146",
+      "text": "Mrs. Yoneda was confirmed as the dishwasher hire and started the week of December 15, 2025 — timed to give her several days of orientation before the peak December rush; hired at 1,400 yen per hour for 4 hours nightly (5,600 yen per service, approximately 112,000 yen per month at 5-night operating week); reference check from her previous employer was described as expressing genuine regret at losing her.",
+      "level": "satellite",
+      "parent_id": "p22",
+      "created_turn": 23
+    },
+    {
+      "node_id": "p23",
+      "text": "Technology adoption and operational efficiency improvements: Square Plus inventory module, food waste reduction, and menu data-driven decisions in early 2026.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t147",
+      "text": "January 2026 revenue was down 42% versus December 2025 average — a steep seasonal dip attributed largely to the artificial inflation of December by year-end corporate bookings; actual covers running at 40–45% of capacity on good nights, with guests more conservative on wine and supplemental courses than in December.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t148",
+      "text": "Square Plus inventory module was implemented approximately three weeks before the session (around late November / early December 2025) at 18,000 yen per month; Marco Petrelli logs all inventory through a kitchen tablet; first week was disruptive to his workflow but by week two he found it useful when it surfaced actionable data such as which protein was turning over fastest.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t149",
+      "text": "Food waste rate measured at 8% after three weeks of Square Plus logging — well above the 2–3% benchmark for a well-run restaurant at this price point; Kenta set a target of 4% waste within the quarter through tighter ordering cadence and smarter ingredient staging through the week; some uncertainty acknowledged since categorization of trim waste vs. outright spoilage was still being refined.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t150",
+      "text": "Branzino was dropped from the menu as of the week of January 12, 2026: the dish was below an acceptable contribution margin threshold and had inconsistent sourcing from two different suppliers with unstable week-to-week quality; the decision was driven by Square Plus margin data that had been obscured under the prior paper system.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t151",
+      "text": "Guinea fowl was added to the menu as the branzino replacement: Marco Petrelli proposed a slow-roasted leg with chestnut and porcini stuffing suited to the winter season; food cost from the current supplier is significantly better than branzino was; the preparation holds well during lighter January service and does not require the same minute-to-minute precision as a delicate fish dish.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "t152",
+      "text": "Customer retention identified as a structural gap in January 2026: Kenta estimated 15–20 repeat guests who had dined 3 or more times, but no deliberate nurturing strategy was in place beyond a single generic mailing list email at the start of January; actions planned included segmenting the mailing list to identify high-frequency guests, sending personalized notes referencing their last visit, and considering non-discount loyalty gestures such as a chef's counter tasting invitation.",
+      "level": "satellite",
+      "parent_id": "p23",
+      "created_turn": 25
+    },
+    {
+      "node_id": "p24",
+      "text": "Marco Petrelli vacation coverage plan: Haruki Nakajima's acting head chef stint February 14–28, 2026, including authority handover, team communications, and menu adjustments.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t153",
+      "text": "Coverage handover was structured as a three-step sequence: Kenta first briefs Marco on his plan to speak directly with Nakajima, then holds a one-on-one with Nakajima covering ambitions, compensation, and operational plan, then a full team meeting on February 13 where Marco formally transfers kitchen authority to Nakajima in front of the combined kitchen and floor staff.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t154",
+      "text": "Haruki Nakajima receives an 80,000-yen/month compensation bump (prorated to approximately 40,000 yen for the two-week period) framed explicitly as head-chef-level pay for a head-chef role; Kenta coached Marco to use the words 'running' or 'leading' the kitchen rather than softer language such as 'holding things down' to prevent inadvertent hedging of Nakajima's authority.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t155",
+      "text": "Guinea fowl with Marsala-agrodolce and celery root fondant removed from the menu during the coverage period due to a narrow internal temperature window and two near-misses even with Marco present; replaced by Haruki Nakajima's braised duck leg with juniper and citrus, which he had cooked for the team twice with strong results; communicated externally as a seasonal menu adjustment rather than an absence-driven gap.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t156",
+      "text": "Toshiya Inoue, age 23, culinary school graduate with strong fundamentals (no long-term restaurant placement experience), referred by a trusted Azabu Juban chef, hired as additional part-time line support for the coverage period; onboarded February 10–11 with two dinner services while Marco is still present so Marco and Nakajima can both observe him before departure.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t157",
+      "text": "Friday and Saturday lunch service (February 20–21, the first full coverage week) paused as a precaution to avoid a split prep-and-service load during the team's initial adaptation to a new line configuration; guests with existing bookings notified proactively; reservation page and Instagram updated before the week starts.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t158",
+      "text": "Kenta identified he had never directly asked Nakajima about his long-term ambitions and resolved to ask before February 14 whether Nakajima aims to eventually run his own kitchen or prefers excellence as a sous chef; the answer materially changes how the two-week stint should be framed — as a developmental leadership experience vs. a bounded execution assignment.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "t159",
+      "text": "A mid-coverage check-in with Nakajima was planned for approximately February 20–21 (end of the first week) — a fifteen-minute practical conversation to surface any difficulties early rather than discovering problems on day fourteen.",
+      "level": "satellite",
+      "parent_id": "p24",
+      "created_turn": 27
+    },
+    {
+      "node_id": "p25",
+      "text": "Hiroko Sano (food critic, Asahi Shimbun Weekly) unannounced visit to Osteria Morishita on February 23, 2026 during Marco Petrelli's absence, and Kenta's in-service response and post-visit strategy.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t160",
+      "text": "Eiko Sawada recognized Hiroko Sano from a panel event she had attended the prior year and flagged Kenta at approximately 7:15 PM on February 23, 2026; Sano had been seated at table 11 under a different name with only drinks ordered, giving Kenta time to manage the full meal before any course had been served.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t161",
+      "text": "Kenta made no visible changes for table 11 — no special amuse-bouche, no extra owner passes; he briefed Nakajima that a guest present might be doing a review and asked him to elevate the entire room to his sharpest level for every table, deliberately framing it as general excellence rather than VIP handling to prevent conspicuous single-table treatment that an experienced critic would recognize.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t162",
+      "text": "Nakajima held a 24-minute average dinner ticket time during the Sano visit — approximately two minutes off the Marco-present baseline; Eiko Sawada noted that the kitchen-floor handoff was smoother during Nakajima's methodical pass management than it sometimes is under Marco's more improvisational style, reflecting a genuine operational strength of Nakajima's approach.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t163",
+      "text": "Hiroko Sano ordered the full seven-course tasting menu; wine choices were Vernaccia di San Gimignano (first two courses) and Barolo by the glass (remaining courses); she took written notes between courses; table 11 cleared all seven courses without service incident; Sano left without identifying herself.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t164",
+      "text": "Tabelog rating at time of Sano's visit: 3.61 after 24 reviews; Kenta's post-visit strategy: hold the tasting menu stable through the post-publication window (estimated late March), manage part-time server Yuki's schedule to her stronger early shifts during the anticipated inflow of new discerning guests, not contact Sano, and brief Marco fully on Nakajima's performance upon his March 3 return.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "t165",
+      "text": "Kenta told Nakajima after service close on February 23 that an Asahi Shimbun Weekly critic had likely been in the room that evening; feedback delivered with specifics (24-minute average ticket time, clean pass calling, Eiko's observation on handoff quality) rather than vague praise; Kenta committed to ensuring Marco receives a full account of the entire two-week coverage period upon return so it shapes how Marco develops Nakajima going forward.",
+      "level": "satellite",
+      "parent_id": "p25",
+      "created_turn": 28
+    },
+    {
+      "node_id": "p26",
+      "text": "Cantina Morishita wine club: membership structure, recruitment progress, and conversion strategy as of March 2026.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t166",
+      "text": "Cantina Morishita wine club had 23 members signed as of early March 2026 against a target of 40 by April; 16 of 23 members came from direct in-restaurant conversations (Kenta or Marco with guests during or after service), and 7 from a launch email sent to the full reservation list in mid-February 2026; no social media promotion had been run yet.",
+      "level": "satellite",
+      "parent_id": "p26",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t167",
+      "text": "Cantina Morishita first quarterly member event scheduled for April 12, 2026; plan to invite 6–8 high-potential non-members (frequent diners, wine-engaged guests) as evening guests alongside paying members as a natural conversion opportunity — framed as an exclusive invitation rather than a sales event, with no membership pitch during the evening itself.",
+      "level": "satellite",
+      "parent_id": "p26",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t168",
+      "text": "Cantina Morishita referral incentive planned: existing members receive a complimentary bottle of wine for any referral who converts to paid membership; social media wine content strategy (producer photos, tasting notes, sourcing context) positioned to build organic interest in the club without direct promotion of the membership fee or product.",
+      "level": "satellite",
+      "parent_id": "p26",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t169",
+      "text": "Q1 2026 revenue through early March 2026: 11.8 million yen vs. a plan of 12.5 million — a 700,000-yen shortfall; January was a planned soft month, but February underperformed the model due to three large-group cancellations, two of which occurred within 48 hours of the reservation date with no time to replace the covers.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t170",
+      "text": "Group reservation cancellation policy updated: now applies to parties of 5 or more (previously 8 or more), with full refund for cancellations more than 48 hours in advance and a 50% per-cover charge for cancellations inside the 48-hour window; to take effect for new reservations the following month.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t171",
+      "text": "Q1 2026 forecast revised to 12.0–12.2 million yen; Kenta accepted a below-plan close rather than pursuing disruptive revenue recovery tactics (flash promotions, discounting) that would compromise guest experience and brand positioning.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t172",
+      "text": "Marco Petrelli returned from Modena with a direct contact at Acetaia Giusti (balsamic vinegar producer operating since 1605, Modena DOP); preliminary estimate of 18% cost savings vs. current importer costs; arrangement still at handshake stage with smaller trial shipments discussed; Kenta to consult his sake supplier's freight forwarder for direct-import customs and logistics feasibility before formalizing the channel.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 29
+    },
+    {
+      "node_id": "t173",
+      "text": "Price increases planned for 4 specific menu items as part of the spring menu refresh in late March 2026 — driven by ingredient cost increases, yen weakness on imports, and energy costs; targeted rather than across-the-board; increases in the 10–15% range aimed at round numbers; timed to coincide with the seasonal update and the emerging Acetaia Giusti sourcing story to frame the changes as kitchen evolution rather than cost correction.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 29
+    },
+    {
+      "node_id": "p27",
+      "text": "Asahi Shimbun Weekly review publication on March 19, 2026 and Osteria Morishita's operational response to the resulting demand surge.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t174",
+      "text": "Hiroko Sano's review published in Asahi Shimbun Weekly food section on March 19, 2026 under the headline 'Azabu's Quiet Modena: A Trattoria With Conviction'; the review named the ragu bolognese specifically, praised the wine list, and described the kitchen's approach as 'unfussy precision'; Kenta learned of the publication when his phone was flooded with notifications on Thursday morning.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t175",
+      "text": "Reservation requests spiked 4x within 48 hours of the review's publication; Friday and Saturday dinner became fully booked three weeks out — the first time that had occurred; midweek evenings also began filling toward levels previously seen only on peak weekend nights.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t176",
+      "text": "Kenta identified ragu bolognese execution as the primary post-review operational vulnerability: a minimum 4-hour preparation, historically made personally by Kenta on Friday and Saturday service; scaling to 55–60 covers without codifying the protocol for sous chef Nakajima risked either running out mid-service or hollowing out the dish's quality under volume pressure.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t177",
+      "text": "Ragu bolognese handled as a limited-quantity item communicated proactively: reservation confirmations to note the dish is prepared in limited quantity each evening and invite guests to mention interest on arrival for real-time availability; this frames scarcity as an expression of craft rather than a service failure.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t178",
+      "text": "Kenta committed to cooking the ragu bolognese with sous chef Nakajima on Tuesday morning with no service pressure — narrating every decision aloud (timing of wine addition, temperature cues, soffritto sound) to codify the protocol into repeatable language; Kenta acknowledged that his personal hold on the Friday-Saturday ragu was partly emotional rather than purely quality-driven.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t179",
+      "text": "Kenta formalized a 38-cover maximum as a deliberate identity statement rather than a room-size accident: 38 is the cover count where Kenta feels every table receives the full experience; the post-review demand surge is managed via a waiting list rather than by expanding covers; this decision was described as choosing not to be embarrassed by the restaurant's smallness.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t180",
+      "text": "Wine list vulnerability identified post-review: the entire list is supplied by two small specialty importers; Kenta planned to call both importers the following day to brief them on the demand increase and assess whether current supply relationships can hold, or whether a third importer with the same sourcing philosophy needs to be added before reactive purchasing forces generic substitutions.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t181",
+      "text": "Floor team assessment for the post-review surge period: Miho (anchor server, could run the room independently); Kenji (18 months in, wine knowledge gap is the primary risk given Sano's review mentioned the wine list); Natsuki (6 months, exceptional table presence, still building Italian wine depth); plan: pre-service 20-minute wine narration sessions 2–3 nights per week, led by Kenta or Miho, to close the knowledge gap before new review-driven guests arrive.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t182",
+      "text": "Kenta committed to writing a short paragraph for the website and reservation confirmation describing the restaurant plainly — to include: 38 seats, ragu in limited quantity nightly, wine list curated through trusted importers; Kenta's wife Yuki (works in publishing, read the Sano headline aloud to Kenta on the morning of publication) designated as the sole outside reader before the paragraph is published.",
+      "level": "satellite",
+      "parent_id": "p27",
+      "created_turn": 30
+    },
+    {
+      "node_id": "t183",
+      "text": "April 1, 2026 price revision set the dinner average ticket target at 9,200 yen per person (food only); the tagliatelle al ragù bolognese was raised from 2,400 yen to 2,700 yen (12.5% increase on the restaurant's most-identified anchor dish); the lunch 2-course set was raised to 2,000 yen and the 3-course set to 2,600 yen.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 31
+    },
+    {
+      "node_id": "t184",
+      "text": "Before the April 1 revision, Kenta benchmarked the new lunch prices against five other trattorias and osterie within ten minutes of 3-14-7 Higashi-Azabu and confirmed Osteria Morishita's revised prices landed at or slightly below the neighborhood average at both the 2-course and 3-course price points.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 31
+    },
+    {
+      "node_id": "t185",
+      "text": "Full team was briefed on the pricing rationale on March 31 (the evening before the April 1 changeover); three-day post-revision tracking showed no movement on Google or Tabelog scores, minimal customer pushback, and no guest substitution away from the bolognese at the new 2,700 yen price; Wednesday and Thursday midweek average tickets ran 9,100–9,400 yen, closely bracketing the 9,200 yen target; ordering pattern confirmed: secondi uptake was strong, bottles ordered more than glasses, and dessert attachment was solid.",
+      "level": "satellite",
+      "parent_id": "p16",
+      "created_turn": 31
+    },
+    {
+      "node_id": "t186",
+      "text": "April 2026 olive oil supply switch: Frantoio Franci IGP Toscano (imported via Solleone Japan) was replaced by a Solleone direct blend for a 22% cost saving; approximately 75–80% of total oil volume is used in cooking applications (soffritto, pasta preparations, braises) where aromatic character is destroyed by heat; the remaining 20–25% is guest-facing — a pass drizzle on agnello and spring branzino, and the bread service at the start of dinner where the oil is presented uncooked and sets the guest's first sensory impression of the kitchen.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 31
+    },
+    {
+      "node_id": "t187",
+      "text": "Olive oil split-SKU resolution: Solleone blend used for all cooking volume; a separate premium finishing oil maintained only for the bread service and pass-drizzle applications; net saving approximately 16–17% instead of the full 22%; operationally managed as two clearly-labelled containers in the same storage location, treated as analogous to the existing distinction between table salt and finishing salt.",
+      "level": "satellite",
+      "parent_id": "p11",
+      "created_turn": 31
+    },
+    {
+      "node_id": "p28",
+      "text": "Customer database and six-month loyalty analysis: TableCheck repeat-visit data and geographic segmentation reviewed at the end of month six.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t188",
+      "text": "TableCheck database at end of month six (April 30, 2026): 412 unique reservation-based guests across the full first six months (walk-ins not captured); 87 repeat customers (at least 2 visits each) — a repeat rate of approximately 21%, assessed as solid and within the 18–25% healthy benchmark range for independent mid-premium urban Japanese restaurants at the six-month mark.",
+      "level": "satellite",
+      "parent_id": "p28",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t189",
+      "text": "Repeat customer visit-frequency breakdown within the 87: approximately 60 guests visited 2–3 times total (returned at least once but not yet in a habitual pattern); approximately 20 guests visited 4–6 times (every six weeks to monthly cadence, clearly engaged beyond initial curiosity); a small high-frequency core with 7 or more visits each.",
+      "level": "satellite",
+      "parent_id": "p28",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t190",
+      "text": "Mr. Hiroyuki Tachibana — Azabu resident — is the most frequent guest in the database with 10 visits in six months; books through TableCheck under his own name; staff know his order preferences and favored table; he takes extended time with the wine list; his settled, regular presence is described as creating warm ambient energy in the dining room that other guests perceive without identifying.",
+      "level": "satellite",
+      "parent_id": "p28",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t191",
+      "text": "Geographic segmentation of the 412 unique guests: a proximate local cohort from Azabu, Motoazabu, and Minami-Azabu — estimated at 80–120 guests and the structurally highest-probability repeat candidates due to near-zero access friction — contrasts with a distinct out-of-area cohort from Shibuya, Shinjuku, and outside the central wards who typically visited for a specific occasion and face higher re-visit friction.",
+      "level": "satellite",
+      "parent_id": "p28",
+      "created_turn": 34
+    },
+    {
+      "node_id": "p29",
+      "text": "Six-month anniversary private dinner on May 4, 2026: invitation-only gathering for 30 regulars to mark the restaurant's first six months of operation.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t192",
+      "text": "The six-month anniversary on May 4, 2026 was marked with an invitation-only dinner for 30 regulars — no outside reservations or walk-ins accepted; invitations were handwritten cards delivered at the table during guests' preceding meals approximately two weeks in advance, with personal phone calls made to several guests.",
+      "level": "satellite",
+      "parent_id": "p29",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t193",
+      "text": "A six-course menu was designed exclusively for the May 4 anniversary evening — dishes not on the regular menu and not planned for future service, each connected in some way to a moment or person from the restaurant's first six months; Kenta described the evening as emotionally more affecting than he had anticipated.",
+      "level": "satellite",
+      "parent_id": "p29",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t194",
+      "text": "Cumulative revenue at end of month six (April 30, 2026): 28.4 million yen total across all revenue categories since opening, representing a monthly average run rate of approximately 4.73 million yen.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t195",
+      "text": "Cumulative operating loss reduced to 1.1 million yen at end of month six, down from 1.8 million yen at the end of month four — a 700,000-yen reduction confirming that months five and six each generated net-positive results; the revenue acceleration in this period was driven primarily by two large April private events: an 18-guest pharmaceutical company corporate dinner and a 12-guest milestone birthday celebration.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 34
+    },
+    {
+      "node_id": "t196",
+      "text": "Food cost ratio running at 34–36% during months five and six — 2–3 percentage points above the 31–32% target range — identified as the primary open cost-side improvement opportunity and a structural gap not yet addressed despite the improving revenue trajectory.",
+      "level": "satellite",
+      "parent_id": "p21",
+      "created_turn": 34
+    },
+    {
+      "node_id": "p30",
+      "text": "Sala Modena private dining room: conversion of the rear storage area at Osteria Morishita into a dedicated 8-seat premium private room, covering build-out, pricing structure, operations, construction progress, and marketing strategy.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t197",
+      "text": "Sala Modena build scope and cost: Yamamoto Koumuten (Tetsuo Yamamoto) contracted for 1.4 million yen covering full partition construction, soundproofing panels, dedicated lighting circuit, wine service station carpentry on the east wall, and a privacy-seal door; permit fees are included in the 1.4 million yen figure because the work qualifies as an interior alteration rather than a structural change.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t198",
+      "text": "Sala Modena construction schedule: July 14 to August 9, 2026 (4-week window); heavy disruptive work limited to mornings before service so the main dining room can stay open throughout the build.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t199",
+      "text": "Sala Modena pricing structure: 18,000 yen per person fixed menu plus a 30,000 yen room fee per booking, yielding 174,000 yen per fully-booked 8-top; target cadence is 2 nights per week at launch, scaling to 3 nights once operational rhythm is established.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t200",
+      "text": "Sala Modena furniture and service goods: approximately 450,000 yen for a set of 8 Pedrali chairs and a custom walnut table (200 × 100 cm) sourced from a contact in Nishi-Ogikubo dealing in Italian contract furniture; approximately 150,000 yen for dedicated stemware, decanters, linen, and pendant lighting fixtures; total startup cost approximately 2 million yen (1.4M construction + 450K furniture + 150K service goods).",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t201",
+      "text": "Storage displacement solution: a 15-tsubo section of the basement in the building directly behind Osteria Morishita, rented informally from the building's landlord at 38,000 yen per month (456,000 yen annually); chosen over a Mita self-storage unit because proximity eliminates operational friction for retrieving wine or seasonal tableware.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t202",
+      "text": "Sala Modena service design: the room is locked to a single 7:00 PM seating time so it fires during the quietest phase of the main room service (main room's early-wave guests are already at their mains); a dedicated server is assigned solely to Sala Modena for each booking night rather than rotating main-floor staff in and out.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t203",
+      "text": "Sala Modena pre-launch plan: debut announcement to Osteria Morishita's mailing list of approximately 400 guests who have dined three or more times, with bookings opening around September 1, 2026 — one week after the scheduled August 9 construction handover — giving time for a staff rehearsal dinner before paying guests are admitted.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 36
+    },
+    {
+      "node_id": "t204",
+      "text": "Sala Modena construction status as of July 17, 2026: structural work complete, acoustic paneling mostly installed, indirect warm lighting rig being installed that week; outstanding items are custom millwork wine display cabinet and upholstered wall sections for far corners, fabricated off-site and scheduled to arrive the first week of August; contractor targets a punch-list walk-through by mid-August and handover by August 28, 2026.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 39
+    },
+    {
+      "node_id": "t205",
+      "text": "Six Sala Modena private events booked for September 2026 before any formal public launch: 2 corporate bookings and 4 private celebrations, including a 50th birthday dinner for 20 guests organized by the celebrant's daughter; the early traction came entirely from quiet targeted personal outreach rather than marketing campaigns.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 39
+    },
+    {
+      "node_id": "t206",
+      "text": "Marubeni Corporation booked Sala Modena for October 14, 2026: 14-person dinner organized by an assistant to a senior director in the corporate strategy division; terms confirmed without negotiation at 18,000 yen per person minimum plus 50,000 yen venue fee (302,000 yen guaranteed floor); the booking originated through Osteria Morishita's corporate preferred vendor list and likely word-of-mouth from prior main dining room bookings.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 39
+    },
+    {
+      "node_id": "t207",
+      "text": "Planned menu for the October 14 Marubeni dinner: 12-course progression with the first half built around peak autumn ingredients (matsutake, sudachi, roasted squash, quail) and the second half culminating in a dry-aged beef course from a small family producer in Tochigi whose aging profile is distinct from anything previously served at Osteria Morishita; an external sommelier consultant with corporate entertainment experience is being considered for wine service.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 39
+    },
+    {
+      "node_id": "t208",
+      "text": "Sala Modena marketing sequencing decided July 2026: (1) build a dedicated Sala Modena page on the Osteria Morishita website within 3–4 weeks, showing room dimensions, capacity, pricing structure (18,000 yen per person minimum, 50,000 yen venue fee), photo assets, and a booking inquiry method; (2) begin direct outreach to HR directors and executive assistant networks at major Tokyo corporations in October after the Marubeni dinner establishes a reference event; (3) press outreach in November targeting publications reaching Tokyo senior executives with corporate entertainment budgets.",
+      "level": "satellite",
+      "parent_id": "p30",
+      "created_turn": 39
+    },
+    {
+      "node_id": "p31",
+      "text": "HR formalization at Osteria Morishita: social insurance enrollment, employee handbook, and organizational compliance infrastructure as Osteria Morishita reached 7 full-time and 4 part-time staff in mid-2026.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 37
+    },
+    {
+      "node_id": "t209",
+      "text": "Social insurance enrollment completed for all 7 full-time staff at Osteria Morishita by June 2026; enrollment had been deferred during the capital-constrained opening period; completion produced a visible shift in how longer-term staff perceived the restaurant as a serious employer.",
+      "level": "satellite",
+      "parent_id": "p31",
+      "created_turn": 37
+    },
+    {
+      "node_id": "t210",
+      "text": "Employee handbook commissioned from labor consultant Mr. Endo at a fee of 280,000 yen; Mr. Endo conducted a 3-hour interview with Kenta about how the restaurant operates and its values before drafting; the handbook covers working hours, overtime, disciplinary procedures, resignation and termination processes, and performance evaluation requirements.",
+      "level": "satellite",
+      "parent_id": "p31",
+      "created_turn": 37
+    },
+    {
+      "node_id": "t211",
+      "text": "Part-time staff management risk identified during handbook review: 4 part-time employees had been managed on informal text-based scheduling with no written expectations for 7 months; part-time hours records needed to be reviewed for potential misclassification risk — workers averaging more than approximately 30 hours per week may trigger different social insurance and classification obligations under Japanese labor law.",
+      "level": "satellite",
+      "parent_id": "p31",
+      "created_turn": 37
+    },
+    {
+      "node_id": "t212",
+      "text": "Marco Petrelli visa timeline noted as a separate HR risk: his working visa expires in approximately 18 months from June 2026; Kenta planned a dedicated conversation in early July 2026 (after the performance reviews) framed as business planning support — offering to actively provide employer documentation for renewal — rather than as a query about Petrelli's personal plans.",
+      "level": "satellite",
+      "parent_id": "p31",
+      "created_turn": 37
+    },
+    {
+      "node_id": "p32",
+      "text": "First formal performance reviews and salary adjustments for all 7 full-time Osteria Morishita staff, conducted July 1–2, 2026.",
+      "level": "planet",
+      "parent_id": "s1",
+      "created_turn": 38
+    },
+    {
+      "node_id": "t213",
+      "text": "Haruki Nakajima raised to 440,000 yen per month from 380,000 yen (a 15.8% increase, or approximately 7–8% annualized over two years of de facto underpayment); rationale: expanded responsibilities covering ordering, mentoring junior cooks, and acting as head chef 3 nights per week; Nakajima also continues to be developed internally as Marco Petrelli's succession candidate without the role being named explicitly to either party.",
+      "level": "satellite",
+      "parent_id": "p32",
+      "created_turn": 38
+    },
+    {
+      "node_id": "t214",
+      "text": "Marco Petrelli signed a 2-year contract extension through October 2027; new monthly base salary is 780,000 yen (up from 720,000 yen) plus a performance bonus structure tied to monthly cover count and an aggregated platform review score threshold; additional benefits include meal provision every shift, transportation covered, and 2 weeks of paid leave beyond the legal minimum.",
+      "level": "satellite",
+      "parent_id": "p32",
+      "created_turn": 38
+    },
+    {
+      "node_id": "t215",
+      "text": "Yui Tachibana raised to 1,500 yen per hour from 1,350 yen (an 11% increase) after 18 months of part-time service; regulars request her by name, she handles wine service at a higher level than two full-time staff members, and she manages VIP tables with discretion; a two-year retention bonus of 200,000 yen at the 24-month anniversary was also introduced, framed as milestone recognition of accumulated expertise rather than a conditional retention incentive.",
+      "level": "satellite",
+      "parent_id": "p32",
+      "created_turn": 38
+    },
+    {
+      "node_id": "t216",
+      "text": "Remaining 4 full-time staff received modest 3–5% salary increases at the July 2026 review; one staff member — floor staff Takeda, 3 years tenure — received zero increase due to multiple documented behavioral issues in the review year: repeated late arrivals, a formal customer complaint about his attitude, and slipped table management standards; prior informal conversations had not been documented, leaving a weak paper trail; Takeda was given a concrete written pathway specifying observable improvement targets and a 6-month formal check-in.",
+      "level": "satellite",
+      "parent_id": "p32",
+      "created_turn": 38
+    }
+  ],
+  "processed_sessions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+}

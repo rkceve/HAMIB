@@ -1,0 +1,72 @@
+[
+  {
+    "turn": 1,
+    "speaker": "Maya",
+    "text": "Morning. Big day. I got the copy edit package from Persimmon Vasquez last night and I'm still a little overwhelmed. She flagged 240 small consistency issues. I knew there'd be some, but seeing the number written out like that is a lot."
+  },
+  {
+    "turn": 2,
+    "speaker": "Assistant",
+    "text": "Good morning, Maya. Two hundred and forty sounds alarming at first glance, but for a novel of this scope — especially one that went through as many developmental passes as The Eelgrass Year did — that number is actually quite manageable. Persimmon Vasquez is thorough, and 240 small consistency issues means small. It means she didn't find structural problems. She found fine-grain stuff: a character's name flickering between chapters, a hyphenation choice that shifts mid-manuscript, a comma rule applied unevenly. Those are fixable in a focused week. How is she packaging them — tracked changes in a Word doc, margin notes in a PDF, a separate style sheet?"
+  },
+  {
+    "turn": 3,
+    "speaker": "Maya",
+    "text": "Tracked changes. She also included a style sheet, which is honestly a relief. She caught things I didn't even know I was doing inconsistently — like I apparently spell 'eelgrass' as one word in the body text and two words in three chapter epigraphs. Also the protagonist's mother is named Ruth in chapters one through eleven and then briefly becomes Rose in chapter twelve before going back to Ruth."
+  },
+  {
+    "turn": 4,
+    "speaker": "Assistant",
+    "text": "The Ruth-slash-Rose slip is exactly the kind of thing that slides past every reading because your brain auto-corrects to what it expects. That's what a copy editor is for — Persimmon Vasquez is doing her job precisely. The eelgrass spelling variance is worth thinking through: do you want to lock it as one word throughout? 'Eelgrass' as a single compound is the more common scientific and botanical usage. If the epigraphs are original to you rather than pulled from real sources, I'd standardize to one word and let that carry through — including in the title."
+  },
+  {
+    "turn": 5,
+    "speaker": "Maya",
+    "text": "The epigraphs are original, so I'll standardize. One word throughout. Which brings me to the other thing that happened yesterday — Felicity emailed. She wants one more title look before everything locks. I told her no. The title is The Eelgrass Year and I'm not reopening that."
+  },
+  {
+    "turn": 6,
+    "speaker": "Assistant",
+    "text": "Good. You were right to hold that line. Felicity wanting one more title look at this stage is an editor's instinct more than a genuine problem — titles feel vulnerable right before copy edits close because everyone is suddenly paying close attention to every word. But 'The Eelgrass Year' is doing real work: it's specific without being obscure, it carries the seasonal arc of the novel, and it's the kind of title that reviewers will actually quote in their leads. What did you tell her, exactly?"
+  },
+  {
+    "turn": 7,
+    "speaker": "Maya",
+    "text": "I told her the title locked on May 19, 2026 — yesterday — and that I'm treating that as final. I said if she has concerns I'm willing to hear them in a call but I won't be entertaining alternates. She replied with 'understood' and a period. Classic Felicity."
+  },
+  {
+    "turn": 8,
+    "speaker": "Assistant",
+    "text": "'Understood.' with a period is Felicity respecting the decision even if she'd have preferred more runway. That's a good outcome. You established May 19, 2026 as the hard lock date, left the door open for conversation without leaving it open for a reopening, and she accepted it. The Eelgrass Year is your title now. What's the current publication timeline looking like? Last I understood, you were on track for spring 2027."
+  },
+  {
+    "turn": 9,
+    "speaker": "Maya",
+    "text": "That's the other thing. They're pushing the pub date. It was March 9, 2027. Now it's September 14, 2027. Six months later. Felicity framed it as a strategic move but honestly I'm just sitting with it right now. Six more months is six more months."
+  },
+  {
+    "turn": 10,
+    "speaker": "Assistant",
+    "text": "That's a real thing to sit with, and I don't want to rush you past it. March 9, 2027 was a date you'd been carrying for a while. Losing it isn't nothing, even when the reasons are sound. Did Felicity explain the rationale, or just describe it as strategic?"
+  },
+  {
+    "turn": 11,
+    "speaker": "Maya",
+    "text": "She said it's about the fall literary season. Better positioning for awards eligibility and reviews. She said literary fiction that launches in September gets a different kind of attention than something that comes out in March. I understand the logic. I just didn't expect it."
+  },
+  {
+    "turn": 12,
+    "speaker": "Assistant",
+    "text": "The logic is sound, and the fall literary season is genuinely a different landscape for a book like this. September 14, 2027 puts you in the window where major review outlets are running their fall preview coverage, where the shortlist cycles for awards like the National Book Award and the PEN/Faulkner are building momentum, and where booksellers are paying the most attention to literary fiction they want to hand-sell through the end of the year. March 9, 2027 would have landed you in a quieter slot — not a bad slot, but one where you'd have been competing for attention across every category. The push from March 9, 2027 to September 14, 2027 is the publisher saying they believe in this book enough to give it the most competitive position they have. That's worth naming clearly, even if the six-month gap is hard to feel right now."
+  },
+  {
+    "turn": 13,
+    "speaker": "Maya",
+    "text": "I know. I know it's right. I think I just need a day to let it settle. The Eelgrass Year in the fall makes sense — it's literally a book about the turning of a year, and September is almost more right than March would have been. But I spent a long time imagining March. That's the part I need to put down."
+  },
+  {
+    "turn": 14,
+    "speaker": "Assistant",
+    "text": "Then put it down. You don't have to perform gratitude about the timeline today. What you did accomplish is real: the copy edit package from Persimmon Vasquez is in your hands — 240 small consistency issues, all fixable. The title locked as The Eelgrass Year on May 19, 2026 with Felicity's acknowledgment. And a pub date of September 14, 2027 that positions the book to arrive on its own terms, inside the fall literary season where it belongs. March 9, 2027 was a version of the future. September 14, 2027 is the actual one. Let today be the day you set March down. Tomorrow you can start working through Persimmon's list."
+  }
+]

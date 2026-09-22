@@ -1,0 +1,118 @@
+[
+ {
+  "qid": "rest_s01_06",
+  "question": "What is the name of Kenta's wife who supports the restaurant plan?"
+ },
+ {
+  "qid": "rest_s02_06",
+  "question": "In which Tokyo district did Kenta name Heinz Beck as a benchmark restaurant?"
+ },
+ {
+  "qid": "rest_s03_06",
+  "question": "On which street address is the office of Kenta's accountant located?"
+ },
+ {
+  "qid": "rest_s05_01",
+  "question": "In which building did Kenta sign the lease for his restaurant?"
+ },
+ {
+  "qid": "rest_s06_01",
+  "question": "Which contractor did Kenta select for the renovation?"
+ },
+ {
+  "qid": "rest_s07_02",
+  "question": "At what interest rate was Kenta's Japan Finance Corporation loan finally approved?"
+ },
+ {
+  "qid": "rest_s08_03",
+  "question": "What flooring material was chosen for the restaurant?"
+ },
+ {
+  "qid": "rest_s10_02",
+  "question": "What was the price per 500ml of the opening olive oil?"
+ },
+ {
+  "qid": "rest_s11_03",
+  "question": "What is the name of the sommelier friend who introduced Kenta's wine account manager to him?"
+ },
+ {
+  "qid": "rest_s12_03",
+  "question": "Who designed the restaurant's logo?"
+ },
+ {
+  "qid": "rest_s13_04",
+  "question": "For how many years was the head chef a sous chef at Ristorante Acqua Pazza before joining?"
+ },
+ {
+  "qid": "rest_s14_05",
+  "question": "What upgrade caused the renovation budget overage?"
+ },
+ {
+  "qid": "rest_s15_06",
+  "question": "What is the signature pasta dish on the menu?"
+ },
+ {
+  "qid": "rest_s16_06",
+  "question": "Name one of the two part-time servers hired at opening (Yui ...)."
+ },
+ {
+  "qid": "rest_s17_06",
+  "question": "How was wine pairing handled at the soft opening?"
+ },
+ {
+  "qid": "rest_s18_06",
+  "question": "Which table did the service manager flag as having an acoustic issue?"
+ },
+ {
+  "qid": "rest_s21_01",
+  "question": "Which part-time server quit after two weeks, having found a higher-paying job?"
+ },
+ {
+  "qid": "rest_s22_03",
+  "question": "Roughly how many months of cash runway did the restaurant have after November?"
+ },
+ {
+  "qid": "rest_s23_04",
+  "question": "How many hours nightly does the dishwasher work?"
+ },
+ {
+  "qid": "rest_s25_04",
+  "question": "What food-waste percentage did the restaurant discover in January?"
+ },
+ {
+  "qid": "rest_s27_04",
+  "question": "Who was hired as a part-time line cook for vacation coverage?"
+ },
+ {
+  "qid": "rest_s28_04",
+  "question": "For which publication does the restaurant critic who paid the unexpected visit write?"
+ },
+ {
+  "qid": "rest_s29_05",
+  "question": "On what date did the head chef return from vacation?"
+ },
+ {
+  "qid": "rest_s30_06",
+  "question": "In which publication was the restaurant critic's review published?"
+ },
+ {
+  "qid": "rest_s34_01",
+  "question": "How many unique guests did the customer database show at the six-month celebration?"
+ },
+ {
+  "qid": "rest_s36_02",
+  "question": "What was the chosen construction company's cost estimate for the private-room conversion?"
+ },
+ {
+  "qid": "rest_s37_02",
+  "question": "Which labor consultant helped draft the employee handbook?"
+ },
+ {
+  "qid": "rest_s38_03",
+  "question": "What retention bonus was formalized under the two-year tenure milestone?"
+ },
+ {
+  "qid": "rest_s39_05",
+  "question": "At what price do the private-room wine pairings start?"
+ }
+]

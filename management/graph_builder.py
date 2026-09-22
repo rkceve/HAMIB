@@ -1,22 +1,22 @@
 """
-GraphBuilder: takes a list of NodeProposal and applies them to a
-CorrelationDiagram, adding or updating nodes accordingly.
+GraphBuilder: NodeProposal のリストを受け取り、
+CorrelationDiagram に実際にノードを追加/更新するクラス。
 """
 from __future__ import annotations
 
 from models.correlation_diagram import CorrelationDiagram
+from models.node import NodeLevel
 from management.node_classifier import NodeProposal, Action
 
 
 class GraphBuilder:
     def apply(self, cd: CorrelationDiagram, proposals: list[NodeProposal]) -> CorrelationDiagram:
-        """Applies the proposals to cd in order and returns the updated cd."""
+        """proposals を順番に cd に適用し、更新された cd を返す。"""
         for p in proposals:
             self._apply_one(cd, p)
         return cd
 
     def _apply_one(self, cd: CorrelationDiagram, p: NodeProposal) -> None:
-        """Applies a single proposal to cd based on its action type."""
         if p.action == Action.SKIP:
             return
 

@@ -1,0 +1,716 @@
+{
+ "chunks_total": 3388,
+ "sampled": 300,
+ "variants": {
+  "v0": {
+   "counts": {
+    "ok_first": 287,
+    "ok_retry": 2,
+    "fail": 11
+   },
+   "seconds": 309.33886917307973,
+   "failures": [
+    {
+     "excerpt": "white_concrete (no variants), smooth_stone (slab only), cut_copper, oxidized_cut_copper, and every wood\\n  species (oak, spruce, birch, jungle, acacia, dark_oak, mangrove, cherry, pale_oak, bamboo, crimson, warped)\\n  with `_planks`, `_stairs`, `_slab`, `_fence`, `_trapdoor`, `_door`, `_log` (bamboo",
+     "attempts": [
+      [
+       "White concrete, smooth stone, copper, and all wood species with planks, stairs, slabs, fences, trapdoors, doors, and logs.",
+       "stop",
+       "length 122 > 120"
+      ],
+      [
+       "List: white_concrete, smooth_stone, cut_copper, oxidized_cut_copper, all wood species with _planks, _stairs, _slab, _fence, _trapdoor, _door, _log.",
+       "stop",
+       "length 147 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Also check `python -m pytest -q` stays green (101 tests).\\n\\nThen implement the scope addition (ridge ornament for odd spans, plinth, beam, room(plinth=True), odd-width check in Build.check) exactly as described in my earlier message, update the chapel fixture (plinth=True, one beam across the nave)",
+     "attempts": [
+      [
+       "Run pytest (101 tests green), add scope (ridge, plinth, beam, room, odd-width), update chapel fixture, paste elevations, then pytest and ruff.",
+       "stop",
+       "length 142 > 120"
+      ],
+      [
+       "Run pytest (101 tests green), add scope (ridge, plinth, beam, room, odd-width), update chapel fixture, paste elevations, then pytest and ruff.",
+       "stop",
+       "length 142 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "n/core_perl:/c/Users/user/.claude/plugins/cache/claude-plugins-official/feature-dev/unknown/bin:/c/Users/user/.claude/plugins/cache/claude-plugins-official/commit-commands/unknown/bin)\nwhich: no uv in (/c/Users/user/bin:/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/usr/bin:/c/Users/user/bi",
+     "attempts": [
+      [
+       "uv not found in /c/Users/user/bin:/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/usr/bin:/c/Users/user/bin:/c/Program Files/Common",
+       "stop",
+       "length 139 > 120"
+      ],
+      [
+       "No uv found in /c/Users/user/bin:/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/usr/bin:/c/Users/user/bin:/c/Program Files/Common",
+       "stop",
+       "length 138 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "output_file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output\nDo NOT Read or tail this file via the shell tool — it is the full subagent JSONL transcript and reading it will overflow your context.",
+     "attempts": [
+      [
+       "Do not read C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output.",
+       "stop",
+       "length 134 > 120"
+      ],
+      [
+       "Output file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output",
+       "stop",
+       "length 129 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md FIRST and implement exactly the interfaces under \\\"Layer 2\\\" (emit.py, rcon_batch.py, runner.py, server.toml).",
+     "attempts": [
+      [
+       "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md first, then implement Layer 2 interfaces: emit.py, rcon_batch.py, runner.py, server.toml.",
+       "stop",
+       "length 132 > 120"
+      ],
+      [
+       "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md; implement Layer 2 interfaces: emit.py, rcon_batch.py, runner.py, server.toml.",
+       "stop",
+       "length 121 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "--- remote refs\n6ab2aee93b913aea9777ef16a8be7c0057936b77\tHEAD\n6ab2aee93b913aea9777ef16a8be7c0057936b77\trefs/heads/main\n[tool_use]\n{\"command\": \"cd \\\"C:/Users/user/AppData/Local/Temp/claude/C--Users-user/00000000-0000-4000-8000-000000000002/scratchpad/mbcheck2\\\"; wc -c tests/fixtures/codex_json_sample",
+     "attempts": [
+      [
+       "cd C:/Users/user/AppData/Local/Temp/claude/C--Users-user/00000000-0000-4000-8000-000000000002/scratchpad/mbcheck2; wc -c tests/fixtures/codex_json_sample.jsonl; grep -o -E '\"(cwd|workdir|path|user|ema",
+       "length",
+       "finish_reason='length' (expected 'stop')"
+      ],
+      [
+       "cd C:/Users/user/AppData/Local/Temp/claude/C--Users-user/00000000-0000-4000-8000-000000000002/scratchpad/mbcheck2; wc -c tests/fixtures/codex_json_sample.jsonl; grep -o -E '\"(cwd|workdir|path|user|ema",
+       "length",
+       "finish_reason='length' (expected 'stop')"
+      ]
+     ]
+    },
+    {
+     "excerpt": "output_file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output\nDo NOT Read or tail this file via the shell tool — it is the full subagent JSONL transcript and reading it will overflow your context.",
+     "attempts": [
+      [
+       "Do not read C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output.",
+       "stop",
+       "length 134 > 120"
+      ],
+      [
+       "Output file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output",
+       "stop",
+       "length 134 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Width-5/height-10 cathedral window ASCII (north elevation, v9 at top):\n```\n   9 #w#w#\n   8 ^/w/^\n   7 #####\n   6 \\ttt\\\n   5 \\.f.\\\n   4 w.f.w\n   3 w\\^\\w\n   2 \\^\\^\\\n   1 \\B\\B\\\n   0 wBwBw\n```\n\nNot done (explicitly cut per the deadline message): pier stamp, cornice stamp, `corner_pillar`/`eave` cathedra",
+     "attempts": [
+      [
+       "Width-5/height-10 cathedral window ASCII (north elevation, v9 at top) is done; pending pier, cornice, pillar, eave, default, and width-7/height-22 preview.",
+       "stop",
+       "length 155 > 120"
+      ],
+      [
+       "Width-5/height-10 cathedral window ASCII (north, v9) done; pending pier, cornice, pillar styles, default cathedral, and width-7/height-22 preview.",
+       "stop",
+       "length 146 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "[tool_use]\n{\"url\": \"https://www.ambiguous.ai/agents\", \"prompt\": \"Extract the exact steps to connect an external (BYO-LLM) agent: MCP server URL(s), how to create an agent identity/API key or token, transport (streamable HTTP / SSE / stdio), tool naming (e.g. docs.read, docs.create, tasks.list, tasks",
+     "attempts": [
+      [
+       "Extract steps for BYO-LLM agent: MCP URL, API key, transport (HTTP/SSE/stdio), tool naming, document reading, and task management.",
+       "stop",
+       "length 130 > 120"
+      ],
+      [
+       "Connect BYO-LLM agent via MCP server URL, API key, and transport (HTTP/SSE/stdio) using tools like docs.read and tasks.list.",
+       "stop",
+       "length 124 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "yaw 180 → -z, yaw -90 → +x; pitch 90 → -y), raycast hits the nearest voxel along a diagonal in a tiny 3-voxel scene and returns None when missing, ground_target math, parsing of real `data get` output strings (include a realistic sample: `the builder has the following entity data: [12.5d, 1.0d, -7.2",
+     "attempts": [
+      [
+       "Yaw 180/-90, pitch 90, 3-voxel diagonal raycast, None, ground_target math, `data get` strings like `[12.5d, 1.0d, -7.25d]` and `[-135.3f, 20.1f]`, diff correctness.",
+       "stop",
+       "length 164 > 120"
+      ],
+      [
+       "Yaw/pitch rotations, diagonal raycasts in 3-voxel scenes, ground_target math, and parsing `data get` outputs like `[12.5d, 1.0d, -7.25d]` or `[-135.3f, 20.1f]` with diff correctness.",
+       "stop",
+       "length 182 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "`plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1)`: foundation base around a footprint: `accent` full course(s) projecting `projection` blocks outward on all sides, `height` default = 1 if the footprint's max side < 20 else 2; top course at d=projection gets `variant(secondary,\\\"slab\\\")` top slab",
+     "attempts": [
+      [
+       "plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1) creates a foundation with accent full course(s) projecting projection blocks outward on all sides.",
+       "stop",
+       "length 150 > 120"
+      ],
+      [
+       "plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1): foundation base with accent full course(s) projecting projection blocks outward on all sides, height default = 1 if footprint's max side < 20 else ",
+       "stop",
+       "length 271 > 120"
+      ]
+     ]
+    }
+   ]
+  },
+  "v1": {
+   "counts": {
+    "ok_first": 250,
+    "ok_retry": 15,
+    "fail": 35
+   },
+   "seconds": 422.3804589919746,
+   "failures": [
+    {
+     "excerpt": "white_concrete (no variants), smooth_stone (slab only), cut_copper, oxidized_cut_copper, and every wood\\n  species (oak, spruce, birch, jungle, acacia, dark_oak, mangrove, cherry, pale_oak, bamboo, crimson, warped)\\n  with `_planks`, `_stairs`, `_slab`, `_fence`, `_trapdoor`, `_door`, `_log` (bamboo",
+     "attempts": [
+      [
+       "White concrete, smooth stone, copper, oxidized copper, and all wood species (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped) with planks, stairs, sla",
+       "stop",
+       "length 258 > 120"
+      ],
+      [
+       "White concrete, stone, copper, and all wood species (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped) with planks, stairs, slabs, fences, trapdoors, d",
+       "stop",
+       "length 211 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "The goal of this association is to preserve this valuable wooden Gothic style building as an important architectural heritage for the Shimizu area, with plans to eventually repurpose it as a public facility rather than continue it as a church chapel.",
+     "attempts": [
+      [
+       "The association aims to preserve this valuable wooden Gothic building in Shimizu as heritage, repurposing it as a public facility instead of a church.",
+       "stop",
+       "length 150 > 120"
+      ],
+      [
+       "The association preserves this valuable wooden Gothic building in Shimizu as heritage, repurposing it as a public facility instead of a church.",
+       "stop",
+       "length 143 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "[tool_result]\n# Ambiguous REST API Reference\n\n**Base URL:** `https://app.ambiguous.ai/api/`\n\n**Authentication:** `Authorization: Bearer $AMBIGUOUS_API_KEY`\n\n## Key Endpoints by Category\n\n### Documents\n- `GET /api/documents` — retrieve documents\n- `POST /api/documents` — create new document\n- `PATCH ",
+     "attempts": [
+      [
+       "Ambiguous REST API at https://app.ambiguous.ai/api/ uses Bearer $AMBIGUOUS_API_KEY for auth and supports CRUD on documents and tasks.",
+       "stop",
+       "length 133 > 120"
+      ],
+      [
+       "Ambiguous API at https://app.ambiguous.ai/api/ uses Bearer $AMBIGUOUS_API_KEY for auth and supports CRUD on documents and tasks.",
+       "stop",
+       "length 128 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "- `C:\\Users\\user\\mcbuild\\tests\\test_stamps.py` — 6 new tests: exact round-trip on a north frame, cross-face rotation multiset check, opening/fence/stairs presence at width 5×height 10, height-matches-request across 4 sizes, and a 4-face multiset-equality check.",
+     "attempts": [
+      [
+       "6 new tests: north frame round-trip, cross-face rotation multiset, width 5×height 10 presence, height-matches-request across 4 sizes, 4-face multiset-equality.",
+       "stop",
+       "length 159 > 120"
+      ],
+      [
+       "6 new tests: north frame round-trip, cross-face rotation, width 5×height 10 presence, height-matches-request across 4 sizes, 4-face multiset-equality.",
+       "stop",
+       "length 150 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "10:from __future__ import annotations\n12:import argparse\n13:import json\n14:import sys\n15:from dataclasses import dataclass\n16:from pathlib import Path\n18:from .blockstate import rotate_state\n19:from .litematic import Voxels, load_voxels\n20:from .techniques import AIR, Frame\n33:CATHEDRAL_PATH = _ROOT",
+     "attempts": [
+      [
+       "Imports include argparse, json, sys, dataclasses, pathlib, and local modules blockstate, litematic, techniques; defines CATHEDRAL_PATH and rebuild argument.",
+       "stop",
+       "length 156 > 120"
+      ],
+      [
+       "Imports include argparse, json, sys, dataclasses, pathlib, blockstate, litematic, techniques; defines CATHEDRAL_PATH and rebuild argument.",
+       "stop",
+       "length 138 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Also check `python -m pytest -q` stays green (101 tests).\\n\\nThen implement the scope addition (ridge ornament for odd spans, plinth, beam, room(plinth=True), odd-width check in Build.check) exactly as described in my earlier message, update the chapel fixture (plinth=True, one beam across the nave)",
+     "attempts": [
+      [
+       "Run `python -m pytest -q` (101 tests), add scope (ridge, plinth, beam, room(plinth=True), odd-width check), update chapel fixture (plinth=True, one beam), paste elevations, then pytest and ruff.",
+       "stop",
+       "length 194 > 120"
+      ],
+      [
+       "Run pytest (101 tests), add scope (ridge, plinth, beam, room, odd-width), update chapel fixture, paste elevations, then pytest and ruff.",
+       "stop",
+       "length 136 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "deploy_batch_script(cfg: ServerConfig) -> None:\nmcbuild/runner.py:93:def rcon_one(cmd: str, cfg: ServerConfig) -> str:\nmcbuild/runner.py:105:def _cli(argv: list[str] | None = None) -> int:\nmcbuild/runner.py:106:    ap = argparse.ArgumentParser(description=\"Send commands to the buildagent server.\")\nm",
+     "attempts": [
+      [
+       "The excerpt defines Python functions in mcbuild/runner.py for deploying batch scripts, sending RCON commands, and a CLI for the buildagent server.",
+       "stop",
+       "length 146 > 120"
+      ],
+      [
+       "The excerpt defines Python functions in mcbuild/runner.py for deploying batch scripts, sending RCON commands, and a CLI for the buildagent server.",
+       "stop",
+       "length 146 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "output_file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output\nDo NOT Read or tail this file via the shell tool — it is the full subagent JSONL transcript and reading it will overflow your context.",
+     "attempts": [
+      [
+       "Do not read C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output.",
+       "stop",
+       "length 134 > 120"
+      ],
+      [
+       "Do not read the temp output file at C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a84108d526bb2ca3e.output.",
+       "stop",
+       "length 158 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md FIRST and implement exactly the interfaces under \\\"Layer 2\\\" (emit.py, rcon_batch.py, runner.py, server.toml).",
+     "attempts": [
+      [
+       "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md and implement Layer 2 interfaces in emit.py, rcon_batch.py, runner.py, server.toml.",
+       "stop",
+       "length 126 > 120"
+      ],
+      [
+       "Read C:\\\\Users\\\\user\\\\mcbuild\\\\CONTRACT.md, then implement Layer 2 interfaces in emit.py, rcon_batch.py, runner.py, and server.toml.",
+       "stop",
+       "length 132 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "errors=\\\"replace\\\")\\n    real = re.search(r\\\"^real\\\\s+(\\\\S+)\\\", s, re.M)\\n    p = Path(out); t = p.read_text(encoding=\\\"utf-8\\\")\\n    t = re.sub(r\\\"- wall time: .*\\\", f\\\"- wall time: {real.group(1) if real else '?'}\\\", t)\\n    p.write_text(t, encoding=\\\"utf-8\\\"); print(out, real.group(1) if real els",
+     "attempts": [
+      [
+       "Python script replaces wall time with regex match, reads/writes text file, adds files to git, creates orphan branch clean2.",
+       "stop",
+       "length 123 > 120"
+      ],
+      [
+       "Python script replaces wall time with regex match, reads/writes text file, adds files to git, creates orphan branch clean2.",
+       "stop",
+       "length 123 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "output_file: C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output\nDo NOT Read or tail this file via the shell tool — it is the full subagent JSONL transcript and reading it will overflow your context.",
+     "attempts": [
+      [
+       "Do not read C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output.",
+       "stop",
+       "length 134 > 120"
+      ],
+      [
+       "Do not read C:\\Users\\user\\AppData\\Local\\Temp\\claude\\C--Users-user\\00000000-0000-4000-8000-000000000002\\tasks\\a2fe3f039a3861b84.output.",
+       "stop",
+       "length 134 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "then z, then x), forceload chunk math with negative coords (-1 // 16 == -1), backup/restore tiling for a box bigger than 32x32x32 (assert every tile ≤ 32768 blocks and tiles cover the box exactly), tellraw JSON escaping of quotes and backslashes.",
+     "attempts": [
+      [
+       "Then z, then x; force load chunk math with negative coords (-1 // 16 == -1); backup/restore tiling for a box bigger than 32x32x32 (assert every tile ≤ 32768 blocks and tiles cover the box exactly); te",
+       "stop",
+       "length 246 > 120"
+      ],
+      [
+       "Then z, then x; force load chunk math with negative coords (-1 // 16 == -1); backup/restore tiling for boxes >32x32x32 (tiles ≤32768 blocks); tellraw JSON escaping quotes/backslashes.",
+       "stop",
+       "length 183 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "On failure send a red tellraw with the error.\\n- Serializes requests: one codex run at a time; queue further chat lines; a `!cancel` line kills the running codex process.\\n- `--dry-run`: print the codex command line instead of running it, and print tellraw JSON instead of sending.\\n- Keep a `bridge.",
+     "attempts": [
+      [
+       "On failure send red tellraw; serializes requests with !cancel; --dry-run prints JSON; logs to bridge.log; tests parser regex with real Paper samples.",
+       "stop",
+       "length 149 > 120"
+      ],
+      [
+       "On failure send red tellraw; serialize requests with !cancel; --dry-run prints JSON; log to bridge.log; test parser regex with real Paper samples.",
+       "stop",
+       "length 146 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "commands.txt\\n```\\n- Reads one command per line from stdin, sends them sequentially over RCON (Source RCON protocol, TCP, localhost), prints `N ok, M failed` summary and each failed line with the server's response to stderr, exits 1 if any failed.\\n- Treat responses containing `Unknown`, `Incorrect`",
+     "attempts": [
+      [
+       "Reads commands from stdin, sends them via RCON TCP localhost, prints summary and failed lines with server responses to stderr, exits 1 if failures occur.",
+       "stop",
+       "length 153 > 120"
+      ],
+      [
+       "Reads stdin commands, sends via RCON TCP localhost, prints summary and failed lines with server responses to stderr, exits 1 on failure.",
+       "stop",
+       "length 136 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "ServerConfig:\nmcbuild/runner.py:36:class RunResult:\nmcbuild/runner.py:42:def load_config(path: str | Path = _DEFAULT_TOML) -> ServerConfig:\nmcbuild/runner.py:49:def _unescape(text: str) -> str:\nmcbuild/runner.py:54:def _remote_batch_cmd(cfg: ServerConfig) -> str:\nmcbuild/runner.py:61:def run_command",
+     "attempts": [
+      [
+       "ServerConfig defines classes and functions in mcbuild/runner.py for loading configs, unescaping text, and running remote batch commands.",
+       "stop",
+       "length 136 > 120"
+      ],
+      [
+       "ServerConfig in mcbuild/runner.py handles config loading, text unescaping, and remote command execution via functions like load_config and run_commands.",
+       "stop",
+       "length 152 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "\\\"\\\")\\ng.write_text(t, encoding=\\\"utf-8\\\")\\nEOF\\npython -m ruff check tests/test_stamps.py && python -m pytest -q 2>&1 | tail -1; git add .gitignore catalog/cathedral_stamps.json tests/test_stamps.py; git status --short\", \"description\": \"Skip schematic-dependent tests when the private file is absent",
+     "attempts": [
+      [
+       "Skip tests if private file missing; publish stamp catalog; run ruff and pytest; add .gitignore and files; status; timeout 120000; all passed.",
+       "stop",
+       "length 141 > 120"
+      ],
+      [
+       "Skip tests if private file missing; publish stamp catalog; run ruff and pytest; add .gitignore and files; status; timeout 120000; all passed.",
+       "stop",
+       "length 141 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "The helpers embed the placements of the builder's reference cathedral; use them for\\nevery wall, window, door, pillar, buttress, eave, plinth, beam, roof and spire, and use raw `box`/`put`\\nonly for what they cannot express.\\n- Use `Build(origin=(-60, 1, 0), palette=Palette(...))`: choose the palett",
+     "attempts": [
+      [
+       "Helpers embed cathedral placements for all parts, using Build(origin=(-60, 1, 0), palette=Palette(...)) for white walls, dark spires, terracotta roof, and stained glass.",
+       "stop",
+       "length 169 > 120"
+      ],
+      [
+       "Helpers embed cathedral parts using Build(origin=(-60, 1, 0), palette=Palette(...)) for white walls, dark spires, terracotta roof, and stained glass.",
+       "stop",
+       "length 149 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "First 10 -ExpandProperty FullName; Get-Content ../../mcbuild/litematic.py -TotalCount 40; Get-Content ../../mcbuild/emit.py -TotalCount 35\" in C:\\Users\\<user>\\mcbuild\\experiments\\harness_astra\n3812:\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"Get-ChildItem 'C:/Users/<us",
+     "attempts": [
+      [
+       "PowerShell script runs in C:\\Users\\<user>\\mcbuild\\experiments\\harness_astra, fetching 40 lines from litematic.py and 35 from emit.py.",
+       "stop",
+       "length 133 > 120"
+      ],
+      [
+       "PowerShell script in C:\\Users\\<user>\\mcbuild\\experiments\\harness_astra fetches 40 lines from litematic.py and 35 from emit.py.",
+       "stop",
+       "length 126 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "ここが今日の本当の価値\n  で、君にしか書けない\n  コード化されたパターン＝小さなヘルパー関数群（eave(edge, palette), corner_pillar(corner, h), window_frame(opening), wall_depth(face), floor_texture(region)）。",
+     "attempts": [
+      [
+       "今日の価値は君しか書けないコード化されたパターン：eave(edge, palette), corner_pillar(corner, h), window_frame(opening), wall_depth(face), floor_texture(region)。",
+       "stop",
+       "length 135 > 120"
+      ],
+      [
+       "今日の価値は君しか書けないコード化パターン：eave(edge, palette), corner_pillar(corner, h), window_frame(opening), wall_depth(face), floor_texture(region)。",
+       "stop",
+       "length 132 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Existing RCON client for reference on the box: `~/demo-server/scripts/rcon_client.py`.\\n- The demo server (Paper 1.21.8) is being set up NOW by another agent; ports may end up 25566/25576 or 25565/25575.",
+     "attempts": [
+      [
+       "Existing RCON client at `~/demo-server/scripts/rcon_client.py`; demo server (Paper 1.21.8) setup now, ports likely 25566/25576 or 25565/25575.",
+       "stop",
+       "length 142 > 120"
+      ],
+      [
+       "RCON client at `~/demo-server/scripts/rcon_client.py`; demo server (Paper 1.21.8) setup now, ports likely 25566/25576 or 25565/25575.",
+       "stop",
+       "length 133 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Width-5/height-10 cathedral window ASCII (north elevation, v9 at top):\n```\n   9 #w#w#\n   8 ^/w/^\n   7 #####\n   6 \\ttt\\\n   5 \\.f.\\\n   4 w.f.w\n   3 w\\^\\w\n   2 \\^\\^\\\n   1 \\B\\B\\\n   0 wBwBw\n```\n\nNot done (explicitly cut per the deadline message): pier stamp, cornice stamp, `corner_pillar`/`eave` cathedra",
+     "attempts": [
+      [
+       "Width-5/height-10 cathedral window ASCII (north elevation, v9 at top) with pending pier, cornice, pillar, eave styles, default cathedral, and width-7/height-22 preview.",
+       "stop",
+       "length 168 > 120"
+      ],
+      [
+       "Width-5/height-10 cathedral window ASCII (north, v9) pending pier, cornice, pillar, eave styles, default cathedral, and width-7/height-22 preview.",
+       "stop",
+       "length 146 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "13:35:42\r\nCommandLine  : ssh ops@demo-server tail -n 0 -F ~/buildagent-server/logs/latest.log\r\n\r\n\r\n\r\n--- server\n[17:42:32] [RCON Client /127.0.0.1 #27/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[17:42:34] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[17:42:34] [RCON Client ",
+     "attempts": [
+      [
+       "At 13:35:42, ssh ops@demo-server tail -n 0 -F ~/buildagent-server/logs/latest.log; at 17:42:32-34, RCON Client /127.0.0.1 #27-28 shut down and restarted on server.",
+       "stop",
+       "length 163 > 120"
+      ],
+      [
+       "At 13:35:42, ssh ops@demo-server tail -n 0 -F ~/buildagent-server/logs/latest.log; at 17:42:32-34, RCON Client /127.0.0.1 #27-28 shut down and restarted on server.",
+       "stop",
+       "length 163 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Every voxel written by an element call is tagged.\\n- `Frame` objects returned by `wall`/`room`/`tower` are what windows/doors/eaves attach to.\\n- `Build.voxels()` applies `connect_fences_and_walls` then `fix_stair_corners`, drops `\\\"air\\\"` markers.\\n- Validation: `Build.check() -> list[str]` returns",
+     "attempts": [
+      [
+       "Every voxel is tagged; Frame objects link to windows/doors/eaves; Build.voxels() applies connect_fences_and_walls, fix_stair_corners, drops \"air\" markers; Build.check() returns warnings for floating b",
+       "stop",
+       "length 247 > 120"
+      ],
+      [
+       "Every voxel is tagged; Frame links to windows/doors; Build.voxels() applies fixes, drops \"air\"; Build.check() returns warnings for floating blocks, unsupported stairs, overlapping windows.",
+       "stop",
+       "length 188 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "Also list any linked pages about the building.\"}\n[tool_use]\n{\"url\": \"https://camp-fire.jp/projects/722178/view\", \"prompt\": \"Extract every architectural fact about the old Catholic Shimizu Church (旧カトリック清水教会聖堂): dimensions, height, towers, materials, style features, construction year, architect, floo",
+     "attempts": [
+      [
+       "Extract architectural facts for Old Catholic Shimizu Church (1/110 model) from https://camp-fire.jp/projects/722178/view.",
+       "stop",
+       "length 121 > 120"
+      ],
+      [
+       "Extract architectural facts for Old Catholic Shimizu Church (1/110 model) from https://camp-fire.jp/projects/722178/view.",
+       "stop",
+       "length 121 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "ok\ncodex\nastra ok\ntokens used\n3,966\nastra ok\n\nreal\t0m7.903s\nuser\t0m0.061s\nsys\t0m0.015s\n[tool_use]\n{\"command\": \"mkdir -p \\\"C:/Users/user/mcbuild/mcbuild\\\" \\\"C:/Users/user/mcbuild/tests\\\" \\\"C:/Users/user/mcbuild/catalog\\\" \\\"C:/Users/user/mcbuild/refs\\\"; cp \\\"C:/Users/user/OneDrive/Desktop/1.21.8 fabri",
+     "attempts": [
+      [
+       "Astra used 3,966 tokens in 7.9s to run a shell command creating directories and copying litematic files to C:/Users/user/mcbuild.",
+       "stop",
+       "length 129 > 120"
+      ],
+      [
+       "Astra used 3,966 tokens in 7.9s to run a shell command creating directories and copying litematic files to C:/Users/user/mcbuild.",
+       "stop",
+       "length 129 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "[tool_use]\n{\"url\": \"https://www.ambiguous.ai/agents\", \"prompt\": \"Extract the exact steps to connect an external (BYO-LLM) agent: MCP server URL(s), how to create an agent identity/API key or token, transport (streamable HTTP / SSE / stdio), tool naming (e.g. docs.read, docs.create, tasks.list, tasks",
+     "attempts": [
+      [
+       "Extract steps to connect BYO-LLM agent via MCP URL, API key, transport (HTTP/SSE/stdio), tool naming (docs.read, tasks.list), and document/task handling.",
+       "stop",
+       "length 153 > 120"
+      ],
+      [
+       "Extract steps to connect BYO-LLM agent via MCP URL, API key, transport, tool naming (docs.read, tasks.list), and document/task handling.",
+       "stop",
+       "length 136 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "(mandatory, paste output): `python -m pytest -q` (all), `python -m ruff check mcbuild tests`, and `python -m mcbuild.preview tests/fixtures/chapel.py --faces n,e` — paste the north and east elevations.",
+     "attempts": [
+      [
+       "Run python -m pytest -q, ruff check mcbuild tests, and mcbuild.preview tests/fixtures/chapel.py --faces n,e with north and east elevations.",
+       "stop",
+       "length 139 > 120"
+      ],
+      [
+       "Run pytest -q, ruff check mcbuild tests, and mcbuild.preview tests/fixtures/chapel.py --faces n,e with north and east elevations.",
+       "stop",
+       "length 129 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "yaw 180 → -z, yaw -90 → +x; pitch 90 → -y), raycast hits the nearest voxel along a diagonal in a tiny 3-voxel scene and returns None when missing, ground_target math, parsing of real `data get` output strings (include a realistic sample: `the builder has the following entity data: [12.5d, 1.0d, -7.2",
+     "attempts": [
+      [
+       "Yaw 180 to -z, -90 to +x; pitch 90 to -y; raycast hits nearest voxel in 3-voxel scene; ground_target math; parsing `data get` strings like `[12.5d, 1.0d, -7.25d]` or `[-135.3f, 20.1f]`; diff correctne",
+       "stop",
+       "length 203 > 120"
+      ],
+      [
+       "Yaw 180 to -z, -90 to +x; pitch 90 to -y; raycast in 3-voxel scene; ground_target math; parse `data get` strings like `[12.5d, 1.0d, -7.25d]` or `[-135.3f, 20.1f]`; diff correctness.",
+       "stop",
+       "length 182 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "(17,24,26)\r\nelements:\r\n  room_1_wall_n: wall bbox=(0, 1, -2, 14, 13, 0)\r\n  room_1_wall_s: wall bbox=(0, 1, 24, 14, 13, 26)\r\n  room_1_wall_e: wall bbox=(14, 1, 0, 16, 13, 24)\r\n  room_1_wall_w: wall bbox=(-2, 1, 0, 0, 13, 24)\r\n  room_1_pillar_0_0: corner_pillar bbox=(-1, 1, -1, 3, 18, 3)\r\n  room_1_pil",
+     "attempts": [
+      [
+       "Room 1 walls at (0,1,-2,14,13,0), (0,1,24,14,13,26), (14,1,0,16,13,24), (-2,1,0,0,13,24) with pillars at (-1,1,-1,3,18,3) and (11,1,-1,1",
+       "length",
+       "finish_reason='length' (expected 'stop')"
+      ],
+      [
+       "Room 1 walls at (0,1,-2,14,13,0), (0,1,24,14,13,26), (14,1,0,16,13,24), (-2,1,0,0,13,24) with pillars at (-1,1,-1,3,18,3) and (11,1,-1,1",
+       "length",
+       "finish_reason='length' (expected 'stop')"
+      ]
+     ]
+    },
+    {
+     "excerpt": "run `python -m mcbuild.preview {script_path} --faces n,e,s,w` as often as you like to see\n8:- Do NOT send anything to the Minecraft server yourself.",
+     "attempts": [
+      [
+       "Run `python -m mcbuild.preview {script_path} --faces n,e,s,w` to see 8 faces; do not send anything to the Minecraft server.",
+       "stop",
+       "length 123 > 120"
+      ],
+      [
+       "Run `python -m mcbuild.preview {script_path} --faces n,e,s,w` to see 8 faces; do not send anything to the Minecraft server.",
+       "stop",
+       "length 123 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "```\n\n`python -m ruff check mcbuild rcon_batch.py tests` still reports the same 4 pre-existing `E702` findings in `mcbuild/ascii.py` (Layer 1, owner Fable) — unrelated to this fix and left untouched per scope.",
+     "attempts": [
+      [
+       "`python -m ruff check mcbuild rcon_batch.py tests` still reports 4 `E702` findings in `mcbuild/ascii.py` (Layer 1, owner Fable).",
+       "stop",
+       "length 128 > 120"
+      ],
+      [
+       "`python -m ruff check mcbuild rcon_batch.py tests` still reports 4 `E702` findings in `mcbuild/ascii.py` (Layer 1, Fable).",
+       "stop",
+       "length 122 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "\\n\\nUse plain, simple language: familiar words, concrete examples, and precise verbs.",
+     "attempts": [
+      [
+       "Rewrite the excerpt as one self-contained statement of at most 120 characters, in the excerpt's language, keeping concrete values.",
+       "stop",
+       "length 130 > 120"
+      ],
+      [
+       "Rewrite the excerpt as one self-contained statement of at most 120 characters, in the excerpt's language, keeping concrete values.",
+       "stop",
+       "length 130 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "ApplyResult(added:int, removed:int, commands:int, ok:int, failed:list, seconds:float)\\ndef undo_build(build_id, cfg) -> ApplyResult      # emit.undo_commands with the state's bbox and slot; deletes the state file on success\\n```\\n   Slot allocation: `slot = (crc32(build_id) % 200) + 1`; document tha",
+     "attempts": [
+      [
+       "ApplyResult(added:int, removed:int, commands:int, ok:int, failed:list, seconds:float) def undo_build(build_id, cfg) -> ApplyResult: slot = (crc32(build_id) % 200) + 1",
+       "stop",
+       "length 166 > 120"
+      ],
+      [
+       "ApplyResult(added:int, removed:int, commands:int, ok:int, failed:list, seconds:float) def undo_build(build_id, cfg): slot = (crc32(build_id) % 200) + 1",
+       "stop",
+       "length 151 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "<<'EOF'\\n\\\"\\\"\\\"ASCII elevations of voxel dicts, for humans and for the design LLM.\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nfrom .litematic import Voxels\\n\\n_SYMBOLS = [\\n    (\\\"air\\\", \\\".\\\"), (\\\"glass\\\", \\\"g\\\"), (\\\"stairs\\\", \\\"/\\\"), (\\\"slab\\\", \\\"-\\\"), (\\\"wall\\\", \\\"w\\\"),\\n    (\\\"fence\\\", \\\"f\\\"),",
+     "attempts": [
+      [
+       "ASCII elevations of voxel dicts for humans and design LLM, mapping air, glass, stairs, slab, wall, fence, trapdoor, end_rod, froglight, lantern to symbols.",
+       "stop",
+       "length 155 > 120"
+      ],
+      [
+       "ASCII elevations map air, glass, stairs, slab, wall, fence, trapdoor, end_rod, froglight, lantern to symbols for humans and LLM.",
+       "stop",
+       "length 128 > 120"
+      ]
+     ]
+    },
+    {
+     "excerpt": "`plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1)`: foundation base around a footprint: `accent` full course(s) projecting `projection` blocks outward on all sides, `height` default = 1 if the footprint's max side < 20 else 2; top course at d=projection gets `variant(secondary,\\\"slab\\\")` top slab",
+     "attempts": [
+      [
+       "plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1) creates a foundation with accent full course(s) projecting projection blocks outward, height defaulting to 1 if footprint max side < 20 else 2, and ",
+       "stop",
+       "length 265 > 120"
+      ],
+      [
+       "plinth(x0,z0,x1,z1,y0,pal,height=None,projection=1) builds a foundation with accent full course(s) projecting projection blocks outward, height defaulting to 1 if footprint max side < 20 else 2.",
+       "stop",
+       "length 194 > 120"
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}

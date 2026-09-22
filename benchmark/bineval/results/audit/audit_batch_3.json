@@ -1,0 +1,371 @@
+[
+  {
+    "qid": "rest_s01_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "enrolled in a short program at the Hotel School of Bologna — just 3 weeks",
+    "notes": null
+  },
+  {
+    "qid": "rest_s02_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Benchmark restaurants: Ristorante Aso in Daikanyama",
+    "notes": null
+  },
+  {
+    "qid": "rest_s03_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "His name is Hiroshi Tanabe. He runs a small boutique firm called Tanabe & Partners",
+    "notes": null
+  },
+  {
+    "qid": "rest_s04_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "real estate broker Yusuke Hamada from Plaza Homes Commercial",
+    "notes": null
+  },
+  {
+    "qid": "rest_s05_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "3-14-7 Higashi-Azabu, Minato-ku...Azabu Heights Building",
+    "notes": null
+  },
+  {
+    "qid": "rest_s05_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The tenant who was in the space before us — a French bistro that closed in October 2024",
+    "notes": null
+  },
+  {
+    "qid": "rest_s06_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "three bids. The first is from a company called Kenchiku Plus...Yamamoto Koumuten...Sasaki Design Build",
+    "notes": null
+  },
+  {
+    "qid": "rest_s07_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "12 million yen...3 million below request",
+    "notes": null
+  },
+  {
+    "qid": "rest_s08_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "white oak engineered plank...Toyo Wood Works",
+    "notes": null
+  },
+  {
+    "qid": "rest_s09_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "model 'Modena 100', cost 1.6 million yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s10_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Frantoio Franci...4,200 yen per 500ml",
+    "notes": null
+  },
+  {
+    "qid": "rest_s10_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "introduced through Tanabe",
+    "notes": null
+  },
+  {
+    "qid": "rest_s11_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "60% Italian, 25% French, 15% Japanese",
+    "notes": null
+  },
+  {
+    "qid": "rest_s12_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "fee 320,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s13_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "He is originally from Modena",
+    "notes": null
+  },
+  {
+    "qid": "rest_s14_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "8.87 million yen...470,000 yen over budget",
+    "notes": null
+  },
+  {
+    "qid": "rest_s15_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "2,400 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s15_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "tagliatelle al ragu bolognese, hand-cut",
+    "notes": null
+  },
+  {
+    "qid": "rest_s16_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "5 full-time, 2 part-time",
+    "notes": null
+  },
+  {
+    "qid": "rest_s17_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "80 total, 20 per night",
+    "notes": null
+  },
+  {
+    "qid": "rest_s18_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "pasta water station too small",
+    "notes": null
+  },
+  {
+    "qid": "rest_s20_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "actual dinner 8,100 yen (above projection)",
+    "notes": null
+  },
+  {
+    "qid": "rest_s21_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Naoki Hirose quit after 2 weeks...higher-paying job",
+    "notes": null
+  },
+  {
+    "qid": "rest_s21_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Mrs. Yoneda, 58",
+    "notes": null
+  },
+  {
+    "qid": "rest_s22_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "cut Monday lunch",
+    "notes": null
+  },
+  {
+    "qid": "rest_s23_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "5 courses 9,800 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s25_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "8% food waste, target reduction to 4%",
+    "notes": null
+  },
+  {
+    "qid": "rest_s26_03",
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session_26.txt contains entirely unrelated literary-agent content (novelist/Renata Goldfarb/Salt and Compass); no wine-club or restaurant content present. Gold answer unverifiable."
+  },
+  {
+    "qid": "rest_s27_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Nakajima running kitchen during absence...80,000 yen monthly bump",
+    "notes": null
+  },
+  {
+    "qid": "rest_s28_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "3.61 after 24 reviews",
+    "notes": null
+  },
+  {
+    "qid": "rest_s28_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Article publication expected late March",
+    "notes": null
+  },
+  {
+    "qid": "rest_s29_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "He returned March 1 from his vacation in Modena",
+    "notes": null
+  },
+  {
+    "qid": "rest_s30_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "I'm booked 3 weeks out for Friday and Saturday dinner now",
+    "notes": null
+  },
+  {
+    "qid": "rest_s31_03",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "the 3-course went up to 2,600 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s34_02",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "we have 87 repeat customers",
+    "notes": null
+  },
+  {
+    "qid": "rest_s36_01",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Convert storage area at rear into 8-seat private room",
+    "notes": null
+  },
+  {
+    "qid": "rest_s36_06",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "The dates he proposed are July 14 to August 9",
+    "notes": null
+  },
+  {
+    "qid": "rest_s37_05",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Nakajima could be identified as successor if Petrelli leaves",
+    "notes": null
+  },
+  {
+    "qid": "rest_s38_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "Petrelli signed a two-year extension to October 2027",
+    "notes": null
+  },
+  {
+    "qid": "rest_s39_04",
+    "answerable": "yes",
+    "gold_correct": "yes",
+    "uniquely_determined": "yes",
+    "alias_sufficient": "yes",
+    "evidence_quote": "venue fee 50,000 yen",
+    "notes": null
+  },
+  {
+    "qid": "rest_s40_05",
+    "answerable": "no",
+    "gold_correct": "no",
+    "uniquely_determined": "no",
+    "alias_sufficient": "no",
+    "evidence_quote": null,
+    "notes": "session_40.txt contains entirely unrelated content about novelist Maya Tanaka (The Eelgrass Year, Renata Goldfarb agent, Riverstone Press); no Osteria Morishita restaurant content present. Gold answer unverifiable."
+  }
+]

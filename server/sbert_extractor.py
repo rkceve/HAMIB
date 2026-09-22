@@ -1,29 +1,33 @@
 """
-SBERT cosine + regex hybrid extractor (an alternative to hamib_session._llm_extract_fn).
+SBERT cosine + regex hybrid extractor (cms_session._llm_extract_fn の代替)
 
-Behavior:
-  - Relax the SBERT threshold so short conversational sentences are not missed.
-  - Use regex to first extract NAME + CODE pairs (reliable fact detection).
-  - Collapse overlapping spans into one via NMS.
-  - When NAME and CODE co-occur, combine them into a single dict as a within-chunk pair.
+【§74 Phase A 実装】
+  §72 で recall 失敗 (T3 で 0 spans) を診断: SBERT threshold が会話調短文に
+  対し too strict。修正:
+    A-0: threshold 緩和 (0.4 → 0.2)
+    A-0: regex で NAME + CODE pair を一次抽出 (確実な fact 検出)
+    A-1: NMS で overlapping spans を 1 件に集約
+    A-3: NAME + CODE 共起 → 同一 chunk 内 pair として 1 dict にまとめる
+         (parent_hint を NAME に設定して satellite 維持)
 
-Interface:
+【インターフェイス】
   callable: (text: str) -> list[dict]
-    dict structure: {"text": str, "level": "sun"|"planet"|"satellite", "parent_hint": str}
+    dict 構造: {"text": str, "level": "sun"|"planet"|"satellite", "parent_hint": str}
 
-Output policy:
-  - When regex detects a fact pair (NAME + CODE):
-    * one dict per fact, level=sun, text in "NAME -> CODE" form
-  - When regex finds no pair, emit SBERT spans only:
-    * after NMS and substring removal, level=satellite, parent_hint=""
+【Phase A 出力ポリシー】
+  - regex で fact pair (NAME + CODE) を検出した場合:
+    * 1 dict per fact、level=sun、text="NAME → CODE" 形式
+  - regex で pair が見つからない場合は SBERT span のみ:
+    * NMS + 部分一致除去後、level=satellite、parent_hint=""
 """
 from __future__ import annotations
 import os
 import re
+from pathlib import Path
 from typing import Callable
 
-# POSIX/Windows compatible: a backslash literal is not expanduser-ed on Linux,
-# so build the path with os.path.join to resolve HOME reliably.
+# POSIX/Windows 両対応: backslash literal は Linux で expanduser されないため
+# os.path.join で組み立てて HOME を確実に解決する。
 os.environ.setdefault(
     "HF_HOME",
     os.environ.get("HF_HOME") or os.path.join(os.path.expanduser("~"), ".cache", "huggingface"),
@@ -37,17 +41,17 @@ DEFAULT_QUERIES = [
     "alphanumeric identifier code",
     "data value",
     "重要な事実情報",
-    "プロジェクト名とコード",  # added for conversational text
+    "プロジェクト名とコード",  # 会話調用に追加
     "project code identifier",
 ]
 
-# regex for extracting fact pairs
-#   To handle mixed Japanese text, avoid \b and explicitly match non-alpha boundaries.
-#   NAME: starts uppercase and must contain a lowercase letter (matches Alpha/Beta/Gamma, excludes CRANE)
-#   CODE: 2+ uppercase letters + hyphen + digits (CRANE-1, ABC-100, etc., all caps)
+# A-0: fact pair 抽出用 regex
+#   日本語混在対応のため \b は使わず明示的に前後の非英字境界をマッチ
+#   NAME: 大文字始まり + 必ず小文字を含む (Alpha/Beta/Gamma 等を識別、CRANE は除外)
+#   CODE: 英大文字 2+ + ハイフン + 数字 (CRANE-1, ABC-100 等、全 caps)
 NAME_PATTERN = re.compile(r'(?:^|[^A-Za-z])([A-Z][a-z]+[A-Za-z]*)(?![A-Za-z])')
 CODE_PATTERN = re.compile(r'(?:^|[^A-Za-z0-9-])([A-Z]{2,}-\d+)(?![A-Za-z0-9])')
-# Exclude words that are too common
+# 一般的すぎる words は除外
 _NAME_STOPLIST = {
     "User", "Assistant", "System", "Hi", "Hello", "Yes", "No", "JSON",
     "ID", "Code", "Name", "Project", "BERT", "SBERT", "LLM", "API",
@@ -57,10 +61,9 @@ _NAME_STOPLIST = {
 
 def _find_fact_pairs(text: str, name_window: int = 80) -> list[dict]:
     """
-    Extract pairs where NAME and CODE co-occur within proximity as facts.
+    NAME と CODE が proximity 内に共起する pair を fact として抽出。
 
-    name_window: maximum character distance between NAME and CODE
-                 (80 chars assumes the same sentence/clause)
+    name_window: NAME と CODE の最大文字距離 (80 char = 同一文/節想定)
     """
     if not text:
         return []
@@ -69,7 +72,8 @@ def _find_fact_pairs(text: str, name_window: int = 80) -> list[dict]:
         n = m.group(1)
         if n in _NAME_STOPLIST:
             continue
-        # Keep all-caps tokens (e.g. ALPHA); dedupe handles them later
+        # 大文字 100% は除外 (ALPHA 等の identifier-only も避ける — でも Phase A では拾いたい)
+        # → 残す方針: 後段 dedupe で対応
         names.append((m.start(), n))
     codes = [(m.start(), m.group(1)) for m in CODE_PATTERN.finditer(text)]
     if not names or not codes:
@@ -80,7 +84,7 @@ def _find_fact_pairs(text: str, name_window: int = 80) -> list[dict]:
     for code_pos, code in codes:
         if code in used_codes:
             continue
-        # Find the nearest name (allowing before or just after the CODE)
+        # 最近接 name を探す (CODE より前 or 直後を許容)
         nearest = None
         nearest_dist = name_window + 1
         for name_pos, name in names:
@@ -89,9 +93,10 @@ def _find_fact_pairs(text: str, name_window: int = 80) -> list[dict]:
                 nearest_dist = dist
                 nearest = name
         if nearest and nearest_dist <= name_window:
-            # Use the "{name}: {code}" text format. It keeps short-NAME cosine
-            # similarity low enough to avoid GraphMerger mis-merges while staying
-            # readable to the LLM.
+            # §80.9 (2026-05-16) fix: 旧 "{name} の対応コード: {code}" 形式は
+            # all-MiniLM-L6-v2 で Mu/Nu/Tau/Chi の短 NAME 間 cosine sim が
+            # 0.92+ に達して GraphMerger で誤 merge していた (L2 で 3 miss、 L3 でも同様)。
+            # "{name}: {code}" 形式は max sim 0.78 で安全、 LLM 可読性も維持。
             facts.append({
                 "name": nearest,
                 "code": code,
@@ -117,10 +122,13 @@ class SBERTExtractor:
                  name_window: int = 80,
                  max_sbert_spans_per_call: int = 3,
                  regex_only: bool = False):
-        # Cap SBERT span extraction per turn at the top-3 max_score to keep the
-        # accumulated CD size bounded. Without the cap, over-extraction (5-10 spans
-        # per turn) piles up too many attention biases in the mass vector and breaks
-        # the model output. regex_facts are reliable facts and are exempt from the cap.
+        # §78.9 Gemma 3n 修正: SBERT span が過剰抽出 (1 turn で 5-10 spans) され、
+        # turn 累積で cd=99 (cms_g3n_g3n cd=34 の 3 倍) → mass vector で 99 個
+        # の attention bias が積み上がり Gemma 3n の per_layer_input 構造で
+        # output 完全破綻 (cms_g3n_sbert recall 0/10)。
+        # → 1 turn あたり SBERT span 抽出を top-3 max_score で打ち切り、
+        #   cd_max を §77 と同等域 (30-40 程度) に抑える。
+        # regex_facts は確実な fact 抽出なので上限外 (1 turn で 1-2 件)
         self.model_id = model_id
         self.window_size = window_size
         self.step = step
@@ -130,16 +138,17 @@ class SBERTExtractor:
         self.enable_regex_hybrid = enable_regex_hybrid
         self.name_window = name_window
         self.max_sbert_spans_per_call = max_sbert_spans_per_call
-        # regex_only=True fully disables the SBERT sliding window and extracts only
-        # NAME+CODE regex pairs as SUN nodes. This breaks the promotion chain from
-        # chitchat / partial-match spans / acknowledgements into SUN nodes and keeps
-        # the CD strictly to the number of facts.
+        # §80.9 L3 root-cause fix:
+        # regex_only=True → SBERT sliding window を完全に無効化。
+        # NAME+CODE regex pair のみ SUN ノードとして抽出する。
+        # chitchat / 部分一致 span / "了解しました" 等の promotion → SUN 昇格 chain を断ち、
+        # CD を厳密に fact 数のみに保つ (L3 で cd_max=50 を実現)。
         self.regex_only = regex_only
         self._model = None
         self._query_embs = None
 
     def setup(self):
-        # In regex_only mode the SBERT model need not be loaded (no sliding window)
+        # regex_only モードでは SBERT model はロード不要 (sliding window 不使用)
         if self.regex_only:
             return
         try:
@@ -152,8 +161,8 @@ class SBERTExtractor:
         except Exception as e:
             import warnings
             warnings.warn(
-                f"SBERTExtractor: failed to load SBERT ({e}). "
-                f"Falling back to regex_only=True; CD construction will use NAME+CODE pairs only.",
+                f"SBERTExtractor: SBERT ロード失敗 ({e})。"
+                f"regex_only=True にフォールバック。CD 構築は NAME+CODE pair のみになります。",
                 RuntimeWarning, stacklevel=2,
             )
             self.regex_only = True
@@ -164,7 +173,7 @@ class SBERTExtractor:
         if not text or not text.strip():
             return []
 
-        # ===== Detect fact pairs with regex =====
+        # ===== A-0: regex で fact pair 検出 =====
         regex_facts = []
         if self.enable_regex_hybrid:
             pairs = _find_fact_pairs(text, name_window=self.name_window)
@@ -175,11 +184,11 @@ class SBERTExtractor:
                     "parent_hint": "",
                 })
 
-        # ===== regex_only mode: skip the SBERT sliding window =====
+        # ===== regex_only モード: SBERT sliding window をスキップ =====
         if self.regex_only:
             return regex_facts
 
-        # ===== SBERT span detection =====
+        # ===== SBERT span 検出 =====
         candidates = []
         for i in range(0, max(1, len(text) - self.window_size + 1), self.step):
             span = text[i:i + self.window_size].strip()
@@ -188,17 +197,19 @@ class SBERTExtractor:
 
         sbert_spans: list[str] = []
         if candidates:
+            import torch
             cand_embs = self._model.encode(
                 candidates, convert_to_tensor=True, normalize_embeddings=True,
                 batch_size=64, show_progress_bar=False,
             )
             scores = cand_embs @ self._query_embs.T
             max_scores, _ = scores.max(dim=1)
-            # Apply a top-K cap to suppress over-extraction: keep only spans that
-            # are above threshold AND among the top-K by max_score.
+            # §78.9: top-K cap で過剰抽出を抑制 (Gemma 3n 用)
+            # 旧: threshold 以上の全 span を採用 → 大量抽出
+            # 新: threshold 以上 AND top-K max_score のみ採用
             mask = max_scores >= self.threshold
             if mask.any():
-                # Among the spans that pass the threshold, select the top-K by max_scores
+                # threshold pass した中で max_scores 上位 K を選択
                 indices = mask.nonzero(as_tuple=True)[0]
                 selected_scores = max_scores[indices]
                 K = min(self.max_sbert_spans_per_call, len(indices))
@@ -207,19 +218,20 @@ class SBERTExtractor:
                 sbert_spans = [candidates[i] for i in sel]
                 sbert_spans = _dedupe_substrings(sbert_spans)
 
-        # ===== Integrate: when regex facts exist, SBERT spans are supplementary only =====
+        # ===== A-1: 統合 — regex fact があれば SBERT は補助情報のみ =====
         out: list[dict] = []
         seen_texts: set[str] = set()
 
-        # Prioritize regex facts (reliable facts)
+        # regex facts 優先 (確実な fact)
         for f in regex_facts:
             if f["text"] not in seen_texts:
                 seen_texts.add(f["text"])
                 out.append(f)
 
-        # Add SBERT spans as supplements (skip those overlapping a regex fact text).
-        # The text format is "{name}: {code}", so split on ": " to recover the
-        # name/code that are dropped during the regex_facts conversion.
+        # SBERT spans を補助で追加 (regex fact text と重複する場合は skip)
+        # §80.9 fix: text format が "{name}: {code}" に変わったため ": " で split。
+        # _find_fact_pairs が返す dict の name/code は regex_facts 変換後に消えるので
+        # text から再 split して name/code を復元する。
         for s in sbert_spans:
             if any(p_name in s and p_code in s
                    for p_name, p_code in [(f["text"].split(": ")[0],
@@ -242,7 +254,7 @@ class SBERTExtractor:
 
 
 def _dedupe_substrings(spans: list[str]) -> list[str]:
-    """Collapse spans that contain a substring of another into one (longest first)."""
+    """部分文字列を含む span を 1 件にまとめる (長い順 priority)"""
     out: list[str] = []
     spans_sorted = sorted(spans, key=len, reverse=True)
     for s in spans_sorted:
@@ -263,11 +275,11 @@ def make_extractor_fn(
     max_sbert_spans_per_call: int = 3,
     regex_only: bool = False,
 ) -> Callable[[str], list[dict]]:
-    """Return a callable that can be passed to HAMIBSession.
+    """CMSSession に渡せる callable を返す (Phase A 版)。
 
-    With regex_only=True, the sliding window is fully disabled and the CD is built
-    from NAME+CODE pairs only, keeping the CD size bounded and avoiding the model's
-    coherence breakdown that occurs with large CDs.
+    §80.9 (2026-05-16): regex_only=True で sliding window を完全無効化し、
+    NAME+CODE pair のみで CD 構築する。 L3 (50 fact) で cd_max=50 に
+    抑制でき、 GPT-OSS の coherence 崩壊 (cd>150) を回避する。
     """
     ext = SBERTExtractor(
         model_id=model_id, window_size=window_size,

@@ -1,0 +1,105 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[corpus] benchmark/mcbuild_bench/data/session_redacted.json: 36 of 37 round trips (exclude_rt=[36]) sha256=ec58aa7baf5a6ad1015901bb0d0186da3241a4af2e9db939ffce89cc94ae280d
+[run_arms] window recent round trips []; 96 questions used, 0 dropped inside the window: []
+[MassWeightedGemma] checkpoint architectures: ['Qwen3_5ForConditionalGeneration'] (model_type='qwen3_5', quantized=False) -> AutoModelForCausalLM
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 632.03it/s]
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:   0%|          | 1/851 [00:00<10:06,  1.40it/s]Loading weights:   2%|▏         | 13/851 [00:00<00:44, 18.76it/s]Loading weights:   3%|▎         | 27/851 [00:00<00:20, 39.50it/s]Loading weights:   4%|▍         | 37/851 [00:01<00:16, 49.36it/s]Loading weights:   5%|▌         | 46/851 [00:01<00:16, 48.25it/s]Loading weights:   6%|▌         | 53/851 [00:01<00:16, 49.06it/s]Loading weights:   8%|▊         | 66/851 [00:01<00:12, 64.77it/s]Loading weights:   9%|▉         | 75/851 [00:01<00:11, 65.45it/s]Loading weights:  10%|▉         | 83/851 [00:01<00:12, 61.34it/s]Loading weights:  11%|█         | 94/851 [00:02<00:12, 58.47it/s]Loading weights:  12%|█▏        | 101/851 [00:02<00:13, 56.85it/s]Loading weights:  14%|█▍        | 118/851 [00:02<00:10, 68.35it/s]Loading weights:  16%|█▌        | 132/851 [00:02<00:08, 80.29it/s]Loading weights:  17%|█▋        | 141/851 [00:02<00:08, 79.95it/s]Loading weights:  18%|█▊        | 150/851 [00:02<00:09, 72.90it/s]Loading weights:  19%|█▊        | 158/851 [00:02<00:10, 65.81it/s]Loading weights:  20%|██        | 172/851 [00:03<00:08, 81.77it/s]Loading weights:  21%|██▏       | 181/851 [00:03<00:08, 80.37it/s]Loading weights:  22%|██▏       | 190/851 [00:03<00:08, 73.85it/s]Loading weights:  24%|██▎       | 201/851 [00:03<00:08, 75.28it/s]Loading weights:  25%|██▍       | 209/851 [00:03<00:09, 64.61it/s]Loading weights:  26%|██▌       | 221/851 [00:03<00:08, 74.62it/s]Loading weights:  27%|██▋       | 229/851 [00:03<00:09, 66.48it/s]Loading weights:  28%|██▊       | 238/851 [00:03<00:08, 71.22it/s]Loading weights:  29%|██▉       | 246/851 [00:04<00:08, 70.54it/s]Loading weights:  30%|██▉       | 254/851 [00:04<00:08, 68.17it/s]Loading weights:  31%|███       | 262/851 [00:04<00:09, 59.69it/s]Loading weights:  33%|███▎      | 277/851 [00:04<00:07, 78.56it/s]Loading weights:  34%|███▎      | 286/851 [00:04<00:07, 72.94it/s]Loading weights:  35%|███▍      | 294/851 [00:04<00:09, 60.38it/s]Loading weights:  36%|███▌      | 306/851 [00:04<00:07, 73.19it/s]Loading weights:  37%|███▋      | 315/851 [00:05<00:08, 60.46it/s]Loading weights:  38%|███▊      | 325/851 [00:05<00:07, 67.16it/s]Loading weights:  39%|███▉      | 333/851 [00:05<00:08, 63.36it/s]Loading weights:  40%|████      | 344/851 [00:05<00:07, 71.29it/s]Loading weights:  41%|████▏     | 352/851 [00:05<00:06, 72.66it/s]Loading weights:  42%|████▏     | 360/851 [00:05<00:07, 66.28it/s]Loading weights:  43%|████▎     | 367/851 [00:05<00:08, 56.27it/s]Loading weights:  45%|████▌     | 383/851 [00:06<00:06, 77.63it/s]Loading weights:  46%|████▌     | 392/851 [00:06<00:06, 75.58it/s]Loading weights:  47%|████▋     | 401/851 [00:06<00:07, 63.62it/s]Loading weights:  48%|████▊     | 412/851 [00:06<00:05, 73.38it/s]Loading weights:  49%|████▉     | 421/851 [00:06<00:07, 59.75it/s]Loading weights:  51%|█████     | 434/851 [00:06<00:05, 71.23it/s]Loading weights:  52%|█████▏    | 443/851 [00:07<00:06, 67.03it/s]Loading weights:  53%|█████▎    | 451/851 [00:07<00:06, 63.40it/s]Loading weights:  55%|█████▍    | 465/851 [00:07<00:05, 74.04it/s]Loading weights:  56%|█████▌    | 473/851 [00:07<00:06, 59.22it/s]Loading weights:  57%|█████▋    | 489/851 [00:07<00:04, 78.47it/s]Loading weights:  59%|█████▊    | 499/851 [00:07<00:04, 76.66it/s]Loading weights:  60%|█████▉    | 508/851 [00:07<00:05, 65.91it/s]Loading weights:  61%|██████    | 518/851 [00:08<00:04, 72.37it/s]Loading weights:  62%|██████▏   | 527/851 [00:08<00:05, 60.13it/s]Loading weights:  63%|██████▎   | 537/851 [00:08<00:04, 67.26it/s]Loading weights:  64%|██████▍   | 545/851 [00:08<00:04, 62.34it/s]Loading weights:  66%|██████▌   | 558/851 [00:08<00:04, 69.84it/s]Loading weights:  67%|██████▋   | 567/851 [00:08<00:03, 73.10it/s]Loading weights:  68%|██████▊   | 575/851 [00:08<00:03, 69.41it/s]Loading weights:  69%|██████▊   | 583/851 [00:09<00:04, 64.30it/s]Loading weights:  70%|███████   | 596/851 [00:09<00:03, 72.72it/s]Loading weights:  71%|███████   | 605/851 [00:09<00:03, 71.24it/s]Loading weights:  72%|███████▏  | 613/851 [00:09<00:03, 63.86it/s]Loading weights:  73%|███████▎  | 623/851 [00:09<00:03, 71.78it/s]Loading weights:  74%|███████▍  | 631/851 [00:09<00:03, 55.93it/s]Loading weights:  76%|███████▌  | 646/851 [00:09<00:02, 71.79it/s]Loading weights:  77%|███████▋  | 654/851 [00:10<00:02, 68.34it/s]Loading weights:  78%|███████▊  | 663/851 [00:10<00:02, 72.62it/s]Loading weights:  79%|███████▉  | 673/851 [00:10<00:02, 76.11it/s]Loading weights:  80%|████████  | 681/851 [00:10<00:02, 65.23it/s]Loading weights:  81%|████████  | 688/851 [00:10<00:02, 58.55it/s]Loading weights:  82%|████████▏ | 701/851 [00:10<00:02, 68.76it/s]Loading weights:  84%|████████▎ | 712/851 [00:10<00:01, 75.40it/s]Loading weights:  85%|████████▍ | 720/851 [00:11<00:02, 62.09it/s]Loading weights:  86%|████████▌ | 730/851 [00:11<00:01, 69.67it/s]Loading weights:  87%|████████▋ | 738/851 [00:11<00:01, 56.91it/s]Loading weights:  88%|████████▊ | 752/851 [00:11<00:01, 72.31it/s]Loading weights:  89%|████████▉ | 761/851 [00:11<00:01, 71.31it/s]Loading weights:  90%|█████████ | 769/851 [00:11<00:01, 73.25it/s]Loading weights:  92%|█████████▏| 779/851 [00:11<00:00, 76.60it/s]Loading weights:  93%|█████████▎| 788/851 [00:12<00:01, 62.16it/s]Loading weights:  93%|█████████▎| 795/851 [00:12<00:00, 62.98it/s]Loading weights:  95%|█████████▍| 808/851 [00:12<00:00, 72.25it/s]Loading weights:  96%|█████████▌| 816/851 [00:12<00:00, 72.85it/s]Loading weights:  97%|█████████▋| 824/851 [00:12<00:00, 61.71it/s]Loading weights:  98%|█████████▊| 836/851 [00:12<00:00, 74.67it/s]Loading weights:  99%|█████████▉| 845/851 [00:12<00:00, 61.99it/s]Loading weights: 100%|██████████| 851/851 [00:13<00:00, 65.37it/s]
+[MassWeightedGemma] patched scaled_dot_product_attention
+[MassWeightedGemma] loaded: Qwen/Qwen3.8-27B as Qwen3_5ForCausalLM loading_info={'missing': 0, 'unexpected': 0, 'mismatched': 0}
+[run_arms] f001 done (12171 ms, 8 tokens)
+[run_arms] f002 done (10415 ms, 3 tokens)
+[run_arms] f003 done (11058 ms, 8 tokens)
+[run_arms] f004 done (11285 ms, 10 tokens)
+[run_arms] f005 done (11196 ms, 9 tokens)
+[run_arms] f006 done (10746 ms, 5 tokens)
+[run_arms] f007 done (12035 ms, 16 tokens)
+[run_arms] f008 done (11087 ms, 8 tokens)
+[run_arms] f009 done (10381 ms, 2 tokens)
+[run_arms] f010 done (10969 ms, 7 tokens)
+[run_arms] f011 done (10965 ms, 7 tokens)
+[run_arms] f012 done (10404 ms, 2 tokens)
+[run_arms] f013 done (10414 ms, 2 tokens)
+[run_arms] f014 done (10746 ms, 5 tokens)
+[run_arms] f015 done (10511 ms, 3 tokens)
+[run_arms] f016 done (11800 ms, 14 tokens)
+[run_arms] f017 done (10636 ms, 4 tokens)
+[run_arms] f018 done (12405 ms, 19 tokens)
+[run_arms] f019 done (10851 ms, 6 tokens)
+[run_arms] f020 done (10640 ms, 4 tokens)
+[run_arms] f021 done (10515 ms, 3 tokens)
+[run_arms] f022 done (10863 ms, 6 tokens)
+[run_arms] f023 done (10870 ms, 6 tokens)
+[run_arms] f024 done (10621 ms, 4 tokens)
+[run_arms] f025 done (10731 ms, 5 tokens)
+[run_arms] f026 done (10393 ms, 2 tokens)
+[run_arms] f027 done (10879 ms, 6 tokens)
+[run_arms] f028 done (10637 ms, 4 tokens)
+[run_arms] f029 done (10746 ms, 5 tokens)
+[run_arms] f030 done (10986 ms, 7 tokens)
+[run_arms] f031 done (11799 ms, 14 tokens)
+[run_arms] f032 done (10415 ms, 2 tokens)
+[run_arms] f033 done (10410 ms, 2 tokens)
+[run_arms] f034 done (10504 ms, 3 tokens)
+[run_arms] f035 done (10403 ms, 2 tokens)
+[run_arms] f036 done (13782 ms, 31 tokens)
+[run_arms] f037 done (10395 ms, 2 tokens)
+[run_arms] f038 done (10414 ms, 2 tokens)
+[run_arms] f039 done (11011 ms, 7 tokens)
+[run_arms] f040 done (10730 ms, 5 tokens)
+[run_arms] f041 done (10394 ms, 2 tokens)
+[run_arms] f042 done (10863 ms, 6 tokens)
+[run_arms] f043 done (10395 ms, 2 tokens)
+[run_arms] f044 done (10621 ms, 4 tokens)
+[run_arms] f045 done (11205 ms, 9 tokens)
+[run_arms] f046 done (14464 ms, 37 tokens)
+[run_arms] f047 done (10388 ms, 2 tokens)
+[run_arms] f048 done (10381 ms, 2 tokens)
+[run_arms] f049 done (10384 ms, 2 tokens)
+[run_arms] f050 done (10403 ms, 2 tokens)
+[run_arms] f051 done (11228 ms, 9 tokens)
+[run_arms] f052 done (10387 ms, 2 tokens)
+[run_arms] f053 done (11003 ms, 7 tokens)
+[run_arms] f054 done (10952 ms, 7 tokens)
+[run_arms] f055 done (10728 ms, 5 tokens)
+[run_arms] f056 done (10756 ms, 5 tokens)
+[run_arms] f057 done (10370 ms, 2 tokens)
+[run_arms] f058 done (10385 ms, 2 tokens)
+[run_arms] f059 done (10400 ms, 2 tokens)
+[run_arms] f060 done (10405 ms, 2 tokens)
+[run_arms] f061 done (10386 ms, 2 tokens)
+[run_arms] f062 done (11794 ms, 14 tokens)
+[run_arms] f063 done (10617 ms, 4 tokens)
+[run_arms] f064 done (10388 ms, 2 tokens)
+[run_arms] f065 done (11570 ms, 12 tokens)
+[run_arms] f066 done (11220 ms, 9 tokens)
+[run_arms] f067 done (10866 ms, 6 tokens)
+[run_arms] f068 done (10423 ms, 2 tokens)
+[run_arms] f069 done (10979 ms, 7 tokens)
+[run_arms] f070 done (10514 ms, 3 tokens)
+[run_arms] f071 done (10397 ms, 2 tokens)
+[run_arms] f072 done (10394 ms, 2 tokens)
+[run_arms] f073 done (10754 ms, 5 tokens)
+[run_arms] f074 done (10618 ms, 4 tokens)
+[run_arms] f075 done (10411 ms, 2 tokens)
+[run_arms] f076 done (11579 ms, 12 tokens)
+[run_arms] f077 done (10436 ms, 2 tokens)
+[run_arms] f078 done (10631 ms, 4 tokens)
+[run_arms] f079 done (10643 ms, 4 tokens)
+[run_arms] f080 done (11947 ms, 15 tokens)
+[run_arms] f081 done (10391 ms, 2 tokens)
+[run_arms] f085 done (10390 ms, 2 tokens)
+[run_arms] f086 done (11331 ms, 10 tokens)
+[run_arms] f089 done (10387 ms, 2 tokens)
+[run_arms] f090 done (10420 ms, 2 tokens)
+[run_arms] f091 done (11686 ms, 13 tokens)
+[run_arms] f087 done (10411 ms, 2 tokens)
+[run_arms] f088 done (10731 ms, 5 tokens)
+[run_arms] a001 done (10406 ms, 2 tokens)
+[run_arms] a002 done (10394 ms, 2 tokens)
+[run_arms] a004 done (10384 ms, 2 tokens)
+[run_arms] a005 done (10381 ms, 2 tokens)
+[run_arms] a006 done (10379 ms, 2 tokens)
+[run_arms] a007 done (10390 ms, 2 tokens)
+[run_arms] a008 done (10525 ms, 3 tokens)
+[run_arms] a010 done (10629 ms, 2 tokens)
+wrote /workspace/mcb/runs/main/proposed_W32000_w0.0 (96 answers, 0 resumed, window_tokens=31993, n_recent_rts=0)

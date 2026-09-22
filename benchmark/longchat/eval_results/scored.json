@@ -1,0 +1,417 @@
+{
+  "per_condition": {
+    "full": {
+      "correct": 14,
+      "total": 16,
+      "accuracy": 0.875,
+      "items": [
+        {
+          "qid": "rest_q01",
+          "category": "early_static",
+          "gold": "11 years",
+          "predicted": "11 years",
+          "correct": true
+        },
+        {
+          "qid": "rest_q02",
+          "category": "early_static",
+          "gold": "Daiichi-Bunko Building 5F",
+          "predicted": "Daiichi-Bunko Building 5F",
+          "correct": true
+        },
+        {
+          "qid": "rest_q03",
+          "category": "early_static",
+          "gold": "2,922,000 yen",
+          "predicted": "2,922,000 yen",
+          "correct": true
+        },
+        {
+          "qid": "rest_q04",
+          "category": "early_static",
+          "gold": "47 labels",
+          "predicted": "47 labels",
+          "correct": true
+        },
+        {
+          "qid": "rest_q05",
+          "category": "mid_static",
+          "gold": "Ristorante Acqua Pazza",
+          "predicted": "Ristorante Acqua Pazza",
+          "correct": true
+        },
+        {
+          "qid": "rest_q06",
+          "category": "mid_static",
+          "gold": "Mr. Ogawa",
+          "predicted": "Mr. Ogawa",
+          "correct": true
+        },
+        {
+          "qid": "rest_q07",
+          "category": "mid_static",
+          "gold": "2,400 yen",
+          "predicted": "2,400 yen",
+          "correct": true
+        },
+        {
+          "qid": "rest_q08",
+          "category": "mid_static",
+          "gold": "1,400 yen per hour",
+          "predicted": "1,400 yen per hour",
+          "correct": true
+        },
+        {
+          "qid": "rest_q09",
+          "category": "update_tracking",
+          "gold": "Osteria Morishita",
+          "predicted": "Osteria Morishita",
+          "correct": true
+        },
+        {
+          "qid": "rest_q10",
+          "category": "update_tracking",
+          "gold": "2,700 yen",
+          "predicted": "2,700 yen",
+          "correct": true
+        },
+        {
+          "qid": "rest_q11",
+          "category": "update_tracking",
+          "gold": "3.61",
+          "predicted": "3.61",
+          "correct": true
+        },
+        {
+          "qid": "rest_q12",
+          "category": "update_tracking",
+          "gold": "2,000 yen",
+          "predicted": "2,000 yen",
+          "correct": true
+        },
+        {
+          "qid": "rest_q13",
+          "category": "synthesis",
+          "gold": "12,000 yen per person",
+          "predicted": "12,000 yen",
+          "correct": false
+        },
+        {
+          "qid": "rest_q14",
+          "category": "synthesis",
+          "gold": "four days",
+          "predicted": "4 days",
+          "correct": false
+        },
+        {
+          "qid": "rest_q15",
+          "category": "synthesis",
+          "gold": "Hotel Okura",
+          "predicted": "Hotel Okura",
+          "correct": true
+        },
+        {
+          "qid": "rest_q16",
+          "category": "synthesis",
+          "gold": "23 members",
+          "predicted": "23 members",
+          "correct": true
+        }
+      ]
+    },
+    "truncated": {
+      "correct": 1,
+      "total": 16,
+      "accuracy": 0.0625,
+      "items": [
+        {
+          "qid": "rest_q01",
+          "category": "early_static",
+          "gold": "11 years",
+          "predicted": "15 years",
+          "correct": false
+        },
+        {
+          "qid": "rest_q02",
+          "category": "early_static",
+          "gold": "Daiichi-Bunko Building 5F",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q03",
+          "category": "early_static",
+          "gold": "2,922,000 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q04",
+          "category": "early_static",
+          "gold": "47 labels",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q05",
+          "category": "mid_static",
+          "gold": "Ristorante Acqua Pazza",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q06",
+          "category": "mid_static",
+          "gold": "Mr. Ogawa",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q07",
+          "category": "mid_static",
+          "gold": "2,400 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q08",
+          "category": "mid_static",
+          "gold": "1,400 yen per hour",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q09",
+          "category": "update_tracking",
+          "gold": "Osteria Morishita",
+          "predicted": "Osteria Morishita",
+          "correct": true
+        },
+        {
+          "qid": "rest_q10",
+          "category": "update_tracking",
+          "gold": "2,700 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q11",
+          "category": "update_tracking",
+          "gold": "3.61",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q12",
+          "category": "update_tracking",
+          "gold": "2,000 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q13",
+          "category": "synthesis",
+          "gold": "12,000 yen per person",
+          "predicted": "18,000 yen per person",
+          "correct": false
+        },
+        {
+          "qid": "rest_q14",
+          "category": "synthesis",
+          "gold": "four days",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q15",
+          "category": "synthesis",
+          "gold": "Hotel Okura",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q16",
+          "category": "synthesis",
+          "gold": "23 members",
+          "predicted": "not in context",
+          "correct": false
+        }
+      ]
+    },
+    "summarized": {
+      "correct": 1,
+      "total": 16,
+      "accuracy": 0.0625,
+      "items": [
+        {
+          "qid": "rest_q01",
+          "category": "early_static",
+          "gold": "11 years",
+          "predicted": "fifteen years",
+          "correct": false
+        },
+        {
+          "qid": "rest_q02",
+          "category": "early_static",
+          "gold": "Daiichi-Bunko Building 5F",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q03",
+          "category": "early_static",
+          "gold": "2,922,000 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q04",
+          "category": "early_static",
+          "gold": "47 labels",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q05",
+          "category": "mid_static",
+          "gold": "Ristorante Acqua Pazza",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q06",
+          "category": "mid_static",
+          "gold": "Mr. Ogawa",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q07",
+          "category": "mid_static",
+          "gold": "2,400 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q08",
+          "category": "mid_static",
+          "gold": "1,400 yen per hour",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q09",
+          "category": "update_tracking",
+          "gold": "Osteria Morishita",
+          "predicted": "Osteria Morishita",
+          "correct": true
+        },
+        {
+          "qid": "rest_q10",
+          "category": "update_tracking",
+          "gold": "2,700 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q11",
+          "category": "update_tracking",
+          "gold": "3.61",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q12",
+          "category": "update_tracking",
+          "gold": "2,000 yen",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q13",
+          "category": "synthesis",
+          "gold": "12,000 yen per person",
+          "predicted": "18,000 yen per person",
+          "correct": false
+        },
+        {
+          "qid": "rest_q14",
+          "category": "synthesis",
+          "gold": "four days",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q15",
+          "category": "synthesis",
+          "gold": "Hotel Okura",
+          "predicted": "not in context",
+          "correct": false
+        },
+        {
+          "qid": "rest_q16",
+          "category": "synthesis",
+          "gold": "23 members",
+          "predicted": "not in context",
+          "correct": false
+        }
+      ]
+    }
+  },
+  "by_category": {
+    "full": {
+      "early_static": {
+        "correct": 4,
+        "total": 4
+      },
+      "mid_static": {
+        "correct": 4,
+        "total": 4
+      },
+      "update_tracking": {
+        "correct": 4,
+        "total": 4
+      },
+      "synthesis": {
+        "correct": 2,
+        "total": 4
+      }
+    },
+    "truncated": {
+      "early_static": {
+        "correct": 0,
+        "total": 4
+      },
+      "mid_static": {
+        "correct": 0,
+        "total": 4
+      },
+      "update_tracking": {
+        "correct": 1,
+        "total": 4
+      },
+      "synthesis": {
+        "correct": 0,
+        "total": 4
+      }
+    },
+    "summarized": {
+      "early_static": {
+        "correct": 0,
+        "total": 4
+      },
+      "mid_static": {
+        "correct": 0,
+        "total": 4
+      },
+      "update_tracking": {
+        "correct": 1,
+        "total": 4
+      },
+      "synthesis": {
+        "correct": 0,
+        "total": 4
+      }
+    }
+  }
+}

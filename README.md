@@ -6,10 +6,24 @@
 > anticipated commercial application — requires a separate commercial license.
 > For commercial licensing, contact ryosukekawai1224@gmail.com.
 
-A **retrain-free attention-layer intervention** that improves long-conversation
-recall in existing LLMs. HAMIB builds a hierarchical map of a conversation and
-injects per-topic "mass" directly into the attention logits, so important earlier
-topics keep pulling the model's attention without any fine-tuning.
+A **retrain-free attention-layer intervention** for long-conversation recall in
+existing LLMs. HAMIB builds a hierarchical map of a conversation — the
+*correlation diagram* — and injects per-topic "mass" directly into the attention
+logits, so that important earlier topics keep pulling the model's attention
+without any fine-tuning.
+
+**State of the evidence (read this before quoting a number).** The two halves of
+the design are not equally established. Compressing a conversation into the
+diagram and reading from a narrow window of it is measured and works: in the
+2026-09 run below, a reader shown *only* a 32,000-token diagram — no verbatim
+transcript at all — recovered 56 of 88 facts from a 179,394-token session at 12 %
+of the compute. The attention bias is **not** established: in the same run,
+`w = 0` and `w = 0.1` produced byte-identical answers, and larger `w` only made
+things worse. The earlier 2026-05 results further down report the two halves
+*jointly* and never separated them. Section
+[Headline result](#headline-result-2026-09-qwen3827b-a100-80-gb) gives the
+numbers, the failure analysis, and the two configuration defects that make the
+bias result inconclusive rather than negative.
 
 Theoretical paper. The architecture, data structure, and the
 mass-aware attention formula are formalised in:
@@ -133,7 +147,25 @@ hamib/
 │   ├── dialogue_extractor.py        # regex-only CD extractor for natural dialogue (<1 ms/turn)
 │   └── judges/                      # blinded LLM-judge protocol (see below)
 │
-└── results/                         # Raw experiment outputs
+├── benchmark/
+│   ├── mcbuild_bench/               # 2026-09 Qwen3.8-27B run — the headline result
+│   │   ├── DESIGN.md                # the frozen contract for the run
+│   │   ├── DECISIONS.md             # decision ledger; every deviation and its reason
+│   │   ├── data/                    # redacted corpus, 96 questions, fact ledger
+│   │   ├── build_cd.py              # manager phase: builds the diagram over the session
+│   │   ├── run_arms.py              # reader phase: one cell = one (arm, W, w)
+│   │   ├── windows.py               # budgeted window composition (diagram + round trips)
+│   │   ├── score_cells.py           # paired scoring: McNemar + bootstrap + compute ratios
+│   │   ├── jev_judge.py / jev_client.py / summarizer_client.py
+│   │   ├── gpu_sampler.py           # 1 Hz power sampling and per-span energy
+│   │   ├── pod/                     # the scripts as they ran on the GPU host
+│   │   └── results/a100_2026-09-20/ # 159 raw files with checksums; see its README
+│   ├── bineval/                     # binary-decomposition question instrument
+│   └── longchat/                    # long synthetic dialogue corpora
+│
+├── tests/                           # 890 tests (pytest); none require a GPU
+│
+└── results/                         # Raw outputs of the 2026-05 experiments
     ├── oom_rescue/                  # GPT-OSS-20B OOM-rescue data
     ├── latency/                     # latency benchmark (A100, Llama 70B)
     └── longmemeval/                 # LongMemEval raw model outputs (HAMIB vs baseline)
@@ -141,7 +173,138 @@ hamib/
 
 ---
 
-## Key results
+## Headline result (2026-09, Qwen3.8-27B, A100 80 GB)
+
+The most recent and most complete measurement in this repository. It answers a
+question the earlier experiments left open: **does the attention bias contribute
+anything, or is the benefit entirely from narrowing the context onto the
+correlation diagram?** Everything below is reproducible from
+`benchmark/mcbuild_bench/` — raw logs, per-question records and the scorer are
+all included.
+
+**Setup.** A real 4-hour agent development session (179,394 reader tokens,
+36 round trips, redacted and published as
+`benchmark/mcbuild_bench/data/session_redacted.json`) and 96 questions written
+against it (88 facts + 8 whose answer is deliberately absent from the corpus).
+Two arms, same model, same prompt, greedy decoding:
+
+- **full transcript** — `Qwen/Qwen3.8-27B` (bf16, no quantization) reads all
+  179,394 tokens for every question;
+- **proposed** — a correlation diagram is built once over the session, and the
+  reader sees only a budgeted window of it (8,000 / 16,000 / 32,000 tokens) with
+  the mass bias applied to planet lines at strength `w`.
+
+### Accuracy (questions answered correctly, out of 96)
+
+| window | w = 0 (no bias) | w = 0.1 | w = 0.3 | w = 1.0 |
+|---|---|---|---|---|
+| 8,000 | 29 | 29 | 24 | 18 |
+| 16,000 | 41 | 41 | 33 | 20 |
+| 32,000 | **63** | **63** | 58 | 27 |
+| full transcript (179,394) | **94** | | | |
+
+### Compute, measured per question
+
+GPU energy is the integral of `nvidia-smi` `power.draw` sampled at 1 Hz over each
+question's span (`benchmark/mcbuild_bench/gpu_sampler.py`); the raw CSVs are
+published. `attention FLOPs` counts the QK^T term of the 16 full-attention
+layers; `total FLOPs` adds the linear-layer term `2 * 27e9 * prompt_tokens` that
+all 64 layers pay.
+
+| arm | correct | prompt tokens | attention FLOPs | total FLOPs | wall | GPU energy |
+|---|---|---|---|---|---|---|
+| full transcript | 94/96 | 179,394 | 6.33e15 | 1.60e16 | 220.1 s | 65,435 J |
+| W=32,000, w=0.1 | 63/96 | 31,979 | 2.01e14 | 1.93e15 | 10.9 s | 3,108 J |
+| W=16,000, w=0.1 | 41/96 | 15,982 | 5.02e13 | 9.13e14 | 5.2 s | 1,442 J |
+| W=8,000, w=0.1 | 29/96 | 7,980 | 1.25e13 | 4.43e14 | 2.6 s | 667 J |
+
+Building the diagram is a one-time cost: 1 h 45 min of wall time and 0.694 MJ of
+GPU energy (integrated the same way), producing 1,606 nodes from 3,388 chunks.
+Over the 96 questions the totals are **6.282 MJ for the full transcript against
+0.991 MJ for the proposed side including the diagram build — a 6.3x reduction**,
+which passes break-even at 11 questions and approaches 21x as the build
+amortizes (17x at 1,000 questions).
+
+### What this does and does not show
+
+**It does not show parity.** The full transcript wins every cell (McNemar
+one-sided p < 1e-9 in that direction; 95% CI of the pass-rate difference for the
+best cell [-0.42, -0.23]). The best cell keeps 67% of the answers for 12% of the
+total FLOPs. "Equal recall at lower compute" is **not** demonstrated by this run.
+
+**The attention bias contributed nothing here.** `w = 0` and `w = 0.1` are
+indistinguishable at all three window sizes — zero questions gained, zero lost,
+and the generated answer string is byte-identical on 96/96, 95/96 and 94/96
+questions respectively. Above 0.1 the bias is purely harmful. The cause is
+visible in the data and is a property of this configuration, not a refutation of
+the mechanism: the added term is `w * mass` where `mass` is the raw satellite
+count, un-normalized and uncapped (0-43, median 1, **41% of planets are 0**), so
+`w = 0.1` adds +0.10 to the median planet while `w = 1.0` adds +43 to the largest
+— e^43 on a pre-softmax logit, which collapses the output. Additionally **74 of
+the 88 fact questions have their answer in a *satellite* node and only 3 in a
+planet node**, while the bias is applied to planets only (`--inject planet`). The
+`planet+satellites` inheritance switch exists in `server/cd_parser.py` and was not
+exercised.
+
+**What the diagram itself achieved is the real finding.** In every cell the
+window held the diagram *alone*: `n_recent_rts` is 0, so not one verbatim round
+trip was ever shown to the reader. All 56 recovered facts — including exact
+values from four hours earlier such as `4440`, `1/110`, `2:1` and `4035` — came
+from the diagram. Of the 30 facts the full transcript got and the best cell
+missed, only 1 was evicted by the window budget and 4 were never in the diagram;
+**25 were present in the window and the reader did not use them.** The bottleneck
+is extraction from a dense field of terse summaries, not information loss in the
+manager.
+
+**Absent-answer behaviour is sound.** The 8 questions with no answer in the
+corpus were answered "unknown" correctly 8/8 at W=8,000 and W=16,000, and 7/8 at
+W=32,000 — narrowing the window does not induce fabrication.
+
+### The external judge
+
+The manager's routing decisions were made by **TypeSafe Jev**, a hosted API — the
+only external call in the experiment. Its own energy is therefore not measurable
+here; what is measured is published instead: **10,571 requests, 42.2M input and
+9.8M output tokens, 1.77 USD, 0 unparsed, 0 defaulted, 0 retries**, with every
+request and answer in
+`benchmark/mcbuild_bench/results/a100_2026-09-20/raw/v4_36rt/jev_calls.*.jsonl.gz`.
+For a bound rather than a guess: the judge's side would have to sustain more than
+**1,523 W** (about four 400 W GPUs) for the 58 minutes it was working to erase
+the 6.3x saving. At one such GPU the saving is 2.6x, at two 1.7x.
+
+### Reproducing it
+
+```bash
+# score the published run (no GPU needed)
+python -m benchmark.mcbuild_bench.score_cells \
+  --main benchmark/mcbuild_bench/results/a100_2026-09-20/raw/main \
+  --questions benchmark/mcbuild_bench/data/questions.json \
+  --out scores.json --md scores.md
+```
+
+`benchmark/mcbuild_bench/DESIGN.md` is the contract, `DECISIONS.md` the decision
+ledger (every deviation from the design is recorded there with its reason), and
+`results/a100_2026-09-20/README.md` indexes the 159 raw files with their
+checksums. The pod scripts under `benchmark/mcbuild_bench/pod/` are the ones that
+actually ran.
+
+> **Redaction.** The corpus is a real development session, published after
+> redaction. The rule file that performed it is deliberately **not** in this
+> repository, because the rules necessarily contain the original private values.
+> `benchmark/mcbuild_bench/data/redaction_report.md` reports the counts by
+> category.
+
+---
+
+## Earlier results (2026-05, Llama 3.3 70B / GPT-OSS-20B)
+
+These predate the run above and are kept for the record. Read them together with
+the finding that the bias contributed nothing in the 2026-09 configuration: the
+numbers below are **joint effects of the correlation diagram and the bias**, and
+the attribution between the two was never separated in these experiments. They
+were also produced before the attention-path defects found in the 2026-09 code
+review were fixed, so re-running the current code will not reproduce them
+exactly.
 
 All accuracy numbers below are from a **blinded, paired LLM-judge** evaluation
 (see *Evaluation methodology*). "HAMIB" and "baseline" use the **same base LLM**;

@@ -1,0 +1,395 @@
+[
+ {
+  "qid": "rest_s01_04",
+  "source_session": 1,
+  "question": "What was Kenta's initial working name idea for the restaurant in session 1?",
+  "gold_short": "Ginza Trattoria",
+  "tier1_aliases": [],
+  "fact_quote": "Initial restaurant name idea: 'Ginza Trattoria'"
+ },
+ {
+  "qid": "rest_s02_03",
+  "source_session": 2,
+  "question": "What lunch set price did Kenta target during market research?",
+  "gold_short": "1,800 yen",
+  "tier1_aliases": [
+   "1,800"
+  ],
+  "fact_quote": "Lunch target: 1,800 yen set"
+ },
+ {
+  "qid": "rest_s03_02",
+  "source_session": 3,
+  "question": "How many covers per day on average did the business plan set as breakeven?",
+  "gold_short": "38 covers",
+  "tier1_aliases": [
+   "38"
+  ],
+  "fact_quote": "Breakeven: 38 covers per day average"
+ },
+ {
+  "qid": "rest_s04_01",
+  "source_session": 4,
+  "question": "How many properties did Kenta scout with his real estate broker?",
+  "gold_short": "23 properties",
+  "tier1_aliases": [
+   "23"
+  ],
+  "fact_quote": "Scouted 23 properties via real estate broker Yusuke Hamada of Plaza Homes Commercial"
+ },
+ {
+  "qid": "rest_s04_06",
+  "source_session": 4,
+  "question": "Name one of the neighborhoods Kenta considered besides Higashi-Azabu (e.g. Yoyogi-...).",
+  "gold_short": "Yoyogi-Uehara",
+  "tier1_aliases": [
+   "Nishi-Azabu",
+   "Hiroo",
+   "Kagurazaka"
+  ],
+  "fact_quote": "Areas considered: Nishi-Azabu, Higashi-Azabu, Hiroo, Yoyogi-Uehara, Kagurazaka"
+ },
+ {
+  "qid": "rest_s05_05",
+  "source_session": 5,
+  "question": "What is the lease term length for the restaurant space?",
+  "gold_short": "4 years",
+  "tier1_aliases": [
+   "four years"
+  ],
+  "fact_quote": "Lease term: 4 years renewable"
+ },
+ {
+  "qid": "rest_s06_04",
+  "source_session": 6,
+  "question": "Which supplier did the contractor suggest for the wood-fired oven?",
+  "gold_short": "Forno Bravo Japan",
+  "tier1_aliases": [
+   "Forno Bravo"
+  ],
+  "fact_quote": "Yamamoto suggested supplier 'Forno Bravo Japan' for the wood-fired oven"
+ },
+ {
+  "qid": "rest_s07_03",
+  "source_session": 7,
+  "question": "What total opening capital did Kenta secure after the loan approval?",
+  "gold_short": "36 million yen",
+  "tier1_aliases": [
+   "36 million"
+  ],
+  "fact_quote": "Total opening capital secured: 36 million yen"
+ },
+ {
+  "qid": "rest_s08_02",
+  "source_session": 8,
+  "question": "On what date did the renovation start?",
+  "gold_short": "June 9, 2025",
+  "tier1_aliases": [
+   "June 9"
+  ],
+  "fact_quote": "Renovation started June 9, 2025"
+ },
+ {
+  "qid": "rest_s09_01",
+  "source_session": 9,
+  "question": "What is the model name of the wood-fired pizza oven Kenta ordered?",
+  "gold_short": "Modena 100",
+  "tier1_aliases": [],
+  "fact_quote": "Wood-fired pizza oven ordered from Forno Bravo Japan: model 'Modena 100', cost 1.6 million yen"
+ },
+ {
+  "qid": "rest_s09_06",
+  "source_session": 9,
+  "question": "What piece of equipment did Kenta decide against as too niche for the menu?",
+  "gold_short": "rotisserie",
+  "tier1_aliases": [],
+  "fact_quote": "Decided against rotisserie - too niche for menu"
+ },
+ {
+  "qid": "rest_s10_05",
+  "source_session": 10,
+  "question": "What was the price per 25kg sack of the restaurant's flour?",
+  "gold_short": "3,800 yen",
+  "tier1_aliases": [
+   "3,800"
+  ],
+  "fact_quote": "3,800 yen per 25kg sack"
+ },
+ {
+  "qid": "rest_s11_04",
+  "source_session": 11,
+  "question": "How many bottles were in the initial wine cellar?",
+  "gold_short": "280 bottles",
+  "tier1_aliases": [
+   "280"
+  ],
+  "fact_quote": "Initial cellar: 280 bottles across 47 labels"
+ },
+ {
+  "qid": "rest_s12_03",
+  "source_session": 12,
+  "question": "Who designed the restaurant's logo?",
+  "gold_short": "Aiko Fujimoto",
+  "tier1_aliases": [
+   "Fujimoto"
+  ],
+  "fact_quote": "Logo designed by Aiko Fujimoto, freelance designer, fee 320,000 yen"
+ },
+ {
+  "qid": "rest_s13_02",
+  "source_session": 13,
+  "question": "How old is head chef Marco Petrelli?",
+  "gold_short": "38",
+  "tier1_aliases": [],
+  "fact_quote": "Marco Petrelli, 38 years old"
+ },
+ {
+  "qid": "rest_s14_01",
+  "source_session": 14,
+  "question": "On what date was the renovation actually completed?",
+  "gold_short": "August 26",
+  "tier1_aliases": [],
+  "fact_quote": "Renovation completed August 26 (4 days late)"
+ },
+ {
+  "qid": "rest_s14_06",
+  "source_session": 14,
+  "question": "How many days late was the renovation completed?",
+  "gold_short": "4 days",
+  "tier1_aliases": [
+   "four days",
+   "four",
+   "4"
+  ],
+  "fact_quote": "renovation finished ... four days past the contractual target"
+ },
+ {
+  "qid": "rest_s15_05",
+  "source_session": 15,
+  "question": "Was pizza on the finalized menu? (State what the oven is used for instead.)",
+  "gold_short": "focaccia",
+  "tier1_aliases": [
+   "not on menu",
+   "roasted secondi"
+  ],
+  "fact_quote": "Pizza: not on menu - oven used for focaccia and roasted secondi only"
+ },
+ {
+  "qid": "rest_s16_04",
+  "source_session": 16,
+  "question": "What monthly salary was service manager Sawada hired at?",
+  "gold_short": "460,000 yen",
+  "tier1_aliases": [
+   "460,000"
+  ],
+  "fact_quote": "salary 460,000 yen"
+ },
+ {
+  "qid": "rest_s17_03",
+  "source_session": 17,
+  "question": "How many guests in total were invited to the soft opening?",
+  "gold_short": "80",
+  "tier1_aliases": [],
+  "fact_quote": "Invited guests: 80 total, 20 per night"
+ },
+ {
+  "qid": "rest_s18_02",
+  "source_session": 18,
+  "question": "What was the target kitchen ticket time at the soft opening?",
+  "gold_short": "22 minutes",
+  "tier1_aliases": [
+   "22"
+  ],
+  "fact_quote": "target 22"
+ },
+ {
+  "qid": "rest_s20_01",
+  "source_session": 20,
+  "question": "What was the dinner cover target during grand opening week?",
+  "gold_short": "28",
+  "tier1_aliases": [],
+  "fact_quote": "First three days: dinner covers 22, 26, 24 against target 28"
+ },
+ {
+  "qid": "rest_s20_06",
+  "source_session": 20,
+  "question": "On what date did lunch service start during grand opening week?",
+  "gold_short": "November 5",
+  "tier1_aliases": [],
+  "fact_quote": "Lunch service started November 5"
+ },
+ {
+  "qid": "rest_s21_05",
+  "source_session": 21,
+  "question": "How old is Sara Komatsu, the replacement part-time server?",
+  "gold_short": "23",
+  "tier1_aliases": [],
+  "fact_quote": "Sara Komatsu, 23"
+ },
+ {
+  "qid": "rest_s22_04",
+  "source_session": 22,
+  "question": "What percentage of costs was labor in the November financial review?",
+  "gold_short": "38%",
+  "tier1_aliases": [
+   "38"
+  ],
+  "fact_quote": "Costs: food 31%, labor 38%, rent+utilities 18%, other 9%"
+ },
+ {
+  "qid": "rest_s23_04",
+  "source_session": 23,
+  "question": "How many hours nightly does dishwasher Mrs. Yoneda work?",
+  "gold_short": "4 hours",
+  "tier1_aliases": [
+   "four hours"
+  ],
+  "fact_quote": "4 hours nightly"
+ },
+ {
+  "qid": "rest_s25_03",
+  "source_session": 25,
+  "question": "What is the monthly subscription cost of the new inventory module?",
+  "gold_short": "18,000 yen",
+  "tier1_aliases": [
+   "18,000"
+  ],
+  "fact_quote": "Subscription: 18,000 yen monthly"
+ },
+ {
+  "qid": "rest_s26_02",
+  "source_session": 26,
+  "question": "What is the annual membership fee for the wine club?",
+  "gold_short": "36,000 yen",
+  "tier1_aliases": [
+   "36,000"
+  ],
+  "fact_quote": "Membership fee: 36,000 yen annual"
+ },
+ {
+  "qid": "rest_s27_01",
+  "source_session": 27,
+  "question": "During what dates was Petrelli on vacation?",
+  "gold_short": "February 14-28",
+  "tier1_aliases": [
+   "February 14"
+  ],
+  "fact_quote": "Petrelli on vacation February 14-28, 2026"
+ },
+ {
+  "qid": "rest_s27_06",
+  "source_session": 27,
+  "question": "During which dates was lunch service paused for Petrelli's coverage period?",
+  "gold_short": "February 17-21",
+  "tier1_aliases": [
+   "February 17"
+  ],
+  "fact_quote": "Lunch service paused February 17-21"
+ },
+ {
+  "qid": "rest_s28_05",
+  "source_session": 28,
+  "question": "What was the average dinner ticket time under Nakajima during coverage?",
+  "gold_short": "24 minutes",
+  "tier1_aliases": [
+   "24"
+  ],
+  "fact_quote": "dinner ticket times 24 minutes average"
+ },
+ {
+  "qid": "rest_s29_04",
+  "source_session": 29,
+  "question": "By what percentage does the new balsamic supplier save versus the current import?",
+  "gold_short": "18%",
+  "tier1_aliases": [
+   "18"
+  ],
+  "fact_quote": "saves 18% versus current import"
+ },
+ {
+  "qid": "rest_s30_03",
+  "source_session": 30,
+  "question": "By what factor did reservation requests spike in the 48 hours after the review?",
+  "gold_short": "4x",
+  "tier1_aliases": [
+   "4",
+   "four"
+  ],
+  "fact_quote": "Reservation requests spiked 4x in 48 hours"
+ },
+ {
+  "qid": "rest_s31_02",
+  "source_session": 31,
+  "question": "To what price was the 2-course lunch raised in the April 2026 revision?",
+  "gold_short": "2,000 yen",
+  "tier1_aliases": [
+   "2,000"
+  ],
+  "fact_quote": "Lunch courses raised: 2-course to 2,000 yen"
+ },
+ {
+  "qid": "rest_s34_01",
+  "source_session": 34,
+  "question": "How many unique guests did the customer database show at the six-month celebration?",
+  "gold_short": "412 unique guests",
+  "tier1_aliases": [
+   "412"
+  ],
+  "fact_quote": "Customer database (via TableCheck) shows 412 unique guests, 87 repeat customers"
+ },
+ {
+  "qid": "rest_s34_06",
+  "source_session": 34,
+  "question": "For how many regulars was the six-month anniversary private gathering held?",
+  "gold_short": "30 regulars",
+  "tier1_aliases": [
+   "30"
+  ],
+  "fact_quote": "Six-month anniversary May 4 marked with private gathering for 30 regulars"
+ },
+ {
+  "qid": "rest_s36_05",
+  "source_session": 36,
+  "question": "What is the name of the new private dining room?",
+  "gold_short": "Sala Modena",
+  "tier1_aliases": [],
+  "fact_quote": "Private room name: Sala Modena, premium pricing"
+ },
+ {
+  "qid": "rest_s37_04",
+  "source_session": 37,
+  "question": "On what date were the first formal performance reviews scheduled?",
+  "gold_short": "July 1",
+  "tier1_aliases": [],
+  "fact_quote": "First formal performance reviews scheduled July 1"
+ },
+ {
+  "qid": "rest_s38_03",
+  "source_session": 38,
+  "question": "What retention bonus was formalized at 24 months?",
+  "gold_short": "200,000 yen",
+  "tier1_aliases": [
+   "200,000"
+  ],
+  "fact_quote": "Two-year retention bonus formalized: 200,000 yen at 24 months"
+ },
+ {
+  "qid": "rest_s39_02",
+  "source_session": 39,
+  "question": "For how many people did Marubeni book the Sala Modena dinner?",
+  "gold_short": "14-person",
+  "tier1_aliases": [
+   "14 people",
+   "14"
+  ],
+  "fact_quote": "booked Sala Modena October 14 for 14-person dinner"
+ },
+ {
+  "qid": "rest_s40_04",
+  "source_session": 40,
+  "question": "In what month did the restaurant's cumulative loss zero out?",
+  "gold_short": "July 2026",
+  "tier1_aliases": [],
+  "fact_quote": "Cumulative loss zeroed out in July 2026, now operating profitably"
+ }
+]

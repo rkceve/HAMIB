@@ -1,17 +1,22 @@
 """
-MassWeightedGemma3n: wrapper for Gemma 3n (E2B-it).
-  - Inherits the same sdpa monkey-patch as the Gemma 3 wrapper.
-  - Gemma 3n is the multimodal Gemma3nForConditionalGeneration (text + vision + audio).
-  - E2B-it = effective 2B params (Per-Layer Embedding runs a ~5B model as 2B).
-  - ~1.5GB after 4-bit quantization; runs comfortably on a 6GB GPU.
+MassWeightedGemma3n: Gemma 3n (E2B-it) 用ラッパー
+  - Gemma 3 wrapper と同じ sdpa monkey-patch を継承
+  - Gemma 3n は multimodal Gemma3nForConditionalGeneration (text + vision + audio)
+  - E2B-it = effective 2B params (Per-Layer Embedding で 5B 相当を 2B で動作)
+  - 4-bit 化後 ~1.5GB、 6GB GPU で快適に動作
+
+【Gemma 4 E4B-it からの差替え経緯 §78】
+  - Gemma 4 E4B-it (8B params) は 6GB GPU で load も推論も不安定
+  - A2 採用: Gemma 3n E2B-it でリプレース、 同じ Google 系最新 OSS で fair comparison
 """
 from __future__ import annotations
 from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-# With accelerate hooks + torch._dynamo + meta device, compiling pre_forward
-# triggers a NotImplementedError from meta tensor.to(), so disable dynamo entirely.
+# accelerate hooks + torch._dynamo + meta device の組み合わせで
+# pre_forward が compile されるとき meta tensor.to() で NotImplementedError (§78.7)
+# → dynamo を全面無効化
 try:
     import torch._dynamo
     torch._dynamo.config.disable = True
@@ -22,7 +27,7 @@ from utils.config import load_config, get
 
 
 class MassWeightedGemma3n:
-    """Wrapper for Gemma 3n E2B-it."""
+    """Gemma 3n E2B-it 用 wrapper"""
 
     def __init__(
         self,
@@ -67,11 +72,14 @@ class MassWeightedGemma3n:
 
         self._tokenizer = AutoTokenizer.from_pretrained(self._model_id)
 
-        # Gemma 3n E2B-it weights are 11GB in BF16
-        # (vision_tower 548 keys + audio_tower 269 + LM 731).
-        # vision/audio are CPU-offloaded as real tensors (not meta) while the LM
-        # stays on GPU, so hook-based tensor movement works during generate().
-        print("[MassWeightedGemma3n] loading Gemma3nForConditionalGeneration (LM=cuda, vision/audio=cpu) ...")
+        # Gemma 3n E2B-it 重みは 11GB BF16 (vision_tower 548 keys + audio_tower 269 + LM 731)
+        # 試行履歴 (§78.5-7):
+        #   - device_map="auto" 無制約 → post-load hook dispatch が hang (30 min)
+        #   - vision/audio=meta → load 高速だが generate 内で send_to_device が meta tensor.to(cuda) で fail
+        #   - dynamo disable → 効果なし
+        # 結論: vision/audio は CPU offload (meta ではなく実 tensor) + LM=GPU で hook 経由
+        #   の tensor 移動が成立するようにする
+        print(f"[MassWeightedGemma3n] loading Gemma3nForConditionalGeneration (LM=cuda, vision/audio=cpu) ...")
         max_memory = {0: "4500MiB", "cpu": "24GiB"}
         self._model = Gemma3nForConditionalGeneration.from_pretrained(
             self._model_id,
@@ -89,9 +97,6 @@ class MassWeightedGemma3n:
         self._patch_sdpa()
         print(f"[MassWeightedGemma3n] loaded: {self._model_id}")
 
-    # Unused in the default path: no caller invokes set_m_matrix(). The
-    # 2D M-matrix mode is kept for short-context experiments only. The live
-    # path uses set_mass_vector() (1D) below.
     def set_m_matrix(self, M: torch.Tensor) -> None:
         self._m_matrix = M
 
@@ -109,8 +114,8 @@ class MassWeightedGemma3n:
         return self._tokenizer
 
     def generate(self, prompt: str) -> str:
-        # accelerate offload may place embed_tokens on the CPU, so align
-        # input_ids with the embedding layer's device.
+        # accelerate offload で embed_tokens が CPU 側になる可能性があるため
+        # input_ids を embed の device に合わせる。 embed_tokens を取得して device を確認
         target_device = "cuda" if torch.cuda.is_available() else "cpu"
         try:
             embed = self._model.get_input_embeddings()
@@ -175,8 +180,6 @@ class MassWeightedGemma3n:
             mass_vec = outer._mass_vector
 
             if M is not None:
-                # Unused in the default path: outer._m_matrix is never set.
-                # 2D M-matrix mode for short-context experiments only.
                 m_q = min(seq_q, M.shape[0])
                 m_k = min(seq_k, M.shape[1])
                 m_slice = outer._mass_weight * M[:m_q, :m_k]

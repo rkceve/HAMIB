@@ -1,30 +1,30 @@
 """
-MassWeightedQwen: mass-injection implementation for Qwen models.
+MassWeightedQwen: Qwen 系モデル専用のマスインジェクション実装。
 
-Differences from MassWeightedGemma:
-1. Applies the Qwen 2.5 chat template via `tokenizer.apply_chat_template`.
-2. Limits `generation_config.max_length` (the default 128K pre-allocates the
-   KV cache, causing VRAM shortage / slowdown), constraining it to
-   input_len + max_new_tokens.
-3. Explicitly clears the KV cache between trials.
-4. Qwen-specific pad_token / eos_token setup.
+【MassWeightedGemma との違い】
+1. Qwen 2.5 の chat template を `tokenizer.apply_chat_template` で適用
+2. `generation_config.max_length` を制限 (デフォルトの 128K だと KV cache を事前確保して
+   VRAM 不足/速度低下を引き起こすため、入力長 + max_new_tokens に制約)
+3. trial 間の KV cache 明示クリア
+4. Qwen 特有の pad_token / eos_token 設定
 
-Shared with MassWeightedGemma:
-- monkey-patch of scaled_dot_product_attention
-- 1D mass-vector injection (seq_q==1 guard)
-- 2D M-matrix injection
+【共通する部分（MassWeightedGemma 由来）】
+- scaled_dot_product_attention の monkey-patch
+- 1D mass vector 注入 (seq_q==1 ガード)
+- 2D M 行列注入
 
-Usage:
+使い方:
   from server.mass_weighted_qwen import MassWeightedQwen
   m = MassWeightedQwen(model_id="Qwen/Qwen2.5-3B-Instruct")
   m.load()
   m.set_mass_vector(vec)
-  out = m.chat([{"role": "user", "content": "hello"}])  # send via chat template
-  # or
-  out = m.generate("raw prompt")  # send raw text (bypass chat template)
+  out = m.chat([{"role": "user", "content": "hello"}])  # chat template で送信
+  # または
+  out = m.generate("raw prompt")  # raw text 送信（bypass chat template）
 """
 from __future__ import annotations
 import gc
+from pathlib import Path
 import torch
 
 from server.mass_weighted_gemma import MassWeightedGemma
@@ -32,9 +32,9 @@ from server.mass_weighted_gemma import MassWeightedGemma
 
 class MassWeightedQwen(MassWeightedGemma):
     """
-    MassWeightedLLM for Qwen models (Qwen 2.5 / Qwen 3, etc.).
-    Inherits the parent's sdpa patch while applying Qwen-specific chat
-    template and generation config.
+    Qwen 系モデル (Qwen 2.5 / Qwen 3 等) 専用の MassWeightedLLM。
+    親クラスの sdpa パッチを継承しつつ、Qwen 固有の chat template と
+    generation config を適用する。
     """
 
     def __init__(
@@ -46,7 +46,7 @@ class MassWeightedQwen(MassWeightedGemma):
         temperature: float | None = None,
         do_sample: bool | None = None,
     ):
-        # Default model_id is Qwen 2.5-1.5B.
+        # デフォルト model_id を Qwen 2.5-1.5B に
         if model_id is None:
             model_id = "Qwen/Qwen2.5-1.5B-Instruct"
         super().__init__(
@@ -59,15 +59,15 @@ class MassWeightedQwen(MassWeightedGemma):
 
     def load(self) -> None:
         super().load()
-        # Qwen-specific generation_config fix:
-        # The default max_length=131072 (128K) pre-allocates the KV cache and
-        # causes VRAM shortage / severe slowdown on 6GB VRAM, so cap it.
+        # Qwen 固有の generation_config 修正:
+        # デフォルト max_length=131072 (128K) は KV cache を事前確保して
+        # 6GB VRAM では VRAM 不足/極端な速度低下を引き起こすため制限
         gen_cfg = self._model.generation_config
         if hasattr(gen_cfg, "max_length"):
-            # max_length is overwritten dynamically at run time with
-            # input_len + max_new_tokens; here it is set to 16K as a safe cap.
+            # max_length は実行時に input_len + max_new_tokens で動的に上書きされる
+            # ここでは安全な上限として 16K に設定
             gen_cfg.max_length = 16384
-        # Align pad_token_id with eos (Qwen may have pad_token set to None).
+        # pad_token_id を eos に揃える (Qwen は pad_token が None の場合あり)
         if self._tokenizer.pad_token_id is None and self._tokenizer.eos_token_id is not None:
             self._tokenizer.pad_token_id = self._tokenizer.eos_token_id
             gen_cfg.pad_token_id = self._tokenizer.eos_token_id
@@ -75,9 +75,8 @@ class MassWeightedQwen(MassWeightedGemma):
 
     def chat(self, messages: list[dict]) -> str:
         """
-        Generate by applying the Qwen chat template.
-        messages use the OpenAI-compatible format:
-        [{"role": "user|assistant|system", "content": "..."}, ...]
+        Qwen の chat template を適用して生成。
+        messages は OpenAI 互換形式: [{"role": "user|assistant|system", "content": "..."}, ...]
         """
         prompt = self._tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
@@ -86,8 +85,8 @@ class MassWeightedQwen(MassWeightedGemma):
 
     def generate(self, prompt: str) -> str:
         """
-        Override the parent generate: set max_length dynamically based on
-        input length to avoid VRAM waste from KV-cache pre-allocation.
+        親クラスの generate を上書き: max_length を入力長に応じて動的設定する。
+        これによって KV cache 事前確保による VRAM 浪費を防ぐ。
         """
         target_device = self._device
         try:
@@ -99,7 +98,7 @@ class MassWeightedQwen(MassWeightedGemma):
         input_ids = inputs["input_ids"]
         input_len = input_ids.shape[1]
 
-        # Qwen-specific: adjust max_length dynamically (input_len + generation length + margin).
+        # Qwen 固有: max_length を動的に調整 (入力長 + 生成長 + マージン)
         dynamic_max_length = input_len + self._max_new_tokens + 16
 
         gen_kwargs: dict = {
@@ -117,7 +116,7 @@ class MassWeightedQwen(MassWeightedGemma):
         new_ids = output_ids[0, input_ids.shape[1]:]
         result = self._tokenizer.decode(new_ids, skip_special_tokens=True)
 
-        # Qwen-specific: explicitly clear intermediate memory (KV cache, etc.) between trials.
+        # Qwen 固有: trial 間で KV cache 等の中間メモリを明示クリア
         del inputs, input_ids, output_ids, new_ids
         if torch.cuda.is_available():
             torch.cuda.empty_cache()

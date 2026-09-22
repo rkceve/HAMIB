@@ -1,0 +1,608 @@
+{
+  "chat_topic": "Restaurant Opening",
+  "description": "12-month journey of a Tokyo restaurant opening. Single user planning, opening, and running a small Italian restaurant in Higashi-Azabu.",
+  "sessions": [
+    {
+      "n": 1,
+      "date": "March 5, 2025",
+      "topic": "Initial idea exploration - quitting corporate job, restaurant concept",
+      "key_facts": [
+        "User name: Kenta Morishita, age 34",
+        "Quitting job at Marubeni Corporation after 11 years",
+        "Savings: 28 million yen",
+        "Initial restaurant name idea: 'Ginza Trattoria'",
+        "Target: small Italian restaurant, 20-25 seats",
+        "Inspiration: 2019 trip to Bologna, studied at Hotel School of Bologna for 3 weeks",
+        "Wife: Ayako Morishita, supports the plan"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 2,
+      "date": "March 18, 2025",
+      "topic": "Market research - studying Tokyo Italian restaurant scene",
+      "key_facts": [
+        "Visited 14 Italian restaurants in 2 weeks",
+        "Benchmark restaurants: Ristorante Aso in Daikanyama, Faro in Ginza, Heinz Beck in Marunouchi",
+        "Average ticket size target: 8,500 yen per person dinner",
+        "Lunch target: 1,800 yen set",
+        "Identified gap: northern Italian (Emilia-Romagna) underrepresented"
+      ],
+      "turn_count": 11
+    },
+    {
+      "n": 3,
+      "date": "April 2, 2025",
+      "topic": "Business plan draft - financials, breakeven analysis",
+      "key_facts": [
+        "Projected monthly revenue at full capacity: 4.2 million yen",
+        "Breakeven: 38 covers per day average",
+        "Working with accountant: Hiroshi Tanabe of Tanabe & Partners",
+        "Tanabe office address: 2-7-3 Shibuya, Daiichi-Bunko Building 5F",
+        "Loan plan: Japan Finance Corporation, applying for 15 million yen at 1.85%"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 4,
+      "date": "April 19, 2025",
+      "topic": "Location scouting - exploring neighborhoods",
+      "key_facts": [
+        "Scouted 23 properties via real estate broker Yusuke Hamada of Plaza Homes Commercial",
+        "Hamada cellphone introduced through college friend Daichi Sasaki",
+        "Areas considered: Nishi-Azabu, Higashi-Azabu, Hiroo, Yoyogi-Uehara, Kagurazaka",
+        "Ruled out Ginza due to rent (above 95,000 yen per tsubo)"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 5,
+      "date": "May 4, 2025",
+      "topic": "Lease signing - property selected",
+      "key_facts": [
+        "Signed lease at 3-14-7 Higashi-Azabu, Minato-ku, 1st floor of Azabu Heights Building",
+        "Floor area: 64.5 square meters (about 19.5 tsubo)",
+        "Rent: 487,000 yen per month, plus 73,000 yen common area fee",
+        "Key money: 6 months rent (2,922,000 yen)",
+        "Lease term: 4 years renewable",
+        "Previous tenant: small French bistro that closed October 2024"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 6,
+      "date": "May 17, 2025",
+      "topic": "Contractor selection for renovation",
+      "key_facts": [
+        "Three quotes from contractors: Kenchiku Plus, Yamamoto Koumuten, Sasaki Design Build",
+        "Selected Yamamoto Koumuten led by Tetsuo Yamamoto",
+        "Yamamoto recommendation: use open kitchen with brick-faced pizza oven facing dining room",
+        "Renovation budget: 8.4 million yen",
+        "Yamamoto suggested supplier 'Forno Bravo Japan' for the wood-fired oven"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 7,
+      "date": "May 30, 2025",
+      "topic": "Loan approval and budget reconciliation",
+      "key_facts": [
+        "Japan Finance Corporation approved 12 million yen (3 million below request) at 1.95%",
+        "Total opening capital secured: 36 million yen (28M savings + 12M loan minus expenses already incurred)",
+        "Decision to scale back interior finishing to compensate"
+      ],
+      "turn_count": 11
+    },
+    {
+      "n": 8,
+      "date": "June 12, 2025",
+      "topic": "Renovation kickoff and design decisions",
+      "key_facts": [
+        "Renovation started June 9, 2025, projected completion August 22",
+        "Floor: white oak engineered plank from Toyo Wood Works",
+        "Walls: limestone-finish plaster (Italian product Marmorino imported via Tokai Sangyo)",
+        "Bathroom layout changed at architect's suggestion: single accessible unisex instead of split"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 9,
+      "date": "June 25, 2025",
+      "topic": "Kitchen equipment sourcing",
+      "key_facts": [
+        "Wood-fired pizza oven ordered from Forno Bravo Japan: model 'Modena 100', cost 1.6 million yen",
+        "Pasta extruder: La Monferrina P3, cost 580,000 yen, sourced through Reizou Sangyo",
+        "Refrigeration: 2 Hoshizaki upright units, total 720,000 yen",
+        "Decided against rotisserie - too niche for menu"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 10,
+      "date": "July 7, 2025",
+      "topic": "Supplier sourcing - dry goods and produce",
+      "key_facts": [
+        "Olive oil supplier: Solleone Japan, sourcing Frantoio Franci EVOO at 4,200 yen per 500ml",
+        "Flour: Caputo 00 imported through Suzuki Foods, 3,800 yen per 25kg sack",
+        "Produce: morning delivery from Tsukiji-Ota Market via broker Kenji Ueno of Ueno Seika",
+        "Ueno introduced through accountant Tanabe (Tanabe's wife runs catering)"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 11,
+      "date": "July 21, 2025",
+      "topic": "Wine program development",
+      "key_facts": [
+        "Wine supplier: Nakata Shoji",
+        "Account manager: Mariko Nakata, daughter of company president",
+        "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura",
+        "Initial cellar: 280 bottles across 47 labels, 60% Italian, 25% French, 15% Japanese",
+        "Opening cost for wine inventory: 1.85 million yen"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 12,
+      "date": "August 3, 2025",
+      "topic": "Restaurant name change and branding",
+      "key_facts": [
+        "Decision to rename from 'Ginza Trattoria' to 'Osteria Morishita'",
+        "Reason: 'Ginza Trattoria' confusing since restaurant is in Azabu",
+        "Logo designed by Aiko Fujimoto, freelance designer, fee 320,000 yen",
+        "Brand colors: terracotta and ivory",
+        "Domain registered: osteria-morishita.tokyo"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 13,
+      "date": "August 16, 2025",
+      "topic": "Chef hiring - head chef search",
+      "key_facts": [
+        "Hired head chef: Marco Petrelli, 38 years old, Italian national from Modena",
+        "Petrelli previously sous chef at Ristorante Acqua Pazza in Daikanyama for 4 years",
+        "Salary: 720,000 yen monthly, 13-month bonus structure",
+        "Petrelli will start September 1, 2025",
+        "User found Petrelli through wine supplier Mariko Nakata's industry contacts"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 14,
+      "date": "August 28, 2025",
+      "topic": "Renovation completion and inspection",
+      "key_facts": [
+        "Renovation completed August 26 (4 days late)",
+        "Final renovation cost: 8.87 million yen (470,000 yen over budget)",
+        "Overage due to electrical panel upgrade required by inspection",
+        "Health permit inspector: Mr. Ogawa, Minato Ward Health Department",
+        "First inspection passed with two minor issues: handwashing signage and grease trap label"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 15,
+      "date": "September 8, 2025",
+      "topic": "Menu finalization with head chef Petrelli",
+      "key_facts": [
+        "Final menu: 6 antipasti, 5 primi (3 pasta + 2 risotto), 4 secondi, 3 desserts",
+        "Signature dish: tagliatelle al ragu bolognese, hand-cut, 2,400 yen",
+        "Pizza: not on menu - oven used for focaccia and roasted secondi only",
+        "Lunch menu: 2 courses 1,800 yen, 3 courses 2,400 yen",
+        "Dinner average ticket projection revised down: 7,800 yen per person"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 16,
+      "date": "September 19, 2025",
+      "topic": "Sous chef and front of house hiring",
+      "key_facts": [
+        "Sous chef hired: Haruki Nakajima, 29 years old, previously at Trattoria Goccia",
+        "Nakajima salary: 380,000 yen monthly",
+        "Service manager: Eiko Sawada, 41 years old, hotel background, salary 460,000 yen",
+        "Two part-time servers: Yui Tachibana (university student) and Naoki Hirose",
+        "Total staff at opening: 5 full-time, 2 part-time"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 17,
+      "date": "September 30, 2025",
+      "topic": "Soft opening planning",
+      "key_facts": [
+        "Soft opening dates: October 8-11, 2025 (four days, dinner only)",
+        "Invited guests: 80 total, 20 per night, free meals with feedback forms",
+        "Guest list includes: investors, suppliers, food media (3 critics), neighborhood residents",
+        "Wine pairing offered but separately charged at cost",
+        "Petrelli running full kitchen brigade for first time"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 18,
+      "date": "October 14, 2025",
+      "topic": "Soft opening debrief - what went well and wrong",
+      "key_facts": [
+        "Soft opening complete. Major issue: kitchen ticket times averaged 38 minutes (target 22)",
+        "Cause identified: pasta water station too small, bottleneck on plating",
+        "Positive: 73 of 80 guests rated meal 8/10 or higher",
+        "Food critic Akira Mochizuki from Tokyo Calendar published positive note on Instagram",
+        "Service manager Sawada flagged that table 7 has acoustic issue near AC vent"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 19,
+      "date": "October 22, 2025",
+      "topic": "Grand opening preparation and last fixes",
+      "key_facts": [
+        "Grand opening date set: November 4, 2025",
+        "Pasta station expanded by adding second induction burner (cost 180,000 yen)",
+        "Table 7 acoustic issue fixed with felt panel installation",
+        "Press release distributed to: Hot Pepper Gourmet, Tabelog editorial, Tokyo Calendar, Nikkei Style, Foodie Tokyo",
+        "Reservation system: TableCheck, 32,000 yen monthly base + transaction fees"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 20,
+      "date": "November 6, 2025",
+      "topic": "Grand opening week - first results",
+      "key_facts": [
+        "Grand opening November 4 went smoothly, fully booked",
+        "First three days: dinner covers 22, 26, 24 against target 28",
+        "Lunch service started November 5: 14, 18 covers (target 30)",
+        "Average ticket actual: dinner 8,100 yen (above projection), lunch 1,950 yen",
+        "First Tabelog rating after 3 reviews: 3.42"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 21,
+      "date": "November 19, 2025",
+      "topic": "Operations week 2 - staffing pressure",
+      "key_facts": [
+        "Part-time server Naoki Hirose quit after 2 weeks - found higher-paying job",
+        "Replacement: Sara Komatsu, 23, started November 17",
+        "Sous chef Nakajima reports back pain - reducing his hours temporarily",
+        "Considering hiring a dishwasher (currently servers double up)",
+        "Dishwasher candidate: Mrs. Yoneda, 58, lives in same building"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 22,
+      "date": "December 3, 2025",
+      "topic": "First month financial review",
+      "key_facts": [
+        "November revenue: 3.42 million yen (target 4.0M)",
+        "Costs: food 31%, labor 38%, rent+utilities 18%, other 9%",
+        "Loss for month: 312,000 yen",
+        "Cash runway: roughly 14 months at current burn",
+        "Decision: change opening hours - cut Monday lunch, add late seating Friday/Saturday"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 23,
+      "date": "December 15, 2025",
+      "topic": "Holiday season prep and corporate booking",
+      "key_facts": [
+        "Marubeni Corporation (user's old employer) booked December 22 private dinner: 24 guests, 12,000 yen per person fixed menu",
+        "Total December private bookings: 4 events, projected 1.1 million yen",
+        "Hired Mrs. Yoneda as dishwasher, 1,400 yen per hour, 4 hours nightly",
+        "Christmas menu launched: 5 courses 9,800 yen, optional pairing 4,500 yen"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 24,
+      "date": "December 29, 2025",
+      "topic": "Year-end review and 2026 planning",
+      "key_facts": [
+        "December revenue: 4.95 million yen (best month so far)",
+        "Holiday bookings exceeded plan by 38%",
+        "First year-end staff bonus distributed: 1 month salary equivalent for FT, 30,000 yen for PT",
+        "Petrelli requested 2-week vacation in February to visit family in Modena",
+        "Sawada proposed launching wine club membership in spring"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 25,
+      "date": "January 12, 2026",
+      "topic": "Slow January and process improvements",
+      "key_facts": [
+        "January first week revenue down 42% versus December average",
+        "Implemented inventory system: changed from paper to Square Plus inventory module",
+        "Subscription: 18,000 yen monthly",
+        "Discovered 8% food waste, target reduction to 4%",
+        "Chef Petrelli adjusting menu: dropping branzino dish (low margin), adding guinea fowl"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 26,
+      "date": "January 26, 2026",
+      "topic": "Wine club design and member recruitment",
+      "key_facts": [
+        "Wine club name: Cantina Morishita",
+        "Membership fee: 36,000 yen annual",
+        "Benefits: monthly tasting dinner, 10% off bottle list, first access to allocations",
+        "Target: 40 members by April",
+        "Sawada designed program; Mariko Nakata sourcing exclusive labels"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 27,
+      "date": "February 9, 2026",
+      "topic": "Petrelli vacation coverage and Nakajima promotion",
+      "key_facts": [
+        "Petrelli on vacation February 14-28, 2026",
+        "Nakajima running kitchen during absence, given temporary 80,000 yen monthly bump",
+        "Hired part-time line cook for coverage: Toshiya Inoue, culinary school graduate",
+        "Menu simplified during coverage: dropped guinea fowl temporarily",
+        "Lunch service paused February 17-21 (extra precaution)"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 28,
+      "date": "February 23, 2026",
+      "topic": "Mid-coverage check-in and unexpected press visit",
+      "key_facts": [
+        "Nakajima holding up well, dinner ticket times 24 minutes average",
+        "Tabelog rating climbed to 3.61 after 24 reviews",
+        "Unexpected visit by Hiroko Sano, restaurant critic from Asahi Shimbun Weekly",
+        "Sano did not announce herself but Sawada recognized her",
+        "Article publication expected late March"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 29,
+      "date": "March 8, 2026",
+      "topic": "Petrelli return and Q1 financial picture",
+      "key_facts": [
+        "Petrelli returned March 1, brought back artisanal balsamic from family contact",
+        "New supplier added: Acetaia Giusti via Petrelli direct (saves 18% versus current import)",
+        "Q1 revenue total: 11.8 million yen versus plan 12.5 million",
+        "Wine club Cantina Morishita: 23 members signed, target 40 by April",
+        "Considering raising prices on 4 menu items"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 30,
+      "date": "March 21, 2026",
+      "topic": "Asahi Shimbun review published",
+      "key_facts": [
+        "Sano review published March 19, 2026 in Asahi Shimbun Weekly",
+        "Headline: 'Azabu's Quiet Modena: A Trattoria With Conviction'",
+        "Review highlights: ragu bolognese, wine list, 'unfussy precision'",
+        "Reservation requests spiked 4x in 48 hours",
+        "Now booked 3 weeks out for Friday/Saturday dinner"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 31,
+      "date": "April 3, 2026",
+      "topic": "Menu price revision and supply chain adjustments",
+      "key_facts": [
+        "Menu prices revised April 1: dinner average ticket target raised to 9,200 yen",
+        "Tagliatelle al ragu bolognese raised from 2,400 to 2,700 yen",
+        "Lunch courses raised: 2-course to 2,000 yen, 3-course to 2,600 yen",
+        "Olive oil switched from Frantoio Franci to a less expensive blend from Solleone (saving 22% on cost)",
+        "Customer feedback on price change: minimal pushback, no review impact"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 32,
+      "date": "April 16, 2026",
+      "topic": "Equipment failure and crisis recovery",
+      "key_facts": [
+        "Wood-fired oven Modena 100 cracked on stone deck April 13",
+        "Emergency repair by Forno Bravo Japan technician Mr. Saito",
+        "Repair cost: 340,000 yen, 5-day downtime",
+        "Insurance through Tokio Marine Restaurant Plus policy covered 70% of repair",
+        "Adjusted menu temporarily: focaccia served as crostini, no oven-roasted secondi"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 33,
+      "date": "April 28, 2026",
+      "topic": "Six-month milestone and staff retention discussion",
+      "key_facts": [
+        "Six-month anniversary approaching November 4 -> May 4",
+        "Service manager Sawada renegotiated to 510,000 yen monthly salary (raise of 50,000)",
+        "Petrelli bonus structure adjusted: 4% of revenue above 4.5M monthly threshold",
+        "Wine club Cantina Morishita reached 42 members (exceeded April target)",
+        "Considering second seating system for Friday/Saturday"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 34,
+      "date": "May 9, 2026",
+      "topic": "Six-month celebration and customer database",
+      "key_facts": [
+        "Six-month anniversary May 4 marked with private gathering for 30 regulars",
+        "Customer database (via TableCheck) shows 412 unique guests, 87 repeat customers",
+        "Top repeat customer: Mr. Hiroyuki Tachibana (10 visits), Azabu resident",
+        "Revenue cumulative: 28.4 million yen since opening",
+        "Cumulative loss reduced to 1.1 million yen (was 1.8M at month 4)"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 35,
+      "date": "May 22, 2026",
+      "topic": "Considering second location and growth strategy",
+      "key_facts": [
+        "Hamada (broker from Plaza Homes) showed property in Tomigaya, 18.2 tsubo, 580,000 yen rent",
+        "User cautious - one-year mark not reached yet",
+        "Petrelli interested in expansion as long as Modena focus preserved",
+        "Decision: revisit second location after fiscal year end September 2026",
+        "Instead: launch private dining room conversion in existing space"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 36,
+      "date": "June 5, 2026",
+      "topic": "Private dining room conversion planning",
+      "key_subjects": [
+        "Convert storage area at rear into 8-seat private room",
+        "Cost estimate from Yamamoto Koumuten: 1.4 million yen",
+        "Loss of storage requires basement rental: 38,000 yen monthly nearby",
+        "Construction window: 4 weeks, scheduled July 14 to August 9",
+        "Marketing as 'Sala Modena' for private bookings, premium pricing"
+      ],
+      "key_facts": [
+        "Convert storage area at rear into 8-seat private room",
+        "Cost estimate from Yamamoto Koumuten: 1.4 million yen",
+        "Loss of storage requires basement rental: 38,000 yen monthly nearby",
+        "Construction window: 4 weeks, scheduled July 14 to August 9",
+        "Private room name: Sala Modena, premium pricing"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 37,
+      "date": "June 18, 2026",
+      "topic": "Staffing growth and HR formalization",
+      "key_facts": [
+        "Total staff now: 7 full-time, 4 part-time",
+        "Added social insurance enrollment for all FT (was previously voluntary)",
+        "Employee handbook drafted with help from labor consultant Mr. Endo, fee 280,000 yen",
+        "First formal performance reviews scheduled July 1",
+        "Discussed succession - if Petrelli ever leaves, Nakajima identified as successor"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 38,
+      "date": "July 2, 2026",
+      "topic": "Performance reviews and salary adjustments",
+      "key_facts": [
+        "Performance reviews completed for 7 FT staff",
+        "Salary adjustments: Nakajima raised to 440,000 yen (from 380,000), Yui Tachibana raised to 1,500 yen per hour",
+        "Two-year retention bonus formalized: 200,000 yen at 24 months",
+        "Petrelli signed two-year extension to October 2027 with revised package",
+        "Petrelli new monthly base: 780,000 yen"
+      ],
+      "turn_count": 13
+    },
+    {
+      "n": 39,
+      "date": "July 17, 2026",
+      "topic": "Private room construction and pre-opening marketing",
+      "key_facts": [
+        "Sala Modena construction underway, on schedule",
+        "Pre-bookings already secured: 6 private events for September",
+        "Marubeni (former employer) booked Sala Modena October 14 for 14-person dinner",
+        "Pricing: 18,000 yen per person minimum plus venue fee 50,000 yen",
+        "Wine pairings start at 6,500 yen"
+      ],
+      "turn_count": 12
+    },
+    {
+      "n": 40,
+      "date": "August 1, 2026",
+      "topic": "Reflection on year one journey and forward outlook",
+      "key_facts": [
+        "Looking back to March 2025: from idea to thriving restaurant in ~17 months",
+        "Tabelog rating now 3.78 with 91 reviews",
+        "Cumulative loss zeroed out in July 2026, now operating profitably",
+        "Sala Modena opens August 12, 2026",
+        "Year-two goals: second location decision by November, possible cookbook collaboration",
+        "Final word: the user reaffirms the original mission - Modena-style cooking in Azabu"
+      ],
+      "turn_count": 13
+    }
+  ],
+  "evolving_facts": [
+    {
+      "name": "restaurant_name",
+      "values": [
+        {"session": 1, "value": "Ginza Trattoria"},
+        {"session": 12, "value": "Osteria Morishita"}
+      ]
+    },
+    {
+      "name": "staff_count_fulltime",
+      "values": [
+        {"session": 16, "value": 5},
+        {"session": 21, "value": 5},
+        {"session": 37, "value": 7}
+      ]
+    },
+    {
+      "name": "tagliatelle_price_yen",
+      "values": [
+        {"session": 15, "value": 2400},
+        {"session": 31, "value": 2700}
+      ]
+    },
+    {
+      "name": "tabelog_rating",
+      "values": [
+        {"session": 20, "value": 3.42},
+        {"session": 28, "value": 3.61},
+        {"session": 40, "value": 3.78}
+      ]
+    },
+    {
+      "name": "petrelli_salary",
+      "values": [
+        {"session": 13, "value": 720000},
+        {"session": 38, "value": 780000}
+      ]
+    },
+    {
+      "name": "lunch_price_2course",
+      "values": [
+        {"session": 15, "value": 1800},
+        {"session": 31, "value": 2000}
+      ]
+    }
+  ],
+  "linked_facts": [
+    {
+      "name": "wine_supplier_introduction",
+      "intro_session": 11,
+      "intro_quote": "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura",
+      "supplier_session": 11,
+      "supplier_name": "Nakata Shoji"
+    },
+    {
+      "name": "head_chef_referral_chain",
+      "intro_session": 11,
+      "second_session": 13,
+      "chain": "Wine account manager Mariko Nakata -> head chef Marco Petrelli"
+    },
+    {
+      "name": "broker_referral",
+      "intro_session": 4,
+      "second_session": 35,
+      "chain": "College friend Daichi Sasaki -> broker Yusuke Hamada at Plaza Homes -> later Tomigaya property scouting"
+    },
+    {
+      "name": "contractor_oven_chain",
+      "intro_session": 6,
+      "second_session": 9,
+      "chain": "Contractor Tetsuo Yamamoto recommended Forno Bravo Japan -> Modena 100 oven ordered"
+    },
+    {
+      "name": "produce_introduction",
+      "intro_session": 10,
+      "chain": "Accountant Hiroshi Tanabe (wife runs catering) -> produce broker Kenji Ueno of Ueno Seika"
+    }
+  ]
+}

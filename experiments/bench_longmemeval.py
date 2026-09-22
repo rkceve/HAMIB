@@ -275,6 +275,8 @@ def run_hamib(gemma, extractor_fn, questions: list, output: Path,
             "i": i, "qid": q["question_id"], "qtype": q["question_type"],
             "question": q["question"][:200], "gold": q["answer"],
             "correct": bool(ok), "ms": round(ms, 1), "cd": cd_now,
+            "prompt_chars": getattr(session, 'last_prompt_chars', 0),
+            "prompt_tokens": getattr(session, 'last_context_tokens', 0),
             "response": resp[:400],
         })
         total_q = len(questions) + start_from_index
@@ -308,6 +310,7 @@ def run_hamib(gemma, extractor_fn, questions: list, output: Path,
     ms_list.sort()
     p50 = ms_list[len(ms_list)//2] if ms_list else 0
     p95 = ms_list[int(len(ms_list)*0.95)] if ms_list else 0
+    n_items = max(len(item_records), 1)
     summary = {
         "mode": "hamib_sbert", "n": len(questions),
         "correct": correct, "acc": correct / len(questions),
@@ -315,6 +318,8 @@ def run_hamib(gemma, extractor_fn, questions: list, output: Path,
         "gpu_J": energy.get("gpu_energy_J", 0.0),
         "cpu_J": energy.get("cpu_energy_J_est", 0.0),
         "cd_max": cd_max,
+        "prompt_chars_mean": round(sum(r.get("prompt_chars", 0) for r in item_records) / n_items),
+        "prompt_tokens_mean": round(sum(r.get("prompt_tokens", 0) for r in item_records) / n_items),
     }
     out = output / output_filename
     summary["start_from_index"] = start_from_index

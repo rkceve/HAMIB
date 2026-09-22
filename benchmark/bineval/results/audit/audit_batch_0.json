@@ -1,0 +1,371 @@
+[
+ {
+  "qid": "rest_s01_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "My name is Kenta Morishita. I'm 34 years old",
+  "notes": null
+ },
+ {
+  "qid": "rest_s02_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "I visited 14 Italian restaurants across Tokyo over those two weeks",
+  "notes": null
+ },
+ {
+  "qid": "rest_s02_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "I also went to Heinz Beck in Marunouchi",
+  "notes": null
+ },
+ {
+  "qid": "rest_s03_05",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "applying to Japan Finance Corporation for 15 million yen at 1.85% interest",
+  "notes": null
+ },
+ {
+  "qid": "rest_s04_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "we shouldn't go above 95,000 yen per tsubo in Ginza-level locations",
+  "notes": null
+ },
+ {
+  "qid": "rest_s05_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Monthly base rent is 487,000 yen",
+  "notes": null
+ },
+ {
+  "qid": "rest_s06_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Yamamoto Koumuten... The owner is a man named Tetsuo Yamamoto",
+  "notes": null
+ },
+ {
+  "qid": "rest_s07_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Japan Finance Corporation did approve the loan... approved amount came in at 12 million yen",
+  "notes": null
+ },
+ {
+  "qid": "rest_s07_06",
+  "answerable": "yes",
+  "gold_correct": "no",
+  "uniquely_determined": "no",
+  "alias_sufficient": "no",
+  "evidence_quote": "personal savings, plus my uncle's investment, plus equipment financing, plus the JFC loan",
+  "notes": "Session lists four capital sources (savings, uncle investment, equipment financing, JFC loan); gold 'loan' omits uncle investment and equipment financing. fact_quote ('28M savings + 12M loan') also diverges from session text."
+ },
+ {
+  "qid": "rest_s08_05",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "a product called Marmorino... limestone-finish plaster... imported via Tokai Sangyo",
+  "notes": null
+ },
+ {
+  "qid": "rest_s09_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The price they quoted me was 580,000 yen",
+  "notes": null
+ },
+ {
+  "qid": "rest_s10_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Caputo 00... I went with Suzuki Foods... 3,800 yen per 25kg sack",
+  "notes": null
+ },
+ {
+  "qid": "rest_s11_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "You need to talk to Mariko Nakata... her father is actually the president of Nakata Shoji",
+  "notes": null
+ },
+ {
+  "qid": "rest_s12_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Renaming from 'Ginza Trattoria' to 'Osteria Morishita'",
+  "notes": null
+ },
+ {
+  "qid": "rest_s12_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "I registered the domain osteria-morishita.tokyo",
+  "notes": null
+ },
+ {
+  "qid": "rest_s13_05",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "We agreed on a monthly salary of 720,000 yen",
+  "notes": null
+ },
+ {
+  "qid": "rest_s14_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The health inspector's name was Mr. Ogawa, and he came from the Minato Ward Health Department",
+  "notes": null
+ },
+ {
+  "qid": "rest_s15_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The lower tier is 1,800 yen for a 2-course lunch",
+  "notes": null
+ },
+ {
+  "qid": "rest_s16_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "we agreed to 380,000 yen monthly salary",
+  "notes": null
+ },
+ {
+  "qid": "rest_s17_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "the soft opening runs October 8-11, 2025 — four nights",
+  "notes": null
+ },
+ {
+  "qid": "rest_s17_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "wine pairing offered but separately charged at cost",
+  "notes": null
+ },
+ {
+  "qid": "rest_s18_05",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Akira Mochizuki, the food critic from Tokyo Calendar... posted a positive Instagram note",
+  "notes": null
+ },
+ {
+  "qid": "rest_s20_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "three Tabelog reviews came in and the first rating landed at 3.42",
+  "notes": null
+ },
+ {
+  "qid": "rest_s21_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "sous chef Nakajima reports back pain - reducing his hours temporarily",
+  "notes": null
+ },
+ {
+  "qid": "rest_s22_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "operating result is a 312,000 yen loss for the month",
+  "notes": null
+ },
+ {
+  "qid": "rest_s23_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "24 guests at 12,000 yen per person",
+  "notes": null
+ },
+ {
+  "qid": "rest_s25_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "January first week revenue down 42% versus December average",
+  "notes": null
+ },
+ {
+  "qid": "rest_s25_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The replacement that Petrelli proposed is guinea fowl",
+  "notes": null
+ },
+ {
+  "qid": "rest_s26_05",
+  "answerable": "no",
+  "gold_correct": "ambiguous",
+  "uniquely_determined": "no",
+  "alias_sufficient": "no",
+  "evidence_quote": null,
+  "notes": "session_26.txt contains wrong content (literary agent/manuscript narrative, not restaurant wine-club content); 'Sawada' not mentioned; question unanswerable from this session."
+ },
+ {
+  "qid": "rest_s27_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "I've already found someone — Toshiya Inoue, culinary school graduate, 23 years old",
+  "notes": null
+ },
+ {
+  "qid": "rest_s28_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "a woman had just been seated at table eleven who she was fairly certain was Hiroko Sano. The restaurant critic from Asahi Shimbun Weekly",
+  "notes": null
+ },
+ {
+  "qid": "rest_s29_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The Q1 revenue total is 11.8 million yen versus plan of 12.5 million",
+  "notes": null
+ },
+ {
+  "qid": "rest_s30_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The Asahi Shimbun Weekly... published a review of Osteria Morishita. March 19, 2026.",
+  "notes": null
+ },
+ {
+  "qid": "rest_s30_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The Asahi Shimbun Weekly — the food section — published a review of Osteria Morishita",
+  "notes": null
+ },
+ {
+  "qid": "rest_s31_05",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The saving on olive oil cost is around 22% on what we were spending",
+  "notes": null
+ },
+ {
+  "qid": "rest_s34_04",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Mr. Hiroyuki Tachibana, who has logged 10 visits since we opened",
+  "notes": null
+ },
+ {
+  "qid": "rest_s36_03",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "The rate he quoted me is 38,000 yen monthly",
+  "notes": null
+ },
+ {
+  "qid": "rest_s37_02",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "A friend recommended a labor consultant, Mr. Endo, who drafted an employee handbook for a fee of 280,000 yen",
+  "notes": null
+ },
+ {
+  "qid": "rest_s38_01",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "Nakajima raised to 440,000 yen per month, up from 380,000",
+  "notes": null
+ },
+ {
+  "qid": "rest_s38_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "performance reviews completed for 7 full-time staff",
+  "notes": null
+ },
+ {
+  "qid": "rest_s39_06",
+  "answerable": "yes",
+  "gold_correct": "yes",
+  "uniquely_determined": "yes",
+  "alias_sufficient": "yes",
+  "evidence_quote": "we already have 6 private events booked for September",
+  "notes": null
+ }
+]

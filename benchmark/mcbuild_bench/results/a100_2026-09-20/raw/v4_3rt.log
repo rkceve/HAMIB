@@ -1,0 +1,16 @@
+[23:45:35] 1/4 summarizer (transformers server, Qwen3.5-4B bf16, reader venv; vLLM cannot run on this driver — H27) in tmux
+[23:45:56] summarizer up after 30 s
+{"id": "chatcmpl-1789947985012", "object": "chat.completion", "model": "summarizer", "choices": [{"index": 0, "message": {"role": "assistant", "content": "OK\n"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 15, "completion_tokens": 4, "total_tokens": 19}, "latency_ms": 28919.17558759451}
+[23:46:25] 2/4 build_cd on the first 3 round trips (budget: 20000 requests / 100000000 input tokens)
+[23:47:44] build_cd exit=1
+harness calls: node=54
+harness quality: attached=0 defaulted=0 node_fallback=0 unparsed=0 vanished=0
+jev requests=54 tokens: in=34466 out=3510 cost_usd=0.0014  wall=77.4s
+jev budget: requests 54/20000 input_tokens 34466/100000000
+wrote: /workspace/mcb/runs/v4_3rt/cd.json
+[23:47:44] 3/4 stop the summarizer
+[23:47:44] 4/4 summary
+cd.json | summary: {'sun': 0, 'planet': 0, 'satellite': 0, 'total': 0, 'turns': 0, 'dropped_chunks': 0, 'harness_calls': {'node': 54}, 'harness_quality': {'unparsed': 0, 'defaulted': 0, 'node_fallback': 0, 'vanished': 0, 'attached': 0}} | stopped: {'reason': 'SummarizerStop("summarizer produced no usable node text after one retry: first=\'Java path: C:\\\\\\\\WINDOWS\\\\\\\\system32, C:\\\\\\\\WINDOWS, C:\\\\\\\\WINDOWS\\\\\\\\System32, C:\\\\\\\\WINDOWS\\\\\\\\System32\\\\\\\\WindowsPowerShell, C:\\\\\\\\WINDOWS\\\\\\\\System32\\\\\\\\OpenSSH, C:\\\\\\\\cmd, C:\\\\\\\\Program Files\\\\\\\\nodejs, C:\\\\\\\\Program.\' (length 177 > 120) second=\'Files/Oracle/Java/javapath:/c/WINDOWS/system32:/c/WINDOWS:/c/WINDOWS/System32/Wbem:/c/WINDOWS/System32/WindowsPowerShell/v1.0:/c/WINDOWS/System32/OpenSSH:/cmd:/c/Program Files/nodejs:/c/Program\' (length 193 > 120)")', 'type': 'SummarizerStop'}
+  jev: {'jev_requests': 54, 'jev_input_tokens_total': 34466, 'jev_output_tokens_total': 3510, 'jev_cost_usd': 0.001447572, 'jev_budget': {'max_requests': 20000, 'max_input_tokens': 100000000, 'requests_sent': 54, 'input_tokens': 34466}}
+  summarizer: {'summarizer_calls': 52, 'summarizer_prompt_tokens': 5354, 'summarizer_completion_tokens': 1393} | wall_s: 77.3671383485198
+V4_DONE

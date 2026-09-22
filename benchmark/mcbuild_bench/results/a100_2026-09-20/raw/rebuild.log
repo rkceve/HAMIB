@@ -1,0 +1,13 @@
+[23:15:56] driver 570 = CUDA 12.8 -> torch must be a cu128 build. venv_reader: torch 2.11.0+cu128 + transformers 5.17.0
+hint: Build failures usually indicate a problem with the package or the build environment
+WARN causal-conv1d
+reader: 2.11.0+cu128 cuda 12.8 available True | 5.17.0
+fla True conv1d False
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+286 passed, 14 warnings in 77.31s (0:01:17)
+ALL CHECKS PASSED
+[23:18:06] venv_vllm: vllm 0.28.0 (torch 2.11 era, cu128)
+vllm venv: 0.28.0 torch 2.13.0+cu130 cuda 13.0 available True | transformers 5.17.0
+overlay                      100G   33G   68G  33% /
+mfs#us-ks-2.runpod.net:9421  873T  671T  203T  77% /workspace
+[23:18:31] REBUILD_DONE

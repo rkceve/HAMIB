@@ -1,0 +1,130 @@
+[
+  {
+    "qid": "rest_q01",
+    "category": "early_static",
+    "question": "How many years had Kenta Morishita worked at Marubeni Corporation before deciding to open a restaurant?",
+    "answer": "11 years",
+    "answer_source_session": 1,
+    "answer_source_quote": "I've been working at Marubeni Corporation for 11 years now, mostly in the food and agribusiness division"
+  },
+  {
+    "qid": "rest_q02",
+    "category": "early_static",
+    "question": "In which building and floor is the office of Kenta's accountant Hiroshi Tanabe located?",
+    "answer": "Daiichi-Bunko Building 5F",
+    "answer_source_session": 3,
+    "answer_source_quote": "He runs a small boutique firm called Tanabe & Partners — their office is at 2-7-3 Shibuya, Daiichi-Bunko Building 5F"
+  },
+  {
+    "qid": "rest_q03",
+    "category": "early_static",
+    "question": "What was the key money amount Kenta paid when signing the lease for the Higashi-Azabu restaurant space?",
+    "answer": "2,922,000 yen",
+    "answer_source_session": 5,
+    "answer_source_quote": "The key money came out to 2,922,000 yen, which is exactly six months of base rent"
+  },
+  {
+    "qid": "rest_q04",
+    "category": "early_static",
+    "question": "How many distinct wine labels were included in Osteria Morishita's opening cellar order from Nakata Shoji?",
+    "answer": "47 labels",
+    "answer_source_session": 11,
+    "answer_source_quote": "On the label count, we settled on 47 labels for the opening list"
+  },
+  {
+    "qid": "rest_q05",
+    "category": "mid_static",
+    "question": "At which Daikanyama restaurant had head chef Marco Petrelli worked most recently before joining Osteria Morishita?",
+    "answer": "Ristorante Acqua Pazza",
+    "answer_source_session": 13,
+    "answer_source_quote": "His most recent position was at Ristorante Acqua Pazza, the Italian restaurant in Daikanyama that has a very good reputation for serious regional cooking"
+  },
+  {
+    "qid": "rest_q06",
+    "category": "mid_static",
+    "question": "What was the name of the health inspector who conducted the initial permit inspection of Osteria Morishita?",
+    "answer": "Mr. Ogawa",
+    "answer_source_session": 14,
+    "answer_source_quote": "The health inspector's name was Mr. Ogawa, and he came from the Minato Ward Health Department"
+  },
+  {
+    "qid": "rest_q07",
+    "category": "mid_static",
+    "question": "What was the original price of the signature tagliatelle al ragu bolognese when the menu was first finalized?",
+    "answer": "2,400 yen",
+    "answer_source_session": 15,
+    "answer_source_quote": "2,400 yen for the tagliatelle feels exactly right. Marco had actually suggested the same number independently when I asked him what he thought it was worth"
+  },
+  {
+    "qid": "rest_q08",
+    "category": "mid_static",
+    "question": "What hourly rate was Mrs. Yoneda hired at when she joined Osteria Morishita as dishwasher in December 2025?",
+    "answer": "1,400 yen per hour",
+    "answer_source_session": 23,
+    "answer_source_quote": "We're bringing her in at 1,400 yen per hour, and she'll be working 4 hours nightly"
+  },
+  {
+    "qid": "rest_q09",
+    "category": "update_tracking",
+    "question": "What is the current name of Kenta's restaurant? (It was changed from the original working name.)",
+    "answer": "Osteria Morishita",
+    "answer_source_session": 12,
+    "answer_source_quote": "Decision to rename from 'Ginza Trattoria' to 'Osteria Morishita'"
+  },
+  {
+    "qid": "rest_q10",
+    "category": "update_tracking",
+    "question": "What is the current price of the tagliatelle al ragu bolognese after the April 2026 menu revision?",
+    "answer": "2,700 yen",
+    "answer_source_session": 31,
+    "answer_source_quote": "the most important single change was on the tagliatelle al ragu bolognese, which I raised from 2,400 to 2,700 yen"
+  },
+  {
+    "qid": "rest_q11",
+    "category": "update_tracking",
+    "question": "What is Osteria Morishita's most recent Tabelog rating mentioned in the chat? (It started at 3.42 and rose over time.)",
+    "answer": "3.61",
+    "answer_source_session": 28,
+    "answer_source_quote": "We're currently sitting at a 3.61 rating after 24 reviews"
+  },
+  {
+    "qid": "rest_q12",
+    "category": "update_tracking",
+    "question": "What is the current price of the 2-course lunch set at Osteria Morishita after the April 2026 revision? (It was originally 1,800 yen.)",
+    "answer": "2,000 yen",
+    "answer_source_session": 31,
+    "answer_source_quote": "I also revised the lunch courses: the 2-course went up to 2,000 yen and the 3-course went up to 2,600 yen"
+  },
+  {
+    "qid": "rest_q13",
+    "category": "synthesis",
+    "question": "Kenta worked for 11 years at a large trading company before opening his restaurant. That same former employer later hosted a private dinner at Osteria Morishita. What per-person price was charged for that corporate dinner?",
+    "answer": "12,000 yen per person",
+    "answer_source_session": 23,
+    "answer_source_quote": "We landed on a 12,000 yen per person fixed menu. That's our highest per-head price point for any group event we've done so far"
+  },
+  {
+    "qid": "rest_q14",
+    "category": "synthesis",
+    "question": "The real estate broker who helped Kenta find the Higashi-Azabu property was introduced by a college friend named Daichi Sasaki. The renovation of that property was later completed late. How many days past the projected completion date did the renovation finish?",
+    "answer": "four days",
+    "answer_source_session": 14,
+    "answer_source_quote": "the renovation finished on August 26. So August 26 is the actual completion date, which is four days past the contractual target"
+  },
+  {
+    "qid": "rest_q15",
+    "category": "synthesis",
+    "question": "Kenta's wine account manager Mariko Nakata at Nakata Shoji — the same person who later helped recruit head chef Marco Petrelli — was originally introduced to Kenta by a sommelier friend. Where did that sommelier friend work?",
+    "answer": "Hotel Okura",
+    "answer_source_session": 11,
+    "answer_source_quote": "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura"
+  },
+  {
+    "qid": "rest_q16",
+    "category": "synthesis",
+    "question": "The soft opening revealed that the pasta water station was too small. Later, when Kenta reviewed Q1 2026 results, how many members had signed up for the wine club Cantina Morishita that his service manager designed and Mariko Nakata helped source wines for?",
+    "answer": "23 members",
+    "answer_source_session": 29,
+    "answer_source_quote": "Cantina Morishita — that's what we named it — currently has 23 members signed"
+  }
+]

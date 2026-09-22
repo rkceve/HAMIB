@@ -1,0 +1,1562 @@
+[
+ {
+  "qid": "f001",
+  "source_session": 0,
+  "fact_quote": "AI tinkerersのglobal hackathon",
+  "question": "What hackathon was the user participating in during this session?",
+  "gold_short": "AI Tinkerers Global Hackathon",
+  "tier1_aliases": [
+   "AI Tinkerers",
+   "AI tinkerers global hackathon"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f002",
+  "source_session": 0,
+  "fact_quote": "Agents, Everywhere: Beyond the Chatbox",
+  "question": "What was the hackathon's theme?",
+  "gold_short": "Agents, Everywhere: Beyond the Chatbox",
+  "tier1_aliases": [
+   "Agents, Everywhere",
+   "Beyond the Chatbox"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f003",
+  "source_session": 0,
+  "fact_quote": "codex-cli 0.153.4",
+  "question": "What version of the Codex CLI was installed on the development PC?",
+  "gold_short": "0.153.4",
+  "tier1_aliases": [
+   "codex-cli 0.153.4"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f004",
+  "source_session": 0,
+  "fact_quote": "model = \"gpt-5.3-codex\"",
+  "question": "What model was configured as default in the Codex config file at the start of the session?",
+  "gold_short": "gpt-5.3-codex",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f005",
+  "source_session": 0,
+  "fact_quote": "RCON 1 往復が 150〜200 ms",
+  "question": "Roughly how long was one RCON round trip between the dev PC and the server (in milliseconds)?",
+  "gold_short": "150",
+  "tier1_aliases": [
+   "150〜200",
+   "150-200 ms",
+   "150 to 200"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f006",
+  "source_session": 0,
+  "fact_quote": "`forceload add` で解決する",
+  "question": "Which Minecraft command was needed before placing blocks in unloaded chunks?",
+  "gold_short": "forceload add",
+  "tier1_aliases": [
+   "forceload"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f007",
+  "source_session": 0,
+  "fact_quote": "バニラに「座標のブロック ID を返す」命令が無い",
+  "question": "Why could the original plan's undo design (record and restore each placed block) not be implemented in vanilla Minecraft?",
+  "gold_short": "no command returns the block id at a coordinate",
+  "tier1_aliases": [
+   "座標のブロック ID を返す",
+   "no command to read a block"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f008",
+  "source_session": 0,
+  "fact_quote": "施工前に敷地を `/clone` で遠方へ退避",
+  "question": "What undo mechanism did the assistant recommend instead?",
+  "gold_short": "/clone",
+  "tier1_aliases": [
+   "clone",
+   "clone the site away and clone it back"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f009",
+  "source_session": 1,
+  "fact_quote": "日本にある機体でホストして",
+  "question": "In which country was the Minecraft server hosted?",
+  "gold_short": "Japan",
+  "tier1_aliases": [
+   "日本"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f010",
+  "source_session": 1,
+  "fact_quote": "cathedral.litematic",
+  "question": "What was the file name of the reference schematic the user called their best work?",
+  "gold_short": "cathedral.litematic",
+  "tier1_aliases": [
+   "cathedral"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f011",
+  "source_session": 1,
+  "fact_quote": "このschemは1.21.8で作ってる",
+  "question": "What Minecraft version was the cathedral schematic made in?",
+  "gold_short": "1.21.8",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f012",
+  "source_session": 1,
+  "fact_quote": "size {'z': Int(81), 'x': Int(186), 'y': Int(109)}",
+  "question": "What are the dimensions of the cathedral schematic (x, y, z in blocks)?",
+  "gold_short": "186 x 109 x 81",
+  "tier1_aliases": [
+   "186×109×81",
+   "186 x 109 x 81",
+   "186 & 109 & 81"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f013",
+  "source_session": 1,
+  "fact_quote": "blocks 64062",
+  "question": "How many blocks does the cathedral schematic contain?",
+  "gold_short": "64062",
+  "tier1_aliases": [
+   "64,062",
+   "64062",
+   "64k",
+   "64,000"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f014",
+  "source_session": 1,
+  "fact_quote": "DataVersion 4440",
+  "question": "What DataVersion does the cathedral schematic carry?",
+  "gold_short": "4440",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f015",
+  "source_session": 1,
+  "fact_quote": "12 ブロック周期",
+  "question": "What is the repeating period (in blocks) of the cathedral's long exterior wall bays?",
+  "gold_short": "12",
+  "tier1_aliases": [
+   "12 ブロック",
+   "12-block"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f016",
+  "source_session": 1,
+  "fact_quote": "Paper 1.21.8 と Java 21",
+  "question": "Which server software and Java version did the requirements document ask for?",
+  "gold_short": "Paper 1.21.8 and Java 21",
+  "tier1_aliases": [
+   "Paper 1.21.8 & Java 21"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f017",
+  "source_session": 1,
+  "fact_quote": "地面が y=0",
+  "question": "At what y level is the ground surface on the demo world?",
+  "gold_short": "y=0",
+  "tier1_aliases": [
+   "0",
+   "y = 0",
+   "y 0"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f018",
+  "source_session": 6,
+  "fact_quote": "203.0.113.12:25566",
+  "question": "What was the game connection address (IP:port) of the demo server?",
+  "gold_short": "203.0.113.12:25566",
+  "tier1_aliases": [
+   "203.0.113.12",
+   "25566"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f019",
+  "source_session": 6,
+  "fact_quote": "RCON           │ 25576",
+  "question": "Which port did the demo server's RCON listen on?",
+  "gold_short": "25576",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f020",
+  "source_session": 6,
+  "fact_quote": "~/buildagent-server/.rcon-password",
+  "question": "Under what path on the server was the RCON password stored?",
+  "gold_short": "~/buildagent-server/.rcon-password",
+  "tier1_aliases": [
+   ".rcon-password"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f021",
+  "source_session": 6,
+  "fact_quote": "sudo systemctl start buildagent",
+  "question": "What systemd unit name started and stopped the demo Minecraft server?",
+  "gold_short": "buildagent",
+  "tier1_aliases": [
+   "systemctl start buildagent"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f022",
+  "source_session": 6,
+  "fact_quote": "otherproj は 25565 で稼働継続中",
+  "question": "On which port did the pre-existing other project's server keep running while the demo server used 25566?",
+  "gold_short": "25565",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f023",
+  "source_session": 5,
+  "fact_quote": "カトリック清水教会",
+  "question": "Which real church was chosen as the subject for Astra to reproduce?",
+  "gold_short": "Catholic Shimizu Church",
+  "tier1_aliases": [
+   "清水教会",
+   "Shimizu Church",
+   "Old Catholic Shimizu Church",
+   "カトリック清水教会"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f024",
+  "source_session": 5,
+  "fact_quote": "静岡にある",
+  "question": "In which prefecture is the subject church located?",
+  "gold_short": "Shizuoka",
+  "tier1_aliases": [
+   "静岡"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f025",
+  "source_session": 5,
+  "fact_quote": "1935 年築",
+  "question": "In what year was the subject church built?",
+  "gold_short": "1935",
+  "tier1_aliases": [
+   "昭和10年",
+   "Showa 10"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f026",
+  "source_session": 5,
+  "fact_quote": "幅 13 m × 奥行 22 m × 高さ 15 m",
+  "question": "What is the estimated real-world footprint and height of the church (width x depth x height in metres)?",
+  "gold_short": "13 m x 22 m x 15 m",
+  "tier1_aliases": [
+   "13 m × 22 m × 15 m",
+   "13 & 22 & 15"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f027",
+  "source_session": 5,
+  "fact_quote": "1/110 の記念模型",
+  "question": "From what scale model were the church's real dimensions back-calculated?",
+  "gold_short": "1/110",
+  "tier1_aliases": [
+   "1:110"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f028",
+  "source_session": 6,
+  "fact_quote": "じゃあ2:1でいいよ",
+  "question": "What build scale was finally decided for the church (blocks per real metre)?",
+  "gold_short": "2:1",
+  "tier1_aliases": [
+   "2 to 1",
+   "2 blocks per metre",
+   "1 real metre = 2 blocks"
+  ],
+  "kind": "updated_final",
+  "history": [
+   {
+    "rt": 5,
+    "value": "1:1"
+   }
+  ],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f029",
+  "source_session": 5,
+  "fact_quote": "2024 年 1 月に解体済み",
+  "question": "In which month and year was the old church demolished?",
+  "gold_short": "January 2024",
+  "tier1_aliases": [
+   "2024 年 1 月",
+   "2024"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f030",
+  "source_session": 6,
+  "fact_quote": "指示文は英語で",
+  "question": "In what language did the user ask for the Astra instruction text to be written, and why?",
+  "gold_short": "English",
+  "tier1_aliases": [
+   "英語",
+   "for the GitHub reference"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f031",
+  "source_session": 6,
+  "fact_quote": "大聖堂は見せないで素のastraの全力を見る",
+  "question": "Was the cathedral shown to Astra for the first (plain) generation?",
+  "gold_short": "No",
+  "tier1_aliases": [
+   "not shown",
+   "大聖堂は見せない",
+   "without the cathedral"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f032",
+  "source_session": 6,
+  "fact_quote": "9,294 ブロック",
+  "question": "How many blocks did the plain (no-harness) Astra church contain?",
+  "gold_short": "9294",
+  "tier1_aliases": [
+   "9,294"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f033",
+  "source_session": 6,
+  "fact_quote": "4,035 コマンド",
+  "question": "How many RCON commands did streaming the plain church take?",
+  "gold_short": "4035",
+  "tier1_aliases": [
+   "4,035"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f034",
+  "source_session": 6,
+  "fact_quote": "毎秒 60 コマンド",
+  "question": "At what rate (commands per second) was the plain church streamed for the visible build-up?",
+  "gold_short": "60",
+  "tier1_aliases": [
+   "60 コマンド",
+   "60 commands/s"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f035",
+  "source_session": 6,
+  "fact_quote": "Paper 同梱の spark プロファイラが Java 26 上で native クラッシュ",
+  "question": "What caused the demo server to crash every ~78 seconds, and how was it fixed?",
+  "gold_short": "spark profiler on Java 26; disabled in paper-global.yml",
+  "tier1_aliases": [
+   "spark",
+   "spark を無効化"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f036",
+  "source_session": 6,
+  "fact_quote": "2 パケット連送で切断される Minecraft 側の癖",
+  "question": "What Minecraft RCON quirk broke the first realization-layer client, and what was the fix?",
+  "gold_short": "RCON handles one packet per read; switched to one command one response",
+  "tier1_aliases": [
+   "1 コマンド 1 応答",
+   "one packet",
+   "1 パケット"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f037",
+  "source_session": 7,
+  "fact_quote": "写真 7 枚（正面・側面・全景）",
+  "question": "How many reference photos of the church were attached to the Astra prompt?",
+  "gold_short": "7",
+  "tier1_aliases": [
+   "seven",
+   "7 枚"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f038",
+  "source_session": 6,
+  "fact_quote": "無作為に選んだ 6 か所",
+  "question": "How many randomly sampled positions were verified in-world after the plain church was streamed?",
+  "gold_short": "6",
+  "tier1_aliases": [
+   "six",
+   "6 か所"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f039",
+  "source_session": 9,
+  "fact_quote": "構成は2本立て",
+  "question": "What are the two parts of the harness design the user defined?",
+  "gold_short": "spoken harness (system prompt of principles) and coded patterns (helper functions)",
+  "tier1_aliases": [
+   "口頭のハーネス",
+   "コード化されたパターン",
+   "spoken harness",
+   "coded patterns",
+   "2本立て"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f040",
+  "source_session": 4,
+  "fact_quote": "コーディングはsonnet5のエージェントにやらせて",
+  "question": "Which model did the user assign to write the code, to save tokens?",
+  "gold_short": "sonnet 5",
+  "tier1_aliases": [
+   "sonnet5",
+   "Sonnet 5",
+   "sonnet"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f041",
+  "source_session": 3,
+  "fact_quote": "実装はまだ始めないで。まだ設計が確定してない。",
+  "question": "What did the user tell the assistant right after two implementation agents were launched at RT 2?",
+  "gold_short": "Do not start implementing yet; the design is not fixed",
+  "tier1_aliases": [
+   "実装はまだ始めないで",
+   "not start",
+   "design is not fixed",
+   "設計が確定してない"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f042",
+  "source_session": 10,
+  "fact_quote": "\"file_path\": \"C:\\\\Users\\\\user\\\\mcbuild\\\\DSL.md\"",
+  "question": "What file holds the DSL specification (the fixed contract for helper functions)?",
+  "gold_short": "DSL.md",
+  "tier1_aliases": [
+   "mcbuild/DSL.md"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f043",
+  "source_session": 10,
+  "fact_quote": "4 本を並列で発注しました",
+  "question": "How many sonnet implementation agents were launched in parallel for the DSL layer?",
+  "gold_short": "4",
+  "tier1_aliases": [
+   "four",
+   "4 本"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f044",
+  "source_session": 11,
+  "fact_quote": "mcbuild/prompts/AGENTS.md",
+  "question": "What is the file name of the translated builder's principles that Codex reads?",
+  "gold_short": "AGENTS.md",
+  "tier1_aliases": [
+   "mcbuild/prompts/AGENTS.md",
+   "prompts/AGENTS.md"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f045",
+  "source_session": 11,
+  "fact_quote": "屋根の頂部 1 ブロック幅の装飾、規模に応じた土台と柱の接続、梁の端のアーチ",
+  "question": "Which three elements from the principles were missing from the DSL and had to be added?",
+  "gold_short": "ridge ornament, plinth (foundation), beam",
+  "tier1_aliases": [
+   "土台・梁・棟飾り",
+   "plinth",
+   "beam",
+   "ridge"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f046",
+  "source_session": 15,
+  "fact_quote": "ハーネスっていうのは僕のプロンプトと大聖堂のパーツを参照する仕組み",
+  "question": "According to the user, what does 'the harness' consist of?",
+  "gold_short": "the user's prompt and the mechanism referencing the cathedral's parts",
+  "tier1_aliases": [
+   "僕のプロンプトと大聖堂のパーツを参照する仕組み",
+   "prompt and cathedral parts",
+   "大聖堂のパーツ"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f047",
+  "source_session": 11,
+  "fact_quote": "横幅のブロック数は奇数",
+  "question": "According to the builder's first principle, what parity must the block count of a building's width have?",
+  "gold_short": "odd",
+  "tier1_aliases": [
+   "奇数",
+   "odd number of blocks"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f048",
+  "source_session": 11,
+  "fact_quote": "屋根は基本的に階段",
+  "question": "What block type must roofs be made of according to the builder's principles?",
+  "gold_short": "stairs only",
+  "tier1_aliases": [
+   "階段のみ",
+   "stairs"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f049",
+  "source_session": 13,
+  "fact_quote": "dgx sparkがもらえる",
+  "question": "What prize would the Ambiguous sponsor award give?",
+  "gold_short": "DGX Spark",
+  "tier1_aliases": [
+   "dgx spark"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f050",
+  "source_session": 13,
+  "fact_quote": "15〜25% です",
+  "question": "What probability did the assistant estimate for winning the Ambiguous sponsor prize with the proposed integration?",
+  "gold_short": "15-25%",
+  "tier1_aliases": [
+   "15〜25%",
+   "15 to 25",
+   "15-25"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f051",
+  "source_session": 12,
+  "fact_quote": "https://app.ambiguous.ai/api/",
+  "question": "What is the base URL of the Ambiguous REST API found during the session?",
+  "gold_short": "https://app.ambiguous.ai/api/",
+  "tier1_aliases": [
+   "app.ambiguous.ai/api"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f052",
+  "source_session": 24,
+  "fact_quote": "Ambiguous 連携は見送り",
+  "question": "Was the Ambiguous integration ultimately implemented before the deadline?",
+  "gold_short": "No, it was dropped",
+  "tier1_aliases": [
+   "見送り",
+   "dropped",
+   "not implemented",
+   "no"
+  ],
+  "kind": "updated_final",
+  "history": [
+   {
+    "rt": 13,
+    "value": "recommended minimal form"
+   }
+  ],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f053",
+  "source_session": 16,
+  "fact_quote": "10,095",
+  "question": "How many blocks did the harness version of the church contain?",
+  "gold_short": "10095",
+  "tier1_aliases": [
+   "10,095"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f054",
+  "source_session": 16,
+  "fact_quote": "7 分 41 秒",
+  "question": "How long did Astra take to generate the harness version of the church?",
+  "gold_short": "7 minutes 41 seconds",
+  "tier1_aliases": [
+   "7 分 41 秒",
+   "7m41s",
+   "7:41"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f055",
+  "source_session": 16,
+  "fact_quote": "29（奇数、原則どおり）",
+  "question": "What was the width (in blocks) of the harness version, and was it odd or even?",
+  "gold_short": "29, odd",
+  "tier1_aliases": [
+   "29 & odd",
+   "29 & 奇数"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f056",
+  "source_session": 14,
+  "fact_quote": "原点 (-60, 1, 0)",
+  "question": "Where (origin x coordinate) was the harness church placed relative to the plain one?",
+  "gold_short": "x=-60",
+  "tier1_aliases": [
+   "-60",
+   "(-60, 1, 0)",
+   "west of the plain version"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f057",
+  "source_session": 16,
+  "fact_quote": "check(): 0 warning(s)",
+  "question": "How many check() warnings did the harness church preview report?",
+  "gold_short": "0",
+  "tier1_aliases": [
+   "zero",
+   "0 warning"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f058",
+  "source_session": 16,
+  "fact_quote": "試験体の 4,986 ブロック",
+  "question": "How many blocks did the undo of the DSL validation test building remove from the server?",
+  "gold_short": "4986",
+  "tier1_aliases": [
+   "4,986"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f059",
+  "source_session": 19,
+  "fact_quote": "Windows の既定文字コード（cp932）で Codex の UTF-8 出力を読もうとして落ち",
+  "question": "Why did the first !fix appear slow even though Astra finished in about a minute?",
+  "gold_short": "the bridge crashed decoding UTF-8 output under Windows cp932",
+  "tier1_aliases": [
+   "cp932",
+   "UTF-8",
+   "文字コード"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f060",
+  "source_session": 19,
+  "fact_quote": "3,343 追加、1,921 削除",
+  "question": "How many blocks were added and removed by the first !fix (nave walls and roof raised)?",
+  "gold_short": "+3343 -1921",
+  "tier1_aliases": [
+   "3343 & 1921",
+   "3,343 & 1,921"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f061",
+  "source_session": 19,
+  "fact_quote": "身廊の壁高 12→16",
+  "question": "By how many blocks did the first !fix raise the nave wall height (from what to what)?",
+  "gold_short": "12 to 16",
+  "tier1_aliases": [
+   "12→16",
+   "12 & 16"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f062",
+  "source_session": 20,
+  "fact_quote": "その 19 秒前だったため拾えていません",
+  "question": "Why was the second !fix (towers taller) initially not picked up by the bridge?",
+  "gold_short": "it was typed 19 seconds before the bridge restarted",
+  "tier1_aliases": [
+   "19 秒前",
+   "19 seconds",
+   "before the bridge restart",
+   "restart"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f063",
+  "source_session": 20,
+  "fact_quote": "左右の塔を13ブロック高くし",
+  "question": "By how many blocks did Astra raise the towers in the successful second !fix?",
+  "gold_short": "13",
+  "tier1_aliases": [
+   "13 ブロック",
+   "thirteen"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f064",
+  "source_session": 20,
+  "fact_quote": "依頼から反映まで約 4 分",
+  "question": "How long did the first fully automatic !fix loop take from chat receipt to world update?",
+  "gold_short": "about 4 minutes",
+  "tier1_aliases": [
+   "約 4 分",
+   "3 分 50 秒",
+   "3:50",
+   "4 minutes"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f065",
+  "source_session": 22,
+  "fact_quote": "「柱と柱の間隔を 5 に」と解釈",
+  "question": "How did Astra interpret 'make the wall width odd' in the third live !fix?",
+  "gold_short": "as pillar spacing of 5 blocks",
+  "tier1_aliases": [
+   "5 ブロック",
+   "柱間隔",
+   "5 blocks"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f066",
+  "source_session": 22,
+  "fact_quote": "並列は想定していません。直列の待ち行列です",
+  "question": "Does the bridge run multiple !fix requests in parallel?",
+  "gold_short": "No, they are queued serially",
+  "tier1_aliases": [
+   "直列",
+   "serial",
+   "queue",
+   "no"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f067",
+  "source_session": 24,
+  "fact_quote": "15:30が締め切りで",
+  "question": "What was the hackathon submission deadline (local time) the user stated?",
+  "gold_short": "15:30",
+  "tier1_aliases": [
+   "3:30 pm",
+   "15時30分"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f068",
+  "source_session": 24,
+  "fact_quote": "14:35 まで",
+  "question": "What internal deadline did the assistant set for the window-stamp implementation?",
+  "gold_short": "14:35",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f069",
+  "source_session": 25,
+  "fact_quote": "example-user/minecraft-building-agent",
+  "question": "What is the GitHub repository path for the project?",
+  "gold_short": "example-user/minecraft-building-agent",
+  "tier1_aliases": [
+   "minecraft-building-agent"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f070",
+  "source_session": 25,
+  "fact_quote": "all 27 windows switched to the cathedral style",
+  "question": "How many windows did Astra switch to the cathedral style in the third !fix turn?",
+  "gold_short": "27",
+  "tier1_aliases": [
+   "all 27",
+   "27 windows"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f071",
+  "source_session": 25,
+  "fact_quote": "+2653 -753 blocks",
+  "question": "How many blocks did the third !fix turn add and remove?",
+  "gold_short": "+2653 -753",
+  "tier1_aliases": [
+   "2653 & 753",
+   "2,653 & 753"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f072",
+  "source_session": 26,
+  "fact_quote": "Codex が turn 3 で当てたパッチはターンログ（JSONL）に残っているので、それを逆適用",
+  "question": "How was the third !fix reverted, given that !undo only restores the original terrain?",
+  "gold_short": "by reverse-applying the patch from Codex's rollout JSONL",
+  "tier1_aliases": [
+   "reverse & patch",
+   "逆適用"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f073",
+  "source_session": 27,
+  "fact_quote": "原点 x=36",
+  "question": "At what x origin was the filming copy (pre-fix harness church, church_v0) placed?",
+  "gold_short": "x=36",
+  "tier1_aliases": [
+   "36",
+   "(36, 1, 0)"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f074",
+  "source_session": 27,
+  "fact_quote": "build_id `church_v0`",
+  "question": "What build_id was given to the filming copy of the church?",
+  "gold_short": "church_v0",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f075",
+  "source_session": 28,
+  "fact_quote": "Astra の砂箱内で `python` が見つかっていません",
+  "question": "Why did Astra's self-check preview not run in the filming-build fixes, and what was the fix?",
+  "gold_short": "python was not on PATH in Astra's sandbox; absolute python path added to the turn prefix",
+  "tier1_aliases": [
+   "absolute & path",
+   "絶対パス",
+   "PATH & absolute",
+   "砂箱"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f076",
+  "source_session": 28,
+  "fact_quote": "両塔を 4 ブロック、尖塔を 6 ブロック高く",
+  "question": "By how many blocks were the towers and spires raised in the filming build's first fix?",
+  "gold_short": "towers 4, spires 6",
+  "tier1_aliases": [
+   "4 & 6",
+   "4 ブロック & 6 ブロック"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f077",
+  "source_session": 29,
+  "fact_quote": "mcbuild — an in-game Minecraft building agent that builds like a master builder",
+  "question": "What is the project title used in the submission text?",
+  "gold_short": "mcbuild",
+  "tier1_aliases": [
+   "mcbuild — an in-game Minecraft building agent"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f078",
+  "source_session": 30,
+  "fact_quote": "113 tests cover",
+  "question": "How many tests did the project have at submission according to the description?",
+  "gold_short": "113",
+  "tier1_aliases": [
+   "113 tests"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f079",
+  "source_session": 31,
+  "fact_quote": "計 160 か所",
+  "question": "How many occurrences of the real-name home path were found in the public repo during the privacy audit?",
+  "gold_short": "160",
+  "tier1_aliases": [
+   "約 160",
+   "160 か所"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f080",
+  "source_session": 32,
+  "fact_quote": "Astra の生ログ 2 本を公開から外し",
+  "question": "What did the assistant replace the raw Astra run logs with before publishing, and why?",
+  "gold_short": "summaries, because the logs contained sandbox file listings",
+  "tier1_aliases": [
+   "要約",
+   "summary",
+   "run_v1_summary",
+   "砂箱内のファイル探索"
+  ],
+  "kind": "definition",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f081",
+  "source_session": 33,
+  "fact_quote": "catalog/cathedral_stamps.json",
+  "question": "What is the size and content of the published window stamp catalog JSON?",
+  "gold_short": "36 KB, one cathedral window bay (11x26x4 blocks)",
+  "tier1_aliases": [
+   "36 KB",
+   "11×26×4",
+   "cathedral_stamps.json"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f085",
+  "source_session": 14,
+  "fact_quote": "前の出力から変えるのはハーネスを足すだけ",
+  "question": "Per the user's instruction at RT 14, what was the ONLY thing allowed to differ between the first Astra generation and the second one?",
+  "gold_short": "adding the harness",
+  "tier1_aliases": [
+   "ハーネスを足すだけ",
+   "harness",
+   "AGENTS.md",
+   "read AGENTS.md"
+  ],
+  "kind": "policy",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f086",
+  "source_session": 17,
+  "fact_quote": "dark_spire_right",
+  "question": "Which element name did the raycast report the player was looking at during the first !fix?",
+  "gold_short": "dark_spire_right",
+  "tier1_aliases": [],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f089",
+  "source_session": 6,
+  "fact_quote": "-Xms2G -Xmx4G -jar paper-1.21.8-60.jar",
+  "question": "What maximum Java heap size (Xmx) was the demo Minecraft server started with?",
+  "gold_short": "4G",
+  "tier1_aliases": [
+   "-Xmx4G",
+   "4 GB",
+   "4GB"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f090",
+  "source_session": 6,
+  "fact_quote": "There are 0 of a max of 5 players online",
+  "question": "What was the maximum player count configured on the demo server?",
+  "gold_short": "5",
+  "tier1_aliases": [
+   "five",
+   "max of 5"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f091",
+  "source_session": 6,
+  "fact_quote": "paper-1.21.8-60.jar",
+  "question": "Which Paper build number was the demo server running?",
+  "gold_short": "paper-1.21.8-60",
+  "tier1_aliases": [
+   "build 60",
+   "1.21.8-60"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f087",
+  "source_session": 3,
+  "fact_quote": "8 秒で返りました",
+  "question": "How many seconds did the first `codex exec` test with gpt-6-astra take to return?",
+  "gold_short": "8",
+  "tier1_aliases": [
+   "約 8 秒",
+   "7.9",
+   "8 秒"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "f088",
+  "source_session": 2,
+  "fact_quote": "chatgptのplusプランに入ってる",
+  "question": "Which ChatGPT subscription plan did the user say they were on?",
+  "gold_short": "Plus",
+  "tier1_aliases": [
+   "ChatGPT Plus",
+   "plusプラン"
+  ],
+  "kind": "value",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a001",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "What GPU model was installed in the development PC used during the hackathon?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a002",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "What was the exact 32-character RCON password string of the demo server?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a004",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "What was the total electricity cost of running the demo server that day?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a005",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "Which team placed first in the hackathon's global ranking?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a006",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "How many blocks does the apartment schematic in the same folder contain?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a007",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "How many people watched the submitted demo video on the day of submission?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a008",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "What Minecraft username did the user's teammate use on the demo server?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ },
+ {
+  "qid": "a010",
+  "source_session": -1,
+  "fact_quote": "",
+  "question": "How many lines of code did the final mcbuild package contain?",
+  "gold_short": "unknown",
+  "tier1_aliases": [
+   "not in context",
+   "not mentioned",
+   "not present",
+   "no information"
+  ],
+  "kind": "absent",
+  "history": [],
+  "excluded": false,
+  "exclusion_reason": "",
+  "legacy": false
+ }
+]

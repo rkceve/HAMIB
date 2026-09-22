@@ -1,0 +1,5 @@
+results/personamem_probe/
+results/audit/_sessions/
+results/audit/_novel_sessions/
+__pycache__/
+results/spec_run*/

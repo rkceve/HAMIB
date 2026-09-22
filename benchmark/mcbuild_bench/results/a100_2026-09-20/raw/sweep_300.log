@@ -1,0 +1,28 @@
+chunks total=3388 sampled=300
+[v0] 25/300 {'ok_first': 24, 'ok_retry': 0, 'fail': 1} 27s
+[v0] 50/300 {'ok_first': 48, 'ok_retry': 0, 'fail': 2} 48s
+[v0] 75/300 {'ok_first': 70, 'ok_retry': 0, 'fail': 5} 85s
+[v0] 100/300 {'ok_first': 94, 'ok_retry': 0, 'fail': 6} 113s
+[v0] 125/300 {'ok_first': 118, 'ok_retry': 0, 'fail': 7} 139s
+[v0] 150/300 {'ok_first': 142, 'ok_retry': 1, 'fail': 7} 161s
+[v0] 175/300 {'ok_first': 166, 'ok_retry': 1, 'fail': 8} 186s
+[v0] 200/300 {'ok_first': 191, 'ok_retry': 1, 'fail': 8} 210s
+[v0] 225/300 {'ok_first': 215, 'ok_retry': 2, 'fail': 8} 232s
+[v0] 250/300 {'ok_first': 239, 'ok_retry': 2, 'fail': 9} 254s
+[v0] 275/300 {'ok_first': 263, 'ok_retry': 2, 'fail': 10} 282s
+[v0] 300/300 {'ok_first': 287, 'ok_retry': 2, 'fail': 11} 309s
+[v0] DONE {'ok_first': 287, 'ok_retry': 2, 'fail': 11}
+[v1] 25/300 {'ok_first': 21, 'ok_retry': 0, 'fail': 4} 35s
+[v1] 50/300 {'ok_first': 43, 'ok_retry': 0, 'fail': 7} 64s
+[v1] 75/300 {'ok_first': 64, 'ok_retry': 2, 'fail': 9} 103s
+[v1] 100/300 {'ok_first': 88, 'ok_retry': 3, 'fail': 9} 127s
+[v1] 125/300 {'ok_first': 107, 'ok_retry': 3, 'fail': 15} 165s
+[v1] 150/300 {'ok_first': 126, 'ok_retry': 6, 'fail': 18} 202s
+[v1] 175/300 {'ok_first': 147, 'ok_retry': 7, 'fail': 21} 238s
+[v1] 200/300 {'ok_first': 169, 'ok_retry': 8, 'fail': 23} 277s
+[v1] 225/300 {'ok_first': 192, 'ok_retry': 9, 'fail': 24} 299s
+[v1] 250/300 {'ok_first': 214, 'ok_retry': 9, 'fail': 27} 327s
+[v1] 275/300 {'ok_first': 232, 'ok_retry': 12, 'fail': 31} 376s
+[v1] 300/300 {'ok_first': 250, 'ok_retry': 15, 'fail': 35} 422s
+[v1] DONE {'ok_first': 250, 'ok_retry': 15, 'fail': 35}
+SWEEP_DONE

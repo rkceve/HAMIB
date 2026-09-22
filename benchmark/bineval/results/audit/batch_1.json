@@ -1,0 +1,400 @@
+[
+ {
+  "qid": "rest_s01_03",
+  "source_session": 1,
+  "question": "How much personal savings did Kenta have when he started planning the restaurant?",
+  "gold_short": "28 million yen",
+  "tier1_aliases": [
+   "28 million"
+  ],
+  "fact_quote": "Savings: 28 million yen"
+ },
+ {
+  "qid": "rest_s02_02",
+  "source_session": 2,
+  "question": "What dinner average ticket size per person did Kenta target during market research?",
+  "gold_short": "8,500 yen",
+  "tier1_aliases": [
+   "8,500"
+  ],
+  "fact_quote": "Average ticket size target: 8,500 yen per person dinner"
+ },
+ {
+  "qid": "rest_s03_01",
+  "source_session": 3,
+  "question": "What monthly revenue at full capacity did Kenta's business plan project?",
+  "gold_short": "4.2 million yen",
+  "tier1_aliases": [
+   "4.2 million"
+  ],
+  "fact_quote": "Projected monthly revenue at full capacity: 4.2 million yen"
+ },
+ {
+  "qid": "rest_s03_06",
+  "source_session": 3,
+  "question": "On which street address is accountant Tanabe's office located?",
+  "gold_short": "2-7-3 Shibuya",
+  "tier1_aliases": [
+   "Shibuya"
+  ],
+  "fact_quote": "Tanabe office address: 2-7-3 Shibuya"
+ },
+ {
+  "qid": "rest_s04_05",
+  "source_session": 4,
+  "question": "For which agency does Kenta's real estate broker Hamada work?",
+  "gold_short": "Plaza Homes Commercial",
+  "tier1_aliases": [
+   "Plaza Homes"
+  ],
+  "fact_quote": "broker Yusuke Hamada of Plaza Homes Commercial"
+ },
+ {
+  "qid": "rest_s05_04",
+  "source_session": 5,
+  "question": "What is the monthly common area fee for the restaurant space?",
+  "gold_short": "73,000 yen",
+  "tier1_aliases": [
+   "73,000"
+  ],
+  "fact_quote": "plus 73,000 yen common area fee"
+ },
+ {
+  "qid": "rest_s06_03",
+  "source_session": 6,
+  "question": "What was the initial renovation budget?",
+  "gold_short": "8.4 million yen",
+  "tier1_aliases": [
+   "8.4 million"
+  ],
+  "fact_quote": "Renovation budget: 8.4 million yen"
+ },
+ {
+  "qid": "rest_s07_02",
+  "source_session": 7,
+  "question": "At what interest rate was Kenta's Japan Finance Corporation loan finally approved?",
+  "gold_short": "1.95%",
+  "tier1_aliases": [
+   "1.95"
+  ],
+  "fact_quote": "approved 12 million yen (3 million below request) at 1.95%"
+ },
+ {
+  "qid": "rest_s08_01",
+  "source_session": 8,
+  "question": "On what date was the renovation projected to be completed (at kickoff)?",
+  "gold_short": "August 22",
+  "tier1_aliases": [],
+  "fact_quote": "Renovation started June 9, 2025, projected completion August 22"
+ },
+ {
+  "qid": "rest_s08_06",
+  "source_session": 8,
+  "question": "What bathroom layout did the architect suggest instead of a split layout?",
+  "gold_short": "single accessible unisex",
+  "tier1_aliases": [
+   "unisex"
+  ],
+  "fact_quote": "single accessible unisex instead of split"
+ },
+ {
+  "qid": "rest_s09_05",
+  "source_session": 9,
+  "question": "Which brand of refrigeration units did Kenta buy?",
+  "gold_short": "Hoshizaki",
+  "tier1_aliases": [],
+  "fact_quote": "Refrigeration: 2 Hoshizaki upright units, total 720,000 yen"
+ },
+ {
+  "qid": "rest_s10_04",
+  "source_session": 10,
+  "question": "What is the name of the produce broker who delivers to the restaurant each morning?",
+  "gold_short": "Kenji Ueno",
+  "tier1_aliases": [
+   "Ueno"
+  ],
+  "fact_quote": "Produce: morning delivery from Tsukiji-Ota Market via broker Kenji Ueno of Ueno Seika"
+ },
+ {
+  "qid": "rest_s11_03",
+  "source_session": 11,
+  "question": "What is the name of the sommelier friend who introduced Mariko Nakata to Kenta?",
+  "gold_short": "Reiko Igarashi",
+  "tier1_aliases": [
+   "Igarashi"
+  ],
+  "fact_quote": "Mariko introduced by sommelier friend Reiko Igarashi from Hotel Okura"
+ },
+ {
+  "qid": "rest_s12_02",
+  "source_session": 12,
+  "question": "In which district is the restaurant located, making the name 'Ginza Trattoria' confusing?",
+  "gold_short": "Azabu",
+  "tier1_aliases": [],
+  "fact_quote": "'Ginza Trattoria' confusing since restaurant is in Azabu"
+ },
+ {
+  "qid": "rest_s13_01",
+  "source_session": 13,
+  "question": "What is the name of the head chef Kenta hired?",
+  "gold_short": "Marco Petrelli",
+  "tier1_aliases": [
+   "Petrelli"
+  ],
+  "fact_quote": "Hired head chef: Marco Petrelli, 38 years old, Italian national from Modena"
+ },
+ {
+  "qid": "rest_s13_06",
+  "source_session": 13,
+  "question": "On what date did head chef Petrelli start?",
+  "gold_short": "September 1, 2025",
+  "tier1_aliases": [
+   "September 1"
+  ],
+  "fact_quote": "Petrelli will start September 1, 2025"
+ },
+ {
+  "qid": "rest_s14_05",
+  "source_session": 14,
+  "question": "What upgrade caused the renovation budget overage?",
+  "gold_short": "electrical panel upgrade",
+  "tier1_aliases": [
+   "electrical panel"
+  ],
+  "fact_quote": "Overage due to electrical panel upgrade required by inspection"
+ },
+ {
+  "qid": "rest_s15_04",
+  "source_session": 15,
+  "question": "To what per-person figure was the dinner average ticket projection revised down at menu finalization?",
+  "gold_short": "7,800 yen",
+  "tier1_aliases": [
+   "7,800"
+  ],
+  "fact_quote": "Dinner average ticket projection revised down: 7,800 yen per person"
+ },
+ {
+  "qid": "rest_s16_03",
+  "source_session": 16,
+  "question": "What is the name of the service manager Kenta hired?",
+  "gold_short": "Eiko Sawada",
+  "tier1_aliases": [
+   "Sawada"
+  ],
+  "fact_quote": "Service manager: Eiko Sawada, 41 years old, hotel background, salary 460,000 yen"
+ },
+ {
+  "qid": "rest_s17_02",
+  "source_session": 17,
+  "question": "How many days did the soft opening run?",
+  "gold_short": "four days",
+  "tier1_aliases": [
+   "4 days",
+   "four",
+   "4"
+  ],
+  "fact_quote": "four days, dinner only"
+ },
+ {
+  "qid": "rest_s18_01",
+  "source_session": 18,
+  "question": "What was the average kitchen ticket time during the soft opening?",
+  "gold_short": "38 minutes",
+  "tier1_aliases": [
+   "38"
+  ],
+  "fact_quote": "kitchen ticket times averaged 38 minutes (target 22)"
+ },
+ {
+  "qid": "rest_s18_06",
+  "source_session": 18,
+  "question": "Which table did service manager Sawada flag as having an acoustic issue?",
+  "gold_short": "table 7",
+  "tier1_aliases": [],
+  "fact_quote": "table 7 has acoustic issue near AC vent"
+ },
+ {
+  "qid": "rest_s20_05",
+  "source_session": 20,
+  "question": "How booked was the restaurant on its grand opening day, November 4?",
+  "gold_short": "fully booked",
+  "tier1_aliases": [
+   "fully"
+  ],
+  "fact_quote": "Grand opening November 4 went smoothly, fully booked"
+ },
+ {
+  "qid": "rest_s21_04",
+  "source_session": 21,
+  "question": "What is the name of the dishwasher candidate who lives in the same building?",
+  "gold_short": "Mrs. Yoneda",
+  "tier1_aliases": [
+   "Yoneda"
+  ],
+  "fact_quote": "Dishwasher candidate: Mrs. Yoneda, 58, lives in same building"
+ },
+ {
+  "qid": "rest_s22_03",
+  "source_session": 22,
+  "question": "Roughly how many months of cash runway did the restaurant have after November?",
+  "gold_short": "14 months",
+  "tier1_aliases": [
+   "14"
+  ],
+  "fact_quote": "Cash runway: roughly 14 months at current burn"
+ },
+ {
+  "qid": "rest_s23_03",
+  "source_session": 23,
+  "question": "At what hourly rate was Mrs. Yoneda hired as dishwasher?",
+  "gold_short": "1,400 yen per hour",
+  "tier1_aliases": [
+   "1,400 yen",
+   "1,400"
+  ],
+  "fact_quote": "Hired Mrs. Yoneda as dishwasher, 1,400 yen per hour, 4 hours nightly"
+ },
+ {
+  "qid": "rest_s25_02",
+  "source_session": 25,
+  "question": "To what inventory system did the restaurant switch in January?",
+  "gold_short": "Square Plus inventory module",
+  "tier1_aliases": [
+   "Square Plus"
+  ],
+  "fact_quote": "changed from paper to Square Plus inventory module"
+ },
+ {
+  "qid": "rest_s26_01",
+  "source_session": 26,
+  "question": "What is the name of the restaurant's wine club?",
+  "gold_short": "Cantina Morishita",
+  "tier1_aliases": [],
+  "fact_quote": "Wine club name: Cantina Morishita"
+ },
+ {
+  "qid": "rest_s26_06",
+  "source_session": 26,
+  "question": "Who is sourcing exclusive labels for the wine club?",
+  "gold_short": "Mariko Nakata",
+  "tier1_aliases": [
+   "Mariko"
+  ],
+  "fact_quote": "Mariko Nakata sourcing exclusive labels"
+ },
+ {
+  "qid": "rest_s27_05",
+  "source_session": 27,
+  "question": "Which dish was dropped temporarily during Petrelli's vacation coverage?",
+  "gold_short": "guinea fowl",
+  "tier1_aliases": [],
+  "fact_quote": "dropped guinea fowl temporarily"
+ },
+ {
+  "qid": "rest_s28_04",
+  "source_session": 28,
+  "question": "For which publication does critic Hiroko Sano write?",
+  "gold_short": "Asahi Shimbun Weekly",
+  "tier1_aliases": [
+   "Asahi Shimbun"
+  ],
+  "fact_quote": "restaurant critic from Asahi Shimbun Weekly"
+ },
+ {
+  "qid": "rest_s29_03",
+  "source_session": 29,
+  "question": "Which balsamic supplier did Petrelli add directly after his vacation?",
+  "gold_short": "Acetaia Giusti",
+  "tier1_aliases": [
+   "Giusti"
+  ],
+  "fact_quote": "New supplier added: Acetaia Giusti via Petrelli direct"
+ },
+ {
+  "qid": "rest_s30_02",
+  "source_session": 30,
+  "question": "What was the headline of the Asahi Shimbun review (Azabu's Quiet ...)?",
+  "gold_short": "Azabu's Quiet Modena",
+  "tier1_aliases": [
+   "Quiet Modena"
+  ],
+  "fact_quote": "Headline: 'Azabu's Quiet Modena: A Trattoria With Conviction'"
+ },
+ {
+  "qid": "rest_s31_01",
+  "source_session": 31,
+  "question": "To what price was the tagliatelle al ragu bolognese raised in the April 2026 revision?",
+  "gold_short": "2,700 yen",
+  "tier1_aliases": [
+   "2,700"
+  ],
+  "fact_quote": "Tagliatelle al ragu bolognese raised from 2,400 to 2,700 yen"
+ },
+ {
+  "qid": "rest_s31_06",
+  "source_session": 31,
+  "question": "On what date were the menu prices revised in 2026?",
+  "gold_short": "April 1",
+  "tier1_aliases": [],
+  "fact_quote": "Menu prices revised April 1"
+ },
+ {
+  "qid": "rest_s34_05",
+  "source_session": 34,
+  "question": "What was the cumulative revenue since opening at the six-month celebration?",
+  "gold_short": "28.4 million yen",
+  "tier1_aliases": [
+   "28.4 million"
+  ],
+  "fact_quote": "Revenue cumulative: 28.4 million yen since opening"
+ },
+ {
+  "qid": "rest_s36_04",
+  "source_session": 36,
+  "question": "How many weeks was the private-room construction window?",
+  "gold_short": "4 weeks",
+  "tier1_aliases": [
+   "four weeks"
+  ],
+  "fact_quote": "Construction window: 4 weeks, scheduled July 14 to August 9"
+ },
+ {
+  "qid": "rest_s37_03",
+  "source_session": 37,
+  "question": "What fee did labor consultant Mr. Endo charge for the employee handbook?",
+  "gold_short": "280,000 yen",
+  "tier1_aliases": [
+   "280,000"
+  ],
+  "fact_quote": "labor consultant Mr. Endo, fee 280,000 yen"
+ },
+ {
+  "qid": "rest_s38_02",
+  "source_session": 38,
+  "question": "To what hourly rate was Yui Tachibana raised in the performance-review adjustments?",
+  "gold_short": "1,500 yen per hour",
+  "tier1_aliases": [
+   "1,500 yen",
+   "1,500"
+  ],
+  "fact_quote": "Yui Tachibana raised to 1,500 yen per hour"
+ },
+ {
+  "qid": "rest_s39_01",
+  "source_session": 39,
+  "question": "On what date did Marubeni book the Sala Modena private room?",
+  "gold_short": "October 14",
+  "tier1_aliases": [],
+  "fact_quote": "Marubeni (former employer) booked Sala Modena October 14 for 14-person dinner"
+ },
+ {
+  "qid": "rest_s40_02",
+  "source_session": 40,
+  "question": "How many Tabelog reviews did the restaurant have at the one-year reflection?",
+  "gold_short": "91 reviews",
+  "tier1_aliases": [
+   "91"
+  ],
+  "fact_quote": "Tabelog rating now 3.78 with 91 reviews"
+ }
+]

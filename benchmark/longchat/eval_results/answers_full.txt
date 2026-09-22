@@ -1,0 +1,16 @@
+A1: 11 years
+A2: Daiichi-Bunko Building 5F
+A3: 2,922,000 yen
+A4: 47 labels
+A5: Ristorante Acqua Pazza
+A6: Mr. Ogawa
+A7: 2,400 yen
+A8: 1,400 yen per hour
+A9: Osteria Morishita
+A10: 2,700 yen
+A11: 3.61
+A12: 2,000 yen
+A13: 12,000 yen
+A14: 4 days
+A15: Hotel Okura
+A16: 23 members

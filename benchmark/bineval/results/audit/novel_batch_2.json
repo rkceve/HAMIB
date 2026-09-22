@@ -1,0 +1,320 @@
+[
+ {
+  "qid": "novel_s01_04",
+  "source_session": 1,
+  "question": "Who is the novel's antagonist, Eleanor's estranged sister?",
+  "gold_short": "Camille Reyes",
+  "tier1_aliases": [
+   "Camille"
+  ],
+  "fact_quote": "antagonist: her estranged sister Camille Reyes"
+ },
+ {
+  "qid": "novel_s02_02",
+  "source_session": 2,
+  "question": "What event is the Act 2 climax of the novel?",
+  "gold_short": "lighthouse fire",
+  "tier1_aliases": [],
+  "fact_quote": "Act 2 climax: lighthouse fire"
+ },
+ {
+  "qid": "novel_s02_05",
+  "source_session": 2,
+  "question": "With what event does Act 1 of the novel end?",
+  "gold_short": "arrival in Stonington",
+  "tier1_aliases": [
+   "arrival"
+  ],
+  "fact_quote": "Act 1 ends with arrival in Stonington"
+ },
+ {
+  "qid": "novel_s05_03",
+  "source_session": 5,
+  "question": "What is the original name of Eleanor's research vessel, introduced in session 5?",
+  "gold_short": "Persephone",
+  "tier1_aliases": [],
+  "fact_quote": "Eleanor's research vessel named Persephone"
+ },
+ {
+  "qid": "novel_s07_01",
+  "source_session": 7,
+  "question": "What is the name of Eleanor's high school flame added as a subplot in session 7?",
+  "gold_short": "Owen Trask",
+  "tier1_aliases": [
+   "Owen"
+  ],
+  "fact_quote": "decided to add subplot: Eleanor reconnects with high school flame Owen Trask"
+ },
+ {
+  "qid": "novel_s08_03",
+  "source_session": 8,
+  "question": "In which chapter does the lighthouse-keeper journal discovery occur?",
+  "gold_short": "chapter 5",
+  "tier1_aliases": [],
+  "fact_quote": "chapter 5 contains the lighthouse-keeper journal discovery"
+ },
+ {
+  "qid": "novel_s09_05",
+  "source_session": 9,
+  "question": "Did Maya decide to make the journal chapters first-person?",
+  "gold_short": "against first-person",
+  "tier1_aliases": [
+   "decided against",
+   "no"
+  ],
+  "fact_quote": "decided against journal chapters being first-person"
+ },
+ {
+  "qid": "novel_s10_05",
+  "source_session": 10,
+  "question": "Who initially wants to accept the developer's offer for the property?",
+  "gold_short": "Camille",
+  "tier1_aliases": [],
+  "fact_quote": "Camille initially wants to accept the offer"
+ },
+ {
+  "qid": "novel_s11_05",
+  "source_session": 11,
+  "question": "As of session 11, what was Eleanor's profession still noted as?",
+  "gold_short": "marine biologist",
+  "tier1_aliases": [],
+  "fact_quote": "Eleanor's profession noted as marine biologist still"
+ },
+ {
+  "qid": "novel_s12_04",
+  "source_session": 12,
+  "question": "How many years after the main events is the epilogue set?",
+  "gold_short": "3 years",
+  "tier1_aliases": [
+   "three years"
+  ],
+  "fact_quote": "epilogue set 3 years after main events"
+ },
+ {
+  "qid": "novel_s13_04",
+  "source_session": 13,
+  "question": "To what figure did Maya raise the target word count in session 13?",
+  "gold_short": "95000",
+  "tier1_aliases": [
+   "95,000"
+  ],
+  "fact_quote": "raised target word count to 95000"
+ },
+ {
+  "qid": "novel_s14_03",
+  "source_session": 14,
+  "question": "What was the revised word count after the structural pass in session 14?",
+  "gold_short": "81200",
+  "tier1_aliases": [
+   "81,200"
+  ],
+  "fact_quote": "revised word count after structural pass: 81200"
+ },
+ {
+  "qid": "novel_s15_03",
+  "source_session": 15,
+  "question": "How many questions were in the feedback form Maya sent to beta readers?",
+  "gold_short": "12-question",
+  "tier1_aliases": [
+   "12 questions",
+   "12"
+  ],
+  "fact_quote": "provided 12-question feedback form"
+ },
+ {
+  "qid": "novel_s16_01",
+  "source_session": 16,
+  "question": "What profession did Davinia recommend changing Eleanor to?",
+  "gold_short": "marine ecologist",
+  "tier1_aliases": [
+   "marine ecologist studying eelgrass die-off"
+  ],
+  "fact_quote": "Davinia recommended making Eleanor a marine ecologist studying eelgrass die-off"
+ },
+ {
+  "qid": "novel_s16_05",
+  "source_session": 16,
+  "question": "What did Davinia say about the protagonist's profession?",
+  "gold_short": "thin and underused",
+  "tier1_aliases": [
+   "thin",
+   "underused"
+  ],
+  "fact_quote": "Davinia suggested protagonist's profession felt thin and underused"
+ },
+ {
+  "qid": "novel_s17_04",
+  "source_session": 17,
+  "question": "How did both Priya and Marcus describe the antagonist Brent Halloran?",
+  "gold_short": "cartoonish",
+  "tier1_aliases": [],
+  "fact_quote": "both flagged that the antagonist Brent Halloran felt cartoonish"
+ },
+ {
+  "qid": "novel_s18_04",
+  "source_session": 18,
+  "question": "What was Jennifer's biggest note about the title 'The Hollow Years'?",
+  "gold_short": "too generic",
+  "tier1_aliases": [
+   "generic"
+  ],
+  "fact_quote": "Jennifer's biggest note: title 'The Hollow Years' too generic"
+ },
+ {
+  "qid": "novel_s19_03",
+  "source_session": 19,
+  "question": "Did Maya change the ending to ambiguous in session 19?",
+  "gold_short": "did NOT change",
+  "tier1_aliases": [
+   "no",
+   "did not change"
+  ],
+  "fact_quote": "did NOT change ending to ambiguous"
+ },
+ {
+  "qid": "novel_s20_01",
+  "source_session": 20,
+  "question": "What new working title did Maya tentatively choose in session 20?",
+  "gold_short": "Salt and Compass",
+  "tier1_aliases": [],
+  "fact_quote": "tentatively chose 'Salt and Compass' as new working title"
+ },
+ {
+  "qid": "novel_s20_05",
+  "source_session": 20,
+  "question": "Which chapter does the eelgrass research subplot now inform in detail?",
+  "gold_short": "chapter 6",
+  "tier1_aliases": [],
+  "fact_quote": "the eelgrass research subplot now informs chapter 6 in detail"
+ },
+ {
+  "qid": "novel_s22_03",
+  "source_session": 22,
+  "question": "What was the novel's title as of the query-letter session 22?",
+  "gold_short": "Salt and Compass",
+  "tier1_aliases": [],
+  "fact_quote": "current title 'Salt and Compass'"
+ },
+ {
+  "qid": "novel_s23_02",
+  "source_session": 23,
+  "question": "How many agents did Maya shortlist to query in the first batch?",
+  "gold_short": "15",
+  "tier1_aliases": [],
+  "fact_quote": "shortlisted 15 to query in first batch"
+ },
+ {
+  "qid": "novel_s23_05",
+  "source_session": 23,
+  "question": "For which agency does Joon-Ho Park work?",
+  "gold_short": "Crescent Atlantic Agency",
+  "tier1_aliases": [
+   "Crescent Atlantic"
+  ],
+  "fact_quote": "Joon-Ho Park of Crescent Atlantic Agency"
+ },
+ {
+  "qid": "novel_s24_03",
+  "source_session": 24,
+  "question": "Which agent auto-rejected Maya within 48 hours?",
+  "gold_short": "Anders Krishnamurthy",
+  "tier1_aliases": [
+   "Krishnamurthy"
+  ],
+  "fact_quote": "Anders Krishnamurthy auto-rejected within 48 hours"
+ },
+ {
+  "qid": "novel_s25_02",
+  "source_session": 25,
+  "question": "Which agent passed with a form rejection on December 6?",
+  "gold_short": "Hattie Macreadie",
+  "tier1_aliases": [
+   "Macreadie"
+  ],
+  "fact_quote": "Hattie Macreadie passed with form rejection on December 6"
+ },
+ {
+  "qid": "novel_s26_01",
+  "source_session": 26,
+  "question": "On what date did Renata Goldfarb offer representation?",
+  "gold_short": "December 22, 2025",
+  "tier1_aliases": [
+   "December 22"
+  ],
+  "fact_quote": "Renata Goldfarb offered representation December 22, 2025"
+ },
+ {
+  "qid": "novel_s26_04",
+  "source_session": 26,
+  "question": "Name one agent besides Renata who stepped up with a read after the offer (Pavithra ...).",
+  "gold_short": "Pavithra Sundaram",
+  "tier1_aliases": [
+   "Joon-Ho Park",
+   "Esme Calabrese",
+   "Sundaram"
+  ],
+  "fact_quote": "Joon-Ho Park, Pavithra Sundaram, and Esme Calabrese all stepped up with reads"
+ },
+ {
+  "qid": "novel_s27_02",
+  "source_session": 27,
+  "question": "On what date did Pavithra Sundaram also offer representation?",
+  "gold_short": "January 5, 2026",
+  "tier1_aliases": [
+   "January 5"
+  ],
+  "fact_quote": "Pavithra Sundaram also offered representation January 5, 2026"
+ },
+ {
+  "qid": "novel_s27_05",
+  "source_session": 27,
+  "question": "How long was Maya's call with Pavithra Sundaram?",
+  "gold_short": "45 minutes",
+  "tier1_aliases": [
+   "45"
+  ],
+  "fact_quote": "had calls with Renata Goldfarb (1 hour) and Pavithra Sundaram (45 minutes)"
+ },
+ {
+  "qid": "novel_s28_03",
+  "source_session": 28,
+  "question": "From which character's POV did Renata recommend adding a present-day chapter?",
+  "gold_short": "Camille",
+  "tier1_aliases": [],
+  "fact_quote": "Renata recommended adding a present-day chapter from Camille's POV"
+ },
+ {
+  "qid": "novel_s29_01",
+  "source_session": 29,
+  "question": "What tentative new title replaced 'Salt and Compass' in session 29?",
+  "gold_short": "The Eelgrass Year",
+  "tier1_aliases": [
+   "Eelgrass Year"
+  ],
+  "fact_quote": "tentative new title 'The Eelgrass Year' replacing 'Salt and Compass'"
+ },
+ {
+  "qid": "novel_s29_04",
+  "source_session": 29,
+  "question": "On what date did Renata approve 'The Eelgrass Year'?",
+  "gold_short": "February 2",
+  "tier1_aliases": [],
+  "fact_quote": "Renata Goldfarb approved 'The Eelgrass Year' on February 2"
+ },
+ {
+  "qid": "novel_s30_02",
+  "source_session": 30,
+  "question": "To what name was the research vessel Persephone renamed in session 30?",
+  "gold_short": "Cordelia",
+  "tier1_aliases": [],
+  "fact_quote": "Persephone the research vessel renamed Cordelia"
+ },
+ {
+  "qid": "novel_s30_05",
+  "source_session": 30,
+  "question": "Which Charlotte McConaghy novel became an updated comp title in session 30?",
+  "gold_short": "Migrations",
+  "tier1_aliases": [],
+  "fact_quote": "comp titles updated to 'Olive Kitteridge' and 'Migrations' by Charlotte McConaghy"
+ }
+]
