@@ -1,52 +1,58 @@
 # HAMIB — Hierarchical Additive Mass-Injection Bias
 
-> Released under PolyForm Noncommercial 1.0.0 for noncommercial research,
-> evaluation, and academic use only. Any commercial use — production deployment,
-> paid SaaS integration, or internal use at a for-profit company with an
-> anticipated commercial application — requires a separate commercial license.
-> For commercial licensing, contact ryosukekawai1224@gmail.com.
+A retrain-free attention-layer intervention for long-conversation recall. HAMIB
+compresses a conversation into a hierarchical *correlation diagram* and injects
+per-topic mass into the attention logits, with no fine-tuning.
 
-A **retrain-free attention-layer intervention** for long-conversation recall in
-existing LLMs. HAMIB builds a hierarchical map of a conversation — the
-*correlation diagram* — and injects per-topic "mass" directly into the attention
-logits, so that important earlier topics keep pulling the model's attention
-without any fine-tuning.
+Source-available under PolyForm Noncommercial 1.0.0 — commercial use requires a
+separate licence ([details](#license)). Patent pending.
 
-The two halves of the design are not equally established, and it matters which
-number is being quoted. Compressing a conversation into the diagram and reading from a narrow window of
-it is measured and works. In the 2026-09 run below, a reader shown only a
-32,000-token diagram, with no verbatim transcript at all, recovered 56 of 88
-facts from a 179,394-token session at 12 % of the compute. The attention bias is
-not established. In the same run `w = 0` and `w = 0.1` produced byte-identical
-answers, and larger `w` only made things worse. The 2026-05 results further down
-report the two halves jointly and never separated them. The next section gives
-the numbers, the failure analysis, and the two configuration defects that make
-the bias result inconclusive rather than negative.
+## Latest measurement — 2026-09, Qwen3.8-27B on A100 80&nbsp;GB
 
-Theoretical paper. The architecture, data structure, and the
-mass-aware attention formula are formalised in:
+![Fact recall and compute per question. The full transcript answers 94 of 96 questions using 65,435 J; the 32k correlation-diagram window answers 63 using 3,108 J.](docs/result_recall_vs_compute.svg)
+
+A reader shown **only** a 32,000-token correlation diagram — not one line of the
+original transcript — recovered **56 of 88 facts** from a 179,394-token agent
+session, including exact values from four hours earlier. Counting the one-time
+cost of building the diagram, the whole 96-question run took **0.991 MJ against
+6.282 MJ**: **6.3x less energy for 67% of the answers**. It passes break-even at
+11 questions and approaches 21x as the build amortizes.
+
+| | correct | prompt tokens | total FLOPs | wall | GPU energy |
+|---|---|---|---|---|---|
+| full transcript | **94**/96 | 179,394 | 1.60e16 | 220.1 s | 65,435 J |
+| diagram, 32k window | **63**/96 | 31,979 | 1.93e15 | 10.9 s | 3,108 J |
+| diagram, 16k window | 41/96 | 15,982 | 9.13e14 | 5.2 s | 1,442 J |
+| diagram, 8k window | 29/96 | 7,980 | 4.43e14 | 2.6 s | 667 J |
+
+Accuracy across the full grid, by window size and bias strength `w`:
+
+| window | w = 0 | w = 0.1 | w = 0.3 | w = 1.0 |
+|---|---|---|---|---|
+| 32,000 | **63** | **63** | 58 | 27 |
+| 16,000 | 41 | 41 | 33 | 20 |
+| 8,000 | 29 | 29 | 24 | 18 |
+
+**Two things this run does not show.** It does not show parity: the full
+transcript wins every cell (McNemar one-sided p &lt; 1e-9). And the attention bias
+contributed nothing — `w = 0` and `w = 0.1` produced byte-identical answers at
+all three window sizes, and larger `w` only made things worse. Everything the
+diagram rows achieved came from narrowing the context, not from the bias. The
+[full write-up](#the-2026-09-run-in-detail) gives the failure
+analysis and the two configuration defects behind the bias result.
+
+The external judge that routed the manager's decisions is a hosted API, so its
+energy is not measurable here. What is measured is published: 10,571 requests,
+42.2M input and 9.8M output tokens, 1.77 USD.
+
+Raw logs, per-question records and the scorer are in `benchmark/mcbuild_bench/`.
+
+The architecture, the data structure and the mass-aware attention formula are set
+out in:
 
 > Kawai, R. (2026). *Geometric Convergence for Conversational Context
 > Management: A Distributed Structured Memory Architecture Based on
 > Correlation-Diagram Data.* Zenodo. <https://doi.org/10.5281/zenodo.19354705>
-
-That paper is the canonical theoretical reference; this repository is the
-implementation of its first embodiment.
-
-**Patent pending.** Code, data, and documents in this repository are released
-under the PolyForm Noncommercial 1.0.0 license (see `LICENSE`). Commercial use
-requires a separate license — contact below.
-
-> **This is a source-available research release, not open source.** PolyForm
-> Noncommercial 1.0.0 is not OSI-approved; the repository is published for
-> noncommercial research, evaluation, and academic use. Please do not label it
-> "OSS" or "open source" in downstream references.
-
-> **Note on naming history.** The theoretical paper above presented this
-> work descriptively as a *context management system* — a provisional
-> wording used only at the paper-publication stage. The architecture's
-> formal name is **HAMIB**, and this repository implements it under that
-> name throughout (code, data files, mode labels, prose).
 
 ---
 
@@ -171,13 +177,12 @@ hamib/
 
 ---
 
-## Headline result (2026-09, Qwen3.8-27B, A100 80 GB)
+## The 2026-09 run in detail
 
-This is the most recent measurement in the repository, and the first one that
+The detail behind the summary at the top of this file. This is the first run that
 separates the two halves of the design: does the attention bias contribute
 anything, or does the benefit come entirely from narrowing the context onto the
-correlation diagram? Raw logs, per-question records and the scorer are all under
-`benchmark/mcbuild_bench/`.
+correlation diagram?
 
 The corpus is a real 4-hour agent development session (179,394 reader tokens,
 36 round trips, redacted and published as

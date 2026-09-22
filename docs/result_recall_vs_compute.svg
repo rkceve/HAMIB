@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="326" viewBox="0 0 940 326" role="img" aria-label="Fact recall and compute per question: the full transcript answers 94 of 96 at 65,435 joules; the 32k correlation-diagram window answers 63 at 3,108 joules.">
+<rect width="940" height="326" fill="#FCFCFB"/>
+<text x="28" y="36" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="16" font-weight="600" fill="#1A1A1A">Fact recall and compute, per question</text>
+<text x="28" y="57" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="12.5" fill="#52514E">96 questions over one 179,394-token agent session. Qwen3.8-27B, bf16, A100 80&#160;GB. The diagram rows saw no verbatim transcript at all.</text>
+<rect x="28" y="70" width="10" height="10" rx="2" fill="#8A887F"/>
+<text x="44" y="79" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11.5" fill="#52514E">baseline</text>
+<rect x="108" y="70" width="10" height="10" rx="2" fill="#2A78D6"/>
+<text x="124" y="79" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11.5" fill="#52514E">correlation diagram</text>
+<text x="196" y="84" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11.5" font-weight="600" fill="#52514E" letter-spacing="0.3">CORRECT ANSWERS (OF 96)</text>
+<text x="578" y="84" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11.5" font-weight="600" fill="#52514E" letter-spacing="0.3">GPU ENERGY PER QUESTION</text>
+<text x="176" y="111" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" fill="#1A1A1A">full transcript</text>
+<text x="176" y="126" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11" fill="#898781">179,394 tokens</text>
+<rect x="196" y="100" width="244.8" height="15" rx="3" fill="#8A887F"/>
+<text x="449.8" y="112" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">94</text>
+<rect x="578" y="100" width="250.0" height="15" rx="3" fill="#8A887F"/>
+<text x="837.0" y="112" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">65,435 J<tspan font-weight="400" fill="#898781"></tspan></text>
+<text x="176" y="155" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" fill="#1A1A1A">diagram, 32k window</text>
+<text x="176" y="170" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11" fill="#898781">31,979 tokens</text>
+<rect x="196" y="144" width="164.1" height="15" rx="3" fill="#2A78D6"/>
+<text x="369.1" y="156" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">63</text>
+<rect x="578" y="144" width="11.9" height="15" rx="3" fill="#2A78D6"/>
+<text x="598.9" y="156" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">3,108 J<tspan font-weight="400" fill="#898781">  (4.8% of baseline)</tspan></text>
+<text x="176" y="199" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" fill="#1A1A1A">diagram, 16k window</text>
+<text x="176" y="214" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11" fill="#898781">15,982 tokens</text>
+<rect x="196" y="188" width="106.8" height="15" rx="3" fill="#2A78D6"/>
+<text x="311.8" y="200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">41</text>
+<rect x="578" y="188" width="5.5" height="15" rx="3" fill="#2A78D6"/>
+<text x="592.5" y="200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">1,442 J<tspan font-weight="400" fill="#898781">  (2.2% of baseline)</tspan></text>
+<text x="176" y="243" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" fill="#1A1A1A">diagram, 8k window</text>
+<text x="176" y="258" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="11" fill="#898781">7,980 tokens</text>
+<rect x="196" y="232" width="75.5" height="15" rx="3" fill="#2A78D6"/>
+<text x="280.5" y="244" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">29</text>
+<rect x="578" y="232" width="3.0" height="15" rx="3" fill="#2A78D6"/>
+<text x="590.0" y="244" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">667 J<tspan font-weight="400" fill="#898781">  (1.0% of baseline)</tspan></text>
+<line x1="196" y1="266" x2="446" y2="266" stroke="#E1E0D9" stroke-width="1"/>
+<line x1="578" y1="266" x2="828" y2="266" stroke="#E1E0D9" stroke-width="1"/>
+<line x1="28" y1="288" x2="912" y2="288" stroke="#E1E0D9" stroke-width="1"/>
+<text x="28" y="308" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif" font-size="12" fill="#52514E">Building the diagram costs 1&#160;h&#160;45&#160;min and 0.694&#160;MJ once. Across all 96 questions that is 0.991&#160;MJ against 6.282&#160;MJ for the baseline: 6.3x less energy for 67% of the answers.</text>
+</svg>
