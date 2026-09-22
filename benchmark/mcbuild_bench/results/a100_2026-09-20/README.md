@@ -21,6 +21,8 @@ excluded), 179,394 reader tokens, 96 questions (88 facts + 8 whose answer is not
 | `v4_36rt/cd.json`, `v4_36rt/cd_tree.txt` | the diagram again, plus an indented sun → planet → satellite rendering for reading |
 | `v2.json`, `v3.json` | the earlier load check and injection probe on this pod |
 
+In `pod_scripts_as_run/` and `pod/` the default clone URL was replaced with `git@github.com:<owner>/<repo>.git`; it pointed at the private working repository and is an overridable environment variable (`MCB_REPO_URL`). Nothing else in these scripts was changed.
+
 Files over 250 KB are stored gzipped; `all_numbers.json` and the scorer read either form.
 
 ## Headline numbers

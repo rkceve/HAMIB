@@ -6,7 +6,7 @@ set -euo pipefail
 REF="${1:-mcbuild-bench}"
 WORK=${MCB_WORK:-/workspace/mcb}
 VENV=${MCB_VENV:-/root/venvs/venv_beta}   # venv on the root overlay disk, weights on the volume
-REPO_URL="${MCB_REPO_URL:-git@github.com:rkceve/cms-prototype.git}"
+REPO_URL="${MCB_REPO_URL:-git@github.com:<owner>/<repo>.git}"
 export HF_HOME=$WORK/hf HF_HUB_ENABLE_HF_TRANSFER=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 mkdir -p "$WORK" "$HF_HOME" "$WORK/runs" "$(dirname "$VENV")"
 cd "$WORK"

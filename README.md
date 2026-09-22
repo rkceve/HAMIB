@@ -12,18 +12,16 @@ existing LLMs. HAMIB builds a hierarchical map of a conversation — the
 logits, so that important earlier topics keep pulling the model's attention
 without any fine-tuning.
 
-**State of the evidence (read this before quoting a number).** The two halves of
-the design are not equally established. Compressing a conversation into the
-diagram and reading from a narrow window of it is measured and works: in the
-2026-09 run below, a reader shown *only* a 32,000-token diagram — no verbatim
-transcript at all — recovered 56 of 88 facts from a 179,394-token session at 12 %
-of the compute. The attention bias is **not** established: in the same run,
-`w = 0` and `w = 0.1` produced byte-identical answers, and larger `w` only made
-things worse. The earlier 2026-05 results further down report the two halves
-*jointly* and never separated them. Section
-[Headline result](#headline-result-2026-09-qwen3827b-a100-80-gb) gives the
-numbers, the failure analysis, and the two configuration defects that make the
-bias result inconclusive rather than negative.
+The two halves of the design are not equally established, and it matters which
+number is being quoted. Compressing a conversation into the diagram and reading from a narrow window of
+it is measured and works. In the 2026-09 run below, a reader shown only a
+32,000-token diagram, with no verbatim transcript at all, recovered 56 of 88
+facts from a 179,394-token session at 12 % of the compute. The attention bias is
+not established. In the same run `w = 0` and `w = 0.1` produced byte-identical
+answers, and larger `w` only made things worse. The 2026-05 results further down
+report the two halves jointly and never separated them. The next section gives
+the numbers, the failure analysis, and the two configuration defects that make
+the bias result inconclusive rather than negative.
 
 Theoretical paper. The architecture, data structure, and the
 mass-aware attention formula are formalised in:
@@ -175,14 +173,13 @@ hamib/
 
 ## Headline result (2026-09, Qwen3.8-27B, A100 80 GB)
 
-The most recent and most complete measurement in this repository. It answers a
-question the earlier experiments left open: **does the attention bias contribute
-anything, or is the benefit entirely from narrowing the context onto the
-correlation diagram?** Everything below is reproducible from
-`benchmark/mcbuild_bench/` — raw logs, per-question records and the scorer are
-all included.
+This is the most recent measurement in the repository, and the first one that
+separates the two halves of the design: does the attention bias contribute
+anything, or does the benefit come entirely from narrowing the context onto the
+correlation diagram? Raw logs, per-question records and the scorer are all under
+`benchmark/mcbuild_bench/`.
 
-**Setup.** A real 4-hour agent development session (179,394 reader tokens,
+The corpus is a real 4-hour agent development session (179,394 reader tokens,
 36 round trips, redacted and published as
 `benchmark/mcbuild_bench/data/session_redacted.json`) and 96 questions written
 against it (88 facts + 8 whose answer is deliberately absent from the corpus).
@@ -220,57 +217,54 @@ all 64 layers pay.
 
 Building the diagram is a one-time cost: 1 h 45 min of wall time and 0.694 MJ of
 GPU energy (integrated the same way), producing 1,606 nodes from 3,388 chunks.
-Over the 96 questions the totals are **6.282 MJ for the full transcript against
-0.991 MJ for the proposed side including the diagram build — a 6.3x reduction**,
-which passes break-even at 11 questions and approaches 21x as the build
-amortizes (17x at 1,000 questions).
+Over the 96 questions the totals are 6.282 MJ for the full transcript against
+0.991 MJ for the proposed side including the diagram build, a **6.3x reduction**.
+It passes break-even at 11 questions and approaches 21x as the build amortizes
+(17x at 1,000 questions).
 
 ### What this does and does not show
 
-**It does not show parity.** The full transcript wins every cell (McNemar
+It does not show parity. The full transcript wins every cell (McNemar
 one-sided p < 1e-9 in that direction; 95% CI of the pass-rate difference for the
 best cell [-0.42, -0.23]). The best cell keeps 67% of the answers for 12% of the
 total FLOPs. "Equal recall at lower compute" is **not** demonstrated by this run.
 
-**The attention bias contributed nothing here.** `w = 0` and `w = 0.1` are
+The attention bias contributed nothing here. `w = 0` and `w = 0.1` are
 indistinguishable at all three window sizes — zero questions gained, zero lost,
 and the generated answer string is byte-identical on 96/96, 95/96 and 94/96
-questions respectively. Above 0.1 the bias is purely harmful. The cause is
-visible in the data and is a property of this configuration, not a refutation of
-the mechanism: the added term is `w * mass` where `mass` is the raw satellite
+questions respectively. Above 0.1 the bias is purely harmful. The cause is visible in the data, and it is a property of this configuration
+rather than a refutation of the mechanism: the added term is `w * mass` where `mass` is the raw satellite
 count, un-normalized and uncapped (0-43, median 1, **41% of planets are 0**), so
-`w = 0.1` adds +0.10 to the median planet while `w = 1.0` adds +43 to the largest
-— e^43 on a pre-softmax logit, which collapses the output. Additionally **74 of
-the 88 fact questions have their answer in a *satellite* node and only 3 in a
-planet node**, while the bias is applied to planets only (`--inject planet`). The
-`planet+satellites` inheritance switch exists in `server/cd_parser.py` and was not
-exercised.
+`w = 0.1` adds +0.10 to the median planet while `w = 1.0` adds +43 to the largest.
+That is e^43 on a pre-softmax logit, and it collapses the output. There is also a targeting problem: 74 of the 88 fact questions have their answer
+in a satellite node and only 3 in a planet node, while the bias is applied to
+planets only (`--inject planet`). The `planet+satellites` inheritance switch
+exists in `server/cd_parser.py` and was never exercised.
 
-**What the diagram itself achieved is the real finding.** In every cell the
-window held the diagram *alone*: `n_recent_rts` is 0, so not one verbatim round
-trip was ever shown to the reader. All 56 recovered facts — including exact
-values from four hours earlier such as `4440`, `1/110`, `2:1` and `4035` — came
-from the diagram. Of the 30 facts the full transcript got and the best cell
-missed, only 1 was evicted by the window budget and 4 were never in the diagram;
-**25 were present in the window and the reader did not use them.** The bottleneck
-is extraction from a dense field of terse summaries, not information loss in the
-manager.
+What the diagram itself achieved is the more interesting half. In every cell the
+window held the diagram alone: `n_recent_rts` is 0, so not one verbatim round
+trip was ever shown to the reader. All 56 recovered facts — including exact values from four
+hours earlier such as `4440`, `1/110`, `2:1` and `4035`, came from the diagram. Of the 30 facts the full transcript got and the best cell
+missed, only 1 was evicted by the window budget and 4 were never in the diagram.
+The other 25 were present in the window and the reader did not use them. The
+bottleneck is extraction from a dense field of terse summaries, not
+information loss in the manager.
 
-**Absent-answer behaviour is sound.** The 8 questions with no answer in the
-corpus were answered "unknown" correctly 8/8 at W=8,000 and W=16,000, and 7/8 at
-W=32,000 — narrowing the window does not induce fabrication.
+Behaviour on unanswerable questions is sound. The 8 questions with no answer in
+the corpus were answered "unknown" correctly 8/8 at W=8,000 and W=16,000, and 7/8 at
+W=32,000. Narrowing the window does not induce fabrication.
 
 ### The external judge
 
-The manager's routing decisions were made by **TypeSafe Jev**, a hosted API — the
+The manager's routing decisions were made by **TypeSafe Jev**, a hosted API and the
 only external call in the experiment. Its own energy is therefore not measurable
-here; what is measured is published instead: **10,571 requests, 42.2M input and
-9.8M output tokens, 1.77 USD, 0 unparsed, 0 defaulted, 0 retries**, with every
-request and answer in
+here; what is measured is published instead: 10,571 requests, 42.2M input and 9.8M
+output tokens, 1.77 USD, and 0 unparsed, 0 defaulted, 0 retries. Every request
+and its answer is in
 `benchmark/mcbuild_bench/results/a100_2026-09-20/raw/v4_36rt/jev_calls.*.jsonl.gz`.
-For a bound rather than a guess: the judge's side would have to sustain more than
-**1,523 W** (about four 400 W GPUs) for the 58 minutes it was working to erase
-the 6.3x saving. At one such GPU the saving is 2.6x, at two 1.7x.
+A bound is more useful than a guess. To erase the 6.3x saving, the judge's side
+would have to sustain more than 1,523 W, roughly four 400 W GPUs, for the 58
+minutes it was working. At one such GPU the saving is 2.6x, at two it is 1.7x.
 
 ### Reproducing it
 

@@ -7,7 +7,7 @@
 set -euo pipefail
 REF="${1:-mcbuild-bench}"
 MCB=/workspace/mcb
-REPO_URL="${MCB_REPO_URL:-git@github.com:rkceve/cms-prototype.git}"
+REPO_URL="${MCB_REPO_URL:-git@github.com:<owner>/<repo>.git}"
 export HF_HOME=$MCB/hf HF_HUB_ENABLE_HF_TRANSFER=1 PIP_DISABLE_PIP_VERSION_CHECK=1 DEBIAN_FRONTEND=noninteractive
 mkdir -p "$MCB" "$HF_HOME" $MCB/runs
 cd "$MCB"
