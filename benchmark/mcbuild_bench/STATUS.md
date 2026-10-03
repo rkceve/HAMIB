@@ -39,7 +39,20 @@ Branch: `mcbuild-bench` (commit 019bdd9 + follow-ups). `main` untouched. Nothing
 12 cells on the unchanged corpus / questions / cd.json / prompt / windows:
 - truncation control `--arm B`, W in {8000, 16000, 32000} (H34);
 - `--arm proposed --inject planet+satellites --bias-cap 3.0`, W in {8000, 16000, 32000}, w in {0.1, 0.3, 1.0}.
-Baseline 94/96 and the w = 0 cells are reused. Needs `--bias-cap` wired into run_arms and a pod script.
+Baseline 94/96 and the w = 0 cells are reused. `--bias-cap` is wired, `pod/round2_run.sh` exists.
+
+Verified without a GPU (2026-10-03): 957 unit tests; a dry run of round2_run.sh with a recording stand-in
+for run_arms (12 command lines with the intended flags, a second pass skips all 12 as complete); a CPU
+end-to-end of both cell types through the real CLI on the real corpus, questions and cd.json with the tiny
+Qwen3.5 checkpoint (`tests/mcbuild/test_round2_cpu_e2e.py`): satellites receive positions, the effective
+bias is clamped at 3.0, the counters guard passes, the subset and header carry the cap, and the scorer pairs
+each cell with its truncation control. Not verifiable without the pod: the 16-layer counters on the real
+reader (same logic as the first run) and, of course, the effect itself.
+
+Expectation to keep in mind: with satellite inheritance the bias lands on ~60 % of the window's tokens. At
+w = 1.0 the median effective bias is already the cap, so most biased tokens get a flat +3.0; a near-uniform
+bias mainly down-weights the un-biased 40 % (suns, scaffold, the question), which is unlikely to help. The
+informative cells are w = 0.1 and 0.3.
 
 ## Pending experiments (2026-10-01)
 
