@@ -1,14 +1,14 @@
-"""Judge backends.  Design: HARNESS_DESIGN.md Stream B, B1.
+"""Judge backends: send a prompt, return the raw reply text.
 
-Every backend is a thin transport: prompt in, raw text out.  All parsing,
-retrying (of the ANSWER FORMAT), caching and counting lives in ``judge.py`` /
-``manager.py``; the transport-level retry of H4 lives here because only the
-transport knows what a 429 or a socket error is.
+Parsing, answer-format retries, caching and call counting live in ``judge.py``
+and the managers, so every backend behaves the same.  Only network retries
+(rate limits, server errors, dropped connections) live here, because only the
+transport can tell those apart.
 
-  FakeJudge          deterministic rule-based, for tests and the driver smoke.
+  FakeJudge          deterministic rule-based judge for tests and smoke runs.
   AnthropicJudge     anthropic SDK ``messages.create``, temperature 0.
   OpenAICompatJudge  urllib POST to an OpenAI-compatible ``/v1/chat/completions``
-                     (e.g. vLLM on Modal).  No new dependency.
+                     (e.g. vLLM on Modal); no extra dependency.
 """
 
 from __future__ import annotations
@@ -22,11 +22,10 @@ from typing import Any, Callable, Mapping, Sequence
 
 from management.harness.prompts import FENCE_CLOSE, FENCE_OPEN
 
-# -- transport retry (H4) ----------------------------------------------------
+# -- network retry -----------------------------------------------------------
 
-# Up to 3 attempts; the delay AFTER attempt i is BACKOFF_DELAYS[i].  With the
-# default 3 attempts the sleeps are 0.5s and 1.0s (the third entry is used when
-# a caller raises `attempts`).
+# Up to 3 attempts.  The sleep after failed attempt i is BACKOFF_DELAYS[i]
+# (0.5 s, then 1.0 s); the last entry is reused when a caller asks for more.
 MAX_ATTEMPTS = 3
 BACKOFF_DELAYS: tuple[float, ...] = (0.5, 1.0, 2.0)
 
@@ -34,7 +33,7 @@ SleepFn = Callable[[float], None]
 
 
 def is_retryable_http(exc: BaseException) -> bool:
-    """HTTP 429 (rate limit) and 5xx (server) are worth another attempt."""
+    """Retry HTTP 429 (rate limit), 5xx (server error) and any non-HTTP error."""
     if isinstance(exc, urllib.error.HTTPError):
         return exc.code == 429 or 500 <= exc.code < 600
     return True
@@ -47,7 +46,8 @@ def call_with_retries(
     sleep_fn: SleepFn = time.sleep,
     retryable: Callable[[BaseException], bool] = lambda _e: True,
 ) -> str:
-    """Run ``fn`` with exponential backoff.  Re-raises the last exception."""
+    """Call ``fn``, retrying with backoff while ``retryable`` allows; re-raises
+    the last error."""
     last: BaseException | None = None
     for attempt in range(attempts):
         try:
@@ -56,8 +56,7 @@ def call_with_retries(
             last = exc
             if not retryable(exc) or attempt == attempts - 1:
                 raise
-            delay = BACKOFF_DELAYS[min(attempt, len(BACKOFF_DELAYS) - 1)]
-            sleep_fn(delay)
+            sleep_fn(BACKOFF_DELAYS[min(attempt, len(BACKOFF_DELAYS) - 1)])
     raise AssertionError("unreachable") from last
 
 
@@ -65,15 +64,12 @@ def call_with_retries(
 
 
 class FakeJudge:
-    """Deterministic judge driven by regex rules or a callable policy.
+    """Deterministic judge for tests.
 
-    ``rules``  : mapping/sequence of (regex, answer).  First match wins; the
-                 regexes are tried in insertion order.
-    ``policy`` : callable(prompt) -> str, checked BEFORE the rules; returning
-                 None falls through to the rules.
-    ``default``: answer when nothing matches.
-
-    Every prompt is recorded in ``self.prompts`` for assertions.
+    ``policy(prompt)`` is tried first; if it returns None, the first regex in
+    ``rules`` (a mapping or a list of ``(regex, answer)`` pairs) that matches
+    the prompt gives the answer; otherwise ``default``.  Every prompt is kept
+    in ``self.prompts``.
     """
 
     def __init__(
@@ -120,14 +116,13 @@ def first_fenced_span(prompt: str) -> str:
 
 
 def make_driver_fake_judge(max_chars: int = 120) -> FakeJudge:
-    """The ``--judge fake`` policy of B6 / H10.
+    """Fake judge for HarnessManager ``--judge fake`` runs.
 
-    Extraction returns the whole chunk as ONE statement (recovered verbatim from
-    the prompt's fenced span); the FAITHFULNESS question answers "yes" (the
-    statement IS the chunk, so it is trivially supported) and every other yes/no
-    question answers "no".  All-no on the three axes means satellite, and the
-    satellites are then promoted by 0061, so the smoke run produces a NON-EMPTY
-    correlation diagram and exercises normalize + serialization end to end.
+    Extraction returns the whole chunk (read back from the prompt) as one
+    statement, the "is it supported?" question answers yes (the statement is
+    the chunk itself), and every other question answers no.  All-no axes make
+    satellites, which the merge promotes, so a smoke run still builds a
+    non-empty diagram and exercises normalize and serialization end to end.
     """
 
     def policy(prompt: str) -> str | None:
@@ -207,7 +202,7 @@ class OpenAICompatJudge:
         self._extra_body: dict[str, Any] = dict(extra_body) if extra_body else {}
         self._attempts = attempts
         self._sleep_fn = sleep_fn
-        # A5: how many replies carried only a reasoning trace and no content.
+        # Replies that carried only a reasoning trace and no answer text.
         self.reasoning_only_replies = 0
 
     def _once(self, prompt: str, max_tokens: int) -> str:
@@ -230,16 +225,14 @@ class OpenAICompatJudge:
             data = json.loads(resp.read().decode("utf-8"))
         message = data["choices"][0]["message"]
         content = message.get("content")
-        # F9: a reply whose content is null (a reasoning-only turn, a refusal, a
-        # length stop) or a structured content LIST must come back as the empty
-        # string. ``str(None)`` produced the literal "None", which is a
-        # non-empty, unparseable answer: the caller counted it as a PARSE
-        # failure with a plausible-looking body instead of as an empty reply.
+        # A null content (reasoning-only reply, refusal, length stop) or a
+        # structured content list becomes "" -- not str(None) == "None", which
+        # the caller would take for a real but unparsable answer.
         if not isinstance(content, str):
-            # A5: vLLM 0.28 renamed ``reasoning_content`` to ``reasoning``. The
-            # answer is deliberately NOT read out of it -- a reasoning trace is
-            # not an answer, and mining one would fabricate judgements. Only the
-            # fact is recorded, so a 100%-reasoning-only run is visible.
+            # Newer vLLM calls the field ``reasoning`` (older:
+            # ``reasoning_content``).  The answer is never mined out of the
+            # reasoning, which would invent judgements; the reply is only
+            # counted, so a run where every reply is reasoning-only stands out.
             if message.get("reasoning") or message.get("reasoning_content"):
                 self.reasoning_only_replies += 1
             return ""
@@ -258,13 +251,12 @@ _THINK_RE = re.compile(r"<think>.*?</think>\s*", re.DOTALL)
 
 
 def strip_think_blocks(text: str) -> str:
-    """Remove ``<think>...</think>`` reasoning blocks (Qwen3.x family).
+    """Remove ``<think>...</think>`` reasoning blocks (Qwen3 family).
 
-    H5: some servers emit the closing tag WITHOUT the opening one (the opener is
-    consumed by the chat template), so everything up to and including the LAST
-    ``</think>`` is dropped.  An unterminated ``<think>`` means the answer itself
-    was never emitted -- the whole reply is discarded (returns "") rather than
-    guessing an answer out of the reasoning trace.
+    Some servers drop the opening tag (the chat template consumes it), so
+    everything up to the last ``</think>`` is removed.  An unclosed
+    ``<think>`` means the model never reached its answer, so "" is returned
+    rather than guessing one from the reasoning.
     """
     cleaned = _THINK_RE.sub("", text)
     if "</think>" in cleaned:

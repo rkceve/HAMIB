@@ -1,7 +1,5 @@
-"""
-CorrelationDiagram: 相関図データの全体構造を表すモデル。
+"""CorrelationDiagram: the whole diagram as a tree of nodes.
 
-構造:
   CorrelationDiagram
     └── suns: list[SunEntry]
           ├── sun: Node (level=SUN)
@@ -74,10 +72,10 @@ class CorrelationDiagram:
         self._max_satellites: int = get("graph", "max_satellite_nodes_per_planet", 5)
 
     def capacities(self) -> dict[str, int]:
-        """The effective insertion limits (config.yaml ``graph.*``), for manifests.
+        """The insertion limits in effect (config.yaml ``graph.*``).
 
-        ``add_sun`` / ``add_planet`` / ``add_satellite`` return False at these
-        limits; callers that must not lose a node check the result
+        ``add_sun`` / ``add_planet`` / ``add_satellite`` return False once a
+        limit is reached; callers that must not lose a node check the result
         (management.graph_merger raises).
         """
         return {
@@ -142,7 +140,7 @@ class CorrelationDiagram:
         pe.satellites.append(node)
         return True
 
-    # ── 特許準拠: 質量再計算 (§0062) と座標再計算 (§0030) ─────────────
+    # ── mass and coordinate recalculation ──────────────────────────────
 
     def recalculate_planet_masses(
         self,
@@ -150,54 +148,38 @@ class CorrelationDiagram:
         satellite_mass_default: float | None = None,
         planet_mass_floor: float | None = None,
     ) -> None:
+        """Recompute every node's mass from the shape of the diagram.
+
+        - planet: the number of satellites beneath it, but at least
+          ``planet_mass_floor`` (default: config ``graph.planet_mass_floor``,
+          else 1.0, so a planet without satellites still counts; 0.0 gives
+          the plain satellite count).
+        - sun: the sum of its planets' masses, or ``sun_mass_default`` if it
+          has no planets.
+        - satellite: ``satellite_mass_default``.
+
+        Only planet mass is defined by the spec; the sun and satellite rules
+        are this implementation's choice, and the level-marker serialization
+        does not print them.
         """
-        特許§0062 準拠: 「質量は『一つの惑星ノードの下に連なる衛星ノードの数』として定義」
+        if planet_mass_floor is None:
+            planet_mass_floor = float(get("graph", "planet_mass_floor", 1.0))
+        if sun_mass_default is None:
+            sun_mass_default = get("graph", "default_sun_mass", 10.0)
+        if satellite_mass_default is None:
+            satellite_mass_default = get("graph", "default_satellite_mass", 1.0)
 
-        本メソッドは相関図内の全惑星ノードの質量を、その下に連なる衛星ノードの数に
-        再設定する。下限は planet_mass_floor（既定 1.0: 衛星0個でも惑星自体は
-        議論の柱として存在するという従来の解釈）。
-
-        planet_mass_floor=0.0 は SPEC_FAITHFUL_DESIGN.md S1.2 step 5 の
-        「§0062 の字義どおり」設定で、衛星0個の惑星は質量0になる。
-        既定値は config.yaml graph.planet_mass_floor（未設定なら 1.0）なので、
-        呼び出し側が指定しない限り従来の挙動は変わらない。
-
-        サン・衛星ノードの質量については特許に明示的な計算式がないため、
-        サンは「下位惑星の質量総和」（議論の根底としての重要度）、
-        衛星は固定値（詳細情報としての重み）とする。
-        level_markers 直列化ではサン・衛星の質量は出力されない（§0062/§0079）。
-        """
-        floor = (
-            planet_mass_floor
-            if planet_mass_floor is not None
-            else float(get("graph", "planet_mass_floor", 1.0))
-        )
-        sun_default = sun_mass_default if sun_mass_default is not None else get(
-            "graph", "default_sun_mass", 10.0
-        )
-        sat_default = satellite_mass_default if satellite_mass_default is not None else get(
-            "graph", "default_satellite_mass", 1.0
-        )
         for se in self.suns:
-            sun_mass_total = 0.0
+            planet_mass_total = 0.0
             for pe in se.planets:
-                # §0062: 質量 = 下位衛星ノード数（下限 floor）
-                pe.planet.mass = float(max(floor, float(len(pe.satellites))))
-                sun_mass_total += pe.planet.mass
+                pe.planet.mass = float(max(planet_mass_floor, float(len(pe.satellites))))
+                planet_mass_total += pe.planet.mass
                 for sat in pe.satellites:
-                    sat.mass = sat_default
-            # サンノードの質量は下位惑星の総合計（議論の蓄積量を反映）
-            # 惑星が0個の場合は default_sun_mass を維持
-            if se.planets:
-                se.sun.mass = sun_mass_total
-            else:
-                se.sun.mass = sun_default
+                    sat.mass = satellite_mass_default
+            se.sun.mass = planet_mass_total if se.planets else sun_mass_default
 
     def recalculate_coordinates(self) -> None:
-        """
-        特許§0030 準拠: 各ノードに数値データとしての座標を再付与する。
-        座標は (sun_idx, planet_idx, satellite_idx) の3次元タプルで表現される。
-        """
+        """Set every node's (sun_idx, planet_idx, satellite_idx) from its position."""
         for s_idx, se in enumerate(self.suns):
             se.sun.coordinates = Coordinates(sun_idx=s_idx, planet_idx=-1, satellite_idx=-1)
             for p_idx, pe in enumerate(se.planets):
@@ -210,13 +192,9 @@ class CorrelationDiagram:
                     )
 
     def normalize(self, planet_mass_floor: float | None = None) -> None:
-        """
-        特許§0030, §0062 準拠の「正規化」。
-        相関図の構造変更後に呼び出し、質量と座標を全体に再計算する。
+        """Recompute masses and coordinates; call after changing the tree.
 
-        planet_mass_floor は惑星質量の下限。None（既定）なら
-        recalculate_planet_masses の既定（config.yaml graph.planet_mass_floor、
-        未設定なら 1.0）を使うので、従来の呼び出しは挙動が変わらない。
+        ``planet_mass_floor``: see ``recalculate_planet_masses`` (None = config default).
         """
         self.recalculate_planet_masses(planet_mass_floor=planet_mass_floor)
         self.recalculate_coordinates()

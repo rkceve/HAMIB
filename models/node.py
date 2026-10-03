@@ -1,27 +1,21 @@
-"""
-Node data models for the Correlation Diagram.
+"""Node data model for the correlation diagram.
 
-特許 第1実施形態 §0030-§0035 準拠:
-  Node = テキストデータ + 質量(mass) + 座標(coordinates)
-  Hierarchy:
-    SunNode  → 最上位概念（太陽ノード／§0031）
-      PlanetNode → 中間概念（惑星ノード／§0031）
-        SatelliteNode → 詳細情報（衛星ノード／§0031）
+A node is a piece of text plus a mass and coordinates. Nodes form a
+three-level hierarchy:
+  sun        top-level topic
+    planet     sub-topic
+      satellite  detail
 
-質量 (§0062, §0079, §0083):
-  「一つの惑星ノードの下に連なる衛星ノードの数」として定義。
-  ユーザーの関心の深さを直接的に示す自然数。
-  Attention Mマトリクスへ加算される重み（§0082: scores += w * M）。
+Mass: for a planet, the number of satellites beneath it, i.e. how deeply the
+user has gone into that sub-topic. The server adds it to the attention scores
+(scores += w * M).
 
-座標 (§0030):
-  各ノードは「数値データとしてのノードの質量と座標」を含む。
-  本実装では論理的な (sun_idx, planet_idx, sat_idx) 3次元座標を採用し、
-  相関図内におけるノードの幾何学的位置を表現する。
+Coordinates: the node's (sun_idx, planet_idx, satellite_idx) position in the
+diagram.
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 import uuid
 
 
@@ -33,13 +27,11 @@ class NodeLevel(str, Enum):
 
 @dataclass
 class Coordinates:
-    """
-    特許§0030 ノード座標。
-    相関図内における幾何学的位置を表現する。
+    """Position of a node in the diagram; -1 means "does not apply".
 
-    sun_idx: 所属する太陽ノードのインデックス（自身が太陽の場合は自インデックス）
-    planet_idx: 所属する惑星ノードのインデックス（太陽は -1、惑星は自身）
-    satellite_idx: 衛星のインデックス（太陽・惑星は -1）
+    sun_idx: index of the node's sun (a sun's own index)
+    planet_idx: index of the node's planet (-1 for a sun)
+    satellite_idx: index of the satellite (-1 for a sun or planet)
     """
     sun_idx: int = -1
     planet_idx: int = -1
@@ -69,14 +61,13 @@ class Node:
     text: str
     level: NodeLevel
     mass: float
-    # H17: 12 hex chars, not 8.  With 4.5k nodes in one run the birthday
-    # collision probability drops from 0.24% (8 chars) to ~1e-5 (12 chars);
-    # nothing in the codebase depends on the id length.
+    # First 12 characters of a UUID (11 hex digits and a hyphen). The old
+    # 8-character ids had a 0.24% chance of a collision at ~4.5k nodes per run.
     node_id: str = field(default_factory=lambda: str(uuid.uuid4())[:12])
-    parent_id: Optional[str] = None      # SunNode なら None
+    parent_id: str | None = None  # None for a sun
     coordinates: Coordinates = field(default_factory=Coordinates)
-    # -1 = 未設定。ノード生成時の chunk.turn を刻印し、recency ポリシーの
-    # eviction 判定・同順位時の tie-break に用いる（後方互換のため末尾に追加）。
+    # Turn of the chunk the node was created from (-1 = unknown). The serializer's
+    # "recency" policy and its tie-breaks use it.
     created_turn: int = -1
 
     def __post_init__(self):
@@ -84,7 +75,7 @@ class Node:
             raise ValueError("mass must be non-negative")
 
     def token_repr(self, precision: int = 1) -> str:
-        """案C: [PN{mass}] トークン表現を返す。"""
+        """Return ``"[PN{mass}] {text}"``."""
         return f"[PN{round(self.mass, precision)}] {self.text}"
 
     def to_dict(self) -> dict:

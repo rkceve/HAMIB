@@ -1,10 +1,18 @@
-"""Jev (TypeSafe) client for mcbuild-bench — DESIGN.md §3 / §6, DECISIONS D1, D3, D5.
+"""HTTP client for Jev (TypeSafe), the judge of the manager phase.
 
-Only the request/response fields quoted in DESIGN.md §3 are used. Every failure
-raises ``JevStop``; there are no default answers and no silent fallbacks.
+Jev is the only external API of the experiment.  ``JevClient.ask`` sends one
+request (a state text plus several typed questions) and returns the validated
+answers; jev_judge turns those answers into the spec manager's decisions.
+Every failure raises ``JevStop``: there are no default answers and no silent
+fallbacks, because a guessed answer would quietly change the diagram being
+measured.  Every HTTP attempt is appended to a JSONL accounting file, from
+which build_cd sums the cost.
+
+The module also holds the pure answer parsers (``choice_of``,
+``argmax_level``, ``noul_of``), which validate one answer object each.
 
 HTTP goes through an injectable ``transport(url, headers, body_bytes, timeout)
--> (status, body_bytes)`` so unit tests never touch the network. The default
+-> (status, body_bytes)`` so unit tests never touch the network.  The default
 transport uses only ``urllib.request``.
 """
 
@@ -25,11 +33,12 @@ from benchmark.mcbuild_bench.errors import JevStop
 
 JEV_ENDPOINT = "https://api.typesafe.ai/v1/systemone"
 
-# D1: "429/529 -> exponential backoff, 3 attempts, then STOP". Sleeps between attempts.
+# 429 / 529 (rate limited / overloaded) are retried with exponential backoff;
+# every other failure stops at once.  Sleeps between attempts.
 BACKOFF_SECONDS: tuple[float, ...] = (1.0, 4.0, 16.0)
 RETRY_STATUSES: frozenset[int] = frozenset({429, 529})
 
-# D5: "Cost = input_tokens x $0.042/M (published price, recorded as published_price_per_mtok)".
+# Cost = input_tokens x this published price per million tokens (recorded, not measured).
 published_price_per_mtok: float = 0.042
 
 Transport = Callable[[str, dict[str, str], bytes, float], tuple[int, bytes]]
@@ -55,7 +64,7 @@ def _utc_now_iso() -> str:
 
 
 class JevClient:
-    """Stateless Jev caller with per-attempt JSONL accounting (D5)."""
+    """Stateless Jev caller; every HTTP attempt is one line of the accounting JSONL."""
 
     def __init__(
         self,
@@ -86,12 +95,13 @@ class JevClient:
         self.accounting_path = Path(accounting_path)
         self._transport: Transport = urllib_transport if transport is None else transport
         self._sleep = sleep_fn
-        # Item 14: one lock per client instance guards the JSONL append.
+        # Guards the JSONL append when several threads share the client.
         self._accounting_lock = threading.Lock()
 
     # ------------------------------------------------------------------ public
     def ask(self, state: str, questions: dict[str, dict[str, Any]]) -> dict[str, Any]:
-        """POST one Jev request; return ``JevResult`` (DESIGN.md §6) or raise ``JevStop``."""
+        """POST one Jev request and return ``{"answers", "usage", "latency_ms",
+        "http_status", "retries"}``, or raise ``JevStop``."""
         if not isinstance(state, str) or not state:
             raise ValueError("state must be a non-empty string")
         if not isinstance(questions, dict) or not questions:
@@ -114,24 +124,27 @@ class JevClient:
             "Content-Type": "application/json",
         }
 
+        def record(
+            attempt: int, latency_ms: float, status: int | None = None,
+            input_tokens: int | None = None, output_tokens: int | None = None,
+            answers: dict[str, Any] | None = None,
+        ) -> None:
+            self._record(
+                question_ids, question_types, len(state), input_tokens, output_tokens,
+                latency_ms, status, attempt, answers,
+            )
+
         for attempt in range(self.max_attempts):
             t0 = time.perf_counter()
             try:
                 status, raw = self._transport(JEV_ENDPOINT, headers, body, self.timeout_s)
             except Exception as exc:  # network / timeout: no retry, no fallback
-                latency_ms = (time.perf_counter() - t0) * 1000.0
-                self._record(
-                    question_ids, question_types, len(state), None, None,
-                    latency_ms, None, attempt, None,
-                )
+                record(attempt, (time.perf_counter() - t0) * 1000.0)
                 raise JevStop(f"Jev transport error on attempt {attempt}: {exc!r}") from exc
             latency_ms = (time.perf_counter() - t0) * 1000.0
 
             if status in RETRY_STATUSES:
-                self._record(
-                    question_ids, question_types, len(state), None, None,
-                    latency_ms, status, attempt, None,
-                )
+                record(attempt, latency_ms, status)
                 if attempt + 1 < self.max_attempts:
                     self._sleep(BACKOFF_SECONDS[attempt])
                     continue
@@ -141,36 +154,25 @@ class JevClient:
                 )
 
             if not 200 <= status < 300:
-                self._record(
-                    question_ids, question_types, len(state), None, None,
-                    latency_ms, status, attempt, None,
-                )
+                record(attempt, latency_ms, status)
                 raise JevStop(
                     f"Jev HTTP {status}: {raw[:500].decode('utf-8', errors='replace')}"
                 )
 
-            # H10 / D5: usage FIRST (accounting completeness), then the answers.
+            # Usage is parsed before the answers, so a reply with bad answers
+            # still books the tokens it was billed for.
             try:
                 envelope = _parse_body(raw)
                 input_tokens, output_tokens = _parse_usage(envelope)
             except JevStop:
-                self._record(
-                    question_ids, question_types, len(state), None, None,
-                    latency_ms, status, attempt, None,
-                )
+                record(attempt, latency_ms, status)
                 raise
             try:
                 answers = _parse_answers(envelope, question_ids)
             except JevStop:
-                self._record(
-                    question_ids, question_types, len(state), input_tokens, output_tokens,
-                    latency_ms, status, attempt, None,
-                )
+                record(attempt, latency_ms, status, input_tokens, output_tokens)
                 raise
-            self._record(
-                question_ids, question_types, len(state), input_tokens, output_tokens,
-                latency_ms, status, attempt, answers,
-            )
+            record(attempt, latency_ms, status, input_tokens, output_tokens, answers)
             return {
                 "answers": answers,
                 "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens},
@@ -224,11 +226,11 @@ def _parse_body(raw: bytes) -> dict[str, Any]:
 
 
 def _parse_usage(envelope: dict[str, Any]) -> tuple[int, int]:
-    """``usage.{input,output}_tokens`` as ints (H10 / D5).
+    """``usage.{input,output}_tokens`` as ints.
 
-    An int, or a float with ``is_integer()``, is accepted and converted;
-    a missing ``usage`` object or any other value (string, non-integral float,
-    bool, None) is an accounting hole and stops the run.
+    An int, or a float with ``is_integer()``, is accepted and converted.  A
+    missing ``usage`` object or any other value (string, non-integral float,
+    bool, None) would leave a hole in the cost accounting, so it stops the run.
     """
     usage = envelope.get("usage")
     if not isinstance(usage, dict):
@@ -240,7 +242,7 @@ def _parse_usage(envelope: dict[str, Any]) -> tuple[int, int]:
 
 
 def _parse_answers(envelope: dict[str, Any], question_ids: list[str]) -> dict[str, Any]:
-    """Validate the DESIGN 3 ``answers`` object strictly (D1)."""
+    """The ``answers`` object: one answer object per question id, none missing."""
     answers = envelope.get("answers")
     if not isinstance(answers, dict):
         raise JevStop("Jev response lacks 'answers' object")
@@ -254,7 +256,7 @@ def _parse_answers(envelope: dict[str, Any], question_ids: list[str]) -> dict[st
 
 
 def _token_count(value: object, name: str) -> int:
-    """Accounting token count: int, or an integral float -> int; else ``JevStop`` (H10)."""
+    """Accounting token count: int, or an integral float -> int; else ``JevStop``."""
     if _is_int(value):
         return value
     if isinstance(value, float) and value.is_integer():
@@ -270,9 +272,9 @@ def _is_number(value: object) -> TypeGuard[int | float]:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-# ------------------------------------------------------------ pure parsing helpers (D3)
+# ------------------------------------------------------------ pure parsing helpers
 def _probability(value: object, what: str) -> float:
-    """A finite number in [0, 1] (Astra round 3 item 5), else ``JevStop``."""
+    """A finite number in [0, 1], else ``JevStop``."""
     if not _is_number(value):
         raise JevStop(f"{what} is not a number: {value!r}")
     prob = float(value)
@@ -284,12 +286,12 @@ def _probability(value: object, what: str) -> float:
 
 
 def choice_of(answer: dict[str, Any], options: Collection[str] | None = None) -> str:
-    """Choice decision = ``choice`` (D3). Requires ``type == "choice"``.
+    """The chosen option of a choice answer (``type == "choice"``).
 
-    When ``options`` (the offered criteria keys) is given, ``choice`` must be
-    one of them and every key of the optional ``probabilities`` object must be
-    one of them; the probabilities, if present, must be finite numbers in
-    [0, 1] with at least one > 0 (Astra round 3 item 5).
+    When ``options`` (the offered criteria keys) is given, ``choice`` and every
+    key of the optional ``probabilities`` object must be one of them.  The
+    probabilities, if present, must be finite numbers in [0, 1] with at least
+    one > 0; they are validated but never used for the decision.
     """
     if answer.get("type") != "choice":
         raise JevStop(f"expected a choice answer, got type={answer.get('type')!r}")
@@ -316,13 +318,14 @@ def choice_of(answer: dict[str, Any], options: Collection[str] | None = None) ->
 
 
 def argmax_level(answer: dict[str, Any], n_levels: int | None = None) -> int:
-    """Level = argmax over the keys PRESENT in ``probabilities`` (a missing
-    level is probability 0); keys are level-index strings; tie -> lower index.
+    """The level of a score answer: the key of ``probabilities`` with the
+    highest probability (keys are level-index strings; a missing level counts
+    as 0; a tie goes to the lower index).
 
     At least one key is required and every probability must be a finite
-    number in [0, 1] with at least one > 0.  When ``n_levels`` is given EVERY
+    number in [0, 1] with at least one > 0.  When ``n_levels`` is given, every
     key must be an index ``< n_levels`` (the caller's level table), else
-    ``JevStop`` (Astra round 3 item 5).
+    ``JevStop``.
     """
     if answer.get("type") != "score":
         raise JevStop(f"expected a score answer, got type={answer.get('type')!r}")
@@ -342,11 +345,8 @@ def argmax_level(answer: dict[str, Any], n_levels: int | None = None) -> int:
     if not any(prob > 0.0 for _, prob in parsed):
         raise JevStop("score probabilities are all zero")
     parsed.sort(key=lambda item: item[0])
-    best_index, best_prob = parsed[0]
-    for index, prob in parsed[1:]:
-        if prob > best_prob:  # strictly greater: ties keep the lower index
-            best_index, best_prob = index, prob
-    return best_index
+    # max() returns the first of equal maxima, so a tie goes to the lower index.
+    return max(parsed, key=lambda item: item[1])[0]
 
 
 def noul_of(answer: dict[str, Any]) -> float:
@@ -360,12 +360,12 @@ def noul_of(answer: dict[str, Any]) -> float:
 
 
 def read_price_per_mtok() -> float:
-    """Published Jev price, USD per million input tokens (DECISIONS D5; recorded, not asserted)."""
+    """Published Jev price, USD per million input tokens (recorded, not measured)."""
     return published_price_per_mtok
 
 
 def cost_usd(input_tokens: int) -> float:
-    """Jev cost per D5: ``input_tokens x published_price_per_mtok / 1e6``."""
+    """Jev cost in USD: ``input_tokens x published_price_per_mtok / 1e6``."""
     if not _is_int(input_tokens) or input_tokens < 0:
         raise ValueError("input_tokens must be a non-negative int")
     return input_tokens * read_price_per_mtok() / 1_000_000

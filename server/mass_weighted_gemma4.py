@@ -1,20 +1,21 @@
 """
-MassWeightedGemma4: Gemma 4 (E4B-it) 用ラッパー
-  - Gemma 3 と同じ sdpa monkey-patch を継承
-  - Gemma 4 は Gemma4ForConditionalGeneration (multimodal) なので text-only path で load
-  - 42 layers (35 sliding + 7 full attention)、 128K context、 BF16 native
+MassWeightedGemma4: wrapper for Gemma 4 (E4B-it).
+  - Uses the same SDPA monkey-patch as the Gemma 3 wrapper.
+  - Gemma 4 is Gemma4ForConditionalGeneration (multimodal); it is loaded for
+    text-only use.
+  - 42 layers (35 sliding + 7 full attention), 128K context, native BF16.
 
-【Gemma 3 との違い】
+Differences from Gemma 3:
   - model_type: gemma4 / class: Gemma4ForConditionalGeneration
-  - text-only 推論: text_config を直接使用 (vision/audio embedding skip)
-  - sliding_window=512 (35/42 layers が sliding、7 layers が full)
+  - Text-only inference: uses text_config directly (vision/audio embeddings unused)
+  - sliding_window=512 (35 of 42 layers sliding, 7 full)
   - vocab_size 262144 (Gemma 3: 256K)
   - default torch_dtype: bfloat16
 
-【§77 までの修正は引継ぐ】
-  - max_sun_nodes=10000 (silent drop 解消)
-  - node_classifier の強制 SUN 昇格廃止
-  - sdpa monkey-patch (Phi-3 fix の leading-token-drop も継承)
+Earlier fixes carried over:
+  - max_sun_nodes=10000 (no more silent drops)
+  - node_classifier no longer force-promotes nodes to SUN
+  - SDPA monkey-patch (including the Phi-3 leading-token-drop fix)
 """
 from __future__ import annotations
 from pathlib import Path
@@ -25,7 +26,7 @@ from utils.config import load_config, get
 
 
 class MassWeightedGemma4:
-    """Gemma 4 E4B-it 用 wrapper (Gemma 3 wrapper の薄い派生)"""
+    """Wrapper for Gemma 4 E4B-it (a thin variant of the Gemma 3 wrapper)."""
 
     def __init__(
         self,
@@ -48,7 +49,7 @@ class MassWeightedGemma4:
         self._mass_weight: float = get("attention", "mass_weight", 1.0)
         self._prefill_mass_scale: float = get("attention", "prefill_mass_scale", 0.0)
 
-        # §53 Exp Q QK-norm retrofit 設定継承 (off がデフォルト)
+        # QK-norm retrofit settings (experiment Q), off by default
         self._qk_norm_mode: str = "off"
         self._qk_norm_alpha: float = 0.5
         self._qk_clip_threshold: float = 2.0
@@ -71,17 +72,18 @@ class MassWeightedGemma4:
 
         self._tokenizer = AutoTokenizer.from_pretrained(self._model_id)
 
-        # Gemma 4 E4B-it のチェックポイントは multimodal 配置 (model.language_model.layers.*)
-        # Gemma4ForCausalLM では layer key mismatch で全 LM 重みが UNEXPECTED → random init
-        # → bnb FP4 quant state が空のまま forward で AssertionError (§78 第1原因)
-        # 結論: Gemma4ForConditionalGeneration で読むしかない
-        # device_map="auto" 無制約だと weight 量子化中に OOM 静死 (§78 第3原因)
-        # post-load strip ループは accelerate dispatch を遅延させる (§78 第4原因)
-        # → max_memory で GPU を制限し、 strip は省略
+        # The Gemma 4 E4B-it checkpoint uses the multimodal layout
+        # (model.language_model.layers.*). Gemma4ForCausalLM mismatches the layer
+        # keys, so every LM weight is UNEXPECTED and randomly initialized, and the
+        # empty bnb FP4 quant state then raises AssertionError in forward. Hence
+        # Gemma4ForConditionalGeneration is the only working loader.
+        # Unconstrained device_map="auto" dies silently with OOM while quantizing
+        # weights, and a post-load strip loop delays the accelerate dispatch, so
+        # GPU memory is capped with max_memory and no strip is done.
         print(f"[MassWeightedGemma4] loading multimodal Gemma4ForConditionalGeneration (max_memory cap) ...")
         max_memory = {
-            0: "4500MiB",       # cuda:0 — language_model のみ載せる
-            "cpu": "24GiB",     # vision_tower + audio_tower 退避先
+            0: "4500MiB",       # cuda:0: language_model only
+            "cpu": "24GiB",     # offload target for vision_tower + audio_tower
         }
         self._model = Gemma4ForConditionalGeneration.from_pretrained(
             self._model_id,
@@ -139,7 +141,7 @@ class MassWeightedGemma4:
         return self._tokenizer.decode(new_ids, skip_special_tokens=True)
 
     def _patch_sdpa(self) -> None:
-        """sdpa monkey-patch (Gemma 3 wrapper と同じ実装、 Gemma 4 でも attention path で動く)"""
+        """SDPA monkey-patch (same as the Gemma 3 wrapper; works on the Gemma 4 attention path too)."""
         outer = self
         self._original_sdpa = F.scaled_dot_product_attention
 
@@ -247,7 +249,7 @@ class MassWeightedGemma4:
         cfg = getattr(self._model, "config", None)
         if cfg is None:
             return None
-        # Gemma 4 では text_config.attn_implementation を確認
+        # Gemma 4 keeps attn_implementation in text_config
         text_cfg = getattr(cfg, "text_config", None) or cfg
         return getattr(text_cfg, "_attn_implementation", None)
 

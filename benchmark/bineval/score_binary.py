@@ -1,31 +1,34 @@
-"""Two-tier binary scorer for the bineval instrument (WO-0).
+"""Score reader answers pass/fail against the gold answers of a question set.
 
-Tier 1  : NFKC-normalized substring / alias match. NO LLM calls.
-          Base normalization is copied verbatim from
-          `benchmark/longchat/score_eval.py:normalize` and then extended with
-          a number-word<->digit table (1..20) and unit-suffix tolerance so the
-          two known false negatives pass:
-              gold "12,000 yen per person"  vs pred "12,000 yen"
-              gold "four days"              vs pred "4 days"
-Tier 2  : pluggable `judge_fn(question, gold_short, answer_text) -> bool | None`.
-          Default `--tier2 none` ships NO api client; tier-1-indeterminate items
-          are written to a sibling `pending_tier2.json` instead of being scored.
+Each answer first goes through tier 1, a deterministic string match: the gold
+answer or one of its aliases must appear in the normalized answer.  An empty
+answer or an explicit "unknown"-style answer is a fail.  Anything else goes to
+tier 2, a pluggable judge ``judge_fn(question, gold_short, answer_text) ->
+bool | None``.  The only judge shipped is ``judge_none``, which leaves the item
+indeterminate; indeterminate items are written to ``pending_tier2.json`` next
+to the output.  The per-question verdicts are then aggregated into pass / fail
+/ indeterminate counts and a tier-1 pass rate.
 
-CLI:
+Tier-1 normalization is ``benchmark/longchat/score_eval.py:normalize`` plus
+number words (zero..twenty <-> 0..20), so "four days" matches "4 days".  A
+missing unit suffix is tolerated through aliases: "12,000 yen" is an alias of
+the gold "12,000 yen per person".
+
+CLI::
+
     python -m benchmark.bineval.score_binary \
         --answers <file-or-dir> --questions <json> --out <json> \
         [--subset all|legacy|generated] [--include-excluded] [--tier2 none]
 
-Answer sources accepted by --answers:
-    * a single .txt file in `A{n}: text` line format (longchat convention);
-      the k-th SCORED question (after subset/exclusion filtering, in file order)
-      maps to `A{k}` exactly like score_eval.py enumerate(questions, 1).
-    * a single .json file mapping {qid: answer_text}.
-    * a directory: every *.txt is scored as its own condition and every *.json
-      keyed file is merged (qid -> answer); results are emitted per condition.
+``--answers`` accepts:
+    * a .txt file of ``A{n}: text`` lines; ``A{k}`` answers the k-th scored
+      question (after subset/exclusion filtering, in file order), as in
+      score_eval.py;
+    * a .json file mapping {qid: answer_text};
+    * a directory: every *.txt in it is scored as its own condition.
 
-Windows: all file I/O uses encoding="utf-8"; every print() is cp932-safe
-(ASCII only, no emoji / box-drawing glyphs).
+All file I/O is utf-8 and console output is ASCII only (safe on a cp932
+Windows console).
 """
 
 from __future__ import annotations
@@ -50,9 +53,8 @@ _DASHES = ("‐", "‑", "‒", "–", "—", "－")
 def normalize(s: object) -> str:
     """NFKC + lowercase + dash-fold + punctuation-strip + whitespace-collapse.
 
-    Identical behaviour to score_eval.normalize (the base of tier 1). Kept as a
-    standalone copy on purpose: benchmark/longchat is not an importable package
-    (no __init__.py) and RESEARCH_PROGRAM sec.2 says "extend", not "import".
+    Same behaviour as ``score_eval.normalize``.  Copied rather than imported
+    because benchmark/longchat is not an importable package.
     """
     s = unicodedata.normalize("NFKC", str(s).lower())
     for ch in _DASHES:
@@ -61,7 +63,7 @@ def normalize(s: object) -> str:
     return _WS.sub(" ", s).strip()
 
 
-# number-word <-> digit table for 1..20 (and zero), both directions.
+# number-word <-> digit table for 0..20, both directions.
 _WORD2NUM = {
     "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
     "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
@@ -88,8 +90,8 @@ def _num_variants(token: str) -> set[str]:
 def _numeric_canon(s: str) -> str:
     """Rewrite an already-normalized string so number words 0..20 become digits.
 
-    Applied to BOTH gold and prediction before substring test, so
-    "four days" and "4 days" collapse to the same "4 days".
+    Applied to both gold and answer before the substring test, so "four days"
+    and "4 days" both become "4 days".
     """
     return " ".join(_WORD2NUM.get(tok, tok) for tok in s.split())
 
@@ -110,12 +112,11 @@ def scrub(text: str) -> str:
     return _WS.sub(" ", text).strip()
 
 
-# Normalized no-answer / refusal markers. When the WHOLE scrubbed+normalized
-# answer equals one of these, the model asserted it does not know / the fact is
-# absent -> tier-1 FAIL (an unambiguous non-statement of the fact), never
-# "indeterminate". This is what lets tier 1 alone reproduce the sec.2.6 ordering
-# (full >> truncated ~ summarized) without any judge: the truncation/summary
-# arms answer "not in context" on facts they dropped.
+# Normalized no-answer markers.  An answer that is exactly one of these (after
+# scrub + normalize) says the fact is unknown or absent, so it is a tier-1 FAIL,
+# never indeterminate.  This lets tier 1 alone, without a judge, separate the
+# full arm from the truncation and summary arms, which answer "not in context"
+# for the facts they dropped.
 _NO_ANSWER_MARKERS = frozenset(
     normalize(m)
     for m in (
@@ -147,23 +148,23 @@ _NO_ANSWER_MARKERS = frozenset(
 
 def is_no_answer(answer_text: str) -> bool:
     """True iff the whole scrubbed answer is a no-answer / refusal marker."""
-    norm = normalize(scrub(answer_text))
-    return norm in _NO_ANSWER_MARKERS
+    return normalize(scrub(answer_text)) in _NO_ANSWER_MARKERS
 
 
 # --------------------------------------------------------------------------
 # Tier 1 verdict
 # --------------------------------------------------------------------------
 
-# 2026-09-18 scoring fixes (mcbuild-bench item D). ``strict_short=True`` enables
-# all three; ``--no-strict-short`` reproduces the pre-fix behaviour.
-#   D1 abstention: a no-answer reply passes ONLY when the gold/alias itself is an
-#      abstention marker ("unknown" no longer matches gold "No" by substring).
-#   D2 short golds: a normalized candidate that is purely numeric or <= 3
-#      characters must match on boundaries ``(?<![\w.])...(?![\w.])`` on a hay
-#      that keeps DECIMAL points ("4" matches neither "14" nor "4.5").
-#   D3 all-of aliases: a candidate containing " & " requires EVERY part to
-#      match (each part under the same rules).
+# Stricter tier-1 rules, all on with ``strict_short=True`` (the default);
+# ``--no-strict-short`` turns all three off and restores the original matching.
+#   * abstention: a no-answer reply passes only when the gold or an alias is
+#     itself a no-answer marker (so "unknown" no longer matches the gold "No"
+#     as a substring);
+#   * short golds: a candidate that is purely numeric or at most 3 characters
+#     must match as a whole token, ``(?<![\w.])...(?![\w.])``, against an answer
+#     that keeps its decimal points ("4" matches neither "14" nor "4.5");
+#   * all-of aliases: a candidate containing " & " passes only when every part
+#     matches (each part under the same rules).
 SHORT_MAX_CHARS = 3
 ALL_OF_SEP = " & "
 _PUNCT_KEEP_DOT = re.compile(r"[^\w\s.]", re.UNICODE)
@@ -182,7 +183,7 @@ def normalize_keep_decimal(s: object) -> str:
 
 
 def is_short_needle(needle: str) -> bool:
-    """D2: purely numeric (spaces ignored) or at most SHORT_MAX_CHARS characters."""
+    """Purely numeric (spaces ignored) or at most SHORT_MAX_CHARS characters."""
     return needle.replace(" ", "").isdigit() or len(needle) <= SHORT_MAX_CHARS
 
 
@@ -216,25 +217,20 @@ def tier1_match(
 ) -> tuple[bool, Optional[str]]:
     """Return (matched, matched_alias_or_None).
 
-    A candidate (gold_short or any alias) matches when its numeric-canonical
-    normalized form is a substring of the numeric-canonical normalized,
-    scrubbed answer. Empty candidates never match. Unit-suffix tolerance is
-    inherent: a shorter alias ("12,000 yen") is itself a candidate, so a
-    prediction lacking the "per person" suffix still matches via that alias.
-
-    ``strict_short`` (default True) adds the D1 / D2 / D3 rules documented
-    above; False is the pre-2026-09-18 behaviour.
+    A candidate (gold_short, then each alias in order) matches when its
+    normalized, number-canonical form is a substring of the same form of the
+    scrubbed answer.  Empty candidates never match.  ``matched_alias`` is None
+    when the gold itself matched.  ``strict_short`` adds the three stricter
+    rules described above.
     """
     hay = _numeric_canon(normalize(scrub(answer_text)))
     if not hay:
         return (False, None)
     hay_dec = _numeric_canon(normalize_keep_decimal(scrub(answer_text)))
-    # gold first (so matched_alias stays None when the full gold matched),
-    # then declared aliases in order.
     candidates: list[tuple[str, Optional[str]]] = [(gold_short, None)]
     candidates += [(a, a) for a in aliases]
     if strict_short and is_no_answer(answer_text):
-        # D1: an abstention passes only an abstention gold/alias.
+        # An abstention passes only an abstention gold/alias.
         for cand, label in candidates:
             if normalize(cand) in _NO_ANSWER_MARKERS:
                 return (True, label)
@@ -262,9 +258,8 @@ _A_LINE = re.compile(r"\s*A(\d+)\s*[:\-]\s*(.+)", re.IGNORECASE)
 
 
 def parse_answer_lines(text: str) -> dict[int, str]:
-    """Parse `A{n}: text` lines -> {n: text}. Mirrors score_eval.parse_answers
-    but without an upper bound (bound is applied by the caller via the subset).
-    """
+    """Parse `A{n}: text` lines -> {n: text}.  Like score_eval.parse_answers,
+    but with no upper bound on n (the caller's question list sets it)."""
     answers: dict[int, str] = {}
     for line in text.strip().split("\n"):
         m = _A_LINE.match(line.strip())
@@ -287,9 +282,10 @@ def select_questions(
 ) -> list[dict]:
     """Filter by subset and exclusion flag, preserving source order.
 
-    subset: 'all' | 'legacy' | 'generated'. 'legacy' keeps items with
-    legacy==True (the WO's rest_q01..16 sanity anchor); 'generated' keeps the
-    rest. Excluded items (data-hygiene) are dropped unless include_excluded.
+    subset: 'all' | 'legacy' | 'generated'.  'legacy' keeps the items with
+    legacy==True (the 16 original questions rest_q01..16, kept as a sanity
+    check); 'generated' keeps the rest.  Items marked excluded (data-hygiene
+    exclusions) are dropped unless include_excluded.
     """
     out = []
     for q in questions:
@@ -309,33 +305,28 @@ def select_questions(
 # --------------------------------------------------------------------------
 
 def truncate_words(text: str, max_words: Optional[int]) -> str:
-    """Keep only the first ``max_words`` whitespace-separated words.
+    """Keep only the first ``max_words`` whitespace-separated words (None = all).
 
-    2026-09-07 Fable review #6: tier-1 is a substring match with no length
-    limit, so a reader that echoes the whole CD would pass every question. The
-    C3 (wM) arms push the model toward copying CD text, so those arms are
-    scored on a truncated answer. None = no truncation (bineval v1 behaviour).
+    Tier 1 is a substring match with no length limit, so an answer that echoes
+    the whole context would pass every question.  Mass injection pushes the
+    model toward copying context text, so those arms are scored on a truncated
+    answer.
     """
     if max_words is None:
         return text
-    words = text.split()
-    return " ".join(words[:max_words])
+    return " ".join(text.split()[:max_words])
 
 
 def multi_gold_answer_count(
     scored_questions: list[dict],
     answers: list[str],
 ) -> int:
-    """Side metric: number of answers containing >= 2 DISTINCT golds of the
-    question set (echoing indicator). Uses the same normalize() as tier-1."""
-    golds = {normalize(q["gold_short"]) for q in scored_questions}
-    golds = {g for g in golds if g}
-    n = 0
-    for ans in answers:
-        na = normalize(ans)
-        if sum(1 for g in golds if g in na) >= 2:
-            n += 1
-    return n
+    """Side metric: answers containing two or more DISTINCT golds of the
+    question set, a sign of echoing instead of answering.  Uses the same
+    normalize() as tier 1."""
+    golds = {g for g in (normalize(q["gold_short"]) for q in scored_questions) if g}
+    normalized = (normalize(ans) for ans in answers)
+    return sum(1 for na in normalized if sum(1 for g in golds if g in na) >= 2)
 
 
 def score_condition(
@@ -349,9 +340,9 @@ def score_condition(
 ) -> dict:
     """Score an already-filtered question list against one answer source.
 
-    Position mapping: the k-th scored question (1-indexed) <-> A{k}. A per-qid
-    dict (from a .json answer file) takes precedence when the qid is present.
-    ``strict_short`` is forwarded to ``tier1_match`` (D1-D3).
+    The k-th question (1-based) takes answer A{k}, unless ``answers_by_qid``
+    (from a .json answer file) has its qid.  ``strict_short`` is passed on to
+    ``tier1_match``.  Returns {"items", "aggregate", "pending_tier2"}.
     """
     per_q = []
     pending = []
@@ -359,10 +350,7 @@ def score_condition(
     used_answers: list[str] = []
     for k, q in enumerate(scored_questions, 1):
         qid = q["qid"]
-        if qid in answers_by_qid:
-            ans = answers_by_qid[qid]
-        else:
-            ans = answers_by_pos.get(k, "")
+        ans = answers_by_qid[qid] if qid in answers_by_qid else answers_by_pos.get(k, "")
         ans = truncate_words(ans, max_words)
         used_answers.append(ans)
         matched, alias = tier1_match(
@@ -375,15 +363,15 @@ def score_condition(
                 rec["matched_alias"] = alias
             per_q.append(rec)
             continue
-        # tier-1 FAIL: empty answer or an explicit no-answer/refusal marker is an
-        # unambiguous non-statement of the fact; no judge needed.
-        if (not scrub(ans)) or is_no_answer(ans):
+        fragment = scrub(ans)
+        # An empty answer or a no-answer marker states nothing: fail, no judge.
+        if not fragment or is_no_answer(ans):
             n_fail += 1
             per_q.append({"qid": qid, "verdict": "fail", "tier": 1})
             continue
-        # otherwise the answer is a concrete non-matching string (possible
-        # paraphrase / wrong value) -> defer to tier 2 (default: indeterminate).
-        verdict = judge_fn(q["question"], q["gold_short"], scrub(ans))
+        # A concrete answer that did not match (a paraphrase or a wrong value):
+        # ask the tier-2 judge; None leaves it indeterminate.
+        verdict = judge_fn(q["question"], q["gold_short"], fragment)
         if verdict is True:
             n_pass += 1
             per_q.append({"qid": qid, "verdict": "pass", "tier": 2})
@@ -397,11 +385,11 @@ def score_condition(
                 "qid": qid,
                 "question": q["question"],
                 "gold_short": q["gold_short"],
-                "answer_fragment": scrub(ans),
+                "answer_fragment": fragment,
             })
     total = len(scored_questions)
-    # pass_rate_tier1 counts an indeterminate as not-yet-passed (denominator =
-    # all scored items), so the reported rate is a conservative tier-1 floor.
+    # Indeterminate items count as not passed, so pass_rate_tier1 is a
+    # conservative lower bound.
     aggregate = {
         "pass": n_pass,
         "fail": n_fail,
@@ -422,30 +410,25 @@ def score_condition(
 def gather_answer_sources(path: Path) -> list[tuple[str, dict[int, str], dict[str, str]]]:
     """Return [(condition_name, answers_by_pos, answers_by_qid), ...].
 
-    A .txt file -> one condition keyed by A{n} position.
-    A .json file mapping qid->text -> one condition keyed by qid.
-    A directory  -> one condition per *.txt (named by stem). Directory mode is
-                    intentionally .txt-only so unrelated sidecar JSON (e.g. an
-                    old scored.json) is never mistaken for an answer file; pass
-                    a keyed .json directly as --answers to score it.
+    A .txt file  -> one condition keyed by A{n} position.
+    A .json file -> one condition keyed by qid.
+    A directory  -> one condition per *.txt, named by its stem.  JSON files in
+                    a directory are ignored so that an unrelated sidecar (an
+                    old scored.json, say) is never taken for answers; pass a
+                    keyed .json directly as --answers to score it.
     """
-    sources: list[tuple[str, dict[int, str], dict[str, str]]] = []
     if path.is_dir():
         files = sorted(path.glob("*.txt"))
         if not files:
             raise FileNotFoundError(f"no .txt answer files under {path}")
-        for f in files:
-            sources.append((f.stem, parse_answer_lines(f.read_text(encoding="utf-8")), {}))
-        return sources
-    # single file
-    if path.suffix.lower() == ".txt":
-        sources.append((path.stem, parse_answer_lines(path.read_text(encoding="utf-8")), {}))
-    elif path.suffix.lower() == ".json":
+        return [(f.stem, parse_answer_lines(f.read_text(encoding="utf-8")), {}) for f in files]
+    suffix = path.suffix.lower()
+    if suffix == ".txt":
+        return [(path.stem, parse_answer_lines(path.read_text(encoding="utf-8")), {})]
+    if suffix == ".json":
         obj = json.loads(path.read_text(encoding="utf-8"))
-        sources.append((path.stem, {}, {str(k): str(v) for k, v in obj.items()}))
-    else:
-        raise ValueError(f"unsupported answer file type: {path.suffix}")
-    return sources
+        return [(path.stem, {}, {str(k): str(v) for k, v in obj.items()})]
+    raise ValueError(f"unsupported answer file type: {path.suffix}")
 
 
 # --------------------------------------------------------------------------
@@ -479,25 +462,23 @@ def main(argv: Optional[list[str]] = None) -> int:
     args = ap.parse_args(argv)
 
     q_path = Path(args.questions)
-    a_path = Path(args.answers)
     out_path = Path(args.out)
 
     questions = load_questions(q_path)
     scored_questions = select_questions(questions, args.subset, args.include_excluded)
     judge_fn = _resolve_judge(args.tier2)
 
-    sources = gather_answer_sources(a_path)
     conditions: dict[str, dict] = {}
     all_pending: dict[str, list] = {}
-    for name, by_pos, by_qid in sources:
+    for name, by_pos, by_qid in gather_answer_sources(Path(args.answers)):
         res = score_condition(scored_questions, by_pos, by_qid, judge_fn, max_words=args.max_words,
                               strict_short=not args.no_strict_short)
         conditions[name] = {"items": res["items"], "aggregate": res["aggregate"]}
         if res["pending_tier2"]:
             all_pending[name] = res["pending_tier2"]
 
-    # single-condition runs flatten to top level (keeps score_eval-like shape);
-    # multi-condition runs nest under "conditions".
+    # One condition is written flat (the score_eval.py shape); several are
+    # nested under "conditions".
     if len(conditions) == 1:
         (only_name, only_val), = conditions.items()
         output = {
@@ -517,14 +498,13 @@ def main(argv: Optional[list[str]] = None) -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # pending_tier2.json written next to --out (only when tier-1 left gaps)
+    # Indeterminate items go to pending_tier2.json next to --out.
     if all_pending:
         pend_path = out_path.parent / "pending_tier2.json"
         pend_payload = all_pending if len(all_pending) > 1 else next(iter(all_pending.values()))
         pend_path.write_text(json.dumps(pend_payload, ensure_ascii=False, indent=2),
                              encoding="utf-8")
 
-    # cp932-safe console summary (ASCII only)
     print(f"scored questions: {len(scored_questions)} (subset={args.subset})")
     for name in sorted(conditions):
         agg = conditions[name]["aggregate"]

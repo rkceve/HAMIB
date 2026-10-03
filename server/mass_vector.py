@@ -1,20 +1,9 @@
-"""mass_vector: [PN{mass}] 位置リストから 1D マスベクトルを組み立てる共通ヘルパー。
+"""Build the 1D mass vector from ``(token_position, mass)`` pairs.
 
-D-3 (RESEARCH_PROGRAM.md §1.9) が要求する正規化/上限層をここに一本化する:
-
-    value = min(cap, mass * scale)
-
-呼び出し側 (server/cms_session.py, server/main.py) は以前それぞれ手書きの
-ループで ``vec[pos] += mass`` していた。 上限がどこにも掛かっておらず、
-同一位置に複数のマーカーが当たると値が加算で膨らむため D-1 (effective bias
-<= ~3.0) を無音で踏み越えていた。 このモジュールはその 2 点を直す:
-
-  * 上限: ``min(cap, mass * scale)``  (D-3)
-  * 衝突: 加算ではなく ``max`` (同じ位置に 2 つのマーカーが来ても膨らまない)
-
-cap / scale の既定値は config から読む:
-    get("attention", "mass_cap", 3.0)
-    get("attention", "mass_scale", 1.0)
+Each entry is ``min(cap, mass * scale)``. When several markers hit the same
+position the largest value wins; summing them could push it past the cap.
+Callers read cap and scale from config:
+``get("attention", "mass_cap", 3.0)`` and ``get("attention", "mass_scale", 1.0)``.
 """
 from __future__ import annotations
 
@@ -29,30 +18,18 @@ def positions_to_mass_vector(
     scale: float = 1.0,
     device: torch.device | str | None = None,
 ) -> torch.Tensor | None:
-    """(位置, mass) のリストを 1D マスベクトル (shape: (seq_len,)) に変換する。
+    """Return a float32 vector of shape ``(seq_len,)`` holding the mass at each position.
 
-    Args:
-        positions: ``find_pn_positions`` 等が返す (token_position, mass) のリスト。
-        seq_len:   ベクトル長 (= プロンプトのトークン数)。
-        cap:       D-3 の上限。 各要素は ``min(cap, mass * scale)`` になる。
-        scale:     mass に掛ける正規化係数。
-        device:    生成先デバイス。
-
-    Returns:
-        ``positions`` が空のときだけ None。 それ以外は必ず Tensor を返す
-        (範囲外の位置しかない場合はゼロベクトル)。
-
-    同一位置に複数のマーカーが当たった場合は **max** を取る (加算しない)。
-    加算すると上限 cap を超えてしまい D-1 を破るため。
+    Each value is ``min(cap, mass * scale)``; positions outside ``[0, seq_len)``
+    are ignored and on a collision the largest value wins. Returns None only
+    when ``positions`` is empty (out-of-range positions alone give a zero
+    vector).
     """
     if not positions:
         return None
 
-    # F8 (perf): build on the CPU, then move once.  Assigning element by element
-    # into a CUDA tensor costs one host<->device synchronisation PER POSITION
-    # (the ``float(vec[pos])`` read is itself a device->host copy), and the
-    # reader does this for every question of every cell.  The values are
-    # identical: same cap, same scale, same max-on-collision rule.
+    # Build on the CPU and move once at the end: writing element by element
+    # into a CUDA tensor would cost one host-device sync per position.
     values: dict[int, float] = {}
     for pos, mass in positions:
         if 0 <= pos < seq_len:

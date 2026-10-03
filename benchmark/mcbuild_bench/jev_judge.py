@@ -1,60 +1,50 @@
-"""Jev-backed hooks for ``SpecManager`` (mcbuild_bench DESIGN.md 3, 5.3, 6).
+"""Jev-backed hooks that answer the spec manager's decisions (manager phase).
 
-Four adapters translate the spec manager's three decision points into Jev
-questions.  The ``jev`` object is duck-typed against DESIGN.md 6
-(``jev_client.JevClient``):
+``SpecManager`` (management/harness/spec_manager.py) builds the correlation
+diagram one chunk at a time and needs three kinds of decisions: is a chunk worth
+keeping and how general is it, which existing node does a new node belong under,
+and does a new node state the same matter as an existing one.  In this
+experiment Jev answers all of them.  The adapters here turn each decision into
+Jev questions and Jev's answers back into what the manager expects; build_cd
+wires them into the manager.
+
+The ``jev`` object is duck-typed against ``jev_client.JevClient``::
 
     jev.ask(state: str, questions: dict[str, dict]) -> {"answers": dict,
         "usage": {"input_tokens": int, "output_tokens": int},
         "latency_ms": float, "http_status": int, "retries": int}
 
-and the ``summarizer`` against ``summarizer_client.SummarizerClient``:
+and the ``summarizer`` against ``summarizer_client.SummarizerClient``::
 
-    summarizer.summarize(excerpt: str) -> str    (<= 120 chars or SummarizerStop)
+    summarizer.summarize(excerpt: str) -> str    (<= 120 chars, or SummarizerStop)
 
-Decision mapping (D3, DESIGN.md 3):
-  * score  -> level = argmax over the keys PRESENT in ``probabilities`` (a
-              missing level is probability 0; tie -> lower index; the index must
-              be < len(LEVEL_SCORES)) -> axis score 10 + 20*level on the existing
-              0-100 scale.  ``score`` (probability-weighted) is recorded by the
-              client only.
-  * noul   -> ``noul >= 0.5``.
-  * choice -> ``choice``.
-The parsers are ``jev_client.argmax_level / noul_of / choice_of`` (type-checked;
-they raise :class:`JevStop`, never TypeError / ValueError, so build_cd can always
-write its partial output).  Any answer missing a required field raises
-:class:`JevStop` after counting ``unparsed``.  There are no defaults, so
-``defaulted`` is always 0.
+How an answer becomes a decision:
 
-Call accounting: every adapter bumps the shared :class:`JevCounters` under
-the question kind.  The ``sun`` / ``planet`` choice questions are the K_BELONGS
-decision of ``most_similar`` and are counted under K_BELONGS, so
-``SpecManager.call_totals()`` (which filters by ``prompts.ALL_KINDS``) sees them.
+- score  -> the level with the highest probability (a missing level counts as
+            0, a tie goes to the lower level), mapped to the axis score
+            10 + 20 * level on the manager's 0-100 scale;
+- noul   -> ``noul >= 0.5``;
+- choice -> the chosen option.
 
-H22 (a) (Ryosuke, 2026-09-20; DECISIONS H19 = b): EVERY K_BELONGS decision over
-more than one candidate is ONE Choice request per batch of at most
-``MAX_SUN_CHOICES`` (254) candidates, for sun and planet candidates alike.  The
-wording differs: when every candidate is a current sun text (``sun_texts_fn``)
-the ``sun`` question (+ ``new_topic``) is used, otherwise the ``planet``
-question (+ ``none``).  Batches follow candidate order; the first batch whose
-answer is not the "none" option wins and its key (``s<i>`` / ``p<i>``, ``i`` =
-GLOBAL candidate index) is mapped back.
+There are no default answers.  Anything missing or malformed raises
+``JevStop`` (after being counted as ``unparsed``), so build_cd can stop and
+still write its partial diagram.
 
-H23 (Ryosuke, 2026-09-20): the SAME-MATTER judgement (``K_SAME``, spec 0042)
-over more than one candidate is made the same way: ONE Choice request per
-batch of <= 254 candidates with the ``same`` question (keys ``m<i>`` +
-``none``), counted under K_SAME.  A single candidate (either kind) keeps the
-pairwise Noul, which is one request either way.
+One request per chunk: the keep question and the three axis questions are sent
+together, with the raw chunk as the state.  ``JevKeepFn`` sends the request
+through ``JevNodeFn.ask_chunk``, which parses and caches the answer;
+``JevNodeFn`` then takes the scores from the cache and asks the summarizer for
+the node text (only kept chunks get that far).  This relies on the manager
+calling ``keep_fn(text)`` and then ``node_fn(text)`` on the same text; anything
+else raises RuntimeError rather than paying for a second request.
 
-H1 (2026-09-18, D3 one-request contract): per chunk there is exactly ONE Jev
-request carrying {keep, comprehensiveness, independence, detail} on the RAW
-chunk.  ``JevNodeFn.ask_chunk`` sends it, parses every answer eagerly and
-caches the result for that text; ``JevKeepFn`` is a thin reader of that cache
-and ``JevNodeFn.__call__`` reads the scores from it and calls the summarizer
-(only kept chunks reach it).  Ordering assumption, asserted: the spec manager
-calls ``keep_fn(text)`` first and then ``node_fn(text)`` on the SAME text
-(``SpecManager._node_or_dropped``); ``node_fn`` on a text that was not asked
-first raises RuntimeError.  The single request is counted under ``K_NODE``.
+Placement (``belongs``) and same-matter (``same``) decisions over several
+candidates are asked as ONE Choice question per batch of at most 254
+candidates (Jev allows 255 options; one is the "none" option).  Asking one Noul
+per candidate would cost hundreds of thousands of requests over this corpus.  A
+single candidate is asked as one pairwise Noul.  Every request is counted in
+the shared ``JevCounters`` under its decision kind, so
+``SpecManager.call_totals()`` reports it.
 """
 
 from __future__ import annotations
@@ -70,7 +60,7 @@ from benchmark.mcbuild_bench.jev_client import choice_of, noul_of
 from management.harness.prompts import K_BELONGS, K_NODE, K_SAME
 from management.harness.spec_manager import AXES
 
-# -- fixed question texts (DESIGN.md 3; the state is always the RAW chunk) ----
+# -- fixed question texts (the experiment design fixes them; do not edit) -----
 
 MAX_SUN_CHOICES = 254  # choice <= 255 options, one of which is new_topic / none
 NEW_TOPIC = "new_topic"
@@ -83,8 +73,8 @@ K_PLANET = "planet"
 LEVEL_SCORES: tuple[int, ...] = (10, 30, 50, 70, 90)
 N_LEVELS = len(LEVEL_SCORES)
 
-# H22 (e): facts inside tool output are kept; only content with no lasting
-# information is dropped.
+# Facts often sit inside tool output (values, paths, settings), so the keep
+# question keeps them; only content with no lasting information is dropped.
 Q_KEEP: dict[str, Any] = {
     "type": "noul",
     "instructions": (
@@ -148,7 +138,7 @@ Q_PLANET_INSTRUCTIONS = (
     "if it belongs under none of them."
 )
 NONE_ITEM_CRITERION = "None of the listed items"
-# H23: the `same` Choice batch (spec 0042 over > 1 candidates).
+# The `same` Choice batch, used when a node has more than one candidate.
 Q_SAME_CHOICE_INSTRUCTIONS = (
     "Which of the listed items states the same matter as this excerpt? Pick none "
     "if no item states the same matter."
@@ -194,8 +184,8 @@ def sun_question(sun_texts: list[str], offset: int = 0) -> dict[str, Any]:
 
 
 def planet_question(texts: list[str], offset: int = 0) -> dict[str, Any]:
-    """H22 (a): the `planet` choice question over one batch of planet /
-    satellite / provisional-sun candidate texts + none; keys ``p<offset + i>``."""
+    """The `planet` choice question over one batch of planet / satellite /
+    provisional-sun candidate texts + none; keys ``p<offset + i>``."""
     return _choice_question(
         texts, prefix="p", offset=offset, instructions=Q_PLANET_INSTRUCTIONS,
         none_key=NONE_ITEM, none_criterion=NONE_ITEM_CRITERION,
@@ -203,8 +193,8 @@ def planet_question(texts: list[str], offset: int = 0) -> dict[str, Any]:
 
 
 def same_question(texts: list[str], offset: int = 0) -> dict[str, Any]:
-    """H23: the `same` choice question over one batch of candidate node texts
-    + none; keys ``m<offset + i>``."""
+    """The `same` choice question over one batch of candidate node texts +
+    none; keys ``m<offset + i>``."""
     return _choice_question(
         texts, prefix="m", offset=offset, instructions=Q_SAME_CHOICE_INSTRUCTIONS,
         none_key=NONE_ITEM, none_criterion=NONE_SAME_CRITERION,
@@ -236,11 +226,11 @@ __all__ = ["argmax_level", "choice_of", "noul_of"]  # re-exported jev_client par
 
 
 class JevCounters:
-    """Runner-compatible counter object (SpecManager._counter_sources reads
-    ``calls`` / ``unparsed`` / ``defaulted``; ``retried`` mirrors JudgeRunner).
+    """Per-kind call counters in the shape SpecManager reads from a judge
+    runner (``calls`` / ``unparsed`` / ``defaulted``; ``retried`` as in
+    JudgeRunner), plus the token usage of the completed requests.
 
-    ``defaulted`` stays empty forever: D1 forbids default answers.  Token
-    usage is accumulated for the manifest (jev_input_tokens_total etc.).
+    ``defaulted`` stays empty: Jev answers are never replaced by defaults.
     """
 
     def __init__(self) -> None:
@@ -284,8 +274,9 @@ def _ask(jev: Any, counters: JevCounters, kind: str, state: str, questions: dict
     """One Jev request, counted under ``kind``; returns the ``answers`` map.
 
     A malformed reply (no ``answers`` object) is ``unparsed`` and stops the run.
-    H2: a JevStop raised by ``jev.ask`` itself (HTTP failure after backoff,
-    validation error) is booked under ``unparsed[kind]`` before it propagates.
+    A JevStop raised by ``jev.ask`` itself (HTTP failure after the retries,
+    validation error) is also booked under ``unparsed[kind]`` before it
+    propagates, so the counters show which decision kind failed.
     """
     try:
         result = jev.ask(state, questions)
@@ -314,21 +305,23 @@ def _parse(counters: JevCounters, kind: str, fn, *args):
 
 @dataclass(frozen=True)
 class ChunkAnswer:
-    """The parsed one-request answer for one raw chunk (H1)."""
+    """The parsed answer of the one request made for a raw chunk."""
 
     keep: bool
     scores: dict[str, int]
 
 
 class JevNodeFn:
-    """``SpecManager(node_fn=...)``: reads the axis scores of the chunk's ONE
-    Jev request ({keep, comprehensiveness, independence, detail}, state = raw
-    chunk; sent by ``ask_chunk``, normally through ``JevKeepFn``), mapped to
-    10 + 20*level, then the node text from the local summarizer.  A missing
-    Jev answer raises JevStop (D1); an unreachable summarizer raises
-    SummarizerStop; a summarizer answer that breaks the node-text rule after
-    its retry returns None (H28), which ``SpecManager._node_or_dropped`` counts
-    as ``node_fallback`` and replaces with the truncated chunk text."""
+    """``SpecManager(node_fn=...)``: the node text and axis scores of a kept chunk.
+
+    The scores come from the chunk's one Jev request (keep + the three axes,
+    sent by ``ask_chunk``, normally through ``JevKeepFn``), mapped to
+    10 + 20 * level; the node text comes from the local summarizer.  A missing
+    Jev answer raises JevStop and an unreachable summarizer raises
+    SummarizerStop.  When the summarizer cannot produce a usable node text,
+    ``__call__`` returns None; ``SpecManager._node_or_dropped`` then counts a
+    ``node_fallback`` and uses the truncated chunk text, as it always has.
+    """
 
     def __init__(self, jev: Any, summarizer: Any, counters: JevCounters | None = None) -> None:
         self.jev = jev
@@ -380,8 +373,9 @@ class JevNodeFn:
 
 
 class JevKeepFn:
-    """``SpecManager(keep_fn=...)``: the `keep` noul of the chunk's ONE Jev
-    request (D3 / A3), sent here through ``JevNodeFn.ask_chunk``."""
+    """``SpecManager(keep_fn=...)``: the `keep` answer of the chunk's one Jev
+    request, which is sent here through ``JevNodeFn.ask_chunk``.  Tool output is
+    fed to the manager too, and this question is what lets it drop noise."""
 
     def __init__(self, node_fn: JevNodeFn) -> None:
         self.node_fn = node_fn
@@ -393,29 +387,24 @@ class JevKeepFn:
 
 
 class JevSimilarityJudge:
-    """``SpecManager(similarity=...)``: DESIGN.md 5.3, DECISIONS D3 / H22 (a) / H23.
+    """``SpecManager(similarity=...)``: the belongs / same-matter decisions.
 
-    most_similar(query, candidates, kind):
-      * no candidates                      -> (-1, 0.0), no call
-      * >1 candidates (either kind)        -> ONE Choice request per batch of
-                                              <= 254 candidates (candidate order),
-                                              counted under ``kind``; the first
-                                              batch whose answer is not the none
-                                              option wins -> (global idx, 1.0),
-                                              else (-1, 0.0).  Wording:
-                                              K_BELONGS -> `sun` (+ new_topic) when
-                                              EVERY candidate is a current sun
-                                              node text (``sun_texts_fn``), else
-                                              `planet` (+ none);
-                                              K_SAME -> `same` (+ none), H23
-      * 1 candidate                        -> one noul (`same` / `belongs`) on
-                                              the pair state, >= 0.5 wins
-                                              (0042 one-to-one), else (-1, 0.0)
+    ``most_similar(query, candidates, kind)`` returns ``(index, 1.0)`` for the
+    chosen candidate or ``(-1, 0.0)`` for none:
 
-    ``sun_texts_fn`` returns the texts of the sun nodes currently in the diagram
-    being built (build_cd wires ``{se.sun.text for se in cd.suns}``).  Without
-    it every multi-candidate K_BELONGS decision uses the planet wording.
-    ``runner`` exposes the counters SpecManager accounts per turn.
+    - no candidates: ``(-1, 0.0)`` without a request;
+    - one candidate: one pairwise Noul (`same` or `belongs`) on
+      ``"A: <query>\nB: <candidate>"``; ``noul >= 0.5`` picks it;
+    - several candidates: one Choice request per batch of <= 254 candidates,
+      in candidate order; the first batch whose answer is not the none option
+      wins.  K_SAME uses the `same` wording.  K_BELONGS uses the `sun` wording
+      (+ new_topic) when every candidate is a current sun text, otherwise the
+      `planet` wording (+ none).
+
+    ``sun_texts_fn`` returns the texts of the suns currently in the diagram
+    being built (build_cd wires ``{se.sun.text for se in cd.suns}``); without
+    it every K_BELONGS batch uses the planet wording.  ``runner`` exposes the
+    counters SpecManager reads per turn.
     """
 
     def __init__(
@@ -468,15 +457,15 @@ class JevSimilarityJudge:
 
     def _all_suns(self, candidates: list[str]) -> bool:
         """True iff every candidate is a current sun node text (selects the
-        `sun` wording; otherwise the `planet` wording is used, H22 (a))."""
+        `sun` wording; otherwise the `planet` wording is used)."""
         if self._sun_texts_fn is None:
             return False
         suns = self._sun_texts_fn()
         return all(c in suns for c in candidates)
 
     def _choose(self, query: str, candidates: list[str], kind: str) -> tuple[int, float]:
-        """H22 (a) / H23: Choice batches of <= MAX_SUN_CHOICES over
-        ``candidates``, counted under ``kind`` (K_BELONGS or K_SAME)."""
+        """Choice batches of <= MAX_SUN_CHOICES over ``candidates``, counted
+        under ``kind`` (K_BELONGS or K_SAME)."""
         if kind == K_SAME:
             qid, build, prefix, none_key = K_SAME, same_question, "m", NONE_ITEM
         elif self._all_suns(candidates):
@@ -487,7 +476,7 @@ class JevSimilarityJudge:
             batch = candidates[start:start + MAX_SUN_CHOICES]
             question = build(batch, start)
             answers = _ask(self.jev, self._counters, kind, query, {qid: question})
-            # Item 5: the choice and its probabilities are checked against the offered keys.
+            # A choice (or probability key) outside the offered options stops the run.
             options = list(question["criteria"])
             choice = _parse(
                 self._counters, kind, lambda: choice_of(_answer(answers, qid), options=options)
@@ -503,13 +492,13 @@ class JevSimilarityJudge:
         return -1, 0.0
 
 
-# -- request projection (Astra round 3 item 1) ---------------------------------
+# -- request projection (sizing a run before spending money) ------------------
 
 
 def choice_batches(n_candidates: int) -> int:
     """Requests of one K_BELONGS or K_SAME decision over ``n_candidates``:
-    ceil(n / 254) Choice batches (H22 (a), H23); 1 candidate is one
-    `belongs` / `same` Noul, also one request; 0 candidates cost nothing."""
+    ceil(n / 254) Choice batches; 1 candidate is one `belongs` / `same` Noul,
+    also one request; 0 candidates cost nothing."""
     return -(-int(n_candidates) // MAX_SUN_CHOICES)
 
 
@@ -535,9 +524,9 @@ def project_requests(n_chunks: int, n_suns: int, n_planets: int, n_satellites: i
     are attempts inside one request and are not counted) that ONE round trip
     of ``n_chunks`` chunks can cost against a diagram that holds ``n_suns``
     suns, ``n_planets`` planets and ``n_satellites`` satellites BEFORE the
-    round trip, under the H22 (a) + H23 routing (jev_judge + spec_manager +
-    graph_merger, read 2026-09-20).  Every chunk is assumed kept (a dropped
-    chunk costs exactly its classification request, never more).
+    round trip, following the request routing of jev_judge, spec_manager and
+    graph_merger.  Every chunk is assumed kept (a dropped chunk costs exactly
+    its classification request, never more).
 
     Terms, each an upper bound of one code path::
 
@@ -550,8 +539,8 @@ def project_requests(n_chunks: int, n_suns: int, n_planets: int, n_satellites: i
             a decision over k candidates is choice_batches(k) requests.
         merge           n_chunks * (same + belongs)
             same    = choice_batches(k),  k = n_suns + n_planets + n_satellites + n_chunks
-                Each node is merged once and asks ONE `same` decision (H23:
-                Choice batches, no longer k Nouls) over one candidate set:
+                Each node is merged once and asks ONE `same` decision
+                (Choice batches) over one candidate set:
                 a sun node against every current sun
                 (GraphMerger._find_matching_sun_idx); a planet under a matched
                 sun against that sun's planets; a satellite under a matched
@@ -561,12 +550,12 @@ def project_requests(n_chunks: int, n_suns: int, n_planets: int, n_satellites: i
                 same round trip are candidates too, hence the ``+ n_chunks``.
             belongs = choice_batches(n_planets + n_chunks) + choice_batches(n_suns + n_chunks)
                 An orphan satellite asks ONE `belongs` decision over ALL
-                planets (Choice batches, H22 (a)) and then one sun Choice; an
-                orphan planet only the sun Choice (bounded by the same sum).
+                planets (Choice batches) and then one sun Choice; an orphan
+                planet only the sun Choice (bounded by the same sum).
 
-    With Choice batches for both decisions the merge term per node is
-    ceil(diagram / 254)-shaped, no longer linear (`same` Nouls, H23) nor
-    quadratic (`belongs` Nouls, H19).
+    Because both decisions use Choice batches, the merge term per node grows
+    like ceil(diagram / 254) instead of linearly (one `same` Noul per
+    candidate) or quadratically (one `belongs` Noul per candidate pair).
     """
     for name, value in (
         ("n_chunks", n_chunks), ("n_suns", n_suns),
@@ -582,16 +571,16 @@ def project_requests(n_chunks: int, n_suns: int, n_planets: int, n_satellites: i
     return classification + within_turn + merge
 
 
-# -- input-token / USD estimate (H23; an ESTIMATE, not the budget guard) --------
+# -- input-token / USD estimate (an ESTIMATE, not the budget guard) ------------
 
 
 def _decision_cost(
     n_candidates: int, avg_option_tokens: int, instruction_tokens: int
 ) -> tuple[int, int]:
-    """(requests, input_tokens) of ONE decision over ``n_candidates`` under the
-    H22 (a) / H23 batching: ceil(n / 254) requests, every candidate text sent
-    once, plus instructions + state (one node text) per request.  A
-    single-candidate Noul has the same shape (instructions + two texts)."""
+    """(requests, input_tokens) of ONE decision over ``n_candidates`` with
+    Choice batching: ceil(n / 254) requests, every candidate text sent once,
+    plus instructions + state (one node text) per request.  A single-candidate
+    Noul has the same shape (instructions + two texts)."""
     requests = choice_batches(n_candidates)
     tokens = requests * (instruction_tokens + avg_option_tokens) + n_candidates * avg_option_tokens
     return requests, tokens
@@ -623,7 +612,7 @@ def estimate_input_tokens(
         kept nodes (build_provisional: planets over the turn's suns, satellites
         over the turn's planets).
       * same: the i-th kept node (i from 0) asks ONE `same` decision over i
-        candidates (the diagram grows by one node per kept chunk; H23 Choice
+        candidates (the diagram grows by one node per kept chunk; Choice
         batches, ceil(i / 254) requests, every candidate text sent once).
       * belongs: the i-th kept node asks two `belongs` decisions (planet
         Choice, sun Choice) over the same i candidates split in half

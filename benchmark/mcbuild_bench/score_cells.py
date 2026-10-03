@@ -1,13 +1,21 @@
-"""V7: score the main run locally (DESIGN.md 10, DECISIONS B5 / H26 / H29).
+"""Score the main run: every proposed cell against arm A on the same questions.
 
-For every proposed cell directory ``<main>/proposed_W<W>_w<w>`` the questions listed in its
-``questions_subset.json`` (H22 d) are scored for the cell AND for arm A (``<main>/A_full``, the
-single full-transcript run -- H29) with ``score_binary.score_condition`` (tier 1 only, strict
-short-needle rule, ``judge_none``).  Paired statistics per cell (B5): exact one-sided McNemar
-(proposed > A and A > proposed) and a 10000-iteration paired bootstrap (seed 47) of the pass-rate
-difference and ratio.  Reader compute per question from ``meta.json`` (E1):
-``attn_flops_prefill + attn_flops_decode``, ``wall_ms_total``, ``energy_joules``, prompt tokens --
-means over the same subset for both arms, plus the ratio proposed / A.
+This is the last stage of the pipeline and runs locally on the run_arms output
+directories.  Each proposed cell ``<main>/proposed_W<W>_w<w>`` wrote a
+``questions_subset.json`` listing the questions whose facts lie outside its
+window (the others would be answered by re-reading the window).  Those
+questions are scored for the cell AND for arm A (``<main>/A_full``, one
+full-transcript run on all questions; answers are independent and greedy, so
+one arm-A run serves every subset).  Scoring is
+``score_binary.score_condition`` with tier 1 only, the strict short-answer
+rule and no LLM grader (``judge_none``).
+
+Per cell the comparison is paired per question: exact one-sided McNemar tests
+in both directions and a 10000-iteration paired bootstrap (seed 47) of the
+pass-rate difference and ratio.  Reader compute per question comes from
+``meta.json``: attention FLOPs (prefill + decode), ``wall_ms_total``,
+``energy_joules`` and prompt tokens, averaged over the same subset for both
+arms, plus the ratio proposed / A.
 
 Usage:
     python -m benchmark.mcbuild_bench.score_cells --main <dir> --questions data/questions.json \
@@ -31,8 +39,9 @@ COMPUTE_KEYS = ("attn_flops_total", "wall_ms_total", "energy_joules", "prompt_to
 
 
 def mcnemar_one_sided(b: int, c: int) -> float:
-    """Exact one-sided McNemar, H0: P(c) <= P(b); b = A-only passes, c = proposed-only passes
-    (same as experiments/judges/v10_paired_2026_05_21/analyze_paired.py)."""
+    """Exact one-sided McNemar p-value for "proposed-only passes are more likely
+    than A-only passes"; b = A-only passes, c = proposed-only passes.  Same test
+    as experiments/judges/v10_paired_2026_05_21/analyze_paired.py."""
     n = b + c
     if n == 0:
         return 1.0
@@ -41,6 +50,8 @@ def mcnemar_one_sided(b: int, c: int) -> float:
 
 def bootstrap_ci(prop: list[int], base: list[int], n_boot: int = 10000, alpha: float = 0.05,
                  seed: int = 47) -> dict:
+    """Paired bootstrap CI of the pass-rate difference (prop - base) and ratio
+    (prop / base); resamples with a zero base pass rate are left out of the ratio."""
     rng = np.random.default_rng(seed)
     p, b = np.asarray(prop, dtype=float), np.asarray(base, dtype=float)
     n = len(p)
@@ -91,6 +102,7 @@ def pass_vector(scored: dict, qids: list[str]) -> list[int]:
 
 
 def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict]) -> dict:
+    """Score one proposed cell and arm A on the cell's question subset."""
     subset = json.loads((cell_dir / "questions_subset.json").read_text(encoding="utf-8"))
     qids = list(subset["qids"])
     by_qid = {q["qid"]: q for q in questions}
@@ -107,8 +119,8 @@ def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict]) -> dict:
     p_sc = score_condition(scored_qs, {}, p_ans, judge_none, strict_short=True)
     a_sc = score_condition(scored_qs, {}, a_ans, judge_none, strict_short=True)
     pv, av = pass_vector(p_sc, qids), pass_vector(a_sc, qids)
-    b = sum(1 for x, y in zip(pv, av) if y == 1 and x == 0)  # A only
-    c = sum(1 for x, y in zip(pv, av) if x == 1 and y == 0)  # proposed only
+    a_only = sum(1 for x, y in zip(pv, av) if y == 1 and x == 0)
+    proposed_only = sum(1 for x, y in zip(pv, av) if x == 1 and y == 0)
     pc, ac = compute_summary(p_comp, qids), compute_summary(a_comp, qids)
     ratios = {}
     for k in COMPUTE_KEYS:
@@ -133,9 +145,9 @@ def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict]) -> dict:
         "paired": {
             "both_pass": sum(1 for x, y in zip(pv, av) if x == 1 and y == 1),
             "both_fail": sum(1 for x, y in zip(pv, av) if x == 0 and y == 0),
-            "A_only": b, "proposed_only": c,
-            "mcnemar_p_proposed_gt_A": mcnemar_one_sided(b, c),
-            "mcnemar_p_A_gt_proposed": mcnemar_one_sided(c, b),
+            "A_only": a_only, "proposed_only": proposed_only,
+            "mcnemar_p_proposed_gt_A": mcnemar_one_sided(a_only, proposed_only),
+            "mcnemar_p_A_gt_proposed": mcnemar_one_sided(proposed_only, a_only),
             "bootstrap": bootstrap_ci(pv, av),
         },
         "compute_ratio_proposed_over_A": ratios,

@@ -1,27 +1,26 @@
-"""corpus.py — the experiment corpus = the redacted session minus excluded round trips.
+"""The experiment corpus: the redacted session minus the excluded round trips.
 
-DECISIONS H22 (c) (Ryosuke, 2026-09-20): round trip 36 — the session
-retrospective, whose text restates many facts of the whole session — is EXCLUDED
-from the experiment corpus.  The exclusion is a documented, CHECKED filter
-applied at load time by every consumer (build_cd, run_arms, compaction_c, the
-ledger); ``data/session_redacted.json`` itself is never edited.
+Every stage (build_cd, compaction_c, run_arms, build_ledger) loads the session
+through ``load_corpus`` so that they all work on the same round trips.  By
+default round trip 36 is excluded: it is the session retrospective, which
+restates facts from the whole session and would put many answers into any
+window that contains it.  ``data/session_redacted.json`` itself is never edited.
 
     corpus = load_corpus(session_path, exclude_idx=DEFAULT_EXCLUDE_RT)
-    corpus.round_trips       # the filtered list, session order
-    corpus.sha256            # sha256 of the FILTERED content (artifact binding)
-    corpus.session_file_sha256  # sha256 of the raw file bytes (recorded only)
+    corpus.round_trips          # the kept round trips, in session order
+    corpus.sha256               # hash of the kept content; artifacts are bound to it
+    corpus.session_file_sha256  # hash of the raw file bytes (recorded only)
 
-Checked means: every excluded ``idx`` must exist in the session (a default of
-``(36,)`` applied to a session without a round trip 36 is an error, not a
-no-op), duplicates are refused, and the result must be non-empty.
+The exclusion is strict: every excluded index must exist in the session (so a
+typo cannot silently exclude nothing), duplicates are refused, and the result
+must not be empty.
 
-``sha256`` hashes the canonical JSON of the filtered round-trip list
-(``sort_keys``, compact separators, ``ensure_ascii=False``), so two consumers
-with the same session file and the same exclusion set agree byte for byte, and a
-session that never contained the excluded round trips hashes identically to one
-that had them filtered out.  The CLIs take ``--exclude-rt 36`` (comma-separated
-indices; ``none`` or the empty string disables the filter) and record the list
-in every manifest / meta / checkpoint header.
+``sha256`` hashes the canonical JSON of the kept round trips (``sort_keys``,
+compact separators, ``ensure_ascii=False``).  Two runs with the same session
+file and the same exclusion therefore agree byte for byte, and a session that
+never had the excluded round trips hashes the same as one that had them
+filtered out.  The CLIs take ``--exclude-rt`` (comma-separated indices; ``none``
+or the empty string disables the filter) and record the list in their outputs.
 """
 
 from __future__ import annotations
@@ -31,7 +30,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-# H22 (c): the session retrospective.
+# Round trip 36 is the session retrospective (see the module docstring).
 DEFAULT_EXCLUDE_RT: tuple[int, ...] = (36,)
 DEFAULT_EXCLUDE_RT_CLI = ",".join(str(i) for i in DEFAULT_EXCLUDE_RT)
 
@@ -80,8 +79,8 @@ def _checked_exclusion(exclude_idx) -> tuple[int, ...]:
 
 def load_corpus(session_path: str | Path, exclude_idx=DEFAULT_EXCLUDE_RT) -> Corpus:
     """Read ``session_path`` and drop the round trips whose ``idx`` is in
-    ``exclude_idx`` (checked: every index must exist; the result must be
-    non-empty)."""
+    ``exclude_idx``.  Every excluded index must exist and the result must not
+    be empty; otherwise ValueError."""
     exclude = _checked_exclusion(exclude_idx)
     path = Path(session_path)
     raw = path.read_bytes()

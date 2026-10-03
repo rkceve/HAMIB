@@ -1,51 +1,42 @@
-"""
-ノード類似度判定ユーティリティ。
+"""Text similarity, used to decide whether two nodes mean the same thing.
 
-特許§0042 準拠:
-  「ノード同士の類似度の判定には、学習済みのLLMが用いられ、
-   必ずノードを1対1の形で判定する」
+By default the score is the cosine similarity of SentenceTransformer
+embeddings (model from config ``management.embedding_model``).
 
-実装方針:
-  - デフォルト: SentenceTransformer (all-MiniLM-L6-v2) 埋め込みコサイン類似度
-    （計算量・速度の観点で実用的）
-  - オプション: LLM ベース類似度判定（特許準拠の厳密実装）
-    set_llm_similarity_fn(fn) で外部から登録可能
+The spec has an LLM compare nodes one pair at a time. To do that, register a
+pairwise scorer; ``cosine_similarity`` and ``most_similar_index`` then use it
+instead of embeddings (scores are clamped to [0, 1]). Pass None to switch back.
 
-LLM ベース判定の使い方:
-  from utils.similarity import set_llm_similarity_fn
+    def my_llm_sim(text_a: str, text_b: str) -> float:
+        ...  # score in [0.0, 1.0]
 
-  def my_llm_sim(text_a: str, text_b: str) -> float:
-      # LLM で 0.0-1.0 のスコアを返す関数
-      ...
-  set_llm_similarity_fn(my_llm_sim)
-
-  # 以降の similarity 呼び出しは LLM ベースに切り替わる
+    set_llm_similarity_fn(my_llm_sim)
 """
 from __future__ import annotations
 import numpy as np
 from functools import lru_cache
-from typing import Callable, Optional
+from typing import Callable
 
 from utils.config import get
 
 _MODEL_NAME: str = get("management", "embedding_model", "all-MiniLM-L6-v2")
 
-# 特許§0042 準拠の LLM ベース類似度判定関数（オプション）
-# 登録された場合、cosine_similarity / most_similar_index がこれを優先する
-_llm_similarity_fn: Optional[Callable[[str, str], float]] = None
+# Pairwise scorer registered with set_llm_similarity_fn; None = use embeddings.
+_llm_similarity_fn: Callable[[str, str], float] | None = None
 
 
-def set_llm_similarity_fn(fn: Optional[Callable[[str, str], float]]) -> None:
-    """
-    特許§0042 準拠の LLM ベース類似度判定関数を登録する。
-    None を渡すと埋め込みベースに戻る。
-    """
+def set_llm_similarity_fn(fn: Callable[[str, str], float] | None) -> None:
+    """Use ``fn(text_a, text_b) -> score`` for all similarity calls (None = embeddings)."""
     global _llm_similarity_fn
     _llm_similarity_fn = fn
 
 
-def get_llm_similarity_fn() -> Optional[Callable[[str, str], float]]:
+def get_llm_similarity_fn() -> Callable[[str, str], float] | None:
     return _llm_similarity_fn
+
+
+def _clamp01(score) -> float:
+    return max(0.0, min(1.0, float(score)))
 
 
 @lru_cache(maxsize=1)
@@ -56,44 +47,27 @@ def _get_model():
 
 def embed(texts: list[str]) -> np.ndarray:
     """Return L2-normalised embedding matrix of shape (N, dim)."""
-    model = _get_model()
-    vecs = model.encode(texts, convert_to_numpy=True, normalize_embeddings=True)
-    return vecs
+    return _get_model().encode(texts, convert_to_numpy=True, normalize_embeddings=True)
 
 
 def cosine_similarity(a: str, b: str) -> float:
-    """
-    Cosine similarity in [0, 1] between two texts.
-    LLM 類似度関数が登録されていればそれを優先（特許§0042 準拠）。
-    """
+    """Similarity of two texts (the registered LLM scorer, if any, else embeddings)."""
     if _llm_similarity_fn is not None:
-        score = _llm_similarity_fn(a, b)
-        return max(0.0, min(1.0, float(score)))
+        return _clamp01(_llm_similarity_fn(a, b))
     vecs = embed([a, b])
     return float(np.dot(vecs[0], vecs[1]))
 
 
 def most_similar_index(query: str, candidates: list[str]) -> tuple[int, float]:
-    """
-    Return (index, score) of the most similar candidate.
-
-    LLM 類似度関数が登録されていれば、特許§0042 準拠で
-    1対1 で全候補との類似度を判定する。
-    """
+    """Return (index, score) of the candidate most similar to ``query``; (-1, 0.0) if none."""
     if not candidates:
         return -1, 0.0
 
     if _llm_similarity_fn is not None:
-        # 特許§0042: 「必ずノードを1対1の形で判定する」
-        scores = [_llm_similarity_fn(query, c) for c in candidates]
-        scores_arr = np.array([max(0.0, min(1.0, float(s))) for s in scores])
-        best = int(np.argmax(scores_arr))
-        return best, float(scores_arr[best])
-
-    all_texts = [query] + candidates
-    vecs = embed(all_texts)
-    q_vec = vecs[0]
-    c_vecs = vecs[1:]
-    scores = c_vecs @ q_vec
+        raw = [_llm_similarity_fn(query, c) for c in candidates]
+        scores = np.array([_clamp01(s) for s in raw])
+    else:
+        vecs = embed([query] + candidates)
+        scores = vecs[1:] @ vecs[0]
     best = int(np.argmax(scores))
     return best, float(scores[best])

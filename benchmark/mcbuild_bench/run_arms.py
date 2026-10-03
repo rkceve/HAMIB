@@ -1,103 +1,62 @@
-"""run_arms.py — one (arm, W, w) cell of mcbuild-bench through the existing reader (DESIGN §6).
+"""Run one cell (arm, W, w) of mcbuild-bench through the existing reader.
 
-Wraps ``benchmark.bineval.run_reader`` (load_reader / run_reader / run_meta /
-write_answers) — it does not copy them.  Per cell:
+This is the reader stage of the pipeline.  The manager phase has already
+produced its artifact (build_cd's correlation diagram for arm ``proposed``,
+compaction_c's summary for arm C); windows.build_window composes the cell's
+context from it; this module asks every question with
+``benchmark.bineval.run_reader`` (wrapped, not copied) and records the answers
+and the compute they cost; score_cells scores the results afterwards.
 
-0. validate EVERY CLI value before torch / transformers are imported (item 12):
-   ``--arm`` choices, ``--W`` in {8000, 16000, 32000} or ``full`` (arm A only),
-   ``--w >= 0`` and ``== 0`` for the baselines, ``--prefill-chunk > 0``,
-   ``--max-new-tokens > 0``, every input path exists, ``--inject`` is ``none``
-   for arms A/B/C (H11: no marker scan on baselines);
-1. load questions (``score_binary.load_questions`` + ``select_questions(qs, "all",
-   False)``) and the redacted session (``round_trips``); sha256 of both files;
-2. artifact binding (item 2): arm proposed requires ``cd.json`` with non-empty
-   ``nodes`` and ``manifest.session_sha256`` equal to the session's; arm C requires
-   the compaction artifact's ``session_sha256`` / ``questions_sha256`` /
-   ``model_id`` / ``W`` to equal this run's — mismatch is a SystemExit quoting
-   both values;
-3. build ONE window with ``windows.build_window`` budgeted with the question
-   whose FULL reader prompt is longest (``budget_question``; arm C reuses the one
-   recorded by compaction_c), then assert for EVERY question that
-   ``count_tokens(build_prompt(prompt_context, q)) <= W`` (item 9);
-4. arm proposed with ``w > 0``: the window must contain at least one ``[PN`` line
-   (``planet_lines``; item 1);
-5. pre-flight: ``check_model_supported(AutoConfig, allow_linear_layers=True)`` and
-   ``check_context_fits(config, max prompt tokens, max_new_tokens, gpu_mem_gb)``
-   with ``gpu_mem_gb`` from ``torch.cuda.get_device_properties(0).total_memory`` —
-   there is NO CPU path, the CLI refuses to run without CUDA;
-6. ``load_reader`` (arm A additionally sets
-   ``llm._model.generation_config.prefill_chunk_size`` — honoured because
-   ``MassWeightedGemma.generate`` calls ``model.generate(**inputs, max_new_tokens,
-   do_sample)`` without ``generation_config=``, so transformers merges
-   ``model.generation_config`` for every other key);
-7. ``GpuSampler.start()`` and wait for >= 2 numeric samples (item 7);
-   ``run_reader.run_reader(llm, prompt_context, ...)`` with a ``progress`` callback
-   that timestamps each question and reads ``llm.last_generated_tokens`` /
-   ``last_prefill_ms`` / ``last_decode_ms`` (item 6); then wait for a sample at or
-   after the last question's end before ``stop()``;
-8. post-run guards: ``planet_spans == planet_lines`` for the injected arm and
-   ``> 0`` when ``w > 0`` (items 1, 13); ``prompt_tokens <= W`` for every
-   question (item 9);
-9. per question (E1): ``completion_tokens`` (= ``last_generated_tokens``),
-   ``wall_ms_total`` / ``wall_ms_prefill`` / ``wall_ms_decode``,
-   ``attn_flops_prefill``, ``attn_flops_decode``, ``energy_joules`` (null only
-   when the question is shorter than the sampling gap), plus the window fields;
-10. write ``answers.json`` (+ ``answers.meta.json`` from write_answers),
-    ``meta.json`` (run_meta + extra + merged per_question, incl. all hashes,
-    ``git_sha`` and ``energy_coverage``) and ``timing.jsonl``.
+What ``main`` does for one cell:
 
-FLOPs model (E1, Qwen3.8-27B: 16 sdpa layers x 24 heads x head_dim 256).
-Generating n tokens costs 1 prefill forward (chunked prefill: ceil(L/chunk) of
-them) plus n-1 DECODE forwards -- the first token comes out of the prefill
-forward (F1, 2026-09-18)::
+1. Check every CLI value before torch / transformers are imported, so a bad
+   flag fails in a second instead of after a model load.
+2. Load the corpus and the questions and hash both.
+3. Load the arm's artifact and build ONE window.  The CD (arm ``proposed``)
+   and the compaction summary (arm C) record the hashes they were built
+   from; an artifact built for another corpus, question file, model or W is
+   refused.  The window is budgeted with the question whose full reader
+   prompt is longest.
+4. Pick the questions.  Arm ``proposed`` drops those whose fact lies inside
+   the window's recent round trips, because the window would hand it the
+   answer verbatim, and writes the remaining qids to
+   ``questions_subset.json``; a baseline can be asked the same list with
+   ``--questions-subset``.  Then check that every question's prompt fits in
+   W (token counts are not additive, so each is measured in the full prompt).
+5. Pre-flight the GPU memory for the longest prompt before any weight is
+   loaded.  There is no CPU path.
+6. Load the reader, start the GPU power sampler and answer the questions one
+   at a time.  Each finished answer is appended to ``answers.jsonl`` at once
+   (flushed and fsynced), so a crash loses nothing and ``--resume`` continues
+   the same cell.
+7. Check the counters after each question and at the end, then write
+   ``answers.json`` (+ ``answers.meta.json``), ``meta.json`` and
+   ``timing.jsonl``.
+
+Compute recorded per question: completion tokens, wall time (total, prefill,
+decode), energy (GPU power integrated over the question) and an estimate of
+the attention FLOPs of the reader's 16 full-attention (sdpa) layers, 24 heads,
+head_dim 256.  Generating n tokens takes one prefill forward (ceil(L / chunk)
+with chunked prefill) and n - 1 decode forwards, because the first token comes
+out of the prefill::
 
     attn_flops_prefill = 16 * 2 * 24 * L * L * 256
     attn_flops_decode  = sum_{t=1..n-1} 16 * 2 * 24 * (L + t) * 256
 
-Per-question guards added 2026-09-18:
-  F1  injected questions (arm proposed, w > 0): ``bias_applied_calls ==
-      n_sdpa * (n - 1)``, ``bias_skipped_prefill_calls == n_sdpa *
-      n_prefill_forwards`` (prefill_scale 0), ``bias_skipped_sliding_calls == 0``,
-      and ``llm.last_decode_forwards == n - 1``;
-  F2  a partial / stopped CD is refused unless ``--allow-partial-cd``;
-  F3  ``<out>/answers.jsonl`` receives every finished question immediately
-      (header line + one ``answer`` line each, flushed + fsynced); ``--resume``
-      skips the qids already there when the header matches this cell;
-  F4  arm A: ``prompt_tokens % prefill_chunk == 1`` bumps the chunk by one
-      (``prefill_chunk_effective``), so no 1-token final chunk is ever run;
-  F5  ``loaded_class_name`` / ``loading_info`` from the reader go into meta.json;
-  K   the pre-flight receives the checkpoint's weight bytes from the safetensors
-      metadata (``run_reader.safetensors_total_bytes``); unobtainable -> SystemExit
-      before any weight is fetched.
+Guards that refuse to record a broken cell:
 
-Astra round 2 (2026-09-18): the checkpoint header carries the FULL cell identity
-(``CHECKPOINT_IDENTITY``: arm, W, w, model, session/questions/cd/compaction
-hashes, inject, prefill_scale, max_new_tokens, prefill_chunk, prefill_last_row)
-and ``--resume`` refuses on any mismatch; ``--prefill-last-row`` (H15 option (b),
-off by default) is passed to ``load_reader`` and recorded in meta, and its
-counter ``bias_applied_prefill_last_row_calls`` must equal ``n_sdpa`` per question
-when on (0 when off).
+- the injection counters must match the number of forwards exactly
+  (``expected_bias_counters``), otherwise the bias did not run as accounted;
+- ``planet_spans`` (markers found by run_reader's scan) must equal
+  ``planet_lines`` (``[PN`` lines in the window text); ``positions_found``
+  is run_reader's own field and is recorded only;
+- a partial CD (its build stopped early) is refused unless
+  ``--allow-partial-cd``;
+- ``--resume`` refuses a checkpoint whose header differs from this cell in
+  any field that can change an answer (``CHECKPOINT_IDENTITY``).
 
-Field names (H11 / item 13): ``planet_lines`` = count of ``[PN`` lines in the
-window text (this module); ``planet_spans`` = markers located by run_reader's scan.
-They must be equal.  ``positions_found`` (token positions) is run_reader's own
-field and is recorded only.
-
-Ryosuke's decisions of 2026-09-20 (DECISIONS H22):
-  (c) the corpus is ``corpus.load_corpus(session, --exclude-rt)`` (default 36, the
-      retrospective; checked filter); ``session_sha256`` everywhere is the sha of
-      the FILTERED content, ``exclude_rt`` is part of the checkpoint identity and
-      recorded in meta;
-  (d) arm ``proposed``: after ``build_window`` every question whose fact has
-      ``source_session >= first_recent_rt`` (``min(window["recent_idx"])``, the
-      oldest round trip inside the window's recent part) is DROPPED — its answer
-      would be in the context verbatim; ``kind == "absent"`` questions are kept.
-      ``questions_used`` / ``questions_dropped_in_window`` / ``first_recent_rt`` go
-      into meta.json and the answers.jsonl header, and the used qids are written to
-      ``<out>/questions_subset.json`` (bound to session / questions sha).  A cell
-      with no question left is refused.  The baseline is scored on the SAME list:
-      ``--questions-subset <that file>`` (baseline arms only; sha in the checkpoint
-      identity as ``questions_subset_sha256``; binding hashes and qids checked).
+The baselines A/B/C run with ``inject=none``: their window holds no CD, so
+there is nothing to scan for or inject into.
 """
 
 from __future__ import annotations
@@ -135,15 +94,17 @@ from benchmark.mcbuild_bench.windows import (
     summary_block,
 )
 
-# E1 attention-FLOPs constants for Qwen3.8-27B (DESIGN §2.1, §6).
+# Attention-FLOPs constants of the reader (Qwen3.8-27B).  Only its 16
+# full-attention layers are counted; the other 48 layers are linear attention.
 N_SDPA_LAYERS = 16
 N_HEADS = 24
 HEAD_DIM = 256
 W_FULL = "full"
-W_CHOICES = (8000, 16000, 32000)  # C6
+W_CHOICES = (8000, 16000, 32000)  # the window sizes of the experiment grid
 BASELINE_ARMS = ("A", "B", "C")
 
-# Item 7: sampler coverage waits.
+# GPU sampler waits: samples must exist before the first question and after the
+# end of each question, so every question's energy span is covered.
 SAMPLER_WARMUP_SAMPLES = 2
 SAMPLER_WARMUP_TIMEOUT_S = 15.0
 SAMPLER_TAIL_TIMEOUT_S = 10.0
@@ -160,7 +121,7 @@ def attn_flops_prefill(prompt_tokens: int) -> int:
 
 
 def attn_flops_decode(prompt_tokens: int, completion_tokens: int) -> int:
-    """Decode forwards only: t = 1 .. n-1 (F1; the first token is the prefill's)."""
+    """Decode forwards only: t = 1 .. n-1 (the first token comes out of the prefill)."""
     L = int(prompt_tokens)
     return sum(
         N_SDPA_LAYERS * 2 * N_HEADS * (L + t) * HEAD_DIM
@@ -176,7 +137,9 @@ def n_prefill_forwards(prompt_tokens: int, chunk: int | None) -> int:
 
 
 def effective_prefill_chunk(prompt_tokens: int, chunk: int | None) -> int | None:
-    """F4: a final chunk of exactly ONE token is avoided by bumping the chunk by one."""
+    """The prefill chunk size for one prompt, bumped by one when the last chunk
+    would be a single token: a one-token prefill chunk looks like a decode step
+    to the reader's attention patch, so the case is simply avoided."""
     if chunk is None:
         return None
     chunk = int(chunk)
@@ -187,12 +150,13 @@ def expected_bias_counters(
     n_sdpa: int, completion_tokens: int, n_prefill: int, prefill_scale: float,
     prefill_last_row: bool = False,
 ) -> dict[str, int]:
-    """F1: what ``MassWeightedGemma.mass_injection_stats()`` must show after
+    """What ``MassWeightedGemma.mass_injection_stats()`` must show after
     generating ``completion_tokens`` tokens with a mass vector set.
 
-    H15 (b): with ``prefill_last_row`` the LAST prefill forward additionally
-    biases its final row once per sdpa layer (``bias_applied_prefill_last_row_calls
-    == n_sdpa``); the prefill skips and decode applications are unchanged."""
+    Every sdpa layer applies the bias on every decode forward, and on every
+    prefill forward too when ``prefill_scale > 0`` (otherwise it skips them).
+    With ``prefill_last_row`` the LAST prefill forward also biases its final
+    row once per sdpa layer; the other counters are unchanged."""
     decode = max(int(completion_tokens) - 1, 0)
     if float(prefill_scale) > 0.0:
         applied = int(n_sdpa) * (int(n_prefill) + decode)
@@ -212,7 +176,8 @@ def check_bias_counters(
     qid: str, pq: dict, *, n_sdpa: int, n_prefill: int, prefill_scale: float,
     decode_forwards: int | None, prefill_last_row: bool = False,
 ) -> None:
-    """F1 guard for an injected question; RuntimeError names the first mismatch."""
+    """Guard for an injected question: RuntimeError naming the first counter
+    that differs from ``expected_bias_counters``."""
     n = int(pq["completion_tokens"])
     if decode_forwards is None or int(decode_forwards) != max(n - 1, 0):
         raise RuntimeError(
@@ -221,7 +186,7 @@ def check_bias_counters(
         )
     want = expected_bias_counters(n_sdpa, n, n_prefill, prefill_scale, prefill_last_row)
     for key, expected in want.items():
-        # the H15 counter is absent on a reader without the switch: treated as 0
+        # A reader without the prefill-last-row switch has no such counter: 0.
         have = int(pq.get(key, 0))
         if have != expected:
             raise RuntimeError(
@@ -232,12 +197,12 @@ def check_bias_counters(
 
 
 # --------------------------------------------------------------------------
-# F3: durable per-question checkpoint (<out>/answers.jsonl)
+# durable per-question checkpoint (<out>/answers.jsonl)
 # --------------------------------------------------------------------------
 
 CHECKPOINT_NAME = "answers.jsonl"
-# Astra round 2, item 5: EVERY parameter that changes an answer is part of the
-# cell identity, so --resume can never splice answers from two different cells.
+# Every parameter that can change an answer, so --resume can never splice the
+# answers of two different cells into one.
 CHECKPOINT_IDENTITY = (
     "arm", "W", "w", "model_id", "session_sha256", "questions_sha256", "cd_sha256",
     "compaction_sha256", "inject", "prefill_scale", "max_new_tokens", "prefill_chunk",
@@ -255,21 +220,23 @@ def checkpoint_header(
     first_recent_rt: int | None = None, questions_dropped_in_window=(),
     quantization: str = "none", chat_template: bool = False,
 ) -> dict:
+    """The header line of ``answers.jsonl``: the cell's identity plus a few
+    recorded fields."""
     return {
         "kind": "header", "arm": arm, "W": W if W is not None else W_FULL, "w": float(w),
         "model_id": model_id, "session_sha256": session_sha, "questions_sha256": questions_sha,
         "cd_sha256": cd_sha, "compaction_sha256": compaction_sha,
         "inject": inject, "prefill_scale": float(prefill_scale),
         "max_new_tokens": int(max_new_tokens),
-        # arm A only (the chunk is not used by the other arms; mirrors meta's
-        # prefill_chunk_size)
+        # arm A only (the other arms do not chunk the prefill); mirrors meta's
+        # prefill_chunk_size
         "prefill_chunk": None if prefill_chunk is None else int(prefill_chunk),
         "prefill_last_row": bool(prefill_last_row),
         "quantization": quantization,
-        # H30: the H6 alternative (chat template, thinking off). Identity, because it
-        # changes the prompt string and therefore every token count.
+        # part of the identity: the chat template changes the prompt string and
+        # therefore every token count
         "chat_template": bool(chat_template),
-        # H22 (c) / (d): a JSON-stable list (the header is compared after a round trip)
+        # a list, so the header still compares equal after a JSON round trip
         "exclude_rt": [int(i) for i in exclude_rt],
         "questions_subset_sha256": questions_subset_sha,
         # recorded, not identity (derived from the window of this very cell)
@@ -318,8 +285,20 @@ def append_checkpoint(path: str | Path, record: dict) -> None:
         os.fsync(f.fileno())
 
 
+def _open_checkpoint(path: Path, header: dict, *, resume: bool) -> dict[str, dict]:
+    """The answers already in ``path`` when resuming the same cell; otherwise a
+    fresh checkpoint holding only ``header`` is started and {} returned."""
+    if resume and path.exists():
+        prev_header, done = read_checkpoint(path)
+        check_checkpoint_header(prev_header, header)
+        return done
+    path.write_text("", encoding="utf-8")
+    append_checkpoint(path, header)
+    return {}
+
+
 def file_sha256(path: str | Path) -> str:
-    """sha256 of the file bytes (artifact binding, item 2)."""
+    """sha256 of the file bytes (binds an output to the inputs it was built from)."""
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
@@ -354,35 +333,41 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--prefill-chunk", type=int, default=8192,
                    help="arm A only: generation_config.prefill_chunk_size")
     p.add_argument("--inject", default=None, choices=list(INJECT_MODES),
-                   help="proposed: default planet; arms A/B/C: forced to none (H11)")
+                   help="proposed: default planet; arms A/B/C: always none (their window "
+                        "holds no CD)")
     p.add_argument("--prefill-scale", type=float, default=0.0)
     p.add_argument("--max-new-tokens", type=int, default=48)
     p.add_argument("--compaction-summary", default=None,
                    help="compaction_c output JSON (required for --arm C)")
     p.add_argument("--allow-partial-cd", action="store_true",
-                   help="F2: run arm proposed on a stopped / partial CD (recorded in meta)")
+                   help="run arm proposed on a stopped / partial CD (recorded in meta)")
     p.add_argument("--resume", action="store_true",
-                   help="F3: skip the qids already in <out>/answers.jsonl (same cell only)")
+                   help="skip the qids already in <out>/answers.jsonl (same cell only)")
     p.add_argument("--quantization", choices=("none", "nf4", "fp4"), default="none",
-                   help="bitsandbytes 4-bit on an unquantized checkpoint (46 GB-card fallback, H24); none = bf16")
+                   help="bitsandbytes 4-bit on an unquantized checkpoint, for a GPU too small "
+                        "for the bf16 weights; none = bf16")
     p.add_argument("--no-chat-template", dest="chat_template", action="store_false",
-                   help="H30 / H6 alternative: restore the raw completion prompt. Qwen3.8 then "
-                        "answers inside a <think> block and smoke criterion F4 fails")
+                   help="use the raw completion prompt instead of the chat template with "
+                        "thinking off. Qwen3.8 then answers inside a <think> block and "
+                        "spends its answer budget there")
     p.set_defaults(chat_template=True)
     p.add_argument("--prefill-last-row", action="store_true",
-                   help="H15 (b): also add w*mass to the FINAL prefill row (the row that "
-                        "yields the first answer token); default off (DECISIONS H18)")
+                   help="also add w*mass to the FINAL prefill row, the row that yields the "
+                        "first answer token (decode-only injection cannot reach it); "
+                        "default off")
     p.add_argument("--exclude-rt", default=DEFAULT_EXCLUDE_RT_CLI,
-                   help="H22 (c): comma-separated round-trip indices dropped from the corpus "
-                        "(checked: they must exist); 'none' disables (default: %(default)s)")
+                   help="comma-separated round-trip indices to drop from the corpus (the "
+                        "default is the session retrospective); each must exist in the "
+                        "session; 'none' disables (default: %(default)s)")
     p.add_argument("--questions-subset", default=None,
-                   help="H22 (d), baseline arms only: the questions_subset.json written by the "
+                   help="baseline arms only: the questions_subset.json written by the "
                         "proposed cell this baseline is compared with; only its qids are asked")
     return p
 
 
 def resolve_inject(arm: str, inject: str | None) -> str:
-    """H11: baselines never scan for markers; ``proposed`` defaults to ``planet``."""
+    """Baselines have no CD in their window, so they never scan for markers;
+    ``proposed`` defaults to ``planet``."""
     if arm in BASELINE_ARMS:
         if inject not in (None, "none"):
             raise SystemExit(
@@ -394,8 +379,9 @@ def resolve_inject(arm: str, inject: str | None) -> str:
 
 
 def validate_args(args: argparse.Namespace) -> None:
-    """Item 12: every cross-rule and path check, BEFORE torch/transformers load.
-    Sets ``args.inject`` to its resolved value."""
+    """Every cross-flag rule and path check, done before the slow torch /
+    transformers import.  Sets ``args.inject`` to its resolved value and
+    ``args.exclude_rt_parsed``."""
     if args.arm == "A" and args.W is not None:
         raise SystemExit("--arm A is the full-context reference: use --W full")
     if args.arm != "A" and args.W is None:
@@ -437,16 +423,17 @@ def validate_args(args: argparse.Namespace) -> None:
 
 
 # --------------------------------------------------------------------------
-# H22 (d): questions outside the proposed method's window
+# questions whose fact lies outside the proposed cell's window
 # --------------------------------------------------------------------------
 
 def split_questions_by_window(
     questions: list[dict], first_recent_rt: int | None,
 ) -> tuple[list[dict], list[str]]:
-    """(used questions, dropped qids): a question whose fact's round trip
+    """(used questions, dropped qids).  A question whose fact's round trip
     (``source_session``) is ``>= first_recent_rt`` lies INSIDE the window's
-    recent part and is dropped; ``kind == "absent"`` questions are kept;
-    ``first_recent_rt is None`` (no recent round trip) drops nothing."""
+    recent part, so the window would hand over the answer verbatim: it is
+    dropped.  ``kind == "absent"`` questions (no answer in the corpus) are
+    kept; ``first_recent_rt is None`` (no recent round trip) drops nothing."""
     used: list[dict] = []
     dropped: list[str] = []
     for q in questions:
@@ -470,6 +457,9 @@ def questions_subset_payload(
     *, arm: str, W: int | None, w: float, first_recent_rt: int | None, session_sha: str,
     questions_sha: str, exclude_rt, used: list[dict], dropped: list[str],
 ) -> dict:
+    """Content of ``questions_subset.json``: the qids a proposed cell asked,
+    bound to the corpus and the question file, so a baseline (and the scorer)
+    can use exactly the same list."""
     return {
         "kind": "questions_subset", "arm": arm, "W": W if W is not None else W_FULL,
         "w": float(w), "first_recent_rt": first_recent_rt,
@@ -503,16 +493,50 @@ def load_questions_subset(
     return subset, [q for q in questions if q["qid"] in wanted]
 
 
+def _questions_for_cell(
+    args: argparse.Namespace, questions: list[dict], window: dict, first_recent_rt: int | None,
+    *, session_sha: str, questions_sha: str,
+) -> tuple[list[dict], list[str], dict | None, str | None]:
+    """(questions to ask, qids dropped inside the window, subset file, its sha).
+
+    Arm proposed asks only the questions whose fact lies outside its window; a
+    baseline given ``--questions-subset`` asks exactly a proposed cell's list;
+    otherwise every question is asked."""
+    if args.arm == "proposed":
+        used, dropped = split_questions_by_window(questions, first_recent_rt)
+        if not used:
+            raise SystemExit(
+                "arm proposed, W=%s: no question lies outside the window (first_recent_rt=%r, "
+                "%d questions all inside): this cell would only re-read its own context"
+                % (args.W, first_recent_rt, len(dropped))
+            )
+        print("[run_arms] window recent round trips %s; %d questions used, %d dropped inside "
+              "the window: %s" % (window["recent_idx"], len(used), len(dropped), dropped))
+        return used, dropped, None, None
+    if args.questions_subset is not None:
+        subset, used = load_questions_subset(
+            args.questions_subset, session_sha=session_sha, questions_sha=questions_sha,
+            questions=questions,
+        )
+        return used, [], subset, file_sha256(args.questions_subset)
+    return list(questions), [], None, None
+
+
+def _prompt_tokens(tokenizer: Any, context_block: str, question: str, chat_template: bool) -> int:
+    """Tokens of the full reader prompt for ``question`` around ``context_block``."""
+    return count_tokens(tokenizer, build_prompt(
+        context_block, question, tokenizer=tokenizer if chat_template else None))
+
+
 def budget_question(questions: list[dict], tokenizer: Any, context_block: str = "",
                     *, chat_template: bool = False) -> str:
     """The question whose FULL reader prompt around ``context_block`` tokenizes
-    longest (item 9).  Token counts are not additive, so the question is measured
-    inside the prompt, never standalone; ``check_all_questions_fit`` then verifies
-    every question against the final window."""
+    longest.  Token counts are not additive, so the question is measured
+    inside the prompt, never standalone; ``check_all_questions_fit`` then
+    verifies every question against the final window."""
     return max(
         (q["question"] for q in questions),
-        key=lambda t: count_tokens(tokenizer, build_prompt(
-            context_block, t, tokenizer=tokenizer if chat_template else None)),
+        key=lambda t: _prompt_tokens(tokenizer, context_block, t, chat_template),
     )
 
 
@@ -520,12 +544,11 @@ def check_all_questions_fit(
     prompt_context: str, questions: list[dict], tokenizer: Any, W: int | None,
     *, chat_template: bool = False
 ) -> dict[str, int]:
-    """Item 9: ``count_tokens(build_prompt(prompt_context, q)) <= W`` for EVERY
-    question; SystemExit naming the offending qid.  Returns qid -> prompt tokens."""
+    """Check ``count_tokens(build_prompt(prompt_context, q)) <= W`` for EVERY
+    question (SystemExit naming the offending qid); returns qid -> prompt tokens."""
     counts: dict[str, int] = {}
     for q in questions:
-        n = count_tokens(tokenizer, build_prompt(
-            prompt_context, q["question"], tokenizer=tokenizer if chat_template else None))
+        n = _prompt_tokens(tokenizer, prompt_context, q["question"], chat_template)
         counts[q["qid"]] = n
         if W is not None and n > W:
             raise SystemExit(
@@ -540,10 +563,11 @@ def check_cd_artifact(
     cd_json: dict, session_sha: str, cd_path: str, *,
     n_round_trips: int | None = None, allow_partial: bool = False,
 ) -> None:
-    """Item 1 / 2: ``nodes`` present and non-empty (``load_cd`` would default a
-    missing key to []); ``manifest.session_sha256`` equals the session's.
-    F2: with ``n_round_trips`` given, a CD carrying ``stopped`` or whose
-    ``summary.turns`` differs from the session's round-trip count is refused
+    """Refuse a CD that cannot belong to this run: ``nodes`` missing or empty
+    (``load_cd`` would silently default a missing key to []), or
+    ``manifest.session_sha256`` different from this corpus.  With
+    ``n_round_trips`` given, a partial CD (one carrying ``stopped``, or whose
+    ``summary.turns`` differs from the corpus round-trip count) is refused too,
     unless ``allow_partial``."""
     nodes = cd_json.get("nodes")
     if not isinstance(nodes, list) or not nodes:
@@ -574,12 +598,28 @@ def check_cd_artifact(
             )
 
 
+def _load_cd_input(
+    path: str, session_sha: str, *, n_round_trips: int, allow_partial: bool,
+) -> tuple[Any, str, str, int]:
+    """(cd, serialized CD block, file sha256, node count) of arm proposed's CD,
+    after ``check_cd_artifact``."""
+    from benchmark.bineval.arms import load_cd
+    from communication.cd_serializer import CDSerializer
+
+    cd_json = json.loads(Path(path).read_text(encoding="utf-8"))
+    check_cd_artifact(cd_json, session_sha, path,
+                      n_round_trips=n_round_trips, allow_partial=allow_partial)
+    cd_sha = file_sha256(path)
+    cd = load_cd(path)
+    return cd, CDSerializer(level_markers=True).to_context_block(cd), cd_sha, len(cd_json["nodes"])
+
+
 def check_compaction_artifact(
     compaction: dict, *, session_sha: str, questions_sha: str, model_id: str, W: int,
     path: str,
 ) -> None:
-    """Item 2: the compaction artifact must belong to this session / questions /
-    model / W; a missing key is a mismatch."""
+    """The compaction artifact must have been built for this corpus, question
+    file, model and W; a missing key counts as a mismatch."""
     expected = {
         "session_sha256": session_sha,
         "questions_sha256": questions_sha,
@@ -609,7 +649,7 @@ def cell_round_trips(arm: str, session_rts: list[dict], compaction: dict | None)
 
 
 def check_compaction_window(window: dict, compaction: dict) -> None:
-    """F5: build_window must keep EVERY round trip compaction_c declared recent;
+    """build_window must keep EVERY round trip compaction_c declared recent;
     otherwise the two budgets disagree and the cell is wrong."""
     n_window = int(window["n_recent_rts"])
     n_compaction = len(compaction["recent_idx"])
@@ -625,7 +665,9 @@ def check_per_question(
     per_question: dict[str, dict], *, arm: str, w: float, inject: str, W: int | None,
     planet_lines: int,
 ) -> None:
-    """Post-run guards (items 1, 9, 13)."""
+    """Post-run guards on every answered question: the prompt fits W, and for
+    the injected arm the reader's marker scan found exactly the window's planet
+    lines (and at least one when w > 0, or the cell would be a silent baseline)."""
     for qid, pq in per_question.items():
         if W is not None and int(pq["prompt_tokens"]) > W:
             raise RuntimeError(
@@ -647,7 +689,8 @@ def check_per_question(
 
 
 def energy_coverage(csv_path: str | Path, first_t_start: float, last_t_end: float) -> dict:
-    """Item 7: did the sampler bracket the question span?"""
+    """Whether the GPU samples bracket the span from the first question's start
+    to the last question's end."""
     samples = parse_samples(csv_path) if Path(csv_path).exists() else []
     if not samples:
         return {"first_sample_before_first_question": False,
@@ -660,7 +703,8 @@ def energy_coverage(csv_path: str | Path, first_t_start: float, last_t_end: floa
 
 
 def _reader_timing(llm: Any) -> tuple[int, float | None, float | None, int | None]:
-    """Item 6 / F1: the attributes ``MassWeightedGemma.generate`` records."""
+    """(completion tokens, prefill ms, decode ms, decode forwards) as recorded
+    on the reader by ``MassWeightedGemma.generate``."""
     n = getattr(llm, "last_generated_tokens", None)
     if n is None:
         raise RuntimeError(
@@ -674,13 +718,30 @@ def _reader_timing(llm: Any) -> tuple[int, float | None, float | None, int | Non
     )
 
 
+def _write_meta_and_timing(
+    out_dir: Path, run: Any, per_question_extra: dict[str, dict], timing: list[dict],
+) -> None:
+    """``meta.json`` (run_meta with each per-question record merged with its
+    extra fields) and ``timing.jsonl`` (one line per question)."""
+    meta = dict(run.run_meta)
+    meta["per_question"] = {
+        qid: {**pq, **per_question_extra.get(qid, {})} for qid, pq in run.per_question.items()
+    }
+    (out_dir / "meta.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    with (out_dir / "timing.jsonl").open("w", encoding="utf-8") as f:
+        for t in timing:
+            f.write(json.dumps({**t, **per_question_extra.get(t["qid"], {})}) + "\n")
+
+
 # --------------------------------------------------------------------------
 # main (GPU host only)
 # --------------------------------------------------------------------------
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    validate_args(args)  # item 12: before torch / transformers
+    validate_args(args)  # step 1, before the slow torch / transformers import
 
     import torch
 
@@ -694,15 +755,14 @@ def main(argv: list[str] | None = None) -> int:
     from transformers import AutoConfig, AutoTokenizer
 
     from benchmark.bineval import run_reader
-    from benchmark.bineval.arms import load_cd
     from benchmark.bineval.score_binary import load_questions, select_questions
-    from communication.cd_serializer import CDSerializer
 
+    # -- step 2: corpus and questions ---------------------------------------
     try:
-        corpus = load_corpus(args.session, args.exclude_rt_parsed)  # H22 (c): checked filter
+        corpus = load_corpus(args.session, args.exclude_rt_parsed)
     except ValueError as e:
         raise SystemExit(str(e)) from None
-    session_sha = corpus.sha256  # sha of the FILTERED content
+    session_sha = corpus.sha256  # hash of the corpus after the exclusion
     questions_sha = file_sha256(args.questions)
     questions = select_questions(load_questions(Path(args.questions)), "all", False)
     session_rts = corpus.round_trips
@@ -710,19 +770,16 @@ def main(argv: list[str] | None = None) -> int:
         args.session, len(session_rts), corpus.n_session_round_trips,
         json.dumps(list(corpus.exclude_rt)), session_sha))
 
-    # Window (before any weight is fetched): the pre-flight needs its token count.
+    # -- step 3: the arm's artifact and the window (built before any weight
+    #    is fetched, because the pre-flight needs its size) ------------------
     tokenizer = AutoTokenizer.from_pretrained(args.model_id)
-    cd = cd_block = None
-    cd_sha = None
+    cd = cd_block = cd_sha = None
+    n_cd_nodes = 0
     if args.arm == "proposed":
-        cd_json = json.loads(Path(args.cd).read_text(encoding="utf-8"))
-        check_cd_artifact(  # items 1, 2, F2
-            cd_json, session_sha, args.cd,
+        cd, cd_block, cd_sha, n_cd_nodes = _load_cd_input(
+            args.cd, session_sha,
             n_round_trips=len(session_rts), allow_partial=bool(args.allow_partial_cd),
         )
-        cd_sha = file_sha256(args.cd)
-        cd = load_cd(args.cd)
-        cd_block = CDSerializer(level_markers=True).to_context_block(cd)
     compaction = None
     compaction_sha = None
     if args.arm == "C":
@@ -734,61 +791,45 @@ def main(argv: list[str] | None = None) -> int:
         compaction_sha = file_sha256(args.compaction_summary)
     round_trips = cell_round_trips(args.arm, session_rts, compaction)
     if compaction is not None:
-        # The very question compaction_c budgeted with (F5 agreement).
+        # The very question compaction_c budgeted with, so the two budgets agree.
         question = compaction["budget_question"]
     else:
         question = budget_question(questions, tokenizer, assemble_context(cd_block, []),
                                    chat_template=args.chat_template)
     window = build_window(args.arm, args.W, cd_block, round_trips, tokenizer, question, cd=cd,
                           chat_template=args.chat_template)
-    if compaction is not None and compaction["summary"] not in window["prompt_context"]:
-        raise RuntimeError(
-            "arm C: the compaction summary did not survive window composition "
-            "(W=%d); rerun compaction_c" % args.W
-        )
     if compaction is not None:
+        if compaction["summary"] not in window["prompt_context"]:
+            raise RuntimeError(
+                "arm C: the compaction summary did not survive window composition "
+                "(W=%d); rerun compaction_c" % args.W
+            )
         check_compaction_window(window, compaction)
     planet_lines = count_planet_lines(window["prompt_context"]) if cd_block else 0
     if args.arm == "proposed" and args.w > 0 and planet_lines <= 0:
         raise RuntimeError(
             "arm proposed with w=%g: the serialized window holds planet_lines=%d "
             "[PN lines (CD nodes=%d): nothing to inject into"
-            % (args.w, planet_lines, len(cd_json["nodes"]))
+            % (args.w, planet_lines, n_cd_nodes)
         )
-    # H22 (d): the proposed cell answers only questions whose facts lie OUTSIDE its
-    # window; a baseline answers the subset the proposed cell wrote.
+
+    # -- step 4: the questions this cell asks ------------------------------
     first_recent_rt = min(window["recent_idx"]) if window["recent_idx"] else None
-    subset: dict | None = None
-    subset_sha: str | None = None
-    if args.arm == "proposed":
-        used, dropped = split_questions_by_window(questions, first_recent_rt)
-        if not used:
-            raise SystemExit(
-                "arm proposed, W=%s: no question lies outside the window (first_recent_rt=%r, "
-                "%d questions all inside): this cell would only re-read its own context"
-                % (args.W, first_recent_rt, len(dropped))
-            )
-        print("[run_arms] window recent round trips %s; %d questions used, %d dropped inside "
-              "the window: %s" % (window["recent_idx"], len(used), len(dropped), dropped))
-    elif args.questions_subset is not None:
-        subset, used = load_questions_subset(
-            args.questions_subset, session_sha=session_sha, questions_sha=questions_sha,
-            questions=questions,
-        )
-        subset_sha = file_sha256(args.questions_subset)
-        dropped = []
-    else:
-        used, dropped = list(questions), []
+    questions, dropped, subset, subset_sha = _questions_for_cell(
+        args, questions, window, first_recent_rt,
+        session_sha=session_sha, questions_sha=questions_sha,
+    )
     prompt_tokens_by_qid = check_all_questions_fit(
-        window["prompt_context"], used, tokenizer, args.W,
+        window["prompt_context"], questions, tokenizer, args.W,
         chat_template=args.chat_template,
-    )  # item 9
+    )
     max_prompt_tokens = max(prompt_tokens_by_qid.values())
 
+    # -- step 5: pre-flight: will the longest prompt fit in GPU memory next
+    #    to the weights? -----------------------------------------------------
     config = AutoConfig.from_pretrained(args.model_id)
     layer_info = run_reader.check_model_supported(config, allow_linear_layers=True)
     n_sdpa = int(layer_info["n_sdpa_layers"])
-    # K: the weight term of the pre-flight comes from the safetensors metadata.
     weight_bytes = safetensors_total_bytes(args.model_id)
     if weight_bytes is None:
         raise SystemExit(
@@ -800,7 +841,8 @@ def main(argv: list[str] | None = None) -> int:
         config, max_prompt_tokens, args.max_new_tokens, gpu_mem_gb, weight_bytes=weight_bytes
     )
 
-    # F3: checkpoint identity and resume set, BEFORE the weights are fetched.
+    # -- step 6: checkpoint (and the answers to skip on --resume), then the
+    #    reader answers one question at a time -------------------------------
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     ckpt_path = out_dir / CHECKPOINT_NAME
@@ -815,23 +857,16 @@ def main(argv: list[str] | None = None) -> int:
         exclude_rt=corpus.exclude_rt, questions_subset_sha=subset_sha,
         first_recent_rt=first_recent_rt, questions_dropped_in_window=dropped,
     )
-    done: dict[str, dict] = {}
-    if args.resume and ckpt_path.exists():
-        prev_header, done = read_checkpoint(ckpt_path)
-        check_checkpoint_header(prev_header, header)
-    else:
-        ckpt_path.write_text("", encoding="utf-8")
-        append_checkpoint(ckpt_path, header)
+    done = _open_checkpoint(ckpt_path, header, resume=args.resume)
     subset_written: Path | None = None
     if args.arm == "proposed":
-        # H22 (d): the list the baseline must be scored on (bound to this corpus / questions).
+        # The list a baseline (and the scorer) must use, bound to this corpus and question file.
         subset_written = out_dir / QUESTIONS_SUBSET_NAME
         subset_written.write_text(json.dumps(questions_subset_payload(
             arm=args.arm, W=args.W, w=args.w, first_recent_rt=first_recent_rt,
             session_sha=session_sha, questions_sha=questions_sha, exclude_rt=corpus.exclude_rt,
-            used=used, dropped=dropped,
+            used=questions, dropped=dropped,
         ), ensure_ascii=False, indent=2), encoding="utf-8")
-    questions = used
     resumed_qids = [q["qid"] for q in questions if q["qid"] in done]
 
     llm = run_reader.load_reader(
@@ -846,57 +881,57 @@ def main(argv: list[str] | None = None) -> int:
 
     sampler = GpuSampler(args.gpu_csv)
     run = ReaderRun()
-    timing: list[dict] = []
-    new_timing: list[dict] = []
+    timing: list[dict] = []  # every question, resumed ones included
+    new_timing: list[dict] = []  # questions answered by this process
     per_question_extra: dict[str, dict] = {}
-    clock: dict[str, float] = {}
+    question_t0 = 0.0
 
     def progress(qid: str) -> None:
-        # Called by run_reader right after each question's generate().
+        # run_reader calls this right after each question's generate().
+        nonlocal question_t0
         now = time.time()
         n_tokens, prefill_ms, decode_ms, decode_forwards = _reader_timing(llm)
         new_timing.append({
-            "qid": qid, "t_start": clock["prev"], "t_end": now,
-            "wall_ms_total": (now - clock["prev"]) * 1000.0,
+            "qid": qid, "t_start": question_t0, "t_end": now,
+            "wall_ms_total": (now - question_t0) * 1000.0,
             "wall_ms_prefill": prefill_ms, "wall_ms_decode": decode_ms,
             "completion_tokens": n_tokens, "decode_forwards": decode_forwards,
         })
-        clock["prev"] = now
+        question_t0 = now
         print("[run_arms] %s done (%.0f ms, %d tokens)" % (qid, new_timing[-1]["wall_ms_total"], n_tokens))
 
     sampler.start()
-    tail_ok = not bool([q for q in questions if q["qid"] not in done])  # nothing new -> vacuous
+    tail_ok = all(q["qid"] in done for q in questions)  # nothing new to answer: vacuously true
     try:
         if not wait_for_samples(args.gpu_csv, SAMPLER_WARMUP_SAMPLES,
                                 SAMPLER_WARMUP_TIMEOUT_S, SAMPLER_POLL_S):
             raise RuntimeError("sampler produced no samples")
         for q in questions:
             qid = q["qid"]
-            if qid in done:
+            if qid in done:  # answered before an interruption of this same cell
                 rec = done[qid]
                 run.answers[qid] = rec["answer"]
                 run.per_question[qid] = rec["per_question"]
                 timing.append(rec["timing"])
                 per_question_extra[qid] = rec["extra"]
                 continue
-            # F4: chunk size per question (arm A only), from the window's own count.
-            chunk_eff = (
-                effective_prefill_chunk(prompt_tokens_by_qid[qid], args.prefill_chunk)
-                if args.arm == "A" else None
-            )
+            chunk_eff = None
             if args.arm == "A":
+                # Arm A chunks its (long) prefill; the size is fixed per question.
+                chunk_eff = effective_prefill_chunk(prompt_tokens_by_qid[qid], args.prefill_chunk)
                 llm._model.generation_config.prefill_chunk_size = chunk_eff
-            clock["prev"] = time.time()
+            question_t0 = time.time()
             part = run_reader.run_reader(
                 llm, window["prompt_context"], [q],
                 w=args.w, inject=args.inject, bias_cap=None, arm=args.arm, progress=progress,
                 chat_template=args.chat_template,
             )
             pq = part.per_question[qid]
-            t = new_timing[-1] if new_timing else None
-            if t is None or t["qid"] != qid:
+            if not new_timing or new_timing[-1]["qid"] != qid:
                 raise RuntimeError("no timing record for %s: the progress hook was not called" % qid)
-            # Energy right away (F3): wait for one sample past the question's end.
+            t = new_timing[-1]
+            # Measure the energy now, so the checkpoint line is complete: wait for
+            # one sample past the question's end first.
             tail_ok = wait_for_samples(
                 args.gpu_csv, 1, SAMPLER_TAIL_TIMEOUT_S, SAMPLER_POLL_S, after_ts=t["t_end"],
             )
@@ -925,7 +960,7 @@ def main(argv: list[str] | None = None) -> int:
                 "planet_lines": planet_lines,
             }
             if args.arm == "proposed" and args.w > 0 and int(pq["planet_spans"]) > 0:
-                check_bias_counters(  # F1
+                check_bias_counters(
                     qid, {**pq, **extra}, n_sdpa=n_sdpa, n_prefill=n_prefill,
                     prefill_scale=args.prefill_scale, decode_forwards=t["decode_forwards"],
                     prefill_last_row=bool(args.prefill_last_row),
@@ -941,23 +976,27 @@ def main(argv: list[str] | None = None) -> int:
     finally:
         sampler.stop()
 
+    # -- step 7: post-run checks and output files --------------------------
     check_per_question(
         run.per_question, arm=args.arm, w=args.w, inject=args.inject, W=args.W,
         planet_lines=planet_lines,
     )
 
-    coverage = energy_coverage(args.gpu_csv, new_timing[0]["t_start"], new_timing[-1]["t_end"]) if new_timing else {
-        "first_sample_before_first_question": False, "last_sample_after_last_question": False}
+    if new_timing:
+        coverage = energy_coverage(args.gpu_csv, new_timing[0]["t_start"], new_timing[-1]["t_end"])
+    else:
+        coverage = {"first_sample_before_first_question": False,
+                    "last_sample_after_last_question": False}
     coverage["last_sample_after_last_question"] = bool(
         coverage["last_sample_after_last_question"] and tail_ok
     )
-    extra = {
-        "loaded_class_name": getattr(llm, "loaded_class_name", None),  # F5
+    meta_extra = {
+        "loaded_class_name": getattr(llm, "loaded_class_name", None),
         "loading_info": getattr(llm, "loading_info", None),
         "n_sdpa_layers": n_sdpa,
         "prefill_scale": args.prefill_scale,
-        "chat_template": bool(args.chat_template),  # H30 / H6 alternative
-        "prefill_last_row": bool(args.prefill_last_row),  # H15 (b) switch
+        "chat_template": bool(args.chat_template),
+        "prefill_last_row": bool(args.prefill_last_row),
         "quantization": args.quantization,
         "weight_bytes": weight_bytes,
         "allow_partial_cd": bool(args.allow_partial_cd),
@@ -969,12 +1008,11 @@ def main(argv: list[str] | None = None) -> int:
         "W": args.W if args.W is not None else W_FULL,
         "w": args.w,
         "git_sha": git_sha(),
-        "session_sha256": session_sha,  # corpus hash (filtered content, H22 (c))
+        "session_sha256": session_sha,
         "session_file_sha256": corpus.session_file_sha256,
         "exclude_rt": list(corpus.exclude_rt),
         "n_round_trips": len(session_rts),
         "questions_sha256": questions_sha,
-        # H22 (d)
         "first_recent_rt": first_recent_rt,
         "recent_idx": window["recent_idx"],
         "questions_used": [q["qid"] for q in questions],
@@ -1016,20 +1054,10 @@ def main(argv: list[str] | None = None) -> int:
         context_tokens=window["window_tokens"],
         arm=args.arm,
         context_check=context_check,
-        extra=extra,
+        extra=meta_extra,
     )
     run_reader.write_answers(out_dir / "answers.json", run)
-
-    meta = dict(run.run_meta)
-    meta["per_question"] = {
-        qid: {**pq, **per_question_extra.get(qid, {})} for qid, pq in run.per_question.items()
-    }
-    (out_dir / "meta.json").write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    with (out_dir / "timing.jsonl").open("w", encoding="utf-8") as f:
-        for t in timing:
-            f.write(json.dumps({**t, **per_question_extra.get(t["qid"], {})}) + "\n")
+    _write_meta_and_timing(out_dir, run, per_question_extra, timing)
     print("wrote %s (%d answers, %d resumed, window_tokens=%d, n_recent_rts=%d)"
           % (out_dir, len(run.answers), len(resumed_qids), window["window_tokens"],
              window["n_recent_rts"]))

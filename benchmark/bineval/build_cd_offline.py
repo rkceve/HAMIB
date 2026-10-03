@@ -1,82 +1,62 @@
-"""Build a CorrelationDiagram offline from a longchat JSON, no gen model.
+"""Build a correlation diagram (CD) offline from a longchat JSON.
 
-WO-1 / WO-2a (RESEARCH_PROGRAM sec.4). This drives the SAME management path as
-the published v10 arm (`server.cms_session._update_cd`, cms_session.py:356-385)
-but assembles the components DIRECTLY so that importing this module never pulls
-in the torch generation stack (cms_session.py:50 imports the model at module
-top).
+Feeds the chat to a CD manager turn by turn and writes the finished diagram as
+JSON.  No generation model and no attention patch are loaded.
 
-Two extractor arms (WO-2 two-extractor design):
-  --extractor sbert  (default)  Arm A / floor: server.sbert_extractor
-                                (SBERT cosine + regex hybrid). Torch-free at
-                                import time; the model loads lazily in setup().
-  --extractor gemma             Arm B / spec-compliant manager (sec.41 revival):
-                                google/gemma-3-4b-it in 4-bit (BitsAndBytesConfig
-                                nf4, device_map="auto") loaded via plain
-                                `transformers`. Extraction model ONLY -- no
-                                generation model, no attention patch, no
-                                mass_weighted_* import. The extract function
-                                replicates cms_session._llm_extract_fn's Gemma
-                                path exactly (same prompt via
-                                server.cd_parser.extract_nodes_prompt, same
-                                find('[')/rfind(']')+json.loads fallback rules,
-                                same 3-axis scoring passed through
-                                NodeClassifier). Applies the D-ledger:
-                                D-5 (4B model, not 1B), D-7 (compound
-                                query-phrase skip); D-3 mass normalization is
-                                handled by the existing GraphMerger/serializer.
+Turns are numbered sequentially over all sessions (one turn per message;
+restaurant_chat_v2.json has 664), and every node records the turn it was
+created on.  Per turn, the default path is the one in
+``server.cms_session._update_cd``, wired up directly here because importing
+``cms_session`` loads the generation model::
 
-Pathway per turn (mirrors _update_cd):
     provisional = CorrelationDiagram()
     for chunk in chunker.chunk_turn(user_text, assistant_text, turn):
         classifier.classify(chunk, provisional, extractor_fn, builder=builder)
-    merger.merge(base, provisional)          # normalize (mass + coords) inside
+    merger.merge(base, provisional)          # also normalizes mass and coordinates
 
-The longchat file stores each session as a list of {role, content} messages.
-Per canon WO-1 the turn numbering is "sequential over all sessions' turns in
-order" (restaurant_chat_v2.json has 664 such messages). We treat every message
-as one turn with a global sequential index, build one provisional CD per
-message, and stamp created_turn = that index onto every node born on that turn
-(management/node_classifier.py threads chunk.turn).
+``--extractor`` selects who extracts the facts and files them:
 
-D-7 (query-turn skip): applied to the GEMMA arm ONLY (RESEARCH_PROGRAM WO-2
-arm B D-ledger requirement). The SBERT arm (arm A / floor) must reproduce the
-v10 path exactly, so it is left unchanged (no D-7). User messages that match the
-compound query phrases (cms_session._is_query_turn rules) introduce no new facts
-and only pollute the CD, so the gemma manager skips them.
+    sbert    (default, the floor) SBERT similarity plus regex rules from
+             ``server.sbert_extractor``; reproduces the original online path.
+    gemma    google/gemma-3-4b-it in 4-bit as the node extractor, with the same
+             prompt and JSON fallback rules as cms_session's Gemma path.
+    harness  ``management.harness.HarnessManager`` replaces the
+             chunk / classify / merge block above.
+    spec     ``management.harness.SpecManager``, the manager as the patent
+             specification describes it; it updates once per user->assistant
+             round trip instead of once per message.
 
-Robustness (gemma runs are long -- ~664 turns):
-  * per-turn try/except: one bad turn logs an error and is skipped, the run
-    does not die at turn 500.
-  * incremental checkpoint every --ckpt-interval turns (default 50): the partial
-    CD is written to <out>.ckpt as {nodes, summary, resume: {turn, session_idx,
-    pairing, code_version}}. A checkpoint whose `pairing` differs from the
-    current run's is REFUSED (F3): `turn` counts round trips in the spec arm
-    and messages elsewhere, so resuming across the two skips the wrong turns.
-  * --resume-from <ckpt>: resume a crashed run from a checkpoint.
+Every extractor except sbert skips query turns: short user questions add no
+facts and only pollute the diagram.
 
-CLI:
-    # Arm A (floor, default):
+Long runs: a failing turn is logged and skipped, but
+``--max-consecutive-failures`` failures in a row abort the run.  A checkpoint is
+written to ``<out>.ckpt`` every ``--ckpt-interval`` turns, and ``--resume-from``
+continues from one.
+
+CLI::
+
+    # sbert floor (default):
     python -m benchmark.bineval.build_cd_offline \
         --chat benchmark/longchat/restaurant_chat_v2.json \
         --out benchmark/bineval/results/cd/restaurant_cd.json
 
-    # Arm B (spec-compliant Gemma manager):
+    # Gemma extractor:
     python -m benchmark.bineval.build_cd_offline \
         --chat benchmark/longchat/restaurant_chat_v2.json \
         --extractor gemma \
         --out benchmark/bineval/results/cd/restaurant_cd_gemma.json
 
-    # Smoke: first 2 sessions only (either arm):
+    # Smoke: first 2 sessions only (any extractor):
     python -m benchmark.bineval.build_cd_offline \
         --chat benchmark/longchat/restaurant_chat_v2.json \
         --extractor gemma --max-sessions 2 \
         --out benchmark/bineval/results/cd/restaurant_cd_gemma_smoke.json
 
-Output JSON: {"nodes": [{text, level, mass, parent_id, created_turn, node_id}],
-"summary": {sun, planet, satellite, total, turns, unbudgeted_tokens}}.
-The SBERT path is deterministic. All file I/O is utf-8; console prints are
-ASCII-only (cp932-safe).
+Output JSON: {"nodes": [{node_id, text, level, mass, parent_id, created_turn}],
+"summary": {sun, planet, satellite, total, turns, unbudgeted_tokens,
+failed_turns}}.  The sbert path is deterministic.  File I/O is utf-8; console
+output is ASCII only (safe on a cp932 Windows console).
 """
 
 from __future__ import annotations
@@ -86,8 +66,7 @@ import json
 import time
 from pathlib import Path
 
-import tiktoken
-
+from benchmark.bineval.arms import cd_from_records, make_token_counter
 from communication.cd_serializer import CDSerializer
 from management.graph_builder import GraphBuilder
 from management.harness.chunking import is_query_turn_en
@@ -97,10 +76,9 @@ from management.text_chunker import TextChunker
 from models.correlation_diagram import CorrelationDiagram
 from models.node import NodeLevel
 
-# ── D-7: query-turn skip (verbatim from cms_session._is_query_turn,
-#         cms_session.py:324-352). Copied here rather than imported so this
-#         module stays torch-free (server.cms_session imports the model at
-#         module top). Keep in sync with cms_session._QUERY_PHRASES. ──────────
+# Japanese question phrases, copied from server.cms_session._QUERY_PHRASES (keep
+# the two lists in sync).  Copied rather than imported because importing
+# cms_session loads the generation model.
 _QUERY_PHRASES = (
     "を一語で答えてください",
     "を答えてください",
@@ -114,28 +92,28 @@ _QUERY_PHRASES = (
 )
 
 
-# H5: vLLM + Qwen3.x emit a <think> trace by default. It eats the token budget
-# and the yes/no answer never arrives, so thinking is OFF unless the caller says
+# vLLM + Qwen3.x emit a <think> trace by default; it eats the token budget and
+# the yes/no answer never arrives.  So thinking is off unless the caller says
 # otherwise (--judge-extra-body null sends nothing at all).
 DEFAULT_JUDGE_EXTRA_BODY = '{"chat_template_kwargs": {"enable_thinking": false}}'
 
-# Only the Anthropic backend has a meaningful default model id.  The anthropic
-# and openai CLI choices were REMOVED (SPEC_FAITHFUL_DESIGN.md directive 5: no
-# external API).  The backend classes stay for their unit tests.
+# Default model id of the Anthropic judge backend.  The CLI no longer offers
+# that backend (the project makes no external API calls), so nothing in this
+# module uses it.
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-5"
 
-# --judge local: the manager's judge is the SAME open-weight model as the reader,
-# served by vLLM on the same GPU (directive 5).  127.0.0.1 by default because
-# that is where the Modal phase_manager starts it.
+# --judge local: the manager's judge is the same open-weight model as the
+# reader, served by vLLM on the same GPU, at 127.0.0.1 where the Modal
+# phase_manager starts it.
 DEFAULT_LOCAL_JUDGE_BASE_URL = "http://127.0.0.1:8000"
 
 # Extractors whose per-turn work is done by a management/harness manager object.
 MANAGER_EXTRACTORS = ("harness", "spec")
 
-# F3: how the driver groups the chat into manager updates. The spec arm updates
-# ONCE PER user->assistant ROUND TRIP (0036); every other arm updates once per
-# MESSAGE. A checkpoint written under one mode counts turns on a different axis,
-# so resuming across modes silently fast-forwards past the wrong turns.
+# How the chat is grouped into manager updates: the spec manager updates once
+# per user->assistant round trip, every other extractor once per message.
+# Checkpoints record the mode, because ``turn`` counts different things under
+# the two, and resuming across them would skip the wrong turns.
 PAIRING_ROUND_TRIP = "round_trip"
 PAIRING_MESSAGE = "message"
 
@@ -147,9 +125,9 @@ def pairing_mode(pair_round_trips: bool) -> str:
 def git_sha(default: str = "unknown") -> str:
     """Short git sha of the working tree, or ``default``.
 
-    Stamped into every checkpoint so a resume across a code change is at least
-    VISIBLE in the artifact. Never raises: no git, no repo and a git that is not
-    on PATH all return the default.
+    Stamped into every checkpoint so that a resume across a code change is at
+    least visible.  Never raises: no git, no repo, or git not on PATH all give
+    ``default``.
     """
     import subprocess
 
@@ -161,20 +139,21 @@ def git_sha(default: str = "unknown") -> str:
             text=True,
             timeout=10,
         )
-    except Exception:  # noqa: BLE001 -- 'never raises' means never
+    except Exception:  # noqa: BLE001 -- must never raise
         return default
     sha = out.stdout.strip()
     return sha if out.returncode == 0 and sha else default
 
 
 def _is_query_turn(user_text: str) -> bool:
-    """Mirror cms_session._is_query_turn (cms_session.py:336-352) exactly.
+    """Is this user message a question?  Same rule as ``cms_session._is_query_turn``.
 
-    Query turns introduce no new facts; feeding them to the manager only
-    pollutes the CD. Heuristic: short question-form text. Note that bare
-    "ください" is deliberately NOT matched (fact-introducing sentences like
-    "確実に記録してください" also contain it) -- only the compound
-    query-specific phrases are used (D-7).
+    Questions add no new facts, so feeding them to the manager only pollutes
+    the CD.  A message of at most 300 characters is a question when it ends
+    with "?" (full- or half-width) or contains one of ``_QUERY_PHRASES``.  The
+    bare "kudasai" ("please") is deliberately not matched on its own: requests
+    that state a fact ("please record this exactly") contain it too, and
+    matching it made the manager skip fact turns.
     """
     text = user_text.strip()
     if len(text) > 300:
@@ -184,17 +163,10 @@ def _is_query_turn(user_text: str) -> bool:
     return any(phrase in text for phrase in _QUERY_PHRASES)
 
 
-def make_token_counter():
-    """tiktoken cl100k_base token counter (API-model arm convention)."""
-    enc = tiktoken.get_encoding("cl100k_base")
-    return lambda text: len(enc.encode(text))
-
-
 def _safe_extractor_fn(raw_fn):
-    """Wrap the raw extractor with the same defensive filtering cms_session uses
-    (cms_session.py:426-433): keep only list[dict] entries carrying 'text',
-    fall back to a single satellite node on failure. Keeps the offline path
-    behaviourally identical to the online _llm_extract_fn injection route.
+    """Wrap an extractor the way cms_session does: keep only dict entries with a
+    'text' key, and fall back to a single satellite node (the first 80
+    characters of the text) when the extractor raises or returns a non-list.
     """
 
     def fn(text: str) -> list[dict]:
@@ -209,26 +181,21 @@ def _safe_extractor_fn(raw_fn):
     return fn
 
 
-# ── Arm B: spec-compliant Gemma extractor ──────────────────────────────────
+# ── Gemma extractor ─────────────────────────────────────────────────────────
 
 
 def make_gemma_extractor_fn(model_id: str = "google/gemma-3-4b-it"):
-    """Load google/gemma-3-4b-it in 4-bit via plain transformers and return an
-    extract fn that replicates cms_session._llm_extract_fn's Gemma path
-    (cms_session.py:435-451) exactly.
+    """Load ``model_id`` in 4-bit and return ``(extract_fn, unload_fn)``.
 
-    This is the EXTRACTION model only: no generation model, no MassWeightedGemma,
-    no attention patch, no mass_weighted_* import. D-5 requires the 4B model
-    (not 1B).
+    ``extract_fn`` does what cms_session's Gemma extraction does: the prompt
+    from ``server.cd_parser.extract_nodes_prompt``, greedy decoding, then the
+    JSON between the first "[" and the last "]", keeping the dict entries that
+    have a "text" key; anything else falls back to a single satellite node.
+    Only the extraction model is loaded (no generation model, no attention
+    patch).  The 4B model is the default because the 1B model extracted only
+    about 60% of the facts (4B: 100%).
 
-    The extract fn:
-      * builds the prompt with server.cd_parser.extract_nodes_prompt (the SAME
-        text the online path uses; cd_parser is torch-free at import time);
-      * greedy-decodes JSON, parses with the SAME fallback rules as
-        cms_session (find('['), rfind(']')+1, json.loads, keep list[dict] with
-        'text'), else a single satellite node.
-
-    Returns: (extract_fn, unload_fn). unload_fn frees the model + CUDA cache.
+    ``unload_fn`` frees the model and the CUDA cache.
     """
     import torch
     from transformers import (
@@ -253,12 +220,9 @@ def make_gemma_extractor_fn(model_id: str = "google/gemma-3-4b-it"):
     )
     model.eval()
 
-    # Extraction should be deterministic: greedy decode (do_sample=False).
-    # Budget mirrors server config (max_new_tokens 256 on the 6GB card).
-    max_new_tokens = 256
+    max_new_tokens = 256  # same budget as the server config
 
     def extract_fn(text: str) -> list[dict]:
-        # Mirror cms_session._llm_extract_fn (Gemma path), cms_session.py:435-451.
         prompt = extract_nodes_prompt(text)
         target_device = model.device
         try:
@@ -284,7 +248,7 @@ def make_gemma_extractor_fn(model_id: str = "google/gemma-3-4b-it"):
                     return [n for n in nodes if isinstance(n, dict) and "text" in n]
         except Exception:
             pass
-        # フォールバック: テキスト全体を satellite ノードとして扱う
+        # Fallback: the whole text as one satellite node.
         return [{"text": text[:80].strip(), "level": "satellite", "parent_hint": ""}]
 
     def unload_fn() -> None:
@@ -300,13 +264,13 @@ def make_gemma_extractor_fn(model_id: str = "google/gemma-3-4b-it"):
 
 
 def _round_trip_iter(chat: dict):
-    """Yield (session_idx, user_text, assistant_text) per ROUND TRIP (spec 0036:
-    the diagram is updated once per user->assistant exchange).
+    """Yield (session_idx, user_text, assistant_text) once per round trip.
 
-    A user message is paired with the assistant message that follows it in the
-    same session. An unpaired message (session ends after a user turn, or an
-    assistant turn without a preceding user turn) is yielded alone with the
-    other side empty. Turn numbering in build_cd is then the round-trip index.
+    The spec manager updates the diagram once per user->assistant exchange
+    (specification paragraph 0036).  A user message is paired with the
+    assistant message that follows it in the same session; an unpaired message
+    is yielded alone with the other side empty, and a message with any other
+    role is yielded as user text.
     """
     for s_idx, session in enumerate(chat.get("sessions", [])):
         pending_user: str | None = None
@@ -326,12 +290,7 @@ def _round_trip_iter(chat: dict):
 
 
 def _msg_iter(chat: dict):
-    """Yield (session_idx, role, content) over all sessions' messages in order.
-
-    Turn numbering is the global sequential index of the yielded messages
-    (WO-1 canon). session_idx lets --max-sessions truncate and lets the
-    checkpoint record how far we got.
-    """
+    """Yield (session_idx, role, content) for every message of every session, in order."""
     for s_idx, session in enumerate(chat.get("sessions", [])):
         for msg in session.get("turns", []):
             yield s_idx, msg.get("role", ""), msg.get("content", "")
@@ -350,99 +309,93 @@ def build_cd(
     max_consecutive_failures: int = 5,
     pair_round_trips: bool = False,
 ) -> tuple[CorrelationDiagram, int, int]:
-    """Drive the management path turn-by-turn. Returns (cd, n_turns, failed_turns).
+    """Feed the chat to the manager turn by turn.  Returns (cd, n_turns, failed_turns).
 
-    n_turns is the total number of {role, content} messages processed
-    (sequential turn numbering over all sessions).
+    ``n_turns`` counts every turn seen (messages, or round trips with
+    ``pair_round_trips``), including skipped and resumed ones.
 
-    apply_d7:      skip management on query-form user messages (D-7).
-    max_sessions:  process only the first N sessions (smoke).
-    ckpt_path:     if set, write a partial-CD checkpoint every ckpt_interval turns.
-    manager:       harness manager (management.harness.HarnessManager). When
-                   given, the chunker/classifier/merger block is REPLACED by
-                   manager.update(base, user_text, assistant_text, turn); the
-                   extractor_fn argument is then unused (pass None).
-    resume_state:  {"turn": int, "session_idx": int} from a prior checkpoint;
-                   messages with a global turn index < resume_state["turn"] are
-                   skipped (the base CD must be reloaded by the caller).
-
-    Robustness: each turn's management is wrapped in try/except so a single bad
-    turn logs and is skipped rather than killing a 664-turn run. H4: the failures
-    are COUNTED, and `max_consecutive_failures` consecutive failures abort the run
-    (SystemExit after a checkpoint) -- an unreachable judge used to produce a
-    silently empty diagram after 664 logged warnings.
+    apply_d7:       skip query-form user messages (``_is_query_turn``); with a
+                    ``manager``, English questions are skipped too.
+    max_sessions:   process only the first N sessions (smoke runs).
+    ckpt_path:      if set, write a checkpoint every ``ckpt_interval`` turns.
+    resume_state:   from ``_load_checkpoint``: turns before
+                    ``resume_state["turn"]`` are skipped and
+                    ``resume_state["cd"]`` is the starting diagram.
+    manager:        a harness or spec manager.  ``manager.update(base,
+                    user_text, assistant_text, turn)`` then replaces the
+                    chunk / classify / merge block, and ``extractor_fn`` is
+                    unused (pass None).
+    max_consecutive_failures:
+                    a failing turn is logged and skipped, but this many
+                    failures in a row write a checkpoint and abort with
+                    SystemExit.  Otherwise an unreachable judge would silently
+                    produce an empty diagram after hundreds of warnings.
+    pair_round_trips:
+                    one update per user->assistant round trip instead of one
+                    per message (the spec manager).
     """
     chunker = TextChunker()
     classifier = NodeClassifier()
     builder = GraphBuilder()
     merger = GraphMerger()
-    # F3: stamped into every checkpoint this run writes.
+    # Stamped into every checkpoint this run writes.
     pairing = pairing_mode(pair_round_trips)
     code_version = git_sha()
 
     base = resume_state["cd"] if resume_state and "cd" in resume_state else CorrelationDiagram()
     resume_turn = resume_state["turn"] if resume_state else 0
 
+    def is_query(text: str) -> bool:
+        # Manager runs (English corpus) also apply the English rule; the gemma
+        # and sbert runs keep the Japanese rule only, so their published
+        # numbers still reproduce.
+        return _is_query_turn(text) or (manager is not None and is_query_turn_en(text))
+
     turn = 0
     last_session_idx = 0
     failed_turns = 0
     consecutive_failures = 0
     if pair_round_trips:
-        # Spec 0036: one manager update per user->assistant round trip.
         units = ((s, "pair", (u, a)) for s, u, a in _round_trip_iter(chat))
     else:
-        units = ((s, role, content) for s, role, content in _msg_iter(chat))
+        units = _msg_iter(chat)
 
     for s_idx, role, content in units:
         if max_sessions is not None and s_idx >= max_sessions:
             break
         last_session_idx = s_idx
 
-        # Resume: fast-forward past already-processed turns.
-        if turn < resume_turn:
+        if turn < resume_turn:  # already processed before the checkpoint
             turn += 1
             continue
 
-        # D-7: skip management on query-form user messages (both arms).
-        # H3c: the corpus is English, so the harness arm ALSO applies the English
-        # query-turn rule. The gemma/sbert arms keep the Japanese rule only, so
-        # their published numbers stay reproducible.
         if role == "pair":
             user_text, assistant_text = content
-            # D-7 on the round trip: a query-form user message and its answer
-            # (which restates known facts) are both skipped.
-            if apply_d7 and user_text and (
-                _is_query_turn(user_text)
-                or (manager is not None and is_query_turn_en(user_text))
-            ):
+            # A question and its answer (which only restates known facts) are
+            # skipped together.
+            if apply_d7 and user_text and is_query(user_text):
                 turn += 1
                 continue
         else:
-            if apply_d7 and role == "user":
-                if _is_query_turn(content) or (
-                    manager is not None and is_query_turn_en(content)
-                ):
-                    turn += 1
-                    continue
+            if apply_d7 and role == "user" and is_query(content):
+                turn += 1
+                continue
             user_text = "" if role == "assistant" else content
             assistant_text = content if role == "assistant" else ""
 
         try:
-
             if manager is not None:
-                # Harness arm: the manager owns chunking, extraction,
-                # classification, provisional linking, merging and normalize.
+                # The manager owns chunking, extraction, classification,
+                # linking, merging and normalization.
                 manager.update(base, user_text, assistant_text, turn)
             else:
                 chunks = chunker.chunk_turn(user_text, assistant_text, turn)
-
                 provisional = CorrelationDiagram()
                 for chunk in chunks:
                     classifier.classify(chunk, provisional, extractor_fn, builder=builder)
                 merger.merge(base, provisional)
             consecutive_failures = 0
         except Exception as e:  # noqa: BLE001 -- a bad turn must not kill the run
-            # ASCII-safe error log (cp932-safe console).
             msg = str(e).encode("ascii", "replace").decode("ascii")
             print("[warn] turn %d (session %d) failed, skipped: %s" % (turn, s_idx, msg))
             failed_turns += 1
@@ -531,20 +484,16 @@ def _write_checkpoint(
     pairing: str = PAIRING_MESSAGE,
     code_version: str | None = None,
 ) -> None:
-    """Write a partial-CD checkpoint. Same node schema as the final output,
-    plus a resume block. Atomic-ish: write to .tmp then replace.
+    """Write a checkpoint: the final-output schema plus a ``resume`` block.
 
-    H12: the harness manager's cumulative counters (call totals + quality
-    counters) are persisted in the resume block and restored by --resume-from,
-    so a resumed run reports the whole run's cost. The judge ANSWER CACHE is
-    deliberately NOT persisted: it can hold tens of thousands of entries, it is
-    only an economy, and a resumed run simply re-asks what it needs.
+    Written to a .tmp file and then renamed, so an interrupted write does not
+    leave a half-written checkpoint.
 
-    F3: ``resume.pairing`` and ``resume.code_version`` identify WHAT produced
-    this checkpoint. ``turn`` counts round trips in the spec arm and messages
-    everywhere else, so a checkpoint resumed under the other mode fast-forwards
-    past a different set of turns and produces a diagram that matches neither
-    run. ``_load_checkpoint`` refuses that combination outright.
+    The resume block records ``pairing`` and ``code_version`` (checked by
+    ``_load_checkpoint``) and, with a manager, its cumulative call and quality
+    counters, so a resumed run reports the cost of the whole run.  The judge's
+    answer cache is not saved: it can hold tens of thousands of entries and
+    only saves calls, so a resumed run simply re-asks what it needs.
     """
     token_counter = make_token_counter()
     full_tokens = token_counter(CDSerializer().to_context_block(cd))
@@ -570,23 +519,19 @@ def _write_checkpoint(
 
 
 def _load_checkpoint(ckpt_path: Path, *, expected_pairing: str | None = None) -> dict:
-    """Rebuild a CorrelationDiagram from a checkpoint's node records and return
-    {"cd": cd, "turn": int}. Reconstructs the sun/planet/satellite hierarchy
-    from parent_id linkage.
+    """Read a checkpoint written by ``_write_checkpoint``.
 
-    F3: when ``expected_pairing`` is given, a checkpoint whose ``resume.pairing``
-    differs is REFUSED (SystemExit naming both values). A checkpoint written
-    before this field existed reports ``unknown`` and is refused as well -- the
-    whole point is that stale state on a persistent volume must not be reused
-    silently.
+    Returns {"cd", "turn", "pairing", "code_version", "harness_totals",
+    "harness_cache_hits"}.  With ``expected_pairing``, a checkpoint written
+    under the other pairing mode is refused with SystemExit: ``turn`` counts
+    round trips in one mode and messages in the other, so resuming across them
+    would skip the wrong turns.  A checkpoint without the field counts as
+    "unknown" and is refused too, so stale state on a persistent volume is
+    never reused silently.
     """
-    from models.node import Node
-
     with ckpt_path.open(encoding="utf-8") as f:
         data = json.load(f)
-    records = data.get("nodes", [])
     resume_block = data.get("resume", {})
-    resume_turn = resume_block.get("turn", 0)
     ckpt_pairing = resume_block.get("pairing", "unknown")
     if expected_pairing is not None and ckpt_pairing != expected_pairing:
         raise SystemExit(
@@ -599,38 +544,9 @@ def _load_checkpoint(ckpt_path: Path, *, expected_pairing: str | None = None) ->
                PAIRING_ROUND_TRIP, PAIRING_MESSAGE)
         )
 
-    cd = CorrelationDiagram()
-    by_id: dict[str, Node] = {}
-    # First pass: instantiate all nodes.
-    for r in records:
-        node = Node(
-            text=r["text"],
-            level=NodeLevel(r["level"]),
-            mass=float(r["mass"]),
-            node_id=r["node_id"],
-            parent_id=r.get("parent_id"),
-            created_turn=r.get("created_turn", -1),
-        )
-        by_id[node.node_id] = node
-    # Second pass: attach in traversal order (suns, then planets, then sats).
-    # CorrelationDiagram.add_* signatures put the node first, then the parent id
-    # (add_planet(node, sun_id), add_satellite(node, planet_id)).
-    for r in records:
-        node = by_id[r["node_id"]]
-        if node.level == NodeLevel.SUN:
-            cd.add_sun(node)
-    for r in records:
-        node = by_id[r["node_id"]]
-        if node.level == NodeLevel.PLANET and node.parent_id in by_id:
-            cd.add_planet(node, node.parent_id)
-    for r in records:
-        node = by_id[r["node_id"]]
-        if node.level == NodeLevel.SATELLITE and node.parent_id in by_id:
-            cd.add_satellite(node, node.parent_id)
-
     return {
-        "cd": cd,
-        "turn": resume_turn,
+        "cd": cd_from_records(data.get("nodes", [])),
+        "turn": resume_block.get("turn", 0),
         "pairing": ckpt_pairing,
         "code_version": resume_block.get("code_version", "unknown"),
         "harness_totals": resume_block.get("harness_totals", {}),
@@ -676,9 +592,8 @@ def run_smoke(cd: CorrelationDiagram, serializer: CDSerializer, token_counter) -
 
 
 def _make_local_judge(args):
-    """Build the `--judge local` backend (S1.3): an OpenAI-compatible server,
-    e.g. vLLM serving the SAME open-weight model as the reader (directive 5).
-    """
+    """Build the ``--judge local`` backend: an OpenAI-compatible server, e.g.
+    vLLM serving the same open-weight model as the reader."""
     from management.harness import OpenAICompatJudge
 
     if not args.judge_model:
@@ -823,14 +738,14 @@ def main() -> None:
     with chat_path.open(encoding="utf-8") as f:
         chat = json.load(f)
 
-    # Resume state (rebuild base CD + turn cursor from a checkpoint).
-    # F3: the pairing mode this run will use, decided BEFORE the checkpoint is
-    # read so a stale checkpoint can be refused rather than silently reused.
-    run_pairing = pairing_mode(args.extractor == "spec")
+    # Only the spec manager updates once per round trip.  The mode is fixed
+    # before the checkpoint is read, so a checkpoint written under the other
+    # mode is refused rather than silently reused.
+    pair_round_trips = args.extractor == "spec"
     resume_state: dict | None = None
     if args.resume_from:
         resume_state = _load_checkpoint(
-            Path(args.resume_from), expected_pairing=run_pairing
+            Path(args.resume_from), expected_pairing=pairing_mode(pair_round_trips)
         )
         print(
             "resuming from %s at turn %d (%d nodes, pairing=%s, code_version=%s)"
@@ -879,8 +794,8 @@ def main() -> None:
                 "a fake judge would produce a meaningless CD)" % args.extractor
             )
         if args.judge == "fake":
-            # H10 / S1.3: the fake judge cannot rank anything, so the embedding
-            # shortlist would only load an SBERT model for nothing.
+            # The fake judge cannot rank anything, so an embedding shortlist
+            # would only load an SBERT model for nothing.
             m_config.shortlist_k = 0
             judge = (
                 make_spec_fake_judge(node_chars)
@@ -927,13 +842,11 @@ def main() -> None:
         extractor_fn = _safe_extractor_fn(make_extractor_fn())
 
     ckpt_path = _checkpoint_path(out_path)
-    # D-7 (compound query-phrase skip) is a D-ledger requirement for the
-    # spec-compliant Gemma manager (RESEARCH_PROGRAM WO-2 arm B) ONLY. The SBERT
-    # floor arm (arm A) must reproduce the v10 path exactly, so D-7 is NOT
-    # applied there -- adding it would change the arm A / SBERT behavior.
+    # Query turns are skipped for every extractor except sbert, which must
+    # reproduce the original online path (and its published numbers) exactly.
     apply_d7 = args.extractor in ("gemma",) + MANAGER_EXTRACTORS
     print("building CD over all turns (extractor=%s, D-7=%s)..." % (args.extractor, apply_d7))
-    _t0 = time.perf_counter()
+    t0 = time.perf_counter()
     try:
         cd, n_turns, failed_turns = build_cd(
             chat,
@@ -949,16 +862,15 @@ def main() -> None:
                 if args.max_consecutive_failures > 0
                 else 10**9
             ),
-            # Spec 0036: the spec manager updates once per round trip.
-            pair_round_trips=(args.extractor == "spec"),
+            pair_round_trips=pair_round_trips,
         )
     finally:
         if unload_fn is not None:
             unload_fn()
-    _elapsed = time.perf_counter() - _t0
+    elapsed = time.perf_counter() - t0
 
-    # S1.3: the spec arm's summary/smoke output uses the marker format
-    # ([SN] / [PN mass] / [RN]); mass appears on PLANET lines only (0062 / 0079).
+    # The spec run serializes with level markers ([SN] / [PN mass] / [RN], mass
+    # on planet lines only), as the specification describes.
     level_markers = (
         (args.extractor == "spec") if args.level_markers is None else args.level_markers
     )
@@ -1009,8 +921,8 @@ def main() -> None:
                 "default -- the answers are not trustworthy"
                 % (100.0 * quality["defaulted"] / total_calls)
             )
-    per_turn = (_elapsed / n_turns) if n_turns else 0.0
-    print("wall time: %.1fs (%.3fs/turn over %d turns)" % (_elapsed, per_turn, n_turns))
+    per_turn = (elapsed / n_turns) if n_turns else 0.0
+    print("wall time: %.1fs (%.3fs/turn over %d turns)" % (elapsed, per_turn, n_turns))
     print("wrote: %s" % out_path.as_posix())
 
     run_smoke(cd, serializer, token_counter)

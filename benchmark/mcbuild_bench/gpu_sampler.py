@@ -1,4 +1,8 @@
-"""gpu_sampler.py — nvidia-smi power sampler and per-span energy (DECISIONS E3, DESIGN §6).
+"""GPU power sampling and per-span energy, used by every GPU stage.
+
+build_cd and compaction_c run the sampler during the manager phase and
+run_arms runs it while the reader answers, so that each stage can report the
+energy it used next to its token and FLOP counts.
 
 ``GpuSampler(path).start()`` launches::
 
@@ -105,8 +109,10 @@ def wait_for_samples(
 ) -> bool:
     """Poll ``csv_path`` until it holds at least ``n`` numeric power samples
     (with timestamp >= ``after_ts`` when given); True on success, False on
-    timeout.  A missing file counts as zero samples.  Pure apart from the
-    clock, so run_arms can inject/skip it in tests (item 7).
+    timeout.  A missing file counts as zero samples.
+
+    Callers wait for samples before the first question and after the last
+    one, so that the energy integral covers the whole span.
     """
     if n <= 0:
         return True
@@ -156,6 +162,8 @@ def energy_joules(csv_path: str | Path, t0: float, t1: float) -> float:
     points = [(t0, _interp(before, after_t0, t0))]
     points += [s for s in samples if t0 < s[0] < t1]
     points.append((t1, _interp(before_t1, after, t1)))
+    # A plain loop on purpose: sum() of floats is compensated since Python 3.12
+    # and would change the last bits of recorded energies.
     total = 0.0
     for (ta, pa), (tb, pb) in zip(points, points[1:]):
         total += 0.5 * (pa + pb) * (tb - ta)

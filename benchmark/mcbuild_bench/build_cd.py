@@ -1,8 +1,14 @@
-"""Build the correlation diagram over the redacted session (DESIGN.md 6 build_cd).
+"""Manager phase: build the correlation diagram (CD) over the corpus.
 
-One ``SpecManager.update()`` per ROUND TRIP (A2 / 0036): user_text = the human
-message, assistant_text = the events in order, each prefixed by its kind tag.
-Judge = Jev through the hooks of ``jev_judge``; node text = local summarizer.
+This is the first stage of the pipeline.  The CD written here is what
+windows.build_window serializes into the proposed arm's window, which run_arms
+hands to the reader.
+
+Each round trip of the corpus goes through ``SpecManager.update()`` once: the
+user text is the human message, the assistant text is the round trip's events
+in order, each prefixed by its kind tag.  The manager's decisions are answered
+by Jev (through the hooks in jev_judge) and node texts are written by the local
+summarizer (summarizer_client).
 
     python -m benchmark.mcbuild_bench.build_cd \
         --session benchmark/mcbuild_bench/data/session_redacted.json \
@@ -15,68 +21,40 @@ Judge = Jev through the hooks of ``jev_judge``; node text = local summarizer.
 
     python -m benchmark.mcbuild_bench.build_cd --project --session <session.json> [--exclude-rt 36]
 
-Corpus (H22 (c)): the session is loaded through ``corpus.load_corpus`` — the
-round trips named by ``--exclude-rt`` (default ``36``, the retrospective;
-``none`` disables) are dropped by a checked filter, and ``manifest.session_sha256``
-is the sha256 of the FILTERED content (``session_file_sha256`` keeps the raw
-file's hash; ``exclude_rt`` and ``n_round_trips`` are recorded).  run_arms binds
-its cells to the same corpus hash.
+``--project`` sizes a run without calling Jev: it prints the chunk count per
+round trip, the worst-case request count and an expected-spend estimate.
 
-Budget guard (Astra round 3 item 1): ``--max-jev-requests`` / ``--max-jev-input-tokens``
-are REQUIRED.  ``BudgetedJev`` wraps the client and raises ``JevStop("budget
-exceeded: ...")`` BEFORE sending the request that would exceed either budget
-(requests: the next request would be number max+1; input tokens: the tokens
-already consumed reached the budget, so the next request can only exceed it --
-the token budget can therefore be overshot by at most one request).  The
-partial CD is written through the existing transactional path; the manifest
-records ``jev_budget`` (budgets + counts).  ``--project`` prints the chunk
-count per round trip (``SpecManager.chunk`` with the SpecConfig defaults, no
-Jev) and the worst-case request totals of ``jev_judge.project_requests``, then the
-expected-spend ESTIMATE of ``jev_judge.estimate_input_tokens`` at kept fraction 0.5 (H23).
+Jev costs money, so ``--max-jev-requests`` and ``--max-jev-input-tokens`` are
+required.  ``BudgetedJev`` stops the run (``JevStop``) before the request that
+would exceed either budget.
 
-Manifest totals (item 4): ``jev_requests`` / ``jev_input_tokens_total`` /
-``jev_output_tokens_total`` / ``jev_cost_usd`` are summed over THIS run's Jev
-accounting JSONL (one line per HTTP attempt; tokens over the lines with usage),
-exactly like the summarizer totals; ``JevCounters`` only feed ``harness_calls``.
-On ``--resume`` the ``prior_manifest`` is re-summed from the accounting files it
-names when both exist (``prior_manifest_reconciled: true``), otherwise its
-stored values are kept and ``prior_manifest_reconciled: false`` is recorded.
-The manifest also records the diagram ``capacities`` (config.yaml ``graph.max_*``,
-item 2; the merger raises instead of dropping a node at those limits).
+A stopped run loses nothing:
 
-``build()`` is pure with respect to the clients (it only needs a configured
-SpecManager), so the tests drive it with fakes.  A JevStop / SummarizerStop
-propagates out of ``build()``; ``main()`` then writes the partial diagram with
-``"stopped": {"reason": repr(exc), "type": type(exc).__name__}`` to --out and
-exits non-zero (D1 / D2).  ANY other exception writes the same partial output
-and is re-raised (F3 / F12): no partial CD is ever lost.
+- Each round trip is a transaction: on any exception the diagram is rolled
+  back to its state before that round trip, so the partial CD holds exactly
+  the completed round trips and ``summary.turns`` is their count.
+- The CD on disk is rewritten atomically after every round trip.
+- ``JevStop`` / ``SummarizerStop`` (the expected stop conditions) write the
+  partial CD with a ``stopped`` block and exit 1; any other exception writes
+  the same partial CD and is re-raised.
+- ``--resume <partial_cd.json>`` reloads the partial's nodes and skips the
+  round trips it already processed.  The partial must come from the same
+  corpus (same ``manifest.session_sha256``).
 
-Each round trip is TRANSACTIONAL: ``build()`` takes ``cd.clone()`` before
-``manager.update`` and, on any exception, restores the pre-turn state into the
-SAME ``cd`` object (``cd.suns = snapshot.suns``; the object is never rebound
-because ``make_manager``'s ``sun_texts_fn`` closes over it).  The partial
-therefore holds exactly the COMPLETED round trips and ``summary.turns`` equals
-their count.  (The former "> 254 suns -> JevStop" rule is withdrawn: H22 (a)
-asks the sun Choice in batches of <= 254.)
+Every run has a run id (default: UTC timestamp + 6 hex chars) that is inserted
+into the names of the Jev / summarizer accounting files and the GPU CSV, and a
+run refuses to start when any of those files exists, so two runs never append
+to the same file.  The manifest totals are summed from THIS run's accounting
+files.  On resume the manifest also carries ``resumed_from`` and
+``prior_manifest`` (re-summed from the prior run's accounting files when they
+still exist) so the cost of a resumed chain can be added up;
+``summary.turns`` and ``summary.dropped_chunks`` are cumulative over the
+chain, while ``harness_calls`` / ``harness_quality`` cover this run only.  The
+manifest also records the diagram's capacity limits (config.yaml
+``graph.max_*``); the merger raises at those limits instead of dropping a node.
 
-Resume (F2, DECISIONS H9): ``--resume <partial_cd.json>`` reloads ``nodes``
-(``benchmark.bineval.arms.cd_from_records``), skips the first ``summary["turns"]``
-round trips of the (filtered) corpus list (build() appends one report per round
-trip processed, so ``turns`` is the count already processed; positions, not
-``idx`` values, so an excluded middle round trip cannot shift the restart) and
-requires the partial's ``manifest.session_sha256`` to equal the current corpus
-sha256 (same session file AND same exclusion set).  Accounting files AND the GPU CSV carry ``--run-id`` before
-their extension (``jev_calls.<run_id>.jsonl``, ``gpu_manager.<run_id>.csv``);
-``main()`` refuses to start (SystemExit) when any of the three already exists,
-so a reused run id can never append to an earlier run's files.  The default
-run id is the UTC timestamp plus 6 hex chars.  The manifest totals cover THIS run's files only
-and, on resume, carry ``resumed_from`` and ``prior_manifest`` so the report
-reader sums the cost.  ``summary.turns`` and ``summary.dropped_chunks`` are
-cumulative over the resumed chain; ``harness_calls`` / ``harness_quality`` are
-this run's manager only.
-
-The JevClient / SummarizerClient / GpuSampler modules are imported lazily inside
-``main()`` with exactly the constructor signatures of DESIGN.md 6.
+``build()`` only needs a configured SpecManager, so the tests drive it with
+fakes; the real clients are imported inside ``main()``.
 """
 
 from __future__ import annotations
@@ -89,6 +67,7 @@ import secrets
 import sys
 import threading
 import time
+from collections.abc import Iterator
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -116,8 +95,8 @@ from models.correlation_diagram import CorrelationDiagram
 from models.node import NodeLevel
 
 JEV_MODEL = "jev-latest"
-PUBLISHED_PRICE_PER_MTOK = 0.042  # USD per M input tokens (DESIGN.md 3; recorded, not asserted)
-PROJECT_KEPT_FRACTION = 0.5  # H23: kept fraction assumed by the --project spend ESTIMATE
+PUBLISHED_PRICE_PER_MTOK = 0.042  # USD per M input tokens (published price; recorded, not measured)
+PROJECT_KEPT_FRACTION = 0.5  # kept fraction assumed by the --project spend ESTIMATE
 EVENT_KINDS = ("text", "tool_use", "tool_result", "harness_note")
 
 
@@ -160,8 +139,9 @@ def summary_of(
     *,
     prior_summary: dict | None = None,
 ) -> dict:
-    """``turns`` / ``dropped_chunks`` add the resumed partial's counts (F2) so
-    that ``turns`` always equals the number of round trips processed so far."""
+    """Node counts and manager totals.  On resume, ``turns`` / ``dropped_chunks``
+    add the partial's counts, so ``turns`` is always the number of round trips
+    processed so far."""
     counts = {level.value: 0 for level in NodeLevel}
     for node in cd.all_nodes():
         counts[node.level.value] += 1
@@ -196,11 +176,11 @@ def payload_of(
 
 
 def stopped_of(exc: BaseException) -> dict:
-    """The ``stopped`` block of a partial CD (F3 / F12)."""
+    """The ``stopped`` block of a partial CD: why the run ended early."""
     return {"reason": repr(exc), "type": type(exc).__name__}
 
 
-# -- budget guard (Astra round 3 item 1) ------------------------------------------------
+# -- spending guard ------------------------------------------------------------------
 
 
 class BudgetedJev:
@@ -258,26 +238,25 @@ class BudgetedJev:
             }
 
 
-# -- request projection (Astra round 3 item 1; no Jev) --------------------------------------
+# -- request projection (no Jev) ---------------------------------------------------------
 
 
 def project_main(session_path: Path, exclude_idx=DEFAULT_EXCLUDE_RT) -> int:
     """Print the chunk count per round trip (``SpecManager.chunk`` with the
     SpecConfig defaults, exactly as ``build`` chunks) and the worst-case Jev
-    request totals of :func:`jev_judge.project_requests`, over the corpus
-    (session minus ``exclude_idx``, H22 (c)).
+    request totals of :func:`jev_judge.project_requests` over the corpus, then
+    the expected spend of :func:`jev_judge.estimate_input_tokens`.
 
     The diagram before round trip i is bounded by the cumulative chunk count
-    (every chunk kept, one node each): suns, planets and satellites each <=
-    chunks so far (no sun cap since H22 (a) batches the Choice).  The
-    classification floor (one request per chunk) is the minimum any run costs.
+    (every chunk kept, one node each): suns, planets and satellites are each
+    <= the chunks so far.  The classification floor (one request per chunk) is
+    the minimum any run costs.
     """
     corpus = load_corpus(session_path, exclude_idx)
     config = SpecConfig(shortlist_k=0)
     manager = SpecManager(JevJudgeLLM(), config=config)
-    round_trips = corpus.round_trips
     counts: list[tuple[int, int]] = []
-    for round_trip in round_trips:
+    for round_trip in corpus.round_trips:
         user_text, assistant_text = round_trip_texts(round_trip)
         turn = int(round_trip["idx"])
         counts.append((turn, len(manager.chunk(user_text, assistant_text, turn))))
@@ -287,15 +266,14 @@ def project_main(session_path: Path, exclude_idx=DEFAULT_EXCLUDE_RT) -> int:
         % (Path(session_path).as_posix(), json.dumps(list(corpus.exclude_rt)), len(counts),
            total_chunks, config.chunk_max_chars)
     )
-    seen = 0
+    seen = 0  # chunks before this round trip = upper bound of every node count
     worst_total = 0
     for turn, n_chunks in counts:
-        suns, planets, satellites = seen, seen, seen
-        worst = project_requests(n_chunks, suns, planets, n_satellites=satellites)
+        worst = project_requests(n_chunks, seen, seen, n_satellites=seen)
         worst_total += worst
         print(
             "rt %02d: chunks=%d cd_before(suns<=%d planets<=%d satellites<=%d) worst=%d"
-            % (turn, n_chunks, suns, planets, satellites, worst)
+            % (turn, n_chunks, seen, seen, seen, worst)
         )
         seen += n_chunks
     print("classification floor (1 request per chunk): %d" % total_chunks)
@@ -305,7 +283,7 @@ def project_main(session_path: Path, exclude_idx=DEFAULT_EXCLUDE_RT) -> int:
         "bounded by the cumulative chunk count; "
         "formula = jev_judge.project_requests (see its docstring; H19 = b, H22 (a), H23)"
     )
-    # H23: expected spend (an ESTIMATE, not the budget guard) at kept_fraction 0.5.
+    # Expected spend: an ESTIMATE to read before a run, not the budget guard.
     est = estimate_input_tokens(total_chunks, PROJECT_KEPT_FRACTION, n_round_trips=max(1, len(counts)))
     terms = " ".join(
         "%s=%d req/%d tok" % (name, t["requests"], t["input_tokens"]) for name, t in est["terms"].items()
@@ -342,10 +320,10 @@ def build(
 
     ``cd`` and ``reports`` may be passed in so that the caller still holds the
     partial state when a JevStop / SummarizerStop propagates out of here.
-    ``start_idx`` (F2 resume) skips the first ``start_idx`` round trips of the
-    list (= ``summary.turns``, the count already processed; positions rather
-    than ``idx`` values because the corpus may exclude round trips, H22 (c));
-    ``max_round_trips`` applies to the session list before that filter.
+    ``start_idx`` (resume) skips the first ``start_idx`` round trips of the
+    list (= ``summary.turns``, the count already processed; list positions
+    rather than ``idx`` values, so an excluded round trip cannot shift the
+    restart point); ``max_round_trips`` applies to the list before that skip.
     """
     cd = cd if cd is not None else CorrelationDiagram()
     reports = reports if reports is not None else []
@@ -355,12 +333,13 @@ def build(
     for round_trip in round_trips[max(0, int(start_idx)):]:
         turn = int(round_trip["idx"])
         user_text, assistant_text = round_trip_texts(round_trip)
-        snapshot = cd.clone()  # transactional round trip (item 3)
+        snapshot = cd.clone()
         try:
             report = manager.update(cd, user_text, assistant_text, turn=turn)
         except BaseException:
-            # Roll the SAME object back to the pre-turn state: the partial the
-            # caller writes from ``cd`` then holds only completed round trips.
+            # Roll the SAME object back (make_manager's sun_texts_fn holds a
+            # reference to it): the partial the caller writes from ``cd`` then
+            # holds only completed round trips.
             cd.suns = snapshot.suns
             raise
         reports.append(report)
@@ -376,28 +355,30 @@ def make_manager(
     *,
     cd: CorrelationDiagram | None = None,
 ) -> SpecManager:
-    """SpecManager wired to Jev + summarizer exactly as DESIGN.md 6 prescribes.
+    """SpecManager whose decisions go to Jev and whose node texts come from the
+    summarizer.
 
     ``cd`` is the diagram this manager will build (the object later passed to
-    ``manager.update`` / ``build(cd=...)``): its current sun texts route the
-    K_BELONGS decisions over sun candidates to the `sun` Choice question (F1 /
-    H8).  Without ``cd`` every K_BELONGS decision takes the `belongs` noul path.
+    ``manager.update`` / ``build(cd=...)``).  Its current sun texts let a
+    K_BELONGS decision over suns use the `sun` Choice wording; without ``cd``
+    every such decision uses the `planet` wording.
     """
     counters = counters if counters is not None else JevCounters()
     sun_texts_fn: Callable[[], set[str]] | None = None
     if cd is not None:
         sun_texts_fn = lambda: {se.sun.text for se in cd.suns}  # noqa: E731 -- closes over cd
-    # H1 (D3 one-request contract): keep_fn and node_fn share ONE Jev request per
-    # chunk ({keep, 3 axes}); JevKeepFn reads the answer JevNodeFn caches.  The
-    # cache is single-slot, which is only valid with the sequential manager
-    # (SpecConfig.max_workers == 1, the D4 default asserted here).
+    # keep_fn and node_fn share ONE Jev request per chunk (keep + the three
+    # axes): JevKeepFn sends it and JevNodeFn reads the cached answer.  The
+    # cache holds a single chunk, which is only correct when the manager works
+    # through chunks one at a time.
     config = SpecConfig(shortlist_k=0)
     assert config.max_workers == 1, "H1 one-request cache requires the sequential manager"
     node_fn = JevNodeFn(jev, summarizer, counters)
     return SpecManager(
         JevJudgeLLM(),
-        # D4: spec defaults (chunk 400 / node 120 / floor 0.0 / sequential);
-        # shortlist_k=0 because the injected similarity has no embedding shortlist.
+        # The spec manager's defaults (chunk 400 chars, node 120 chars, planet
+        # mass floor 0.0, sequential); shortlist_k=0 because the Jev similarity judge
+        # has no embedding shortlist.
         config=config,
         node_fn=node_fn,
         keep_fn=JevKeepFn(node_fn),
@@ -405,17 +386,17 @@ def make_manager(
     )
 
 
-# -- resume (F2) -------------------------------------------------------------------------
+# -- resume ------------------------------------------------------------------------------
 
 
 def session_sha256(path: Path) -> str:
-    """sha256 of the session FILE bytes (recorded as ``session_file_sha256``;
-    the binding hash ``session_sha256`` is the corpus hash, H22 (c))."""
+    """sha256 of the session FILE bytes.  Recorded as ``session_file_sha256``
+    only; artifacts are bound to the corpus hash (``corpus.sha256``)."""
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def default_run_id() -> str:
-    """UTC timestamp + 6 hex chars, e.g. ``20260918T101010Z-3f9a1c`` (item 10)."""
+    """UTC timestamp + 6 hex chars, e.g. ``20260918T101010Z-3f9a1c``."""
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + secrets.token_hex(3)
 
 
@@ -458,45 +439,38 @@ def _package_version(name: str) -> str | None:
         return None
 
 
-def summarizer_totals(accounting_path: Path) -> dict[str, int]:
-    """Totals over the summarizer accounting lines
-    ({"ts","prompt_tokens","completion_tokens","latency_ms","retried","chars"}, DESIGN.md 6)."""
-    totals = {"summarizer_calls": 0, "summarizer_prompt_tokens": 0, "summarizer_completion_tokens": 0}
-    if not accounting_path.exists():
-        return totals
-    with accounting_path.open(encoding="utf-8") as f:
+def _jsonl_records(path: Path) -> Iterator[dict]:
+    """The records of a JSONL file (blank lines skipped; none if it is missing)."""
+    path = Path(path)
+    if not path.exists():
+        return
+    with path.open(encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if not line:
-                continue
-            rec = json.loads(line)
-            totals["summarizer_calls"] += 1
-            totals["summarizer_prompt_tokens"] += int(rec.get("prompt_tokens", 0) or 0)
-            totals["summarizer_completion_tokens"] += int(rec.get("completion_tokens", 0) or 0)
+            if line:
+                yield json.loads(line)
+
+
+def summarizer_totals(accounting_path: Path) -> dict[str, int]:
+    """Totals over the summarizer accounting lines
+    (``{"ts", "prompt_tokens", "completion_tokens", "latency_ms", "retried", "chars"}``)."""
+    totals = {"summarizer_calls": 0, "summarizer_prompt_tokens": 0, "summarizer_completion_tokens": 0}
+    for rec in _jsonl_records(accounting_path):
+        totals["summarizer_calls"] += 1
+        totals["summarizer_prompt_tokens"] += int(rec.get("prompt_tokens", 0) or 0)
+        totals["summarizer_completion_tokens"] += int(rec.get("completion_tokens", 0) or 0)
     return totals
 
 
 def jev_totals(accounting_path: Path) -> dict[str, int | float]:
-    """Totals over the Jev accounting lines (jev_client.JevClient._record, one
-    per HTTP attempt): ``jev_requests`` = number of lines; the token totals
-    sum the lines with non-null usage; cost per D5."""
-    requests = 0
-    input_tokens = 0
-    output_tokens = 0
-    if accounting_path.exists():
-        with accounting_path.open(encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                rec = json.loads(line)
-                requests += 1
-                if rec.get("input_tokens") is not None:
-                    input_tokens += int(rec["input_tokens"])
-                if rec.get("output_tokens") is not None:
-                    output_tokens += int(rec["output_tokens"])
+    """Totals over the Jev accounting lines (``JevClient._record``, one per HTTP
+    attempt): ``jev_requests`` = number of lines; the token totals sum the lines
+    that carry usage; cost = input tokens x the published price."""
+    records = list(_jsonl_records(accounting_path))
+    input_tokens = sum(int(r["input_tokens"]) for r in records if r.get("input_tokens") is not None)
+    output_tokens = sum(int(r["output_tokens"]) for r in records if r.get("output_tokens") is not None)
     return {
-        "jev_requests": requests,
+        "jev_requests": len(records),
         "jev_input_tokens_total": input_tokens,
         "jev_output_tokens_total": output_tokens,
         "jev_cost_usd": input_tokens * PUBLISHED_PRICE_PER_MTOK / 1e6,
@@ -544,19 +518,19 @@ def manifest_of(
         "transformers_version": _package_version("transformers"),
         "vllm_version": _package_version("vllm"),
         "jev_model": JEV_MODEL,
+        **jev_totals(jev_accounting),
+        "published_price_per_mtok": PUBLISHED_PRICE_PER_MTOK,
+        **summarizer_totals(summarizer_accounting),
+        "wall_s": wall_s,
+        "gpu_csv": gpu_csv,
+        "session_sha256": session_sha,  # hash of the corpus after the exclusion
+        "session_file_sha256": session_file_sha,
+        "exclude_rt": list(exclude_rt),
+        "n_round_trips": n_round_trips,
+        "run_id": run_id,
+        "jev_accounting": str(jev_accounting),
+        "summarizer_accounting": str(summarizer_accounting),
     }
-    manifest.update(jev_totals(jev_accounting))
-    manifest["published_price_per_mtok"] = PUBLISHED_PRICE_PER_MTOK
-    manifest.update(summarizer_totals(summarizer_accounting))
-    manifest["wall_s"] = wall_s
-    manifest["gpu_csv"] = gpu_csv
-    manifest["session_sha256"] = session_sha  # corpus hash (filtered content, H22 (c))
-    manifest["session_file_sha256"] = session_file_sha
-    manifest["exclude_rt"] = list(exclude_rt)
-    manifest["n_round_trips"] = n_round_trips
-    manifest["run_id"] = run_id
-    manifest["jev_accounting"] = str(jev_accounting)
-    manifest["summarizer_accounting"] = str(summarizer_accounting)
     if jev_budget is not None:
         manifest["jev_budget"] = dict(jev_budget)
     if capacities is not None:
@@ -569,8 +543,8 @@ def manifest_of(
 
 
 def write_json(path: Path, payload: dict) -> None:
-    """Atomic write (item G): tmp file next to ``path`` + ``os.replace``, so a
-    reader (or a crash mid-write) never sees a half-written CD."""
+    """Atomic write: tmp file next to ``path`` + ``os.replace``, so a reader
+    (or a crash mid-write) never sees a half-written CD."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")
@@ -582,6 +556,7 @@ def write_json(path: Path, payload: dict) -> None:
 
 
 def _ascii(text: str) -> str:
+    """``text`` with non-ASCII characters replaced (a Windows console may not encode them)."""
     return text.encode("ascii", "replace").decode("ascii")
 
 
@@ -606,15 +581,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-jev-input-tokens", type=int, default=None,
                     help="stop before the next request once the Jev input tokens consumed reach T "
                          "(required)")
-    ap.add_argument("--max-round-trips", type=int, default=None, help="process only the first N round trips (V4)")
+    ap.add_argument("--max-round-trips", type=int, default=None,
+                    help="process only the first N round trips (for short trial runs)")
     ap.add_argument("--resume", default=None, metavar="PARTIAL_CD_JSON",
                     help="continue from a partial CD written by an earlier run (same session sha256)")
     ap.add_argument("--run-id", default=None,
                     help="tag appended before the extension of both accounting files and "
                          "the GPU CSV (default: UTC %%Y%%m%%dT%%H%%M%%SZ-<6 hex>)")
     ap.add_argument("--exclude-rt", default=DEFAULT_EXCLUDE_RT_CLI,
-                    help="H22 (c): comma-separated round-trip indices dropped from the corpus "
-                         "(checked: they must exist); 'none' disables (default: %(default)s)")
+                    help="comma-separated round-trip indices to drop from the corpus (the "
+                         "default is the session retrospective); each must exist in the "
+                         "session; 'none' disables (default: %(default)s)")
     args = ap.parse_args(argv)
 
     try:
@@ -634,8 +611,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.max_jev_requests < 1 or args.max_jev_input_tokens < 1:
         ap.error("--max-jev-requests and --max-jev-input-tokens must be positive")
 
-    # Other agents' modules (DESIGN.md 6 signatures), imported lazily so build()
-    # stays testable without them.
+    # Imported here so that build() stays testable without the real clients.
     from benchmark.mcbuild_bench.gpu_sampler import GpuSampler
     from benchmark.mcbuild_bench.jev_client import JevClient
     from benchmark.mcbuild_bench.summarizer_client import SummarizerClient
@@ -647,7 +623,7 @@ def main(argv: list[str] | None = None) -> int:
 
     session_path = Path(args.session)
     try:
-        corpus = load_corpus(session_path, exclude_rt)  # H22 (c): checked filter
+        corpus = load_corpus(session_path, exclude_rt)
     except ValueError as e:
         raise SystemExit(str(e)) from None
     session_sha = corpus.sha256
@@ -667,8 +643,8 @@ def main(argv: list[str] | None = None) -> int:
             "would append to them): %s" % (run_id, ", ".join(existing))
         )
 
-    # Resume (F2): the partial's nodes become the starting diagram; the round
-    # trips already processed (summary.turns) are skipped.
+    # Resume: the partial's nodes become the starting diagram; the round trips
+    # it already processed (summary.turns) are skipped.
     cd = CorrelationDiagram()
     start_idx = 0
     prior_summary: dict | None = None
@@ -683,15 +659,13 @@ def main(argv: list[str] | None = None) -> int:
             print(str(e), file=sys.stderr)
             return 2
         prior_summary = partial.get("summary") or {}
-        # Item 4: the prior totals are re-summed from the prior accounting files.
         prior_manifest, prior_reconciled = reconcile_prior_manifest(prior_manifest)
         print("[resume] %s: %d nodes, continuing at round trip idx %d (prior manifest %s)"
               % (args.resume, len(cd), start_idx,
                  "reconciled from its accounting files" if prior_reconciled
                  else "kept as stored: accounting files not found"))
 
-    # Item 2: the effective capacities (config.yaml graph.max_*) are logged and
-    # recorded in the manifest before the run; the merger raises at those limits.
+    # Log the diagram's capacity limits before the run (also kept in the manifest).
     capacities = cd.capacities()
     print("[capacities] %s" % " ".join("%s=%d" % kv for kv in capacities.items()))
 
@@ -713,11 +687,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     counters = JevCounters()
     manager = make_manager(jev, summarizer, counters, cd=cd)
-    # (t0 below is rebound when the sampler starts; progress() reads it at call time.)
 
     out_path = Path(args.out)
     reports: list[SpecTurnReport] = []
-    t0 = time.perf_counter()
 
     def progress(turn: int, report: SpecTurnReport) -> None:
         print(
@@ -725,8 +697,8 @@ def main(argv: list[str] | None = None) -> int:
             % (turn, report.chunks, report.dropped, report.nodes, report.added,
                report.total_calls(), len(cd))
         )
-        # Item G: the CD on disk always holds every COMPLETED round trip
-        # (atomic write), not only the final or the exception-path output.
+        # Rewrite the CD after every round trip, so a crash at any point leaves
+        # every completed round trip on disk.
         finish(payload_of(cd, reports, manager, prior_summary=prior_summary),
                time.perf_counter() - t0)
 
@@ -754,11 +726,11 @@ def main(argv: list[str] | None = None) -> int:
             start_idx=start_idx, prior_summary=prior_summary,
         )
     except (JevStop, SummarizerStop) as e:
-        # D1 / D2: the expected stop conditions -> partial output, exit 1.
+        # The expected stop conditions: write the partial CD, exit 1.
         stopped = stopped_of(e)
         payload = payload_of(cd, reports, manager, stopped=stopped, prior_summary=prior_summary)
     except BaseException as e:
-        # F3 / F12: anything else still leaves the partial CD on disk, then re-raises.
+        # Anything else still leaves the partial CD on disk, then re-raises.
         sampler.stop()
         finish(
             payload_of(cd, reports, manager, stopped=stopped_of(e), prior_summary=prior_summary),

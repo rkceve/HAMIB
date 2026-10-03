@@ -1,3 +1,4 @@
+"""Read settings from the repository's config.yaml (loaded once, then cached)."""
 from __future__ import annotations
 import yaml
 from pathlib import Path
@@ -13,5 +14,6 @@ def load_config(path: str | Path = _DEFAULT_CONFIG_PATH) -> dict:
 
 
 def get(section: str, key: str, default=None):
+    """Return ``config[section][key]``, or ``default`` if either is missing."""
     cfg = load_config()
     return cfg.get(section, {}).get(key, default)

@@ -1,10 +1,10 @@
 """
-Controller: CMSクライアント側のメインオーケストレーター。
+Controller: main orchestrator on the CMS client side.
 
-責務:
-  1. ユーザー入力をサーバーへ送信（CDペイロード付き）
-  2. サーバー応答を受け取り、管理ユニットでCD更新
-  3. 5ラウンドトリップごとに評価ユニットを起動
+Responsibilities:
+  1. Send user input to the server (with the CD payload).
+  2. Receive the server response and update the CD with the management unit.
+  3. Run the evaluation unit every 5 round trips.
 """
 from __future__ import annotations
 import httpx
@@ -41,24 +41,24 @@ class Controller:
 
     def chat(self, user_text: str) -> str:
         """
-        ユーザーの発話を処理してアシスタントの返答文字列を返す。
+        Process a user utterance and return the assistant's reply.
         """
         cd = self._store.get_current()
         payload = self._serializer.to_api_payload(cd)
 
-        # サーバーへリクエスト
+        # Request to the server
         response_text = self._call_server(user_text, payload)
 
-        # CD更新（管理ユニット）
+        # CD update (management unit)
         self._update_cd(user_text, response_text)
 
-        # ラウンドトリップ管理
+        # Round-trip bookkeeping
         turn = self._store.increment_round_trip()
         self._recent_turns.append((user_text, response_text))
         if len(self._recent_turns) > self._eval_interval:
             self._recent_turns.pop(0)
 
-        # 評価ユニット（5ラウンドごと）
+        # Evaluation unit (every 5 rounds)
         if turn % self._eval_interval == 0:
             self._run_evaluation(turn)
 
@@ -102,7 +102,7 @@ class Controller:
               f"eval={result.get('eval_score', {}).get('total', '?')}")
 
     def _server_extract(self, text: str) -> list[dict]:
-        """サーバーのノード抽出エンドポイントを呼ぶ。"""
+        """Call the server's node-extraction endpoint."""
         try:
             resp = httpx.post(
                 f"{self._server_url}/extract_nodes",

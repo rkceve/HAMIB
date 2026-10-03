@@ -1,8 +1,9 @@
 """
-CDStore: 相関図データ (CorrelationDiagram) のインメモリ保持 + JSON永続化。
+CDStore: in-memory store for the correlation diagram (CorrelationDiagram) with
+JSON persistence.
 
-セッションごとに1つの「現行CD」と、評価用の「評価CD」を管理する。
-評価CDは評価ユニットが使用した後に削除される（特許§0065参照）。
+Holds one "current CD" per session plus an "evaluation CD" for scoring.
+The evaluation CD is deleted after the evaluation unit has used it (see patent §0065).
 """
 from __future__ import annotations
 import json
@@ -17,14 +18,14 @@ class CDStore:
     def __init__(self, persist_path: Optional[Path] = None):
         self._lock = threading.Lock()
         self._current: CorrelationDiagram = CorrelationDiagram()
-        self._eval: Optional[CorrelationDiagram] = None    # 評価CD（一時的）
+        self._eval: Optional[CorrelationDiagram] = None    # evaluation CD (temporary)
         self._round_trip_count: int = 0
         self._persist_path = persist_path
 
         if persist_path and persist_path.exists():
             self._load()
 
-    # ── 現行CD ────────────────────────────────────────────────────────
+    # ── Current CD ────────────────────────────────────────────────────
 
     def get_current(self) -> CorrelationDiagram:
         with self._lock:
@@ -35,10 +36,10 @@ class CDStore:
             self._current = cd
             self._save()
 
-    # ── 評価CD ────────────────────────────────────────────────────────
+    # ── Evaluation CD ─────────────────────────────────────────────────
 
     def create_eval(self) -> CorrelationDiagram:
-        """現行CDのディープコピーから評価CDを生成して返す。"""
+        """Create and return an evaluation CD as a deep copy of the current CD."""
         with self._lock:
             self._eval = self._current.clone()
             return self._eval
@@ -48,24 +49,24 @@ class CDStore:
             return self._eval
 
     def set_eval(self, cd: CorrelationDiagram) -> None:
-        """EvalGraphBuilder が構築した評価CDをストアにセットする。"""
+        """Store the evaluation CD built by EvalGraphBuilder."""
         with self._lock:
             self._eval = cd
 
     def discard_eval(self) -> None:
-        """評価CD を削除する（評価処理終了後に呼ぶ）。"""
+        """Delete the evaluation CD (call after evaluation finishes)."""
         with self._lock:
             self._eval = None
 
     def replace_with_eval(self) -> None:
-        """評価CDのスコアが優れている場合に現行CDを置換する。"""
+        """Replace the current CD with the evaluation CD (used when it scores better)."""
         with self._lock:
             if self._eval is not None:
                 self._current = self._eval
                 self._eval = None
                 self._save()
 
-    # ── ラウンドトリップ管理 ──────────────────────────────────────────
+    # ── Round-trip counter ────────────────────────────────────────────
 
     def increment_round_trip(self) -> int:
         with self._lock:
@@ -76,7 +77,7 @@ class CDStore:
         with self._lock:
             return self._round_trip_count
 
-    # ── 永続化 ────────────────────────────────────────────────────────
+    # ── Persistence ───────────────────────────────────────────────────
 
     def _save(self) -> None:
         if self._persist_path is None:

@@ -1,22 +1,22 @@
 """
-MassWeightedGemma3n: Gemma 3n (E2B-it) 用ラッパー
-  - Gemma 3 wrapper と同じ sdpa monkey-patch を継承
-  - Gemma 3n は multimodal Gemma3nForConditionalGeneration (text + vision + audio)
-  - E2B-it = effective 2B params (Per-Layer Embedding で 5B 相当を 2B で動作)
-  - 4-bit 化後 ~1.5GB、 6GB GPU で快適に動作
+MassWeightedGemma3n: wrapper for Gemma 3n (E2B-it).
+  - Uses the same SDPA monkey-patch as the Gemma 3 wrapper.
+  - Gemma 3n is the multimodal Gemma3nForConditionalGeneration (text + vision + audio).
+  - E2B-it = effective 2B params (Per-Layer Embedding runs a ~5B model at 2B cost).
+  - ~1.5GB after 4-bit quantization; runs comfortably on a 6GB GPU.
 
-【Gemma 4 E4B-it からの差替え経緯 §78】
-  - Gemma 4 E4B-it (8B params) は 6GB GPU で load も推論も不安定
-  - A2 採用: Gemma 3n E2B-it でリプレース、 同じ Google 系最新 OSS で fair comparison
+Why it replaced Gemma 4 E4B-it:
+  - Gemma 4 E4B-it (8B params) was unstable to load and run on a 6GB GPU.
+  - Gemma 3n E2B-it replaces it: the same recent open Google family, so the
+    comparison stays fair.
 """
 from __future__ import annotations
 from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-# accelerate hooks + torch._dynamo + meta device の組み合わせで
-# pre_forward が compile されるとき meta tensor.to() で NotImplementedError (§78.7)
-# → dynamo を全面無効化
+# With accelerate hooks + torch._dynamo + a meta device, compiling pre_forward
+# raises NotImplementedError from meta tensor.to(), so dynamo is disabled entirely.
 try:
     import torch._dynamo
     torch._dynamo.config.disable = True
@@ -27,7 +27,7 @@ from utils.config import load_config, get
 
 
 class MassWeightedGemma3n:
-    """Gemma 3n E2B-it 用 wrapper"""
+    """Wrapper for Gemma 3n E2B-it."""
 
     def __init__(
         self,
@@ -72,13 +72,14 @@ class MassWeightedGemma3n:
 
         self._tokenizer = AutoTokenizer.from_pretrained(self._model_id)
 
-        # Gemma 3n E2B-it 重みは 11GB BF16 (vision_tower 548 keys + audio_tower 269 + LM 731)
-        # 試行履歴 (§78.5-7):
-        #   - device_map="auto" 無制約 → post-load hook dispatch が hang (30 min)
-        #   - vision/audio=meta → load 高速だが generate 内で send_to_device が meta tensor.to(cuda) で fail
-        #   - dynamo disable → 効果なし
-        # 結論: vision/audio は CPU offload (meta ではなく実 tensor) + LM=GPU で hook 経由
-        #   の tensor 移動が成立するようにする
+        # Gemma 3n E2B-it weights are 11GB in BF16 (vision_tower 548 keys +
+        # audio_tower 269 + LM 731). What was tried:
+        #   - unconstrained device_map="auto": post-load hook dispatch hangs (30 min)
+        #   - vision/audio on meta: fast load, but send_to_device fails inside
+        #     generate on meta tensor.to(cuda)
+        #   - disabling dynamo: no effect
+        # Result: offload vision/audio to the CPU as real tensors (not meta) and
+        #   keep the LM on the GPU, so the hooks can move tensors between them.
         print(f"[MassWeightedGemma3n] loading Gemma3nForConditionalGeneration (LM=cuda, vision/audio=cpu) ...")
         max_memory = {0: "4500MiB", "cpu": "24GiB"}
         self._model = Gemma3nForConditionalGeneration.from_pretrained(
@@ -114,8 +115,8 @@ class MassWeightedGemma3n:
         return self._tokenizer
 
     def generate(self, prompt: str) -> str:
-        # accelerate offload で embed_tokens が CPU 側になる可能性があるため
-        # input_ids を embed の device に合わせる。 embed_tokens を取得して device を確認
+        # accelerate offload may leave embed_tokens on the CPU, so put input_ids
+        # on the device of the input embeddings.
         target_device = "cuda" if torch.cuda.is_available() else "cpu"
         try:
             embed = self._model.get_input_embeddings()

@@ -1,33 +1,34 @@
-"""compaction_c.py — baseline C, product-style compaction (DECISIONS C4, DESIGN §6/§8).
+"""Baseline C: compaction the way chat products do it, as a rival manager phase.
 
-Stream the round trips chronologically.  Keep a ``summary`` (initially empty)
-and a list of ``recent`` round trips.  Whenever the FULL reader prompt
-``_full_prompt(None, [render_round_trip(summary_block(summary))] + recent +
-[next], question)`` — the exact string ``windows.build_window`` counts for arm C
-— would exceed ``W`` tokens, re-summarize ``summary + recent`` with the reader
-model (fixed §8 instruction, cap ``W // 4`` tokens), replace ``summary``, clear
-``recent``, then admit ``next``.  Every summarization call is counted as
-compute.  There is NO additive approximation (item 5): token counts are not
-additive across block boundaries, so the fit test tokenizes the final string.
+Instead of a correlation diagram, baseline C keeps a running summary written by
+the reader model itself.  This module produces that summary; run_arms then reads
+the artifact and windows.build_window puts the summary in front of the recent
+round trips.
 
-Decision surfaced for review (not in DECISIONS.md): DESIGN §0.1 measures the
-largest round trip at 23,670 tokens, so at W=8k a single round trip can exceed
-``W - reserve`` on its own.  ``compact`` handles that the way a product
-compactor does: the oversized round trip is admitted and, since the window still
-overflows, immediately folded into the summary (one more summarization call,
-``recent`` becomes empty).  It is never dropped silently.  If even
-``summary`` alone does not fit, the summarizer violated its cap and the run
-stops with RuntimeError.
+The round trips are streamed in order, keeping a ``summary`` (initially empty)
+and a list of ``recent`` round trips.  Whenever the full reader prompt (the
+exact string ``windows.build_window`` measures for arm C: summary block, recent
+round trips, next round trip, question) would exceed ``W`` tokens,
+``summary + recent`` are re-summarized by the reader model (fixed instruction,
+cap ``W // 4`` tokens), ``recent`` is cleared and the next round trip is
+admitted.  Every summarization call is counted as compute.  The fit test always
+tokenizes the final string, because token counts are not additive across block
+boundaries.
+
+A single round trip can be larger than the window on its own (the largest one
+is about 23.7k tokens, more than W=8000).  Such a round trip is admitted and,
+since the window still overflows, immediately folded into the summary (one more
+summarization call, ``recent`` becomes empty); it is never dropped silently.
+If even the summary alone does not fit, the summarizer broke its cap and the
+run stops with RuntimeError.
 
 ``compact`` is pure (tests use a fake ``summarize_fn``); the CLI wires the real
-reader through ``run_reader.load_reader`` + ``llm.generate`` (GPU only).
-
-Item J (2026-09-18): the GPU sampler (``--gpu-csv``, required) runs during the
-whole compaction; every summarization call records ``prompt_tokens`` (reader
-tokenizer), ``completion_tokens`` (``llm.last_generated_tokens``, the tokens
+reader through ``run_reader.load_reader`` + ``llm.generate`` (GPU only).  The
+GPU sampler runs during the whole compaction, and every summarization call
+records ``prompt_tokens`` (reader tokenizer), ``completion_tokens`` (tokens
 actually generated), ``wall_ms``, ``t_start`` / ``t_end`` and ``energy_joules``
-(trapezoid over the CSV; null only when the call was shorter than the sampling
-gap).  The artifact carries ``gpu_csv`` and ``energy_joules_total``.
+(null only when the call was shorter than the sampling gap), so baseline C's
+manager cost can be compared with build_cd's.
 """
 
 from __future__ import annotations
@@ -42,8 +43,9 @@ from typing import Any, Callable
 from benchmark.mcbuild_bench.corpus import DEFAULT_EXCLUDE_RT_CLI, load_corpus, parse_exclude_rt
 from benchmark.mcbuild_bench.gpu_sampler import energy_joules, wait_for_samples
 
-# ``_full_prompt`` is private to windows.py; it is imported on purpose (F5 / item
-# 5) so the fit test tokenizes the very string build_window measures against.
+# ``_full_prompt`` is private to windows.py; it is imported on purpose so that
+# the fit test here tokenizes the very string build_window measures, and the
+# two budgets cannot disagree.
 from benchmark.mcbuild_bench.windows import (
     BLOCK_SEPARATOR,
     _full_prompt,
@@ -53,7 +55,7 @@ from benchmark.mcbuild_bench.windows import (
     summary_block,
 )
 
-# DESIGN §8, baseline C summarizer instruction (reader model).
+# Baseline C summarizer instruction (reader model); fixed by the experiment design.
 SUMMARIZE_INSTRUCTION = (
     "Summarize the following conversation log for later reference. Keep every "
     "concrete value, name, path, decision and instruction. Plain text, at most "
@@ -63,7 +65,7 @@ SUMMARIZE_INSTRUCTION = (
 SummarizeFn = Callable[..., dict]  # summarize_fn(text, cap_tokens=int) -> dict
 RenderFn = Callable[[dict], str]
 
-# Item J: sampler waits (same values as run_arms).
+# Sampler waits (same values as run_arms).
 SAMPLER_WARMUP_SAMPLES = 2
 SAMPLER_WARMUP_TIMEOUT_S = 15.0
 SAMPLER_TAIL_TIMEOUT_S = 10.0
@@ -78,7 +80,7 @@ def energy_total(calls: list[dict]) -> float:
 
 
 def summary_cap_tokens(W: int) -> int:
-    """C4: summary cap = W/4 tokens."""
+    """The summary may use at most a quarter of the window."""
     return W // 4
 
 
@@ -87,10 +89,9 @@ def _join(parts: list[str]) -> str:
 
 
 def scaffold_reserve(tokenizer: Any, question: str) -> int:
-    """Tokens of the FULL reader prompt around an EMPTY summary block and
-    ``question``.  RECORDED in the compaction artifact as ``reserve`` for the
-    report; it is NOT used for budgeting any more (item 5: ``compact`` counts
-    the exact final string instead of ``W - reserve``).
+    """Tokens of the full reader prompt around an EMPTY summary block and
+    ``question``.  Recorded in the artifact as ``reserve`` for the report only;
+    ``compact`` budgets by tokenizing the exact final string instead.
     """
     return count_tokens(
         tokenizer, _full_prompt(None, [render_round_trip(summary_block(""))], question)
@@ -155,7 +156,7 @@ def compact(
             "wall_ms": float(res["wall_ms"]),
             "older_round_trips": [rt["idx"] for rt in recent],
         }
-        for key in CALL_OPTIONAL_KEYS:  # item J
+        for key in CALL_OPTIONAL_KEYS:
             if key in res:
                 call[key] = res[key]
         calls.append(call)
@@ -165,7 +166,9 @@ def compact(
         if fits(recent + [rt]):
             recent.append(rt)
             continue
-        if recent:  # F6: never re-summarize the summary alone
+        # Fold the recent round trips into the summary to make room.  With no
+        # recent round trips there is nothing to fold (see the oversize case below).
+        if recent:
             summarize_older()
         recent.append(rt)
         if not fits(recent):
@@ -197,11 +200,11 @@ def make_reader_summarize_fn(
     tail_timeout_s: float = SAMPLER_TAIL_TIMEOUT_S,
     poll_s: float = SAMPLER_POLL_S,
 ) -> SummarizeFn:
-    """§8 baseline-C instruction through ``llm.generate``.
+    """A ``summarize_fn`` that runs the baseline-C instruction through ``llm.generate``.
 
-    Item J: ``prompt_tokens`` via ``llm.tokenizer`` (the reader's own count),
+    Records ``prompt_tokens`` with the reader's own tokenizer,
     ``completion_tokens`` = ``llm.last_generated_tokens`` (what was generated,
-    not a re-tokenization of the text), ``wall_ms``, and with ``gpu_csv`` the
+    not a re-tokenization of the text), ``wall_ms``, and, with ``gpu_csv``, the
     call's ``energy_joules`` after waiting for one sample past its end.
     """
 
@@ -249,16 +252,17 @@ def build_parser() -> argparse.ArgumentParser:
                    help="data/questions.json: the window is budgeted with the question "
                         "whose FULL reader prompt is longest (run_arms.budget_question)")
     p.add_argument("--gpu-csv", required=True,
-                   help="item J: nvidia-smi CSV written by GpuSampler during the compaction")
+                   help="nvidia-smi CSV written by GpuSampler during the compaction")
     p.add_argument("--exclude-rt", default=DEFAULT_EXCLUDE_RT_CLI,
-                   help="H22 (c): comma-separated round-trip indices dropped from the corpus "
-                        "(checked: they must exist); 'none' disables (default: %(default)s)")
+                   help="comma-separated round-trip indices to drop from the corpus (the "
+                        "default is the session retrospective); each must exist in the "
+                        "session; 'none' disables (default: %(default)s)")
     return p
 
 
 def validate_args(args: argparse.Namespace) -> None:
-    """Item 12: CLI values checked BEFORE torch / transformers are imported.
-    Sets ``args.exclude_rt_parsed``."""
+    """Check the CLI values before the slow torch / transformers import, so a
+    typo fails at once.  Sets ``args.exclude_rt_parsed``."""
     from benchmark.mcbuild_bench.run_arms import W_CHOICES  # torch-free at import
 
     if args.W not in W_CHOICES:
@@ -286,7 +290,7 @@ def main(argv: list[str] | None = None) -> int:
     from benchmark.mcbuild_bench.run_arms import budget_question, file_sha256
 
     try:
-        corpus = load_corpus(args.session, args.exclude_rt_parsed)  # H22 (c)
+        corpus = load_corpus(args.session, args.exclude_rt_parsed)
     except ValueError as e:
         raise SystemExit(str(e)) from None
     round_trips = corpus.round_trips
@@ -294,13 +298,14 @@ def main(argv: list[str] | None = None) -> int:
     cap = summary_cap_tokens(args.W)
     llm = run_reader.load_reader(args.model_id, max_new_tokens=cap, prefill_scale=0.0,
                                  bias_cap=None, w=0.0, quantization=args.quantization)
-    # Item 9: the question whose FULL reader prompt (around an empty summary
-    # block) is longest; run_arms reuses it from the artifact (budget_question).
+    # Budget with the question whose full reader prompt (around an empty
+    # summary block) is longest; run_arms reuses it from the artifact so that
+    # both sides budget the same string.
     question = budget_question(
         questions, llm.tokenizer, assemble_context(None, [render_round_trip(summary_block(""))])
     )
     reserve = scaffold_reserve(llm.tokenizer, question)
-    sampler = GpuSampler(args.gpu_csv)  # item J: the manager-side energy of baseline C
+    sampler = GpuSampler(args.gpu_csv)  # baseline C's manager-side energy
     sampler.start()
     t0 = time.perf_counter()
     try:
@@ -314,13 +319,13 @@ def main(argv: list[str] | None = None) -> int:
         )
     finally:
         sampler.stop()
-    # Item 2: artifact binding read back by run_arms.
+    # run_arms refuses the artifact unless these match its own run.
     result["W"] = args.W
     result["reserve"] = reserve
     result["budget_question"] = question
     result["cap_tokens"] = cap
     result["model_id"] = args.model_id
-    result["session_sha256"] = corpus.sha256  # corpus hash (filtered content, H22 (c))
+    result["session_sha256"] = corpus.sha256  # hash of the corpus after the exclusion
     result["session_file_sha256"] = corpus.session_file_sha256
     result["exclude_rt"] = list(corpus.exclude_rt)
     result["questions_sha256"] = file_sha256(args.questions)

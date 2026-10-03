@@ -1,35 +1,26 @@
-"""Language-agnostic chunk candidates for the manager harness (H3).
-
-Design: HARNESS_DESIGN.md Stream B, step 1 (0037-0038).
+"""Split a message into chunk candidates, for English and Japanese text.
 
 ``management.text_chunker.TextChunker`` only knows Japanese sentence enders
-(``。！？``) and Japanese connectives, so on the ENGLISH benchmark corpus
-(benchmark/longchat/restaurant_chat_v2.json: 832k chars, zero ``。``, 6498 ``.``)
-it returned the whole turn as ONE chunk -- up to 5799 characters -- which made
-Q_BOUNDARY dead and Q_EXTRACT a summarisation task over a whole essay.
+(``。！？``) and connectives, so on the English benchmark conversations it
+returned a whole turn (up to 5799 characters) as one chunk.
 
-This module produces the boundary CANDIDATES of 0038 for both languages:
+Candidate boundaries:
+  * sentence ends: ``.``/``!``/``?`` followed by whitespace or the end of the
+    text, and ``。``/``！``/``？`` anywhere (Japanese puts no space between
+    sentences).  Decimals ("3.5") and common abbreviations ("e.g.", "Mr.",
+    ...) are not boundaries.
+  * a connective at the start of a clause (English: after a comma, semicolon,
+    colon, dash or newline; Japanese: the ``text_chunker`` list, whose entries
+    include the trailing ``、``).
 
-  * sentence ends: ``.``/``!``/``?`` followed by whitespace or end of text, and
-    ``。``/``！``/``？`` anywhere (Japanese has no inter-sentence space).
-    Decimals ("3.5") and the common abbreviations ("e.g.", "i.e.", "Mr.",
-    "Dr.", ...) are NOT boundaries.
-  * discourse connectives at a clause start (English: preceded by a comma,
-    semicolon, colon, dash or newline; Japanese: the ``text_chunker``
-    connective list, which carries its own trailing ``、``).
+The resulting units become chunks of at most ``max_chars``.  A sentence is cut
+only when it alone is longer than ``max_chars`` (at the last space before the
+limit), and a fragment shorter than ``MIN_CHUNK_CHARS`` is glued to the
+previous chunk when the result still fits.
 
-The candidates are then packed into chunks of at most ``max_chars`` characters.
-Packing never cuts a sentence in half: a sentence longer than ``max_chars`` (only
-possible for a single unbroken sentence) is cut at the last whitespace before the
-limit, and a fragment shorter than ``MIN_CHUNK_CHARS`` is glued to the previous
-chunk when the result still fits (the same "coalesce short fragments" rule
-``TextChunker._coalesce_short_chunks`` applies).
-
-Deliberate deviation, documented for review: consecutive FULL sentences are NOT
-greedily packed together here.  Joining same-topic neighbours is the job of the
-Q_BOUNDARY merge in ``HarnessManager._chunk`` (capped by ``chunk_max_chars``);
-doing it blindly by length would place chunk boundaries at arbitrary character
-offsets and would make the 0038 "meaning shift" question unanswerable.
+Whole sentences are deliberately not packed together by length: that would
+put boundaries at arbitrary offsets.  HarnessManager merges neighbours on the
+same topic by asking the Q_BOUNDARY question instead.
 """
 
 from __future__ import annotations
@@ -38,9 +29,8 @@ import re
 
 # -- connectives -------------------------------------------------------------
 
-# Copied verbatim from management/text_chunker.py::_CONNECTIVES (0038 examples).
-# Copied rather than imported so this module stays independent of the legacy
-# chunker; keep the two lists in sync if the legacy one ever changes.
+# Copied from management/text_chunker.py::_CONNECTIVES rather than imported, so
+# this module does not depend on the old chunker.  Keep the two lists in sync.
 JA_CONNECTIVES: tuple[str, ...] = (
     "また、", "また,",
     "例えば、", "例えば,",
@@ -58,7 +48,7 @@ JA_CONNECTIVES: tuple[str, ...] = (
     "そのため、", "そのため,",
 )
 
-# English discourse connectives that mark a new clause (H3b).
+# English connectives that start a new clause.
 EN_CONNECTIVES: tuple[str, ...] = (
     "however",
     "for example",
@@ -76,8 +66,8 @@ EN_CONNECTIVES: tuple[str, ...] = (
     "finally",
 )
 
-# A clause start for an English connective: right after one of these characters
-# (whitespace between them is ignored).
+# An English connective starts a clause when the previous non-space character
+# is one of these.
 _CLAUSE_OPENERS = ",;:—–-\n"
 
 _EN_CONNECTIVE_RE = re.compile(
@@ -90,8 +80,8 @@ _EN_CONNECTIVE_RE = re.compile(
 _JA_ENDERS = "。！？"
 _ASCII_ENDERS = ".!?"
 
-# Abbreviations that end in '.' but do not end a sentence.  Compared against the
-# lower-cased word (letters and inner dots) immediately before the period.
+# Abbreviations that end in '.' but do not end a sentence, compared against the
+# lower-cased word (letters and inner dots) right before the period.
 _ABBREVIATIONS: frozenset[str] = frozenset(
     {
         "e.g", "i.e", "etc", "vs", "cf", "al", "approx", "est",
@@ -103,17 +93,15 @@ _ABBREVIATIONS: frozenset[str] = frozenset(
 
 _WORD_BEFORE_DOT = re.compile(r"([A-Za-z](?:[A-Za-z]|\.(?=[A-Za-z]))*)\.$")
 
-# Minimum length of a standalone chunk; shorter fragments are glued to the
-# previous chunk (mirrors TextChunker._min_chunk_chars).
+# Shorter fragments are glued to the previous chunk (same value as
+# TextChunker._min_chunk_chars).
 MIN_CHUNK_CHARS = 12
 
 
 def _is_abbreviation(text: str, dot_idx: int) -> bool:
     """True when the '.' at ``dot_idx`` closes a known abbreviation."""
     m = _WORD_BEFORE_DOT.search(text[: dot_idx + 1])
-    if m is None:
-        return False
-    return m.group(1).lower() in _ABBREVIATIONS
+    return m is not None and m.group(1).lower() in _ABBREVIATIONS
 
 
 def _is_decimal_point(text: str, dot_idx: int) -> bool:
@@ -124,19 +112,19 @@ def _is_decimal_point(text: str, dot_idx: int) -> bool:
 
 
 def sentence_end_positions(text: str) -> list[int]:
-    """Indices (exclusive end offsets) at which a sentence ends."""
+    """End offsets (exclusive) of the sentences in ``text``."""
     ends: list[int] = []
     n = len(text)
     for i, ch in enumerate(text):
         if ch in _JA_ENDERS:
-            # Collapse runs such as "！？" into a single boundary.
+            # A run such as "！？" is one boundary, after its last character.
             if i + 1 < n and text[i + 1] in _JA_ENDERS:
                 continue
             ends.append(i + 1)
             continue
         if ch not in _ASCII_ENDERS:
             continue
-        # Only a terminator when followed by whitespace or the end of the text.
+        # ASCII enders count only before whitespace or the end of the text.
         if i + 1 < n and not text[i + 1].isspace():
             continue
         if ch == "." and (_is_decimal_point(text, i) or _is_abbreviation(text, i)):
@@ -147,28 +135,21 @@ def sentence_end_positions(text: str) -> list[int]:
 
 def _connective_positions(text: str) -> list[int]:
     """Start offsets of clause-initial connectives (Japanese and English)."""
-    cuts: list[int] = []
-    for conn in JA_CONNECTIVES:
-        start = 0
-        while True:
-            idx = text.find(conn, start)
-            if idx == -1:
-                break
-            if idx > 0:
-                cuts.append(idx)
-            start = idx + len(conn)
+    cuts = [
+        m.start()
+        for conn in JA_CONNECTIVES
+        for m in re.finditer(re.escape(conn), text)
+        if m.start() > 0
+    ]
     for m in _EN_CONNECTIVE_RE.finditer(text):
-        idx = m.start()
-        if idx == 0:
-            continue
-        before = text[:idx].rstrip()
+        before = text[: m.start()].rstrip()
         if before and before[-1] in _CLAUSE_OPENERS:
-            cuts.append(idx)
+            cuts.append(m.start())
     return cuts
 
 
 def split_units(text: str) -> list[str]:
-    """The 0038 meaning units: sentences, further cut at clause connectives."""
+    """Split ``text`` into sentences, further cut before clause connectives."""
     text = text.strip()
     if not text:
         return []
@@ -187,20 +168,17 @@ def split_units(text: str) -> list[str]:
 
 
 def _hard_split(unit: str, max_chars: int) -> list[str]:
-    """Cut an over-long single sentence at the last whitespace before the limit."""
+    """Cut an over-long sentence at the last space before each limit."""
     pieces: list[str] = []
     rest = unit
     while len(rest) > max_chars:
-        window = rest[:max_chars]
-        cut = window.rfind(" ")
+        cut = rest.rfind(" ", 0, max_chars)
         if cut <= 0:
             cut = max_chars
         head = rest[:cut].strip()
         if head:
             pieces.append(head)
         rest = rest[cut:].strip()
-        if not rest:
-            break
     if rest:
         pieces.append(rest)
     return pieces
@@ -211,13 +189,13 @@ def _is_cjk(ch: str) -> bool:
 
 
 def _is_cjk_join(left: str, right: str) -> bool:
-    """No space is inserted between two CJK fragments."""
+    """True when no space belongs between ``left`` and ``right`` (both CJK)."""
     return _is_cjk(left[-1]) and _is_cjk(right[0])
 
 
 def split_candidates(text: str, max_chars: int = 800) -> list[str]:
-    """Chunk candidates for ``text``: never longer than ``max_chars``, never cut
-    mid-sentence unless a single sentence exceeds ``max_chars``.
+    """Chunk candidates for ``text``: each at most ``max_chars`` long, and cut
+    mid-sentence only when a single sentence is longer than that.
     """
     if max_chars <= 0:
         raise ValueError("max_chars must be positive")
@@ -236,7 +214,7 @@ def split_candidates(text: str, max_chars: int = 800) -> list[str]:
     return chunks
 
 
-# -- English query-turn detection (H3c / D-7) --------------------------------
+# -- English query-turn detection --------------------------------------------
 
 _INTERROGATIVES: tuple[str, ...] = (
     "what", "when", "where", "who", "which", "how", "why",
@@ -248,10 +226,11 @@ _QUERY_MAX_CHARS = 300
 
 
 def is_query_turn_en(text: str) -> bool:
-    """English counterpart of ``build_cd_offline._is_query_turn`` (D-7).
+    """True for a message that only asks something and adds no new facts.
 
-    A short user message (<= 300 chars) that ends with '?', opens with an
-    interrogative, or asks for a one-word answer introduces no new facts.
+    English version of ``build_cd_offline._is_query_turn``: a short message
+    (<= 300 chars) that ends with '?', starts with a question word, or asks
+    for a one-word answer.
     """
     stripped = text.strip()
     if not stripped or len(stripped) > _QUERY_MAX_CHARS:
@@ -262,9 +241,8 @@ def is_query_turn_en(text: str) -> bool:
     if "one word" in low:
         return True
     for word in _INTERROGATIVES:
-        if low.startswith(word) and (
-            len(low) == len(word)
-            or not (low[len(word)].isalpha() or low[len(word)] == "'")
-        ):
+        # Whole word only: "can" must not match "candle" or "can't".
+        next_char = low[len(word) : len(word) + 1]
+        if low.startswith(word) and not (next_char.isalpha() or next_char == "'"):
             return True
     return False

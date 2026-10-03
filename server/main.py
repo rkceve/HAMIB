@@ -1,13 +1,13 @@
 """
-FastAPI サーバー（友達PC で動かす）
+FastAPI server (runs on a separate machine).
 
-エンドポイント:
-  POST /chat           -- CMS推論 (CDペイロード + user_text)
-  POST /chat_baseline  -- 通常Gemma推論（全履歴をそのままコンテキストに）
-  POST /extract_nodes  -- テキストからノード候補抽出
-  GET  /health         -- 疎通確認
+Endpoints:
+  POST /chat           -- CMS inference (CD payload + user_text)
+  POST /chat_baseline  -- plain Gemma inference (full history as context)
+  POST /extract_nodes  -- extract node candidates from text
+  GET  /health         -- health check
 
-起動:
+Start:
   cd cms_prototype
   uvicorn server.main:app --host 0.0.0.0 --port 8080
 """
@@ -43,12 +43,12 @@ async def startup():
     _gemma.load()
 
 
-# ── Request / Response モデル ─────────────────────────────────────────
+# ── Request / Response models ─────────────────────────────────────────
 
 class ServerMetrics(BaseModel):
     input_tokens: int
     inference_ms: float
-    peak_memory_mb: float          # サーバー側ピークメモリ増分
+    peak_memory_mb: float          # server-side peak memory increase
 
 
 class ChatRequest(BaseModel):
@@ -80,7 +80,7 @@ class ExtractResponse(BaseModel):
     nodes: list[dict]
 
 
-# ── ヘルパー ──────────────────────────────────────────────────────────
+# ── Helpers ───────────────────────────────────────────────────────────
 
 def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=None) -> tuple[str, ServerMetrics]:
     tokenizer = _gemma.tokenizer
@@ -91,12 +91,12 @@ def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=No
     _gemma.clear_mass_vector()
 
     if use_m:
-        # 実験L検証済み: 2D M行列（prefill+decode適用）は0%に崩壊するため廃止。
-        # 1D マスベクトル（decode専用, seq_q==1 ガード）を使用する。
+        # The 2D M matrix (prefill + decode) collapsed to 0% in experiment L and
+        # was retired; use the 1D mass vector (decode only, seq_q==1 guard).
         pn_positions = find_pn_positions(ids, tokenizer)
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        # F3: D-3 の上限 min(cap, mass*scale) と max による衝突解決は
-        # server/mass_vector.py に一本化されている（手書きの += ループは廃止）。
+        # The cap min(cap, mass*scale) and max-based collision handling live in
+        # server/mass_vector.py (the old hand-written += loop is gone).
         vec = positions_to_mass_vector(
             pn_positions,
             len(ids),
@@ -126,7 +126,7 @@ def _measure_generate(prompt: str, use_m: bool = False, nodes=None, input_ids=No
     return response_text, metrics
 
 
-# ── エンドポイント ────────────────────────────────────────────────────
+# ── Endpoints ─────────────────────────────────────────────────────────
 
 @app.get("/health")
 def health():
@@ -135,7 +135,7 @@ def health():
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
-    """CMS方式: 相関図トークン + 現在のメッセージのみ送信。"""
+    """CMS mode: send only the correlation-diagram tokens + the current message."""
     nodes = parse_node_list(req.node_list)
 
     prompt = ""
@@ -153,7 +153,7 @@ def chat(req: ChatRequest):
 
 @app.post("/chat_baseline", response_model=BaselineChatResponse)
 def chat_baseline(req: BaselineChatRequest):
-    """通常Gemma方式: 全会話履歴をそのままコンテキストに積む。"""
+    """Plain Gemma mode: put the full conversation history into the context."""
     history_block = ""
     for turn in req.history:
         role = "User" if turn["role"] == "user" else "Assistant"

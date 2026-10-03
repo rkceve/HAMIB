@@ -1,16 +1,16 @@
 """
-MMatrixBuilder: ParsedNode リストとトークン列から
-Mマトリクス（shape: seq_len × seq_len）を構築する。
+MMatrixBuilder: builds the M matrix (shape seq_len x seq_len) from a ParsedNode
+list and the token sequence.
 
-特許の定義:
-  - M の形状: (seq_len, seq_len)
-  - ゼロ行列から始める
-  - column 方向（見られる側 = attended-to）に mass を加算
-  - つまり M[:, j] += mass  （j = [PN{mass}] トークンの位置）
+Patent definition:
+  - M has shape (seq_len, seq_len)
+  - it starts as a zero matrix
+  - mass is added along the column (the attended-to side)
+  - i.e. M[:, j] += mass  (j = position of the [PN{mass}] token)
 
-Attention 修正式:
+Attention modification:
   scores += w * M
-  （w は config の attention.mass_weight）
+  (w is attention.mass_weight in config)
 """
 from __future__ import annotations
 import torch
@@ -34,15 +34,14 @@ class MMatrixBuilder:
         Returns M: FloatTensor of shape (seq_len, seq_len) on `device`.
         M[:, j] += mass for each [PN{mass}] token at position j.
 
-        DEAD CODE (2026-09-06): 実験Lで 2D M行列は 0% に崩壊することが確認され、
-        本番経路は 1D マスベクトル (server/mass_vector.py) に一本化されている。
-        このクラスはどこからも呼ばれていないが、 F3 で見つかった二重乗算の
-        欠陥だけは直してある。
+        DEAD CODE: experiment L showed that the 2D M matrix collapses to 0%, and
+        the live path uses only the 1D mass vector (server/mass_vector.py).
+        Nothing calls this class, but its double-multiplication bug is fixed.
 
-        F3 修正: 以前はここで ``mass * self._mass_weight`` としていたが、
-        build_mass_bias が 2D モードで再度 ``mass_weight * M`` を掛けるため、
-        実効の重みが w^2 になっていた。 M は素の mass だけを持ち、
-        w の乗算は build_mass_bias 側にだけ存在するのが正しい。
+        Fix: this used to store ``mass * self._mass_weight``, but build_mass_bias
+        multiplies by ``mass_weight`` again in 2D mode, so the effective weight
+        was w^2. M now holds the raw mass only; w is applied only in
+        build_mass_bias.
         """
         M = torch.zeros(seq_len, seq_len, dtype=torch.float32, device=device)
 
@@ -61,7 +60,7 @@ class MMatrixBuilder:
         device: str = "cuda",
     ) -> torch.Tensor:
         """
-        context_block 内の [PN{mass}] トークンをスキャンしてMマトリクスを構築。
-        node_list が不要な簡易版。
+        Build the M matrix by scanning the [PN{mass}] tokens in context_block.
+        Simplified version that needs no node_list.
         """
         return self.build(seq_len, [], input_ids, tokenizer, device)

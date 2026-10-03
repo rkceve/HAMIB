@@ -1,10 +1,8 @@
-"""Judge protocol, yes/no parsing, answer cache and the counting call runner.
+"""Judge protocol, yes/no parsing, the answer cache and the counting call runner.
 
-Design: HARNESS_DESIGN.md Stream B, B1 + B4.
-
-The backend is deliberately dumb (~20 lines, see ``backends.py``): every piece of
-policy -- yes/no parsing, the one-shot reformat retry, the per-question default,
-caching and call counting -- lives here so that all backends behave identically.
+Backends only move text (see ``backends.py``).  All policy -- yes/no parsing,
+the one reformat retry, per-question defaults, caching and call counting --
+lives here so that every backend behaves identically.
 """
 
 from __future__ import annotations
@@ -33,7 +31,7 @@ _NO_RE = re.compile(r"\b(?:no|n|false)\b", re.IGNORECASE)
 _YES_SUBSTRINGS: tuple[str, ...] = ("はい", "同じ")
 _NO_SUBSTRINGS: tuple[str, ...] = ("いいえ", "異なる")
 
-# H2: phrases that negate an otherwise affirmative-looking line.  Checked FIRST,
+# Phrases that make an affirmative-looking line negative.  Checked first,
 # because "同じではない" contains the yes substring "同じ" and "not the same"
 # contains no negative token at all.
 _NEGATIONS: tuple[str, ...] = (
@@ -48,7 +46,7 @@ _NEGATIONS: tuple[str, ...] = (
     "異なります",
     "異なり",
     "いや",
-    # English (lower-cased comparison)
+    # English (compared lower-cased)
     "not the same",
     "does not",
     "doesn't",
@@ -75,10 +73,10 @@ def _first_meaningful_line(text: str) -> str:
         if not line:
             continue
         if line.startswith("```"):
-            # A bare fence or a ```json opener carries no answer.
-            if line.strip("`").strip().isalpha() or line.strip("`").strip() == "":
-                continue
-            line = line.strip("`").strip()
+            inner = line.strip("`").strip()
+            if not inner or inner.isalpha():
+                continue  # a bare fence or a ```json opener carries no answer
+            line = inner
         previous = None
         while previous != line:
             previous = line
@@ -91,14 +89,12 @@ def _first_meaningful_line(text: str) -> str:
 
 
 def parse_yes_no(text: str) -> bool | None:
-    """Return True/False for an affirmative/negative answer, None if unparsable.
+    """Return True for yes, False for no, None when the reply can't be read.
 
-    Procedure (B4 + H2):
-      1. take the first meaningful line (blank lines, code fences, list markers
-         such as "- " / "1. " and labels such as "Answer:" / "回答:" removed);
-      2. an explicit NEGATION phrase in that line -> False;
-      3. a line carrying BOTH a yes and a no token -> None (e.g. "はい/いいえ");
-      4. NO is checked before YES, then the Japanese substrings.
+    Only the first meaningful line counts (blank lines, code fences, list
+    markers like "- " / "1. " and labels like "Answer:" / "回答:" are
+    skipped).  A negation phrase means no; a line with both a yes and a no
+    token (e.g. "はい/いいえ") is ambiguous.
     """
     if not text:
         return None
@@ -106,30 +102,24 @@ def parse_yes_no(text: str) -> bool | None:
     if not line:
         return None
     low = line.lower()
-    for phrase in _NEGATIONS:
-        if phrase in low:
-            return False
+    if any(phrase in low for phrase in _NEGATIONS):
+        return False
     has_yes = bool(_YES_RE.search(low)) or any(s in line for s in _YES_SUBSTRINGS)
     has_no = bool(_NO_RE.search(low)) or any(s in line for s in _NO_SUBSTRINGS)
-    if has_yes and has_no:
+    if has_yes == has_no:  # both or neither
         return None
-    if has_no:
-        return False
-    if has_yes:
-        return True
-    return None
+    return has_yes
 
 
 # -- cache -------------------------------------------------------------------
 
 
 class JudgeCache:
-    """Answer cache keyed by ``(kind, a, b)``.
+    """Thread-safe answer cache keyed by ``(kind, a, b)``.
 
-    The kind is part of the key: the same pair of texts asked as Q_SAME and as
-    Q_BELONGS are two different questions and must not share an answer.
-
-    Thread-safe (H7): the per-statement stage may run on a ThreadPoolExecutor.
+    The kind is part of the key because the same two texts asked as Q_SAME
+    and as Q_BELONGS are different questions.  Thread-safe because the
+    managers can ask questions from worker threads.
     """
 
     def __init__(self) -> None:
@@ -160,18 +150,16 @@ class JudgeCache:
 
 
 class JudgeRunner:
-    """Counts calls by kind and applies the yes/no retry + default policy.
+    """Asks the judge, counts calls per question kind, and applies the yes/no
+    retry and default policy.
 
-    Shared by :class:`~management.harness.manager.HarnessManager` and
-    :class:`~management.harness.similarity_judge.SimilarityJudge` so that one
-    ``calls`` / ``cache`` pair covers the whole turn.
-
-    Observability (H9), all keyed by question kind:
-      ``unparsed``  the FIRST answer could not be parsed (a retry was needed);
-      ``retried``   a reformat retry was actually issued;
-      ``defaulted`` neither answer parsed, so the per-kind default was used.
-    A defaulted answer is NOT cached: it is not an answer, and caching it would
-    freeze one transport hiccup into every later decision about that pair.
+    A manager and its SimilarityJudge share one runner, so one set of
+    counters covers the whole turn.  Besides ``calls`` it counts, per kind:
+      ``unparsed``  the first reply could not be parsed;
+      ``retried``   a reformat retry was sent;
+      ``defaulted`` no reply parsed, so the per-kind default was used.
+    Defaults are not cached: a default is not an answer, and caching it would
+    turn one bad reply into the answer for every later question on that pair.
     """
 
     def __init__(
@@ -231,7 +219,6 @@ class JudgeRunner:
             )
         if answer is None:
             self._bump(self.defaulted, kind)
-            # Not cached on purpose: a default is the absence of an answer.
-            return DEFAULT_ANSWERS[kind]
+            return DEFAULT_ANSWERS[kind]  # not cached: see the class docstring
         self.cache.put(kind, key_a, key_b, answer)
         return answer

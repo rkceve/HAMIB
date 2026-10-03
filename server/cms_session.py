@@ -1,30 +1,31 @@
 """
-CMSSession: 特許第1実施形態の自己完結型セッション管理クラス。
+CMSSession: self-contained session manager for the patent's first embodiment.
 
-管理部1（ManagementUnit）・評価部2（EvaluationUnit）・Gemma推論を1プロセスに統合。
-FastAPIサーバー起動不要。GemmaをローカルGPU/CPUで直接使用する。
+Runs management unit 1 (ManagementUnit), evaluation unit 2 (EvaluationUnit) and
+Gemma inference in one process. No FastAPI server is needed; Gemma runs directly
+on the local GPU/CPU.
 
-フロー（1ターン）:
-  1. 現行CDをシリアライズ → <CONTEXT>ブロック生成
-  2. [PN{mass}]トークン位置を検出 → 1Dマスベクトル構築
-  3. Gemma推論（マス注入あり）→ アシスタント応答
-  4. 管理部1:
-     a. TextChunker でターンをチャンク化
-     b. Gemma (_llm_extract_fn) でノード候補抽出
-     c. NodeClassifier → GraphBuilder で仮CDを構築
-     d. GraphMerger で仮CDを現行CDにマージ（特許§0036〜§0041）
-  5. 評価部2（eval_interval毎）:
-     a. EvalGraphBuilder で直近ターンから評価CDを構築
-     b. Scorer で両CDを採点（矛盾の欠如 + 情報の濃縮度）
-     c. 評価CDが優秀なら Replacer で現行CDを置換（特許§0063〜§0072）
+One turn:
+  1. Serialize the current CD into a <CONTEXT> block.
+  2. Find the [PN{mass}] token positions and build a 1D mass vector.
+  3. Run Gemma with mass injection to get the assistant response.
+  4. Management unit 1:
+     a. TextChunker splits the turn into chunks.
+     b. Gemma (_llm_extract_fn) extracts node candidates.
+     c. NodeClassifier -> GraphBuilder build a provisional CD.
+     d. GraphMerger merges the provisional CD into the current CD (patent §0036-§0041).
+  5. Evaluation unit 2 (every eval_interval turns):
+     a. EvalGraphBuilder builds an evaluation CD from the recent turns.
+     b. Scorer scores both CDs (absence of contradictions + information density).
+     c. If the evaluation CD wins, Replacer replaces the current CD (patent §0063-§0072).
 
-使い方:
+Usage:
   from store.cd_store import CDStore
   from server.cms_session import CMSSession
 
   store = CDStore(persist_path=Path("data/cd_store.json"))
   session = CMSSession(store)
-  response = session.chat("こんにちは")
+  response = session.chat("Hello")
 """
 from __future__ import annotations
 import json
@@ -76,30 +77,35 @@ class CMSSession:
         max_extract_tokens: int = 1500,
         use_llm_similarity: bool = False,
         speculative_update: bool = False,
-        disable_eval2: bool = True,  # §60 (2026-05-10): default 反転 — Scorer 設計乖離で eval2 が機能していないため (cf. §49.2/§52/§60)。Scorer 修正後に False に戻す。
+        disable_eval2: bool = True,  # True by default: the Scorer deviates from the spec, so evaluation unit 2 stays off until it is fixed.
         scorer=None,
-        extractor_fn=None,  # §71 (2026-05-12): 外部 extractor 注入用 (SBERT 等)。Callable[[str], list[dict]] を期待。
-        prompt_template: str | None = None,  # §82 (2026-05-17): chat() で使う prompt の上書き。
-                                              # placeholders: {context_block} {user_text}。
-                                              # None なら従来の日本語 template を使用。
+        extractor_fn=None,  # Optional external extractor (e.g. SBERT), Callable[[str], list[dict]].
+        prompt_template: str | None = None,  # Overrides the prompt used by chat().
+                                              # Placeholders: {context_block} {user_text}.
+                                              # None keeps the original Japanese template.
     ):
         """
         Args:
-            store:                    CDStore インスタンス
-            model_id:                 推論用モデルID。None の場合は config.server.model_id を使用。
-            use_mass:                 False にするとマス注入をスキップ（アブレーション実験用）。
-            _preloaded_gemma:         実験用。ロード済み推論モデルを渡す。
-            extract_model_id:         管理部1・評価部2 用モデルID（省略時は推論モデルと共用）。
-            _preloaded_extract_gemma: 実験用。ロード済み抽出モデルを渡す。
-            skip_mgmt_on_query:       True の場合、クエリターンで管理部1をスキップ（CD汚染防止）。
-            max_extract_tokens:       テキスト長がこの値を超えると管理部1をスキップ。
-            use_llm_similarity:       True の場合、特許§0042 準拠で LLM ベース類似度判定を使用。
-                                      デフォルトは埋め込み（all-MiniLM-L6-v2）ベースで高速。
-            speculative_update:       True の場合、特許§0076-§0077 準拠で管理部1・評価部2 を
-                                      バックグラウンドスレッドで非同期実行する（投機的更新）。
-                                      ユーザー入力待機中に CD 更新を進めることで体感応答速度を維持。
-            disable_eval2:            True の場合、評価部2（整合性維持処理）を完全に無効化する。
-                                      実験Z（評価部2 効果検証）で「あり/なし」の対照実験に使用する。
+            store:                    CDStore instance.
+            model_id:                 Inference model id. None uses config.server.model_id.
+            use_mass:                 False skips mass injection (ablation runs).
+            _preloaded_gemma:         For experiments: an already loaded inference model.
+            extract_model_id:         Model id for management unit 1 / evaluation unit 2
+                                      (defaults to sharing the inference model).
+            _preloaded_extract_gemma: For experiments: an already loaded extraction model.
+            skip_mgmt_on_query:       If True, skip management unit 1 on query turns
+                                      (keeps questions from polluting the CD).
+            max_extract_tokens:       Skip management unit 1 when the turn is longer than this.
+            use_llm_similarity:       If True, use LLM-based node similarity (patent §0042).
+                                      The default is the faster embedding similarity
+                                      (all-MiniLM-L6-v2).
+            speculative_update:       If True, run management unit 1 / evaluation unit 2 in a
+                                      background thread (speculative update, patent
+                                      §0076-§0077), so the CD is updated while waiting for
+                                      the next user input and responses stay fast.
+            disable_eval2:            If True, disable evaluation unit 2 (consistency
+                                      maintenance) entirely. Used for the with/without
+                                      comparison of evaluation unit 2.
         """
         self._store = store
         self._model_id = model_id
@@ -112,47 +118,48 @@ class CMSSession:
         self._use_llm_similarity = use_llm_similarity
         self._speculative_update = speculative_update
         self._disable_eval2 = disable_eval2
-        self._extractor_fn = extractor_fn  # §71 external extractor (SBERT 等)
-        # §82: 英語ベンチ (LongMemEval / LoCoMo) 用に prompt template を差し替え可能に。
-        # 「参考情報をそのまま繰り返してはいけません」が substring 一致を壊していた問題対応。
+        self._extractor_fn = extractor_fn  # external extractor (e.g. SBERT)
+        # Replaceable prompt template for the English benchmarks (LongMemEval / LoCoMo):
+        # the Japanese template's "do not repeat the reference information" instruction
+        # broke the substring-match scoring.
         self._prompt_template = prompt_template
 
-        # 投機的更新用のバックグラウンドスレッド・ロック
+        # Background thread and locks for speculative updates
         self._bg_thread: threading.Thread | None = None
         self._bg_lock = threading.Lock()
-        self._cd_lock = threading.Lock()  # CDStore 操作のスレッドセーフ化
+        self._cd_lock = threading.Lock()  # makes CDStore access thread-safe
 
         if use_llm_similarity:
-            # 特許§0042: ノード類似度判定を LLM ベースに切り替える
+            # Patent §0042: use the LLM for node similarity
             set_llm_similarity_fn(self._llm_similarity_fn)
         else:
             set_llm_similarity_fn(None)
 
-        # 実験用メトリクス（chat() 呼び出し後に更新される）
+        # Experiment metric, updated after each chat() call
         self.last_context_tokens: int = 0
 
-        # 管理部1
+        # Management unit 1
         self._chunker = TextChunker()
         self._classifier = NodeClassifier()
         self._builder = GraphBuilder()
         self._merger = GraphMerger()
 
-        # 評価部2
+        # Evaluation unit 2
         self._eval_builder = EvalGraphBuilder()
-        # §49: scorer を差し替え可能にした (None なら v1 Scorer がデフォルト)
+        # The scorer is pluggable (None means the default v1 Scorer)
         self._replacer = Replacer(store, scorer=scorer)
 
-        # CD シリアライザ
+        # CD serializer
         self._serializer = CDSerializer()
 
         self._eval_interval: int = get("evaluation", "eval_interval_rounds", 5)
         self._turn: int = 0
         self._recent_turns: list[tuple[str, str]] = []
 
-    # ── Gemma 遅延ロード ──────────────────────────────────────────────
+    # ── Lazy Gemma loading ────────────────────────────────────────────
 
     def load(self) -> None:
-        """明示的にGemmaをロードする（初回chat前に呼ぶとウォームアップできる）。"""
+        """Load Gemma explicitly (calling this before the first chat() warms it up)."""
         if self._gemma is None:
             kwargs = {"model_id": self._model_id} if self._model_id else {}
             self._gemma = MassWeightedGemma(**kwargs)
@@ -169,25 +176,25 @@ class CMSSession:
             self._extract_gemma.load()
 
     def _get_extract_gemma(self) -> MassWeightedGemma:
-        """抽出専用モデルを返す。未設定の場合は推論モデルと共用。"""
+        """Return the extraction model, or the inference model when none is set."""
         if self._extract_gemma is not None:
             return self._extract_gemma
         return self._gemma
 
-    # ── メインエントリポイント ─────────────────────────────────────────
+    # ── Main entry point ──────────────────────────────────────────────
 
     def chat(self, user_text: str) -> str:
         """
-        1ターン分のCMS推論を実行してアシスタント応答を返す。
+        Run one CMS turn and return the assistant response.
 
-        内部フロー:
-          バックグラウンド処理待機 → 推論 → (同期 or 投機的) 管理部1・評価部2
+        Order: wait for background work -> inference -> management unit 1 and
+        evaluation unit 2 (synchronous or speculative).
 
-        §61 P0-1 計装: self.last_timing dict で各 phase の所要時間を記録する。
+        Per-phase timings are recorded in self.last_timing:
           keys: prompt_build_ms, gen_ms, mgmt_ms, eval2_ms, total_ms,
                 skipped_query, skipped_long, eval2_triggered
         """
-        import time as _time  # 名前衝突回避
+        import time as _time  # avoid a name clash
         self.last_timing = {
             "prompt_build_ms": 0.0, "gen_ms": 0.0,
             "mgmt_ms": 0.0, "eval2_ms": 0.0, "total_ms": 0.0,
@@ -199,7 +206,7 @@ class CMSSession:
         self._ensure_gemma()
         self._turn += 1
 
-        # 投機的更新が有効な場合、前ターンのバックグラウンド処理が完了するまで待機
+        # With speculative updates, wait for the previous turn's background work
         if self._speculative_update:
             self._wait_background()
 
@@ -233,7 +240,7 @@ class CMSSession:
         _t_after_prompt = _time.perf_counter()
         self.last_timing["prompt_build_ms"] = (_t_after_prompt - _t_start) * 1000
 
-        # Step 4: Gemma推論
+        # Step 4: Gemma inference
         if self._use_mass and mass_vec is not None:
             self._gemma.set_mass_vector(mass_vec)
         response = self._gemma.generate(prompt)
@@ -243,7 +250,7 @@ class CMSSession:
         _t_after_gen = _time.perf_counter()
         self.last_timing["gen_ms"] = (_t_after_gen - _t_after_prompt) * 1000
 
-        # Step 5-6: 管理部1 + 評価部2
+        # Step 5-6: management unit 1 + evaluation unit 2
         skip_query = self._skip_mgmt_on_query and self._is_query_turn(user_text)
         skip_long = False
         if not skip_query:
@@ -255,17 +262,17 @@ class CMSSession:
         self.last_timing["skipped_long"] = skip_long
 
         if self._speculative_update and not (skip_query or skip_long):
-            # 投機的更新 (background) — timing は計測不能、UX 上は 0
+            # Speculative update in the background: not timed (zero from the user's view)
             self._launch_background_update(user_text, response)
         else:
-            # 同期実行 — 各 phase 計測
+            # Synchronous: time each phase
             _t_mgmt_start = _time.perf_counter()
             if not (skip_query or skip_long):
                 self._update_cd(cd, user_text, response)
             _t_mgmt_end = _time.perf_counter()
             self.last_timing["mgmt_ms"] = (_t_mgmt_end - _t_mgmt_start) * 1000
 
-            # 評価部2 (内部で eval_interval 判定 + 実行 or skip)
+            # Evaluation unit 2 (checks eval_interval internally, then runs or skips)
             _t_eval_start = _time.perf_counter()
             should_run_eval2 = (
                 (not self._disable_eval2)
@@ -279,12 +286,12 @@ class CMSSession:
         self.last_timing["total_ms"] = (_time.perf_counter() - _t_start) * 1000
         return response
 
-    # ── 投機的更新（特許§0076-§0077） ───────────────────────────────
+    # ── Speculative update (patent §0076-§0077) ───────────────────────
 
     def _launch_background_update(self, user_text: str, response: str) -> None:
         """
-        管理部1・評価部2 をバックグラウンドスレッドで非同期実行する。
-        前ターンのバックグラウンド処理が完了していない場合は待機してから起動。
+        Run management unit 1 and evaluation unit 2 in a background thread.
+        Waits for the previous turn's background work first.
         """
         self._wait_background()
 
@@ -303,7 +310,7 @@ class CMSSession:
         thread.start()
 
     def _wait_background(self, timeout: float | None = None) -> None:
-        """バックグラウンド処理が走っている場合、完了を待つ。"""
+        """Wait for the background work, if any, to finish."""
         with self._bg_lock:
             t = self._bg_thread
         if t is not None and t.is_alive():
@@ -311,15 +318,15 @@ class CMSSession:
 
     def wait_pending_updates(self, timeout: float | None = None) -> None:
         """
-        外部から投機的更新の完了を待つ公開API。
-        実験のサマリー集計時に CD が最新状態であることを保証するために使用する。
+        Public API to wait for pending speculative updates, so the CD is up to
+        date when an experiment collects its summary.
         """
         self._wait_background(timeout=timeout)
 
     def _post_turn_evaluation(self, user_text: str, response: str) -> None:
-        """ターン終了後の評価部2 実行ロジック（同期/投機的のいずれからも呼ばれる）。
+        """Post-turn evaluation unit 2 logic (called from both the sync and speculative paths).
 
-        disable_eval2=True の場合は recent_turns の管理だけ行い、評価部2 は呼ばない。
+        With disable_eval2=True only recent_turns is maintained; evaluation unit 2 is not called.
         """
         with self._cd_lock:
             self._recent_turns.append((user_text, response))
@@ -329,7 +336,7 @@ class CMSSession:
         if should_run:
             self._run_evaluation()
 
-    # ── クエリターン判定 ──────────────────────────────────────────────
+    # ── Query-turn detection ──────────────────────────────────────────
 
     _QUERY_PHRASES = (
         "を一語で答えてください",
@@ -345,14 +352,14 @@ class CMSSession:
 
     def _is_query_turn(self, user_text: str) -> bool:
         """
-        ユーザーテキストがクエリ（質問）ターンかどうかを判定する。
+        Return True if the user text is a query (question) turn.
 
-        クエリターンでは新たな事実が導入されず、管理部1を実行してもCDを汚染するだけなので
-        スキップする。ヒューリスティック: 短くて疑問文の特徴を持つ場合にTrue。
+        A query turn introduces no new facts, so running management unit 1 on it
+        would only pollute the CD. Heuristic: short text that looks like a question.
 
-        注意: 「ください」単体はヒューリスティックに含めない。
-        「確実に記録してください」のような事実導入文も「ください」を含むため誤検出される。
-        「を答えてください」「を一語で答えてください」等の質問特有の複合句のみ使用する。
+        The bare word for "please" is deliberately not a cue: fact-stating
+        sentences ("please record this reliably") contain it too. Only the
+        question-specific compound phrases in _QUERY_PHRASES are used.
         """
         text = user_text.strip()
         if len(text) > 300:
@@ -361,17 +368,18 @@ class CMSSession:
             return True
         return any(phrase in text for phrase in self._QUERY_PHRASES)
 
-    # ── 管理部1: CD更新 ────────────────────────────────────────────────
+    # ── Management unit 1: CD update ──────────────────────────────────
 
     def _update_cd(
         self, cd: CorrelationDiagram, user_text: str, assistant_text: str
     ) -> None:
         """
-        今ターンの会話から仮の相関図を構築し、現行CDにマージする（特許§0036〜§0041）。
+        Build a provisional CD from this turn and merge it into the current CD
+        (patent §0036-§0041).
 
-        仮CDはターン開始時に空で初期化され、チャンクを処理するにつれて蓄積される。
-        処理後に GraphMerger で現行CDと統合し、類似ノードは mass を合算する。
-        マージ後は §0062 質量再計算 + §0030 座標再計算が走る (GraphMerger.merge 内)。
+        The provisional CD starts empty and accumulates as chunks are processed.
+        GraphMerger then merges it into the current CD, summing the mass of similar
+        nodes; GraphMerger.merge also recomputes mass (§0062) and coordinates (§0030).
         """
         provisional = CorrelationDiagram()
         chunks = self._chunker.chunk_turn(user_text, assistant_text, self._turn)
@@ -389,17 +397,17 @@ class CMSSession:
                 builder=self._builder,
             )
 
-        # 仮CDを現行CDにマージ（CDStoreはスレッドセーフではないためロック）
+        # Merge the provisional CD into the current CD (locked: CDStore is not thread-safe)
         with self._cd_lock:
             self._merger.merge(cd, provisional)
             self._store.set_current(cd)
 
-    # ── 評価部2: CD評価・置換 ─────────────────────────────────────────
+    # ── Evaluation unit 2: CD scoring and replacement ─────────────────
 
     def _run_evaluation(self) -> None:
         """
-        直近 eval_interval ターンから評価CDを構築し、
-        スコアが現行CDを margin 以上上回れば置換する（特許§0063〜§0072）。
+        Build an evaluation CD from the last eval_interval turns and replace the
+        current CD if it scores at least `margin` higher (patent §0063-§0072).
         """
         with self._cd_lock:
             base_cd = self._store.get_current()
@@ -411,7 +419,7 @@ class CMSSession:
         with self._cd_lock:
             self._store.set_eval(eval_cd)
             result = self._replacer.evaluate_and_replace()
-        # §49: ベンチマークで replaced 回数 / score_diff を観測できるように公開
+        # Exposed so benchmarks can observe replacement counts and score_diff
         self.last_eval_result = result
         print(
             f"[評価部2] turn={self._turn}: "
@@ -419,20 +427,20 @@ class CMSSession:
             f"score_diff={result.get('score_diff', 0):.4f}"
         )
 
-    # ── LLM 概念抽出（管理部1 / 評価部2 共通）────────────────────────
+    # ── LLM concept extraction (management unit 1 / evaluation unit 2) ───
 
     def _llm_extract_fn(self, text: str) -> list[dict]:
         """
-        テキストからノード候補を抽出する。
+        Extract node candidates from text.
 
-        §71: extractor_fn が指定されていれば外部抽出器 (SBERT 等) を使用、
-              指定なければ Gemma + JSON prompt の従来パスを使用。
+        Uses the external extractor (e.g. SBERT) when extractor_fn is set,
+        otherwise the original Gemma + JSON prompt path.
 
-        成功時: JSON パース結果を返す
-          例: [{"text": "「ALPHA」の対応値は「CRANE-1」", "level": "sun", "parent_hint": ""}]
-        失敗時: フォールバックとして全文を satellite ノードとして返す
+        On success returns the parsed JSON, e.g.
+          [{"text": "The value for ALPHA is CRANE-1", "level": "sun", "parent_hint": ""}]
+        On failure falls back to the whole text as one satellite node.
         """
-        # §71: 外部 extractor 注入経路
+        # External extractor path
         if self._extractor_fn is not None:
             try:
                 nodes = self._extractor_fn(text)
@@ -442,7 +450,7 @@ class CMSSession:
                 pass
             return [{"text": text[:80].strip(), "level": "satellite", "parent_hint": ""}]
 
-        # 既存 Gemma パス
+        # Original Gemma path
         prompt = extract_nodes_prompt(text)
         gemma = self._get_extract_gemma()
         gemma.clear_mass_vector()
@@ -457,18 +465,18 @@ class CMSSession:
                     return [n for n in nodes if isinstance(n, dict) and "text" in n]
         except Exception:
             pass
-        # フォールバック: テキスト全体を satellite ノードとして扱う
+        # Fallback: treat the whole text as one satellite node
         return [{"text": text[:80].strip(), "level": "satellite", "parent_hint": ""}]
 
-    # ── LLM 類似度判定 (§0042) ──────────────────────────────────────────
+    # ── LLM similarity (§0042) ────────────────────────────────────────
 
     def _llm_similarity_fn(self, text_a: str, text_b: str) -> float:
         """
-        特許§0042 準拠: LLM を用いた1対1のノード類似度判定。
-        0.0 (非類似) 〜 1.0 (完全一致) の数値を返す。
+        Patent §0042: one-to-one node similarity scored by the LLM.
+        Returns a value from 0.0 (unrelated) to 1.0 (identical).
 
-        本実装はゼロショットプロンプティングで実装する。
-        高頻度に呼ばれるため、本番運用では結果のキャッシュを推奨する。
+        Uses a zero-shot prompt. It is called often, so cache the results in a
+        real deployment.
         """
         gemma = self._get_extract_gemma()
         prompt = (
@@ -482,7 +490,7 @@ class CMSSession:
         gemma.clear_m_matrix()
         try:
             raw = gemma.generate(prompt).strip()
-            # 数値を抽出（最初に現れる小数または整数）
+            # Take the first decimal or integer in the output
             import re as _re
             m = _re.search(r"[01](?:\.\d+)?|\.\d+", raw)
             if m:
@@ -491,33 +499,33 @@ class CMSSession:
             pass
         return 0.0
 
-    # ── マスベクトル構築 ────────────────────────────────────────────────
+    # ── Mass vector construction ──────────────────────────────────────
 
     def _build_mass_vector(
         self, prompt_ids: list[int], device: str, context_block: str = ""
     ) -> torch.Tensor | None:
         """
-        [PN{mass}] トークン直後の概念テキストトークン位置に mass を置いた
-        1D ベクトルを返す。[PN] パターンがなければ None（マス注入なし）。
+        Return a 1D vector with mass placed at the concept-text tokens that follow
+        each [PN{mass}] marker, or None (no injection) when there is no [PN] marker.
 
-        実験Lで確認: 2D M行列（prefill+decode適用）は0%に崩壊。
-        1D ベクトル（decode専用, seq_q==1 ガード）は80%を維持。
+        Experiment L: a 2D M matrix (applied in prefill and decode) collapsed to 0%,
+        while the 1D vector (decode only, seq_q == 1 guard) kept 80%.
 
-        F3: 値の組み立ては server/mass_vector.positions_to_mass_vector に
-        委譲する（D-3 の上限 min(cap, mass*scale) と、同一位置の衝突を
-        加算ではなく max で解決する規則がそこに一本化されている）。
+        The values are assembled by server/mass_vector.positions_to_mass_vector,
+        the single place for the cap min(cap, mass*scale) and for resolving two
+        markers at the same position with max instead of a sum.
 
-        F7: inject_levels でレベルを絞る場合、レベルはトークン列の空白では
-        なく、プロンプトへ実際に埋め込んだ context_block の行頭インデントから
-        求める（SentencePiece は decode で語頭空白を落とすため）。
-        context_block が渡らなかった場合のみ、従来の
-        find_pn_positions_with_level に退避する。
+        When inject_levels restricts the levels, each node's level is read from the
+        line indentation of the context_block actually embedded in the prompt, not
+        from token whitespace (SentencePiece drops leading spaces on decode). Only
+        when no context_block is given does it fall back to
+        find_pn_positions_with_level.
         """
         tokenizer = self._gemma.tokenizer
-        # WO-6 (¶0079): inject_levels が指定された場合はそのレベルの [PN] だけに注入する
+        # Patent ¶0079: when inject_levels is set, inject only at [PN] markers of those levels
         inject_levels = get("attention", "inject_levels", None)
         if inject_levels:
-            if isinstance(inject_levels, str):  # 単一レベルを文字列で書かれた場合の保険
+            if isinstance(inject_levels, str):  # guard for a single level written as a bare string
                 inject_levels = [inject_levels]
             levels = set(inject_levels)
             if context_block:
@@ -546,7 +554,7 @@ class CMSSession:
             device=device,
         )
 
-    # ── 状態アクセサ ──────────────────────────────────────────────────
+    # ── State accessors ───────────────────────────────────────────────
 
     @property
     def turn(self) -> int:

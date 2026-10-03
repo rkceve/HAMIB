@@ -1,16 +1,14 @@
-"""SimilarityJudge: 0042 "always judge nodes one-to-one", with an embedding shortlist.
+"""SimilarityJudge: asks the LLM about one candidate at a time whether two nodes
+are the same matter (or whether a node belongs under a topic).
 
-Design: HARNESS_DESIGN.md Stream B, B3.
+``most_similar`` has the ``(query, candidates) -> (index, score)`` signature
+GraphMerger expects for its ``similarity_fn``.  The score is 1.0 when the judge
+says yes and 0.0 otherwise, so it passes or fails any threshold in (0, 1]
+(config.yaml uses 0.92).
 
-``most_similar`` has the signature GraphMerger expects
-(``(query, candidates) -> (index, score)``) so it can be injected as the
-merger's ``similarity_fn``.  The score is binary: 1.0 when the judge says the
-pair is the same matter, 0.0 otherwise.  GraphMerger compares against
-``similarity_threshold`` (0.92 in config.yaml), so 1.0 passes and 0.0 fails.
-
-Documented deviation from 0042: with ``shortlist_k > 0`` the candidates outside
-the embedding top-k are never judged by the LLM.  ``shortlist_k=0`` disables the
-shortlist and restores the fully spec-faithful O(n)-calls behaviour.
+With ``shortlist_k > 0`` only the ``shortlist_k`` candidates closest by
+embedding are asked about, which saves calls but means the others are never
+judged.  ``shortlist_k=0`` asks about every candidate, as the spec describes.
 """
 
 from __future__ import annotations
@@ -22,7 +20,7 @@ import numpy as np
 from management.harness.judge import JudgeCache, JudgeLLM, JudgeRunner
 from management.harness.prompts import K_SAME, PAIRWISE_PROMPTS
 
-# The binary score a "yes" answer maps to.  Any threshold in (0.0, 1.0] passes.
+# Scores for a "yes" and a "no" answer.
 MATCH_SCORE = 1.0
 NO_MATCH_SCORE = 0.0
 
@@ -49,8 +47,8 @@ class SimilarityJudge:
             if runner is not None
             else JudgeRunner(judge, cache, max_tokens=max_tokens)
         )
-        # H7: the base CD's texts are re-ranked on every single decision.  Without
-        # this cache a 4.5k-node diagram is re-encoded thousands of times per run.
+        # The diagram's texts are re-ranked on every decision; without this
+        # cache a 4,500-node diagram is re-encoded thousands of times per run.
         self._embed_cache: dict[str, np.ndarray] = {}
         self.embed_calls: int = 0        # texts actually sent to the encoder
         self.embed_cache_hits: int = 0   # texts served from the cache
@@ -66,7 +64,7 @@ class SimilarityJudge:
         return embed(texts)
 
     def _embed(self, texts: list[str]) -> np.ndarray:
-        """Encode ``texts``, reusing per-text vectors already computed."""
+        """Encode ``texts``, reusing vectors already computed."""
         missing = [t for t in dict.fromkeys(texts) if t not in self._embed_cache]
         self.embed_cache_hits += len(texts) - len(missing)
         if missing:
@@ -77,31 +75,26 @@ class SimilarityJudge:
         return np.array([self._embed_cache[t] for t in texts])
 
     def _order_candidates(self, query: str, candidates: Sequence[str]) -> list[int]:
-        """Return candidate indices in ask-order.
-
-        Shortlist enabled  -> descending cosine, truncated to k when longer.
-        Shortlist disabled -> original order, all candidates.
+        """Candidate indices in the order to ask: closest first and at most
+        ``shortlist_k`` of them, or all in original order without a shortlist.
         """
         if not self._use_shortlist:
             return list(range(len(candidates)))
         vecs = self._embed([query] + list(candidates))
         scores = vecs[1:] @ vecs[0]
         order = [int(i) for i in np.argsort(-scores, kind="stable")]
-        if len(order) > self._shortlist_k:
-            order = order[: self._shortlist_k]
-        return order
+        return order[: self._shortlist_k]
 
-    # ── public API ──────────────────────────────────────────────────────────
+    # -- public API ----------------------------------------------------------
 
     def most_similar(
         self, query: str, candidates: list[str], kind: str = K_SAME
     ) -> tuple[int, float]:
-        """0042 one-to-one judgment over (a shortlist of) the candidates.
+        """Ask about each candidate in turn and stop at the first "yes".
 
-        Asks the pairwise question for each kept candidate in ask-order and STOPS
-        at the first "yes", returning that candidate's ORIGINAL index with score
-        1.0.  With no "yes" the best-cosine candidate (or index 0 without a
-        shortlist) is returned with score 0.0, which fails every threshold.
+        Returns that candidate's index with MATCH_SCORE.  With no "yes", returns
+        the closest candidate (index 0 without a shortlist) with NO_MATCH_SCORE,
+        which fails every threshold; ``(-1, NO_MATCH_SCORE)`` for no candidates.
         """
         if not candidates:
             return -1, NO_MATCH_SCORE
@@ -111,10 +104,9 @@ class SimilarityJudge:
             prompt = template.format(a=query, b=candidates[idx])
             if self._runner.ask_yes_no(kind, prompt, query, candidates[idx]):
                 return idx, MATCH_SCORE
-        best = order[0] if order else 0
-        return best, NO_MATCH_SCORE
+        return order[0], NO_MATCH_SCORE
 
-    # ── introspection (report plumbing) ─────────────────────────────────────
+    # -- introspection (report plumbing) -------------------------------------
 
     @property
     def runner(self) -> JudgeRunner:

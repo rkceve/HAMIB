@@ -1,7 +1,7 @@
-"""Manager harness: the coded procedure of 0036-0062 driven by an LLM that only
-answers small, verifiable yes/no and JSON questions.
+"""Manager harness: the correlation-diagram manager written as plain code, with
+an LLM that only answers small, checkable yes/no and JSON questions.
 
-Design: HARNESS_DESIGN.md, Stream B.
+Design notes: HARNESS_DESIGN.md and SPEC_FAITHFUL_DESIGN.md.
 """
 
 from __future__ import annotations

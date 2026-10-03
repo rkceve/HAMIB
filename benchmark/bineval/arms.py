@@ -1,31 +1,33 @@
-"""arms.py — deterministic context builders for the bineval arms (S2.1).
+"""Build the context text that each bineval arm shows the reader.
 
-CPU-only, no model of any kind. Token accounting is tiktoken ``cl100k_base``
-everywhere (PROTOCOL.md "Budget definition"): the budget of every arm is
-``raw_chat_tokens / ratio`` computed against the SAME raw chat, so the arms are
-budget-comparable by construction.
+An arm is one way of fitting the chat into the reader's prompt: the whole chat,
+its most recent sessions, a fixed summary, or a serialized correlation diagram
+(CD) cut to a token budget.  Every budget is ``raw_chat_tokens / ratio``, counted
+with tiktoken ``cl100k_base`` against the same raw chat, so arms with the same
+ratio get the same amount of context.  Everything here is deterministic and
+CPU-only.
 
-Arms
-----
-``full``            every non-excluded session (see ``EXCLUDED_SESSIONS``).
-``trunc_{r}x``      the LAST sessions whose formatted tokens fit raw/r.
-``summary_9x``      ``results/pilot/summary_6x.txt`` verbatim (the file name says
-                    6x; RESULTS_v1 measures it at 9.0x -- the arm is labelled by
-                    the MEASURED ratio, which is recorded in ``meta``).
-``cd_{policy}_{r}x``  CD JSON -> CorrelationDiagram -> budgeted context block.
-``oracle_cd_full``  ``results/pilot/oracle_cd_full.txt`` verbatim (legacy
-                    ``[PN{mass}]``-on-every-line format; the reader arm using it
-                    is text-only).
-``floor``           empty context.
+Arm names
+---------
+``full``              every session except ``EXCLUDED_SESSIONS``.
+``trunc_{r}x``        the most recent sessions that fit in raw/r tokens.
+``summary_9x``        ``results/pilot/summary_6x.txt`` verbatim.  The file name
+                      says 6x, but its measured ratio is 9.0x, so the arm is
+                      named after the measured ratio (recorded in ``meta``).
+``cd_{policy}_{r}x``  a CD JSON serialized within raw/r tokens.
+``oracle_cd_full``    ``results/pilot/oracle_cd_full.txt`` verbatim.  It uses an
+                      old format with ``[PN{mass}]`` on every line, so the reader
+                      runs it without mass injection.
+``floor``             empty context.
 
-Session formatting (load-bearing: it is what reproduces the RESULTS_v1 token
-counts 85,651 / 26,621 / 14,801 / 6,228 for trunc 2/6/10/20x)::
+Session format (do not change it: the published token counts 85,651 / 26,621 /
+14,801 / 6,228 for trunc 2/6/10/20x depend on it)::
 
     === Session {n} ({date}) ===
     User: ...
     Assistant: ...
 
-sessions joined by a blank line.
+with sessions joined by a blank line.
 """
 
 from __future__ import annotations
@@ -47,11 +49,9 @@ DEFAULT_CHAT = REPO_ROOT / "benchmark" / "longchat" / "restaurant_chat_v2.json"
 PILOT_DIR = REPO_ROOT / "benchmark" / "bineval" / "results" / "pilot"
 EXCLUSIONS_MD = Path(__file__).resolve().parent / "EXCLUSIONS.md"
 
-# Whole-session exclusions for the RESTAURANT chat, per EXCLUSIONS.md:
-#   section 1 ("Whole-session exclusions") -> 19, 24, 32, 33, 35
-#   v1.1 exclusion-wave table                -> 26, 40
-# tests/reader/test_arms.py cross-checks this set against EXCLUSIONS.md by regex
-# so the constant cannot drift away from the document.
+# Whole sessions of the restaurant chat that are excluded from scoring, as listed
+# in EXCLUSIONS.md (section 1 and the v1.1 table).  A test parses EXCLUSIONS.md
+# with excluded_sessions_from_markdown() and checks it against this set.
 EXCLUDED_SESSIONS: frozenset[int] = frozenset({19, 24, 26, 32, 33, 35, 40})
 
 TRUNC_HEADER = (
@@ -65,7 +65,7 @@ TRUNC_HEADER = (
 # --------------------------------------------------------------------------
 
 def make_token_counter() -> Callable[[str], int]:
-    """tiktoken cl100k_base counter (same convention as build_cd_offline)."""
+    """tiktoken ``cl100k_base`` token counter: the unit of every budget."""
     enc = tiktoken.get_encoding("cl100k_base")
     return lambda text: len(enc.encode(text))
 
@@ -94,10 +94,10 @@ def format_sessions(sessions: Iterable[dict]) -> str:
 
 
 def raw_tokens(chat: dict, counter: Callable[[str], int] | None = None) -> int:
-    """Raw-chat token base for every budget (PROTOCOL.md "Budget definition").
+    """The raw-chat token count that every budget is divided from.
 
-    Prefers the value frozen in the chat file (restaurant = 172,773, the number
-    RESULTS_v1 and PROTOCOL quote); falls back to counting the formatted chat.
+    Uses the count stored in the chat file when present (172,773 for the
+    restaurant chat, the published number); otherwise counts the formatted chat.
     """
     declared = chat.get("total_tokens_tiktoken")
     if isinstance(declared, int) and declared > 0:
@@ -112,12 +112,11 @@ def included_sessions(chat: dict, excluded: Iterable[int] | None = None) -> list
 
 
 def truncation_header_tokens(counter: Callable[[str], int] | None = None) -> int:
-    """Token cost of the truncation NOTE header AND its blank-line separator.
+    """Token cost of the truncation note plus its blank-line separator.
 
-    The header is part of the arm's context, so it is part of the arm's budget
-    (2026-09-07 review): counting only the session bodies let ``trunc_{r}x``
-    ship raw/r + 24 tokens, i.e. slightly MORE context than every other arm at
-    the same ratio.
+    The note is part of the arm's context, so it is paid for out of the arm's
+    budget; otherwise ``trunc_{r}x`` would get 24 more tokens of context than
+    the other arms at the same ratio.
     """
     counter = counter or make_token_counter()
     return counter(TRUNC_HEADER + "\n\n")
@@ -130,27 +129,22 @@ def truncation_sessions(
     *,
     header_tokens: int = 0,
 ) -> list[dict]:
-    """The LAST sessions whose total formatted tokens fit ``raw / ratio``.
+    """The most recent sessions whose formatted tokens fit ``raw / ratio - header_tokens``.
 
-    Walks from the newest session backwards and stops at the FIRST session that
-    would overflow the budget (it does not keep searching for a smaller older
-    session -- truncation is a recency prefix by definition). Reproduces the
-    RESULTS_v1 counts {2: 23, 6: 7, 10: 4, 20: 2}. NOTE: truncation ignores the
-    question-hygiene exclusions -- it is a baseline over the raw recency window,
-    exactly as the RESULTS_v1 artifacts were built.
+    Walks back from the newest session and stops at the first one that does not
+    fit; it never skips ahead to a smaller, older session, so the result is
+    always a contiguous recent window.  Unlike ``full`` it keeps
+    ``EXCLUDED_SESSIONS``: the published truncation arms were built that way.
 
-    ``header_tokens`` is subtracted from the budget before the walk so the NOTE
-    header of the arm is paid for out of the same budget.  At the published
-    ratios the 24-token header changes no session count and no body token count
-    (tests/reader/test_arms.py asserts both), so the RESULTS_v1 numbers
-    85,651 / 26,621 / 14,801 / 6,228 still reproduce exactly.
+    At the published ratios the 24-token header changes neither the session
+    counts ({2: 23, 6: 7, 10: 4, 20: 2}) nor the body token counts; a test
+    checks both.
     """
     counter = counter or make_token_counter()
     budget = raw_tokens(chat, counter) / float(ratio) - float(header_tokens)
-    sessions = list(chat.get("sessions", []))
     total = 0.0
     kept: list[dict] = []
-    for session in reversed(sessions):
+    for session in reversed(list(chat.get("sessions", []))):
         n = counter(format_session(session))
         if total + n > budget:
             break
@@ -165,14 +159,12 @@ def truncation_sessions(
 # --------------------------------------------------------------------------
 
 def cd_from_records(records: list[dict]) -> CorrelationDiagram:
-    """Rebuild a CorrelationDiagram from build_cd_offline ``nodes`` records.
+    """Rebuild a CorrelationDiagram from the ``nodes`` records of a CD JSON.
 
-    DUPLICATION (deliberate, 2026-09-07): this is the same three-pass
-    add_sun / add_planet / add_satellite reconstruction as
-    ``build_cd_offline._load_checkpoint``. build_cd_offline is owned by the S1
-    stream concurrently, so the helper is implemented here instead of being
-    factored out of that file. If the two ever disagree, build_cd_offline is the
-    original; fold this one into it once S1 lands.
+    Nodes are attached in three passes (suns, then planets, then satellites) so
+    that every parent exists before its children; a planet or satellite whose
+    parent is not in ``records`` is dropped.  ``build_cd_offline`` loads its
+    checkpoints with this function too.
     """
     by_id: dict[str, Node] = {}
     for r in records:
@@ -186,17 +178,15 @@ def cd_from_records(records: list[dict]) -> CorrelationDiagram:
         )
         by_id[node.node_id] = node
 
+    nodes = [by_id[r["node_id"]] for r in records]
     cd = CorrelationDiagram()
-    for r in records:
-        node = by_id[r["node_id"]]
+    for node in nodes:
         if node.level == NodeLevel.SUN:
             cd.add_sun(node)
-    for r in records:
-        node = by_id[r["node_id"]]
+    for node in nodes:
         if node.level == NodeLevel.PLANET and node.parent_id in by_id:
             cd.add_planet(node, node.parent_id)
-    for r in records:
-        node = by_id[r["node_id"]]
+    for node in nodes:
         if node.level == NodeLevel.SATELLITE and node.parent_id in by_id:
             cd.add_satellite(node, node.parent_id)
     return cd
@@ -277,10 +267,10 @@ def build_arm_context(
     pilot_dir: Path = PILOT_DIR,
     counter: Callable[[str], int] | None = None,
 ) -> ArmContext:
-    """Build one arm's context text. Deterministic; CPU only.
+    """Build one arm's context text and its metadata.
 
-    ``ratio``/``policy`` given in the arm name win; the keyword arguments are
-    only used when the name does not carry them.
+    A ratio or policy carried in the arm name wins over the keyword arguments,
+    which are only used when the name does not carry them.
     """
     counter = counter or make_token_counter()
     spec = parse_arm(arm)
@@ -316,14 +306,14 @@ def build_arm_context(
         meta["body_tokens"] = counter(format_sessions(kept))
 
     elif spec.kind == "summary":
-        # The stored artifact is results/pilot/summary_6x.txt (historical name).
+        # The file keeps its old "6x" name; see the module docstring.
         text = _read_verbatim(pilot_dir / "summary_6x.txt")
         meta["source_file"] = "results/pilot/summary_6x.txt"
 
     elif spec.kind == "oracle":
         text = _read_verbatim(pilot_dir / "oracle_cd_full.txt")
         meta["source_file"] = "results/pilot/oracle_cd_full.txt"
-        # legacy [PN{mass}] on every line: the reader arm on it is text-only.
+        # Old format with [PN{mass}] on every line: run without mass injection.
         meta["legacy_pn_format"] = True
 
     elif spec.kind == "cd":
@@ -366,8 +356,7 @@ def build_arm_context(
 
 
 # --------------------------------------------------------------------------
-# EXCLUSIONS.md cross-check helper (used by the test, kept here so the parsing
-# rule lives next to the constant it guards)
+# EXCLUSIONS.md parser (used by the test; kept next to the constant it checks)
 # --------------------------------------------------------------------------
 
 _WHOLE_SESSION_HEADING = re.compile(

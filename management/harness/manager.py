@@ -1,20 +1,19 @@
-"""HarnessManager: the coded manager procedure (0036-0062) with an LLM that only
-answers small, verifiable questions.
-
-Design: HARNESS_DESIGN.md Stream B, B1/B2/B5/B7.
+"""HarnessManager: the manager procedure written as code, with an LLM that only
+answers small, checkable questions.  (SpecManager in ``spec_manager.py`` is the
+default path; this is the optional mode with extra checks.)
 
 Per turn:
-  1. chunk  (chunking.split_candidates + optional Q_BOUNDARY merge)  0037-0038
-  2. extract self-contained statements per chunk (JSON)              0030 / D-4
-  3. faithfulness check per statement                                D-4
-  4. classify on three yes/no axes                                   0039-0040
-  5. de-duplicate this turn's statements (H8)
-  6. link this turn's nodes to each other only                       0041
-  7. merge the provisional structure into the base CD                0042-0061
-  8. normalize once (mass = satellite count, coordinates)            0030 / 0062
+  1. chunk: split_candidates, then merge neighbours the judge says share a
+     topic (Q_BOUNDARY)
+  2. extract self-contained statements from each chunk (JSON array)
+  3. drop statements the chunk does not support (Q_SUPPORTED)
+  4. classify each statement on three yes/no axes -> sun / planet / satellite
+  5. drop this turn's duplicate statements
+  6. link this turn's nodes to each other only
+  7. merge that structure into the base diagram (GraphMerger)
+  8. normalize once (planet mass = satellite count, coordinates)
 
-Step 0 (D-7 query-turn skip) is the CALLER's job; the harness does not
-re-implement it.
+Skipping turns that only ask a question is the caller's job.
 """
 
 from __future__ import annotations
@@ -24,8 +23,8 @@ import json
 import re
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass, field
-from typing import Any, Iterable, Sequence
+from dataclasses import dataclass, field, fields
+from typing import Any, Callable, Iterable, Sequence
 
 import jsonschema
 
@@ -58,17 +57,17 @@ from models.correlation_diagram import CorrelationDiagram, PlanetEntry, SunEntry
 from models.node import Node, NodeLevel
 from utils.config import get
 
-# jsonschema for the extraction reply: a JSON array of non-empty strings.
+# The extraction reply must be a JSON array of non-empty strings.
 STATEMENT_ARRAY_SCHEMA: dict[str, Any] = {
     "type": "array",
     "items": {"type": "string", "minLength": 1},
 }
 
-# Length of the fallback statement when extraction never returns valid JSON.
-# Mirrors build_cd_offline._safe_extractor_fn's text[:80].
+# Length of the fallback statement when extraction never returns valid JSON
+# (the same 80 characters build_cd_offline uses).
 FALLBACK_STATEMENT_CHARS = 80
 
-# Quality counter keys (H9), reported per turn and accumulated in `totals`.
+# Answer-quality counters, reported per turn and summed in ``totals``.
 QUALITY_KEYS: tuple[str, ...] = (
     "unparsed",
     "defaulted",
@@ -85,16 +84,18 @@ _LEVEL_ACTION = {
     NodeLevel.SATELLITE: Action.NEW_SATELLITE,
 }
 
-# Tolerant recovery of a truncated JSON array: every COMPLETE double-quoted
-# element, escapes honoured.  Applied only to the text after the leading '['.
+# Every complete double-quoted JSON string (escapes included).
 _QUOTED_RE = re.compile(r'"((?:[^"\\]|\\.)*)"')
+
+# ``most_similar(query, candidates, kind) -> (index, score)``.
+MostSimilarFn = Callable[[str, list[str], str], tuple[int, float]]
 
 
 def salvage_string_array(raw: str) -> list[str]:
-    """Recover the complete string elements of a truncated JSON array (H1).
+    """Recover the complete strings of a JSON array cut off by the token limit.
 
-    ``["a", "b", "c`` -> ``["a", "b"]``.  Returns [] when there is no '[' at all
-    or when nothing complete can be recovered.
+    ``["a", "b", "c`` -> ``["a", "b"]``.  Returns [] when there is no '[' or
+    nothing complete.
     """
     start = raw.find("[")
     if start == -1:
@@ -111,7 +112,8 @@ def salvage_string_array(raw: str) -> list[str]:
 
 
 def normalize_for_dedup(text: str) -> str:
-    """Casefolded, punctuation- and whitespace-free key for H8 de-duplication."""
+    """Duplicate-detection key: NFKC, casefolded, with punctuation, whitespace
+    and control characters removed."""
     folded = unicodedata.normalize("NFKC", text).casefold()
     return "".join(
         ch for ch in folded if not unicodedata.category(ch).startswith(("P", "Z", "C"))
@@ -123,7 +125,7 @@ def normalize_for_dedup(text: str) -> str:
 
 @dataclass
 class HarnessConfig:
-    """Mirrors the harness: section of config.yaml (B5)."""
+    """The ``harness:`` section of config.yaml."""
 
     boundary_check: bool = True
     faithfulness_check: bool = True
@@ -131,39 +133,25 @@ class HarnessConfig:
     max_retries: int = 2
     max_statement_chars: int = 120
     judge_max_tokens: int = 256
-    # H1: extraction returns a JSON array and needs far more room than a
-    # one-word yes/no answer; 256 tokens truncated multi-statement replies.
+    # A JSON array of statements needs far more room than a one-word answer;
+    # 256 tokens cut multi-statement replies short.
     extract_max_tokens: int = 1024
-    # H1: chunk length cap, also the ceiling for the Q_BOUNDARY merge.
+    # Max chunk length, also the cap for the Q_BOUNDARY merge.
     chunk_max_chars: int = 800
-    # H6: how many existing sun texts are shown to the classification questions.
+    # How many existing sun texts the classification questions are shown.
     topics_in_prompt: int = 8
-    # H7: 1 = sequential (default).  Only the per-statement stage is parallel.
+    # Threads for the per-statement questions; 1 = sequential.
     max_workers: int = 1
 
     @classmethod
     def from_config(cls) -> "HarnessConfig":
-        d = cls()
-        return cls(
-            boundary_check=bool(get("harness", "boundary_check", d.boundary_check)),
-            faithfulness_check=bool(
-                get("harness", "faithfulness_check", d.faithfulness_check)
-            ),
-            shortlist_k=int(get("harness", "shortlist_k", d.shortlist_k)),
-            max_retries=int(get("harness", "max_retries", d.max_retries)),
-            max_statement_chars=int(
-                get("harness", "max_statement_chars", d.max_statement_chars)
-            ),
-            judge_max_tokens=int(get("harness", "judge_max_tokens", d.judge_max_tokens)),
-            extract_max_tokens=int(
-                get("harness", "extract_max_tokens", d.extract_max_tokens)
-            ),
-            chunk_max_chars=int(get("harness", "chunk_max_chars", d.chunk_max_chars)),
-            topics_in_prompt=int(
-                get("harness", "topics_in_prompt", d.topics_in_prompt)
-            ),
-            max_workers=int(get("harness", "max_workers", d.max_workers)),
-        )
+        """Read config.yaml; each value is cast to the type of its default."""
+        defaults = cls()
+        values: dict[str, Any] = {}
+        for f in fields(cls):
+            default = getattr(defaults, f.name)
+            values[f.name] = type(default)(get("harness", f.name, default))
+        return cls(**values)
 
 
 # -- report / provisional structure ------------------------------------------
@@ -171,7 +159,7 @@ class HarnessConfig:
 
 @dataclass
 class HarnessTurnReport:
-    """Per-turn statistics (B2 step 7)."""
+    """Per-turn statistics."""
 
     calls: dict[str, int] = field(default_factory=dict)
     cache_hits: int = 0
@@ -181,10 +169,10 @@ class HarnessTurnReport:
     merged: int = 0
     promoted: int = 0
     chunks: int = 0
-    # H14: `merged` = vanished + attached, kept for compatibility.
+    # ``merged`` = vanished + attached; kept for older readers.
     vanished: int = 0
     attached: int = 0
-    # H9 quality counters.
+    # Answer-quality counters (QUALITY_KEYS).
     unparsed: int = 0
     defaulted: int = 0
     extract_fallback: int = 0
@@ -197,11 +185,103 @@ class HarnessTurnReport:
 
 @dataclass
 class ProvisionalStructure:
-    """This turn's nodes, linked to each other only (0041)."""
+    """One turn's nodes, linked only to each other: suns with whatever attached
+    to them, plus the planets and satellites that found no parent."""
 
     suns: list[SunEntry] = field(default_factory=list)
     orphan_planets: list[PlanetEntry] = field(default_factory=list)
     orphan_satellites: list[Node] = field(default_factory=list)
+
+
+def link_within_turn(
+    nodes: Sequence[Node], most_similar: MostSimilarFn
+) -> ProvisionalStructure:
+    """Link one turn's nodes to each other only, via Q_BELONGS.
+
+    Planets attach to this turn's suns and satellites to this turn's planets;
+    whatever finds no parent is returned as an orphan for the merge step.
+    """
+    cd = CorrelationDiagram()
+    sun_texts: list[str] = []
+    sun_ids: list[str] = []
+    for node in nodes:
+        if node.level is NodeLevel.SUN and cd.add_sun(node):
+            sun_texts.append(node.text)
+            sun_ids.append(node.node_id)
+
+    orphan_planets: list[PlanetEntry] = []
+    planet_texts: list[str] = []
+    # Per planet: its id when it joined a sun in ``cd``, else its orphan entry.
+    planet_refs: list[str | PlanetEntry] = []
+    for node in nodes:
+        if node.level is not NodeLevel.PLANET:
+            continue
+        attached = False
+        if sun_texts:
+            idx, score = most_similar(node.text, sun_texts, K_BELONGS)
+            if score >= MATCH_SCORE and cd.add_planet(node, sun_ids[idx]):
+                planet_refs.append(node.node_id)
+                attached = True
+        if not attached:
+            node.level = NodeLevel.PLANET
+            node.parent_id = None
+            entry = PlanetEntry(planet=node)
+            orphan_planets.append(entry)
+            planet_refs.append(entry)
+        planet_texts.append(node.text)
+
+    orphan_satellites: list[Node] = []
+    for node in nodes:
+        if node.level is not NodeLevel.SATELLITE:
+            continue
+        attached = False
+        if planet_texts:
+            idx, score = most_similar(node.text, planet_texts, K_BELONGS)
+            if score >= MATCH_SCORE:
+                ref = planet_refs[idx]
+                if isinstance(ref, str):
+                    attached = cd.add_satellite(node, ref)
+                else:  # the planet is itself an orphan: hang it on its entry
+                    node.level = NodeLevel.SATELLITE
+                    node.parent_id = ref.planet.node_id
+                    ref.satellites.append(node)
+                    attached = True
+        if not attached:
+            orphan_satellites.append(node)
+
+    return ProvisionalStructure(
+        suns=cd.suns,
+        orphan_planets=orphan_planets,
+        orphan_satellites=orphan_satellites,
+    )
+
+
+def merge_into_base(
+    merger: GraphMerger, base: CorrelationDiagram, structure: ProvisionalStructure
+) -> int:
+    """Merge one turn's structure into ``base``; return how many orphans were
+    promoted (a planet to a sun, or a satellite to a planet or sun)."""
+    if structure.suns:
+        incoming = CorrelationDiagram()
+        incoming.suns = structure.suns
+        # merge() also normalizes; the managers still normalize once at the end.
+        merger.merge(base, incoming)
+
+    promoted = 0
+    for entry in structure.orphan_planets:
+        suns_before = len(base.suns)
+        merger.merge_case2_planet(base, entry.planet, entry.satellites)
+        if len(base.suns) > suns_before:
+            promoted += 1
+
+    for sat in structure.orphan_satellites:
+        suns_before = len(base.suns)
+        planets_before = sum(len(se.planets) for se in base.suns)
+        merger.merge_case3_satellite(base, sat)
+        planets_after = sum(len(se.planets) for se in base.suns)
+        if len(base.suns) > suns_before or planets_after > planets_before:
+            promoted += 1
+    return promoted
 
 
 # -- manager -----------------------------------------------------------------
@@ -228,8 +308,8 @@ class HarnessManager:
             embed_fn=embed_fn,
             runner=self.runner,
         )
-        # The merger routes every similarity decision through the counting
-        # wrapper so the report can attribute vanish/attach events (B2 step 7).
+        # Merge decisions go through counting wrappers so the turn report can
+        # tell vanish events from attach events.
         self._merger = GraphMerger(
             similarity_fn=self._counting_similarity,
             attach_fn=self._counting_attach,
@@ -239,12 +319,11 @@ class HarnessManager:
         self._sun_mass = float(get("graph", "default_sun_mass", 1.0))
         self._planet_mass = float(get("graph", "default_planet_mass", 0.5))
         self._satellite_mass = float(get("graph", "default_satellite_mass", 0.1))
-        # Cumulative totals over the whole run (used by build_cd_offline): call
-        # counts by question kind PLUS the quality counters of QUALITY_KEYS.
+        # Run totals (read by build_cd_offline): call counts per question kind
+        # plus the QUALITY_KEYS counters.
         self.totals: dict[str, int] = {}
         self.total_cache_hits = 0
         self.normalize_calls = 0
-        # Run-level extraction quality counters.
         self.extract_fallback = 0
         self.extract_salvaged = 0
         self.dedup_dropped = 0
@@ -252,15 +331,15 @@ class HarnessManager:
     # -- totals views -------------------------------------------------------
 
     def call_totals(self) -> dict[str, int]:
-        """The question-kind part of ``totals`` (what `harness_calls` reports)."""
+        """Call counts per question kind (what ``harness_calls`` reports)."""
         return {k: v for k, v in self.totals.items() if k in ALL_KINDS}
 
     def quality_totals(self) -> dict[str, int]:
-        """The H9 quality part of ``totals``."""
+        """The answer-quality counters of ``totals``."""
         return {k: self.totals.get(k, 0) for k in QUALITY_KEYS}
 
     def load_totals(self, totals: dict[str, int]) -> None:
-        """Restore cumulative counters from a checkpoint (H12)."""
+        """Add counters restored from a checkpoint."""
         for key, value in totals.items():
             self.totals[key] = self.totals.get(key, 0) + int(value)
         self.extract_fallback += int(totals.get("extract_fallback", 0))
@@ -282,18 +361,17 @@ class HarnessManager:
     def _counting_similarity(
         self, query: str, candidates: list[str]
     ) -> tuple[int, float]:
-        """GraphMerger's similarity_fn: Q_SAME.  A "yes" here means the incoming
-        node VANISHED into an existing one (0045/0046/0048/0056/0059)."""
+        """GraphMerger's similarity_fn (Q_SAME).  A match means the incoming
+        node vanished into an existing one."""
         idx, score = self.similarity.most_similar(query, candidates)
         if score >= MATCH_SCORE:
             self._vanished += 1
         return idx, score
 
     def _counting_attach(self, query: str, candidates: list[str]) -> tuple[int, float]:
-        """GraphMerger's attach_fn: Q_BELONGS ("does S belong under topic T?") for
-        the attach decisions of 0057 / 0060 / 0061.  Asking Q_SAME there (the
-        pre-fix behaviour) made every orphan planet/satellite fail to attach and
-        get promoted, inflating the sun count."""
+        """GraphMerger's attach_fn (Q_BELONGS: "does this belong under that
+        topic?").  Asking Q_SAME here instead made every orphan fail to attach
+        and get promoted, inflating the sun count."""
         idx, score = self.similarity.most_similar(query, candidates, K_BELONGS)
         if score >= MATCH_SCORE:
             self._attached += 1
@@ -302,7 +380,8 @@ class HarnessManager:
     # -- step 1: chunking ---------------------------------------------------
 
     def _chunk(self, user_text: str, assistant_text: str, turn: int) -> list[Chunk]:
-        """0037-0038.  Language-agnostic candidates, then the Q_BOUNDARY merge."""
+        """Split both sides into candidates, then merge neighbours the judge
+        says stay on the same topic."""
         max_chars = self.config.chunk_max_chars
         chunks: list[Chunk] = []
         for source, text in (("user", user_text), ("assistant", assistant_text)):
@@ -316,12 +395,12 @@ class HarnessManager:
 
         merged: list[Chunk] = [chunks[0]]
         for prev, cur in zip(chunks, chunks[1:]):
-            # The question always uses the ORIGINAL adjacent pair (cache-friendly
-            # and closest to 0038's "boundary between two meaning units").
+            # The question compares the original neighbours, not the growing
+            # merged chunk, so its answer stays cacheable.
             if prev.source == cur.source and prev.turn == cur.turn:
                 joined = merged[-1].text + " " + cur.text
-                # H1: an unbounded merge chain rebuilds the whole turn as one
-                # chunk, which is exactly the failure this rewrite removes.
+                # Without this cap, a chain of merges rebuilds the whole turn
+                # as one chunk.
                 if len(joined) <= max_chars:
                     prompt = Q_BOUNDARY.format(a=prev.text, b=cur.text)
                     changes = self._ask_bool(K_BOUNDARY, prompt, prev.text, cur.text)
@@ -339,11 +418,12 @@ class HarnessManager:
 
     @staticmethod
     def _normalize_payload(parsed: Any) -> list[str] | None:
-        """Accept the three shapes seen in the wild and return a string list.
+        """Turn the reply shapes models actually produce into a list of strings.
 
-        ``["a", "b"]`` / ``{"statements": [...]}`` / ``[{"statement": "a"}]`` or
-        ``[{"text": "a"}]``.  Blank elements are DROPPED rather than failing the
-        whole reply (H1).
+        Accepts ``["a"]``, ``{"statements": [...]}`` (or facts / items /
+        results), ``[{"statement": "a"}]`` and ``[{"text": "a"}]``.  Blank
+        elements are dropped rather than failing the reply; None for any other
+        shape.
         """
         if isinstance(parsed, dict):
             for key in ("statements", "facts", "items", "results"):
@@ -369,6 +449,7 @@ class HarnessManager:
 
     @classmethod
     def _parse_statement_array(cls, raw: str) -> list[str] | None:
+        """Statements from the JSON array (or object) in ``raw``, or None."""
         for open_ch, close_ch in (("[", "]"), ("{", "}")):
             start = raw.find(open_ch)
             end = raw.rfind(close_ch) + 1
@@ -389,7 +470,11 @@ class HarnessManager:
         return None
 
     def extract_statements(self, text: str) -> list[str]:
-        """0030 / D-4: 0..N self-contained descriptive statements for one chunk."""
+        """Self-contained statements from one chunk (cached).
+
+        Unparsable replies are retried; if every reply fails, the chunk's first
+        80 characters become its only statement.
+        """
         cached = self.cache.get(K_EXTRACT, text, "")
         if cached is not None:
             return list(cached)
@@ -407,8 +492,8 @@ class HarnessManager:
             parsed = self._parse_statement_array(raw)
             if parsed is not None:
                 break
-            # H1: a reply truncated by the token budget still carries whole
-            # statements; retrying it verbatim would only truncate again.
+            # A reply cut off by the token limit still holds whole statements;
+            # retrying would only cut it off again.
             salvaged = salvage_string_array(raw)
             if salvaged:
                 self.extract_salvaged += 1
@@ -427,6 +512,7 @@ class HarnessManager:
     # -- step 3: faithfulness -----------------------------------------------
 
     def is_supported(self, statement: str, source_text: str) -> bool:
+        """Is ``statement`` supported by ``source_text`` alone?"""
         prompt = Q_SUPPORTED.format(text=source_text, statement=statement)
         return self._ask_bool(K_SUPPORTED, prompt, statement, source_text)
 
@@ -436,11 +522,11 @@ class HarnessManager:
     def level_from_axes(
         comprehensive: bool, independent: bool, detail: bool
     ) -> NodeLevel:
-        """0040 with the documented tie rule detail > independent > comprehensive.
+        """Map the three yes/no axes to a level: detail wins, then independent,
+        then comprehensive; all-no is a satellite.
 
-        Specific beats general: the oracle CD is 1 sun / 32 planets / 207
-        satellites, so an ambiguous statement belongs at the bottom.  All-no also
-        yields satellite.
+        Ties go to the most specific level because most nodes in the hand-built
+        reference diagram are satellites (207 of 240).
         """
         if detail:
             return NodeLevel.SATELLITE
@@ -458,7 +544,8 @@ class HarnessManager:
 
     @staticmethod
     def _context_key(context: str, topics_block: str) -> str:
-        """Stable cache key part for the context-carrying questions (H6)."""
+        """Short hash of the context and topics, used in the cache key of the
+        questions that show them."""
         digest = hashlib.sha1(
             (topics_block + "\x00" + context).encode("utf-8")
         ).hexdigest()
@@ -472,11 +559,11 @@ class HarnessManager:
         context: str = "",
         topics: Sequence[str] | None = None,
     ) -> NodeProposal:
-        """Three binary questions -> one NodeProposal (score_* kept for compat).
+        """Ask the three axis questions and return a NodeProposal (its score_*
+        fields are 1.0 / 0.0).
 
-        H6: the two topic-level axes also see the discussion the statement came
-        from and the topics already in the diagram, so "is this a heading?" is
-        answerable at all.  The context is part of their cache key.
+        The two topic-level questions also see the source chunk and the current
+        topics, since "is this a heading?" can't be answered without them.
         """
         topics_block = self._topics_block(topics)
         key_b = self._context_key(context, topics_block)
@@ -514,14 +601,13 @@ class HarnessManager:
             score_detail=1.0 if detail else 0.0,
         )
 
-    # -- step 5: de-duplication (H8) ----------------------------------------
+    # -- step 5: de-duplication ---------------------------------------------
 
     def deduplicate(self, proposals: list[NodeProposal]) -> tuple[list[NodeProposal], int]:
-        """Drop within-turn duplicates: exact (normalized text) then Q_SAME.
+        """Drop this turn's duplicates: exact matches of the normalized text,
+        then Q_SAME between proposals of the same level, in arrival order.
 
-        The judge question is asked only between proposals of the SAME level, in
-        arrival order, through SimilarityJudge (so the shortlist setting is
-        respected).  Returns (kept, dropped_count).
+        Returns (kept, dropped_count).
         """
         kept: list[NodeProposal] = []
         seen: set[str] = set()
@@ -554,95 +640,18 @@ class HarnessManager:
     # -- step 6: provisional structure --------------------------------------
 
     def build_provisional(self, proposals: list[NodeProposal]) -> ProvisionalStructure:
-        """0041: link this turn's nodes to each other only, via Q_BELONGS."""
-        cd = CorrelationDiagram()
-        sun_texts: list[str] = []
-        sun_ids: list[str] = []
-        for p in proposals:
-            if p.node.level is not NodeLevel.SUN:
-                continue
-            if cd.add_sun(p.node):
-                sun_texts.append(p.node.text)
-                sun_ids.append(p.node.node_id)
-
-        orphan_planets: list[PlanetEntry] = []
-        planet_texts: list[str] = []
-        # Either the id of a planet already inside cd, or an orphan PlanetEntry.
-        planet_refs: list[str | PlanetEntry] = []
-        for p in proposals:
-            if p.node.level is not NodeLevel.PLANET:
-                continue
-            attached = False
-            if sun_texts:
-                idx, score = self.similarity.most_similar(
-                    p.node.text, sun_texts, K_BELONGS
-                )
-                if score >= MATCH_SCORE and cd.add_planet(p.node, sun_ids[idx]):
-                    planet_refs.append(p.node.node_id)
-                    attached = True
-            if not attached:
-                p.node.level = NodeLevel.PLANET
-                p.node.parent_id = None
-                entry = PlanetEntry(planet=p.node)
-                orphan_planets.append(entry)
-                planet_refs.append(entry)
-            planet_texts.append(p.node.text)
-
-        orphan_satellites: list[Node] = []
-        for p in proposals:
-            if p.node.level is not NodeLevel.SATELLITE:
-                continue
-            attached = False
-            if planet_texts:
-                idx, score = self.similarity.most_similar(
-                    p.node.text, planet_texts, K_BELONGS
-                )
-                if score >= MATCH_SCORE:
-                    ref = planet_refs[idx]
-                    if isinstance(ref, str):
-                        attached = cd.add_satellite(p.node, ref)
-                    else:
-                        p.node.level = NodeLevel.SATELLITE
-                        p.node.parent_id = ref.planet.node_id
-                        ref.satellites.append(p.node)
-                        attached = True
-            if not attached:
-                orphan_satellites.append(p.node)
-
-        return ProvisionalStructure(
-            suns=cd.suns,
-            orphan_planets=orphan_planets,
-            orphan_satellites=orphan_satellites,
+        """Link this turn's nodes to each other only, via Q_BELONGS."""
+        return link_within_turn(
+            [p.node for p in proposals], self.similarity.most_similar
         )
 
     # -- step 7: merge ------------------------------------------------------
 
     def _merge(self, base: CorrelationDiagram, structure: ProvisionalStructure) -> int:
-        """0042-0061.  Returns the number of orphan promotions observed."""
-        promoted = 0
-        if structure.suns:
-            incoming = CorrelationDiagram()
-            incoming.suns = structure.suns
-            # NOTE: GraphMerger.merge() normalizes internally; the harness's own
-            # single normalize() still runs once at the end of update().
-            self._merger.merge(base, incoming)
+        """Merge into ``base``; returns the number of orphan promotions."""
+        return merge_into_base(self._merger, base, structure)
 
-        for entry in structure.orphan_planets:
-            before_suns = len(base.suns)
-            self._merger.merge_case2_planet(base, entry.planet, entry.satellites)
-            if len(base.suns) > before_suns:
-                promoted += 1  # 0058: planet promoted to sun
-
-        for sat in structure.orphan_satellites:
-            before_suns = len(base.suns)
-            before_planets = sum(len(se.planets) for se in base.suns)
-            self._merger.merge_case3_satellite(base, sat)
-            after_planets = sum(len(se.planets) for se in base.suns)
-            if len(base.suns) > before_suns or after_planets > before_planets:
-                promoted += 1  # 0061: satellite promoted to planet or sun
-        return promoted
-
-    # -- per-statement stage (optionally concurrent, H7) --------------------
+    # -- per-statement questions (optionally on threads) --------------------
 
     def _process_statements(
         self,
@@ -650,7 +659,10 @@ class HarnessManager:
         turn: int,
         topics: Sequence[str],
     ) -> tuple[list[NodeProposal], int]:
-        """Q_SUPPORTED + the three axes for every statement of the turn."""
+        """Support check plus the three axis questions for every statement.
+
+        Returns (proposals, number dropped as unsupported).
+        """
 
         def work(item: tuple[Chunk, str]) -> NodeProposal | None:
             chunk, statement = item
@@ -670,8 +682,7 @@ class HarnessManager:
             results = [work(item) for item in items]
 
         proposals = [r for r in results if r is not None]
-        dropped = len(items) - len(proposals)
-        return proposals, dropped
+        return proposals, len(items) - len(proposals)
 
     # -- public entry point -------------------------------------------------
 
@@ -682,11 +693,11 @@ class HarnessManager:
         assistant_text: str,
         turn: int,
     ) -> HarnessTurnReport:
-        """One conversation round-trip (0036).  Mutates base in place.
+        """Process one user/assistant round trip, mutating ``base``.
 
-        H4: the normalize and the accounting run in a `finally`, so a judge that
-        raises mid-turn still leaves the diagram consistent and still costs what
-        it cost.  The exception propagates to the caller (the driver counts it).
+        Normalize and accounting run in ``finally``, so a judge error mid-turn
+        still leaves a consistent diagram and correct counts; the error then
+        propagates to the caller.
         """
         calls_before = dict(self.runner.calls)
         unparsed_before = self.runner.total_unparsed()
@@ -721,7 +732,7 @@ class HarnessManager:
             structure = self.build_provisional(proposals)
             report.promoted = self._merge(base, structure)
         finally:
-            # 0030 + 0062: exactly one harness-level normalize per update.
+            # Exactly one normalize per update.
             base.normalize()
             self.normalize_calls += 1
 

@@ -1,10 +1,13 @@
-"""Local summarizer client (Qwen3.5-4B via vLLM) — DESIGN.md §4 / §6 / §8, DECISIONS D2.
+"""Client for the local summarizer that writes node texts in the manager phase.
 
-OpenAI-compatible ``POST {base_url}/chat/completions``. Node text rule (D2):
-<=120 characters; one retry with the explicit length instruction, then
-``SummarizerNodeTextUnusable`` (a ``SummarizerStop``), which ``JevNodeFn`` maps to
-the spec manager's node_fallback (H28). Transport / HTTP / body failures raise
-the plain ``SummarizerStop`` and stop the run.
+The summarizer (Qwen3.5-4B, served on the pod behind an OpenAI-compatible
+``POST {base_url}/chat/completions``) rewrites each kept chunk as a short node
+text for the correlation diagram.  A node text must be one line of at most 120
+characters.  A reply that breaks that rule gets one retry with an explicit
+length reminder; if the retry fails too, ``SummarizerNodeTextUnusable`` is
+raised and ``JevNodeFn`` lets the spec manager fall back to the truncated chunk
+text.  Transport, HTTP and body failures raise the plain ``SummarizerStop`` and
+stop the run.  Every call is appended to a JSONL accounting file.
 """
 
 from __future__ import annotations
@@ -21,7 +24,7 @@ from typing import Any, TypeGuard
 
 from benchmark.mcbuild_bench.errors import SummarizerNodeTextUnusable, SummarizerStop
 
-# DESIGN.md §8, verbatim.
+# The prompt text is fixed by the experiment design; do not edit.
 INSTRUCTION = (
     "Rewrite the following excerpt as one self-contained statement of at most 120 "
     "characters, in the excerpt's language, keeping concrete values. Output the "
@@ -31,11 +34,11 @@ RETRY_SUFFIX = "\n\nYour previous answer was too long. At most 120 characters."
 
 MAX_NODE_CHARS = 120
 MAX_TOKENS = 96
-# Item I (2026-09-18): a node text must be ONE line, carry no CD marker syntax
-# (it would be re-serialized inside the <CONTEXT> block and confuse the marker
-# scan) and come from a completion that finished on its own (finish_reason
-# "stop", not "length" / missing).  Any violation is treated like over-length:
-# one retry, then SummarizerStop.
+# A node text must also be ONE line, carry no CD marker syntax (it is
+# serialized inside the <CONTEXT> block, where a marker would confuse the
+# reader's marker scan) and come from a completion that finished on its own
+# (finish_reason "stop", not "length" or missing).  Any violation is treated
+# like over-length: one retry, then SummarizerNodeTextUnusable.
 MARKER_SYNTAX = ("[SN]", "[PN", "[RN]", "<CONTEXT>", "</CONTEXT>")
 FINISH_STOP = "stop"
 
@@ -81,7 +84,8 @@ def _is_int(value: object) -> TypeGuard[int]:
 
 
 class SummarizerClient:
-    """One chat-completions call per chunk with JSONL accounting (D5)."""
+    """One chat-completions call per chunk (two with the retry), each recorded
+    as one line of the accounting JSONL."""
 
     def __init__(
         self,
@@ -103,7 +107,7 @@ class SummarizerClient:
         self.accounting_path = Path(accounting_path)
         self.timeout_s = float(timeout_s)
         self._transport: Transport = urllib_transport if transport is None else transport
-        # Item 14: one lock per client instance guards the JSONL append.
+        # Guards the JSONL append when several threads share the client.
         self._accounting_lock = threading.Lock()
 
     @property
@@ -112,7 +116,9 @@ class SummarizerClient:
 
     # ------------------------------------------------------------------ public
     def summarize(self, excerpt: str) -> str:
-        """Return a non-empty node text of <= 120 characters, or raise ``SummarizerStop``."""
+        """Return a usable node text (see ``node_text_problem``), or raise
+        ``SummarizerNodeTextUnusable`` after the one retry, or ``SummarizerStop``
+        when the server cannot be used at all."""
         if not isinstance(excerpt, str) or not excerpt.strip():
             raise ValueError("excerpt must be a non-blank string")
         replies: list[str] = []
@@ -158,7 +164,7 @@ class SummarizerClient:
             raise SummarizerStop(
                 f"summarizer HTTP {status}: {raw[:500].decode('utf-8', errors='replace')}"
             )
-        # Item 8: usage first, so a content failure still books its tokens.
+        # Usage is parsed first, so a reply with bad content still books its tokens.
         try:
             envelope = _parse_body(raw)
             prompt_tokens, completion_tokens = _parse_usage(envelope)
@@ -207,7 +213,7 @@ def _parse_body(raw: bytes) -> dict[str, Any]:
 
 
 def _parse_usage(envelope: dict[str, Any]) -> tuple[int, int]:
-    """``usage.prompt_tokens`` / ``usage.completion_tokens`` as ints (D5)."""
+    """``usage.prompt_tokens`` / ``usage.completion_tokens`` as ints."""
     usage = envelope.get("usage")
     if not isinstance(usage, dict):
         raise SummarizerStop("summarizer response lacks 'usage' object")

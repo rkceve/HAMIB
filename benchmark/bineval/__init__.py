@@ -1,5 +1,9 @@
-"""bineval — binary-decomposition evaluation instrument (WO-0).
+"""bineval: pass/fail evaluation of a reader model over a long chat.
 
-See PROTOCOL.md (draft) and RESEARCH_PROGRAM.md sec. 2 for the frozen rules.
-This package is import-safe: no I/O or model calls happen at import time.
+``arms`` builds the context each arm shows the reader, ``run_reader`` answers
+the questions with that context (optionally with mass injection), and
+``score_binary`` scores the answers.  ``build_cd_offline`` builds the
+correlation diagram (CD) that the ``cd_*`` arms serialize.
+
+Importing the package does no I/O and loads no model.
 """

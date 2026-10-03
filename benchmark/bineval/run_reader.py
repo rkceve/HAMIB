@@ -1,22 +1,19 @@
-"""run_reader.py — HF reader with mass injection (S2.2).
+"""Answer the questions with a Hugging Face reader, optionally with mass injection.
 
-ONE question per generation, greedy, ``max_new_tokens=48``. The prompt is
-IDENTICAL across arms (only the context block changes), so an arm difference can
-never be a prompt difference.
+Per question: ``build_prompt`` puts the arm's context and the question into
+``READER_PROMPT`` (only the context differs between arms) ->
+``build_reader_mass_vector`` finds the planet markers (``[PN ...]``) in the
+prompt tokens and turns them into a per-token mass vector -> the model
+generates greedily while the patched ``F.scaled_dot_product_attention`` adds
+``w * mass`` to the attention scores -> ``first_line_answer`` extracts the
+answer.  ``w = 0`` runs the same code path with a zero bias, so the text-only
+and injected arms differ in exactly one number.  ``write_answers`` saves
+``{qid: answer}`` plus a ``<out>.meta.json`` sidecar for auditing the run.
 
-The mass patch always runs on the same code path: ``w = 0`` makes the injected
-bias numerically inert (``w * mass == 0``) but the sdpa patch, the marker scan
-and the mass vector are all still built, so the text-only arm and the injected
-arm differ in exactly one scalar.
-
-Answers are written as ``{qid: text}`` (the schema ``score_binary.py`` maps by
-qid) plus a sidecar ``<out>.meta.json`` carrying the provenance the run needs to
-be auditable: model id, transformers/torch versions, layer_types, per-question
-positions_found, and ``mass_injection_stats()``.
-
-CPU-testable pieces (no model, no torch models imported at module import time):
-``build_prompt``, ``build_reader_mass_vector``, ``check_model_supported``.
-Model loading happens only inside ``load_reader`` / ``run_reader``.
+``check_model_supported`` and ``check_context_fits`` refuse an unusable model
+or an impossible cell from the config alone, before any weights are
+downloaded.  Everything except ``load_reader`` / ``run_reader`` runs on a CPU
+machine; importing this module loads no model.
 
 CLI (GPU host only)::
 
@@ -32,30 +29,10 @@ Scoring is local and separate::
         --questions benchmark/bineval/questions_restaurant.json \
         --out <report.json> --subset generated --max-words 32
 
-``--subset generated`` is NOT optional (F4).  The reader answers the questions
-``load_questions`` selects, and ITS default subset is ``generated``: 173 of the
-189 non-excluded questions.  Scoring those answers with the scorer's own
-default (``--subset all``) puts 189 in the denominator and reports a pass rate
-~8 points low, with the 16 legacy questions counted as unanswered failures.
-
-MODEL SUPPORT (A3)
-------------------
-The mass patch only intervenes on ``F.scaled_dot_product_attention``.  A HYBRID
-model (Qwen/Qwen3.8-27B: ``text_config.layer_types`` is 3 x
-``linear_attention`` + 1 x ``full_attention``, repeating -- 48 linear and 16
-full of 64 layers) can only be injected on its full-attention layers.
-``check_model_supported`` therefore refuses such a config unless
-``allow_linear_layers`` is given, and always reports ``n_sdpa_layers``: the
-number of layers the bias actually reaches.  Sliding attention is refused
-unconditionally -- the 1D mass vector is indexed by ABSOLUTE position and a
-sliding layer truncates the KV cache.
-
-Since the 2026-09-07 owner decision Qwen/Qwen3.8-27B is the DECIDED reader, so
-``--allow-linear-layers`` DEFAULTS to on for that model id and to off for every
-other one (``default_allow_linear_layers``).  The 16/64 arithmetic is not
-hidden by that default: ``n_sdpa_layers`` = 16 is in every meta sidecar and
-every result must be read as a 16-of-64-layer intervention.
-``--no-allow-linear-layers`` forces the dense-only rule back on.
+``--subset generated`` is required there.  The reader answers only the
+generated subset (173 of the 189 non-excluded questions); the scorer's own
+default, ``--subset all``, would count the other 16 as failures and report a
+pass rate about 8 points too low.
 """
 
 from __future__ import annotations
@@ -64,7 +41,9 @@ import argparse
 import json
 import re
 import math
+import struct
 import sys
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Sequence
@@ -75,6 +54,7 @@ THINK_OPEN = "<think>"
 THINK_CLOSE = "</think>"
 THINK_BLOCK_RE = re.compile(r"^\s*<think>.*?</think>", re.DOTALL)
 
+# Identical for every arm.  Do not edit: published results used this exact text.
 READER_PROMPT = (
     "{context_block}\n\n"
     "Answer the question using only the information above. Reply with the "
@@ -88,14 +68,13 @@ INJECT_MODES = ("planet", "planet+satellites", "none")
 
 
 def chat_wrap(tokenizer: Any, prompt: str) -> str:
-    """``prompt`` as a single user turn of the model's chat template, thinking OFF.
+    """``prompt`` as one user turn of the model's chat template, thinking off.
 
-    mcbuild-bench H6 alternative, taken because smoke criterion F4 failed on the
-    raw completion prompt: Qwen3.8-27B opens a ``<think>`` block and spends the
-    48-token budget inside it, so the answer never appears.  With
-    ``enable_thinking=False`` the template itself closes the thinking block, and
-    generation starts on the answer.  Falls back to the raw prompt when the
-    tokenizer has no chat template (the string is then arm-invariant either way).
+    Given the raw prompt, Qwen3.8-27B opens a ``<think>`` block and spends the
+    whole 48-token budget inside it, so no answer appears.  With
+    ``enable_thinking=False`` the template closes the thinking block itself and
+    generation starts on the answer.  A tokenizer without a chat template gets
+    the raw prompt back (which is still the same for every arm).
     """
     apply = getattr(tokenizer, "apply_chat_template", None)
     if apply is None or not getattr(tokenizer, "chat_template", None):
@@ -108,11 +87,11 @@ def chat_wrap(tokenizer: Any, prompt: str) -> str:
 
 
 def build_prompt(context_block: str, question: str, *, tokenizer: Any = None) -> str:
-    """The reader prompt. Arm-invariant by construction.
+    """The reader prompt; only ``context_block`` differs between arms.
 
-    ``tokenizer`` (mcbuild-bench, H6 alternative) wraps the prompt in that
-    tokenizer's chat template with thinking disabled; the token budget W must be
-    measured on the SAME string, so every caller that counts tokens passes it too.
+    With ``tokenizer`` the prompt is wrapped in its chat template
+    (``chat_wrap``).  Token budgets must be measured on this same final string,
+    so every caller that counts tokens passes the tokenizer too.
     """
     prompt = READER_PROMPT.format(context_block=context_block, question=question)
     return prompt if tokenizer is None else chat_wrap(tokenizer, prompt)
@@ -124,6 +103,8 @@ def build_prompt(context_block: str, question: str, *, tokenizer: Any = None) ->
 
 @dataclass
 class MassVectorInfo:
+    """Marker-scan counts for one prompt, recorded per question in the meta."""
+
     positions_found: int = 0
     spans: int = 0
     planet_spans: int = 0
@@ -142,20 +123,21 @@ def build_reader_mass_vector(
     prompt_text: str | None = None,
     device: Any = None,
 ) -> tuple[Any, MassVectorInfo]:
-    """Marker scan -> (mass vector | None, info).
+    """Find the CD markers in the prompt and build the mass vector.
 
-    ``inject`` is one of INJECT_MODES. ``cap`` is the optional per-element mass
-    cap (None = no cap, which is the spec default: "no fixed cap", the only knob
-    is w).
+    Returns ``(vector or None, info)``.  ``inject`` is one of INJECT_MODES:
+    "planet" puts each planet's mass on the tokens of its text,
+    "planet+satellites" also gives each satellite its planet's mass, and "none"
+    skips the scan (baselines).  ``cap`` optionally caps each element (None =
+    no cap: the specification fixes no cap, and ``w`` is the only knob).
 
-    Raises RuntimeError when ``w > 0`` and the prompt visibly contains ``[PN``
-    markers but the scan found no injectable position: that combination would
-    silently degrade the injected arm into the text-only baseline.
+    Raises RuntimeError when ``w > 0`` and the prompt contains ``[PN`` but no
+    injectable position was found: the injected arm would silently become the
+    text-only baseline.
     """
     if inject not in INJECT_MODES:
         raise ValueError("inject must be one of %r, got %r" % (INJECT_MODES, inject))
     if inject == "none":
-        # DECISIONS H11: baselines run without any marker scan.
         return None, MassVectorInfo(inject="none", cap=cap)
 
     ids = list(prompt_ids)
@@ -176,10 +158,9 @@ def build_reader_mass_vector(
     info.positions_found = len(positions)
 
     if w > 0 and not positions:
-        text = prompt_text
-        if text is None:
-            text = tokenizer.decode(ids, skip_special_tokens=False)
-        if "[PN" in text:
+        if prompt_text is None:
+            prompt_text = tokenizer.decode(ids, skip_special_tokens=False)
+        if "[PN" in prompt_text:
             raise RuntimeError(
                 "mass injection requested (w=%g, inject=%s) but the marker scan "
                 "found 0 positions while the prompt contains '[PN' "
@@ -190,7 +171,7 @@ def build_reader_mass_vector(
     if not positions:
         return None, info
 
-    from server.mass_vector import positions_to_mass_vector
+    from server.mass_vector import positions_to_mass_vector  # imports torch
 
     vec = positions_to_mass_vector(
         positions,
@@ -208,18 +189,14 @@ def build_reader_mass_vector(
 
 FULL_ATTENTION = "full_attention"
 LINEAR_ATTENTION = "linear_attention"
-# A3: a hybrid model runs the injection on its full-attention layers only, so
-# the choice has to be made explicitly rather than crashed into.  It stays the
-# default for an UNKNOWN model id; for the hybrid the owner has made the choice
-# once and for all (see ``default_allow_linear_layers``).
+# Running the injection on only some layers must be an explicit choice, so a
+# model with linear-attention layers is refused by default.  The chosen hybrid
+# reader is the exception (see default_allow_linear_layers).
 DEFAULT_ALLOW_LINEAR_LAYERS = False
 
-# A3 (2026-09-07 owner decision): judge AND reader are Qwen/Qwen3.8-27B.  These
-# three numbers are the model's config.json as verified against transformers
-# 5.8: text_config.layer_types repeats 3 x linear_attention + 1 x
-# full_attention over 64 layers (configuration_qwen3_5.py:106-111 builds
-# exactly that from full_attention_interval=4), so the sdpa mass patch reaches
-# 16 layers and skips 48.
+# The chosen reader (also used as the judge).  Its text_config.layer_types
+# repeats 3 x linear_attention + 1 x full_attention over 64 layers (checked
+# against transformers 5.8), so the sdpa patch reaches 16 layers and skips 48.
 HYBRID_MODEL_ID = "Qwen/Qwen3.8-27B"
 HYBRID_N_SDPA_LAYERS = 16
 HYBRID_N_LINEAR_LAYERS = 48
@@ -227,10 +204,10 @@ HYBRID_NUM_HIDDEN_LAYERS = 64
 
 
 def is_hybrid_model_id(model_id: str | None) -> bool:
-    """Is this the hybrid reader the 16/64 injection was decided for?
+    """Is this the hybrid reader?
 
     Compared case-insensitively and without a revision suffix, so
-    ``qwen/qwen3.8-27b`` and ``Qwen/Qwen3.8-27B@main`` both resolve.
+    ``qwen/qwen3.8-27b`` and ``Qwen/Qwen3.8-27B@main`` both match.
     """
     if not model_id:
         return False
@@ -241,37 +218,34 @@ def is_hybrid_model_id(model_id: str | None) -> bool:
 def default_allow_linear_layers(model_id: str | None) -> bool:
     """The ``--allow-linear-layers`` default for ``model_id``.
 
-    True for the hybrid: it is now the DEFAULT reader, and refusing the default
-    model would make the tool unusable without a flag on every invocation.  The
-    16/64 arithmetic is not hidden by this -- ``n_sdpa_layers`` is still in
-    every meta sidecar and ``n_sdpa_layers_expected`` in run_info.json.  False
-    for everything else, so an unvetted hybrid still fails loudly.
+    True only for the hybrid reader: it is the default reader, and refusing it
+    would force a flag onto every run.  The 16/64 split stays visible
+    (``n_sdpa_layers`` in every meta sidecar, ``n_sdpa_layers_expected`` in
+    run_info.json), so every result must be read as a 16-of-64-layer
+    intervention.  Any other hybrid model still fails loudly.
     """
     return is_hybrid_model_id(model_id)
 
 
 def expected_n_sdpa_layers(model_id: str | None) -> int | None:
-    """How many layers the patch MUST reach, from the model id alone.
+    """How many layers the patch must reach, from the model id alone.
 
-    Known only for the hybrid (16).  ``None`` means "no expectation to assert",
-    which is what a dense or unknown model gets.
+    16 for the hybrid reader; None ("nothing to assert") for any other model.
     """
     return HYBRID_N_SDPA_LAYERS if is_hybrid_model_id(model_id) else None
 
 
 def linear_attention_kernel_report() -> dict:
-    """Are the qwen3_5 linear-attention fast-path kernels importable HERE?
+    """Can this host use the fast kernels for Qwen's linear-attention layers?
 
-    transformers 5.8 gates them at ``modeling_qwen3_5.py:49-64`` on
-    ``is_flash_linear_attention_available()`` (fla >= 0.2.2 AND torch CUDA,
-    ``utils/import_utils.py:810-812``) and ``is_causal_conv1d_available()``
-    (causal_conv1d AND torch CUDA, ``import_utils.py:815-817``).  When either
-    is missing ``is_fast_path_available`` (``modeling_qwen3_5.py:205-207``) is
-    False and the module falls back to its pure-torch implementations
-    (``modeling_qwen3_5.py:407-418``) with a warning -- correct, slower.
+    transformers uses them only when flash-linear-attention (fla >= 0.2.2) and
+    causal-conv1d are importable and CUDA is available; otherwise it falls back,
+    with a warning, to a slower pure-torch implementation that gives the same
+    results.
 
-    Reported, never asserted: the fallback changes speed and (marginally)
-    numerics of the 48 LINEAR layers, which the mass patch never touches.
+    Reported, never asserted: the fallback only changes the speed (and,
+    marginally, the numerics) of the 48 linear layers, which the mass patch
+    never touches.
     """
     report: dict[str, Any] = {
         "fla_importable": False,
@@ -320,65 +294,60 @@ def _cfg_get(cfg: Any, key: str, default: Any = None) -> Any:
 
 
 def resolve_text_config(model_config: Any) -> Any:
-    """The sub-config carrying the LANGUAGE model's attention settings.
+    """The sub-config holding the language model's attention settings.
 
-    F1: a vision-language wrapper (transformers 5.8 ``Qwen3VLConfig``) has NO
-    ``num_hidden_layers`` / ``max_position_embeddings`` at the top level -- they
-    live under ``text_config``.  transformers exposes ``get_text_config()`` for
-    exactly this; the raw ``text_config`` attribute is the fallback for plain
-    dicts and hand-built fakes.  A text-only config resolves to itself.
+    A vision-language wrapper (e.g. transformers' ``Qwen3VLConfig``) has no
+    ``num_hidden_layers`` / ``max_position_embeddings`` at its top level; they
+    live in ``text_config``.  Tries ``get_text_config()`` first, then a
+    ``text_config`` attribute or key (plain dicts and test fakes).  A text-only
+    config resolves to itself.
     """
+    def has_layers(cfg: Any) -> bool:
+        return cfg is not None and _cfg_get(cfg, "num_hidden_layers") is not None
+
     getter = getattr(model_config, "get_text_config", None)
     if callable(getter):
         try:
             sub_cfg = getter()
         except Exception:  # a fake / partial config must not break the check
             sub_cfg = None
-        if sub_cfg is not None and _cfg_get(sub_cfg, "num_hidden_layers", None) is not None:
+        if has_layers(sub_cfg):
             return sub_cfg
-    sub_cfg = _cfg_get(model_config, "text_config", None)
-    if sub_cfg is not None and _cfg_get(sub_cfg, "num_hidden_layers", None) is not None:
-        return sub_cfg
-    return model_config
+    sub_cfg = _cfg_get(model_config, "text_config")
+    return sub_cfg if has_layers(sub_cfg) else model_config
 
 
 def layer_type_summary(layer_types: Any) -> dict[str, int]:
     """``["full_attention", "linear_attention", ...]`` -> ``{type: count}``."""
-    out: dict[str, int] = {}
-    for t in layer_types or ():
-        out[str(t)] = out.get(str(t), 0) + 1
-    return out
+    return dict(Counter(str(t) for t in layer_types or ()))
 
 
 def check_model_supported(
     model_config: Any, *, allow_linear_layers: bool = DEFAULT_ALLOW_LINEAR_LAYERS
 ) -> dict:
-    """Which attention layers the mass patch can actually reach, else raise.
+    """Check which attention layers the mass patch can reach; raise if unusable.
 
-    The 1D mass vector is indexed by ABSOLUTE position; a sliding-window layer
-    truncates the KV cache, so mass_vector[j] would land on an unrelated token
-    (see build_mass_bias / F2).  Sliding attention is therefore ALWAYS refused.
+    Sliding-window attention is always refused: the mass vector is indexed by
+    absolute position, and a sliding-window layer truncates the KV cache, so
+    ``mass_vector[j]`` would land on an unrelated token.
 
-    A3: ``linear_attention`` layers (Qwen3.8-27B is 48 linear + 16 full of 64)
-    never call ``F.scaled_dot_product_attention``, so the bias cannot reach
-    them.  That is a measured trade-off, not a bug, so it is accepted only with
-    ``allow_linear_layers=True`` and the reachable layer count is reported as
-    ``n_sdpa_layers``.  Every caller that compares ``bias_applied_calls``
-    against a layer count MUST use ``n_sdpa_layers``, never
+    ``linear_attention`` layers never call ``F.scaled_dot_product_attention``,
+    so the bias cannot reach them.  A model that has them is accepted only with
+    ``allow_linear_layers=True``, and the number of layers the bias does reach
+    is reported as ``n_sdpa_layers``.  Anything that compares
+    ``bias_applied_calls`` with a layer count must use ``n_sdpa_layers``, never
     ``num_hidden_layers``.
 
     Returns the inspected values for the meta sidecar.
     """
-    # F1: vision-language wrappers keep the language-model attention settings
-    # under ``text_config``; the wrapper's top level has none of the keys and
+    # A vision-language wrapper has none of these keys at its top level and
     # would pass vacuously.
     model_config = resolve_text_config(model_config)
-    layer_types = _cfg_get(model_config, "layer_types", None)
-    use_sliding = _cfg_get(model_config, "use_sliding_window", None)
-    sliding_window = _cfg_get(model_config, "sliding_window", None)
-    sliding_pattern = _cfg_get(model_config, "sliding_window_pattern", None)
-    model_type = _cfg_get(model_config, "model_type", None)
-    n_hidden = _cfg_get(model_config, "num_hidden_layers", None)
+    layer_types = _cfg_get(model_config, "layer_types")
+    use_sliding = _cfg_get(model_config, "use_sliding_window")
+    sliding_window = _cfg_get(model_config, "sliding_window")
+    sliding_pattern = _cfg_get(model_config, "sliding_window_pattern")
+    n_hidden = _cfg_get(model_config, "num_hidden_layers")
     summary = layer_type_summary(layer_types)
     if layer_types:
         n_sdpa: int | None = summary.get(FULL_ATTENTION, 0)
@@ -387,20 +356,16 @@ def check_model_supported(
         n_sdpa = int(n_hidden) if n_hidden is not None else None
         n_linear = 0
     info = {
-        "model_type": model_type,
+        "model_type": _cfg_get(model_config, "model_type"),
         "layer_types": list(layer_types) if layer_types else None,
         "layer_types_summary": summary or None,
         "use_sliding_window": use_sliding,
         "sliding_window": sliding_window,
         "sliding_window_pattern": sliding_pattern,
-        # B4: recorded in every cell's meta so a later reader can tell whether a
-        # context was close to the model's position limit.
-        "max_position_embeddings": _cfg_get(
-            model_config, "max_position_embeddings", None
-        ),
+        # Lets a later reader see whether a context came close to the limit.
+        "max_position_embeddings": _cfg_get(model_config, "max_position_embeddings"),
         "num_hidden_layers": n_hidden,
-        # A3: the number of layers the sdpa patch can actually bias.
-        "n_sdpa_layers": n_sdpa,
+        "n_sdpa_layers": n_sdpa,  # the layers the patch can actually bias
         "n_linear_layers": n_linear,
         "allow_linear_layers": bool(allow_linear_layers),
     }
@@ -413,14 +378,14 @@ def check_model_supported(
         if offenders:
             hint = ""
             if offenders == [LINEAR_ATTENTION]:
+                n_layers = len(list(layer_types))
                 hint = (
                     " This is a HYBRID-attention model: %d of %d layers are "
                     "linear and the sdpa mass patch cannot reach them. Pass "
                     "allow_linear_layers=True (--allow-linear-layers) to run the "
                     "injection on the %s full-attention layers only, and read "
                     "every result as an %s/%d-layer intervention."
-                    % (n_linear, len(list(layer_types)), n_sdpa, n_sdpa,
-                       len(list(layer_types)))
+                    % (n_linear, n_layers, n_sdpa, n_sdpa, n_layers)
                 )
             raise ValueError(
                 "reader model uses attention layers the mass patch cannot bias: "
@@ -458,44 +423,43 @@ def check_model_supported(
 BYTES_PER_ELEMENT = 2
 # Leave 10% of the card for activations, fragmentation and the CUDA context.
 GPU_MEM_HEADROOM = 0.9
-# A4: arm budgets are tiktoken cl100k counts; the reader tokenizes with the
-# MODEL's tokenizer (Qwen3.8: 248k vocabulary). Budget for the difference.
+# Arm budgets are tiktoken cl100k counts, but the reader tokenizes with the
+# model's own tokenizer (Qwen3.8: 248k vocabulary).  Budget for the difference.
 DEFAULT_TOKEN_MARGIN = 0.15
 
 
 def full_attention_layers(model_config: Any) -> int | None:
-    """Number of layers that hold a GROWING KV cache (A3d).
+    """Number of layers whose KV cache grows with the context.
 
-    ``layer_types`` present -> the ``full_attention`` entries only: a
-    ``linear_attention`` layer keeps a constant-size recurrent state, so
-    counting it would inflate a hybrid model's KV estimate by ~4x.  Absent ->
-    ``num_hidden_layers`` (a dense model is all full attention).
+    With ``layer_types``: the ``full_attention`` entries only.  A
+    ``linear_attention`` layer keeps a fixed-size state, so counting it would
+    overstate a hybrid model's KV cache about 4x.  Without: ``num_hidden_layers``
+    (a dense model is all full attention).
     """
     cfg = resolve_text_config(model_config)
-    layer_types = _cfg_get(cfg, "layer_types", None)
+    layer_types = _cfg_get(cfg, "layer_types")
     if layer_types:
         return sum(1 for t in layer_types if str(t) == FULL_ATTENTION)
-    layers = _cfg_get(cfg, "num_hidden_layers", None)
+    layers = _cfg_get(cfg, "num_hidden_layers")
     return int(layers) if layers else None
 
 
 def kv_cache_bytes(model_config: Any, tokens: int) -> int | None:
     """bf16 KV-cache size for ``tokens`` positions, or None when unknowable.
 
-    2 (K and V) x FULL-attention layers x kv_heads x head_dim x 2 bytes x
-    tokens.  ``head_dim`` is taken from the config when present and otherwise
-    derived as hidden_size / num_attention_heads (the usual convention; Qwen3
-    states it explicitly).
+    2 (K and V) x full-attention layers x kv_heads x head_dim x 2 bytes x
+    tokens.  ``head_dim`` comes from the config when present, else
+    hidden_size / num_attention_heads.
     """
     cfg = resolve_text_config(model_config)
     layers = full_attention_layers(cfg)
-    kv_heads = _cfg_get(cfg, "num_key_value_heads", None)
+    kv_heads = _cfg_get(cfg, "num_key_value_heads")
     if kv_heads is None:
-        kv_heads = _cfg_get(cfg, "num_attention_heads", None)
-    head_dim = _cfg_get(cfg, "head_dim", None)
+        kv_heads = _cfg_get(cfg, "num_attention_heads")
+    head_dim = _cfg_get(cfg, "head_dim")
     if head_dim is None:
-        hidden = _cfg_get(cfg, "hidden_size", None)
-        heads = _cfg_get(cfg, "num_attention_heads", None)
+        hidden = _cfg_get(cfg, "hidden_size")
+        heads = _cfg_get(cfg, "num_attention_heads")
         if hidden and heads:
             head_dim = int(hidden) // int(heads)
     if not (layers and kv_heads and head_dim):
@@ -515,45 +479,27 @@ def check_context_fits(
     token_margin: float = DEFAULT_TOKEN_MARGIN,
     weight_bytes: int | None = None,
 ) -> dict:
-    """Refuse a cell that cannot physically run, BEFORE any weight is fetched.
+    """Refuse a cell that cannot run, before any weights are downloaded.
 
-    ``weight_bytes`` (item K, 2026-09-18): the checkpoint's weight size in
-    bytes, from ``safetensors_total_bytes``.  It wins over the config's
-    ``num_parameters``; when it is None AND the config states no
-    ``num_parameters`` the check RAISES instead of silently budgeting 0 bytes
-    of weights (which made a 55.6 GB reader "fit" on any card).
+    Raises ValueError, with every number in the message, when
+    1. ``prompt_tokens * (1 + token_margin) + max_new_tokens`` exceeds
+       ``max_position_embeddings``: an overflow does not crash, it silently
+       produces garbage answers that would be scored as the arm's result; or
+    2. weights + KV cache exceed ``gpu_mem_gb * headroom``: running out of
+       memory after a 56 GB download wastes an hour of GPU time per cell.
 
-    Two independent refusals:
+    ``token_margin`` covers the difference between the tiktoken counts used
+    for arm budgets and the model's own tokenizer.  The weight size is
+    ``weight_bytes`` (see ``safetensors_total_bytes``), else the config's
+    ``num_parameters``.  With neither, or without ``max_position_embeddings`` /
+    ``num_hidden_layers``, it raises rather than pass vacuously (0 weight
+    bytes would make any card look big enough).
 
-    1. ``prompt_tokens * (1 + token_margin) + max_new_tokens >
-       max_position_embeddings``: the arm's context is longer than the model's
-       position table.  A silent overflow here does not crash -- it produces
-       garbage answers that would then be scored as an arm result.
-    2. weights + KV cache > ``gpu_mem_gb * headroom``: an OOM after a 56 GB
-       download costs an hour of GPU time per cell.
-
-    A4 (``token_margin``): every arm budget in this repo is counted with
-    tiktoken ``cl100k_base``, but the reader tokenizes with the MODEL's
-    tokenizer (Qwen3.8 has a 248k vocabulary).  The two counts differ by a few
-    percent in either direction, so the pre-flight budgets a 15% safety margin
-    on the prompt rather than pretending the two agree.  ``token_margin=0.0``
-    restores the raw comparison.
-
-    F1: the LANGUAGE config is resolved here (``get_text_config()`` /
-    ``text_config``), and a config that states neither
-    ``max_position_embeddings`` nor ``num_hidden_layers`` RAISES: silently
-    returning ``None`` for both made this pre-flight pass vacuously on exactly
-    the vision-language wrapper it exists to protect.
-
-    The weight term comes from ``weight_bytes`` or, failing that, from the
-    config's ``num_parameters``; it is never guessed and never skipped.
-
-    Returns the inspected numbers for the meta sidecar; raises ValueError with
-    every number in the message when a cell is refused.
+    Returns the inspected numbers for the meta sidecar.
     """
     cfg = resolve_text_config(model_config)
-    max_pos = _cfg_get(cfg, "max_position_embeddings", None)
-    n_layers = _cfg_get(cfg, "num_hidden_layers", None)
+    max_pos = _cfg_get(cfg, "max_position_embeddings")
+    n_layers = _cfg_get(cfg, "num_hidden_layers")
     if max_pos is None or n_layers is None:
         raise ValueError(
             "cannot pre-flight the context: the resolved text config states "
@@ -561,14 +507,14 @@ def check_context_fits(
             "A vision-language wrapper keeps both under text_config; passing the "
             "wrapper here used to make this check pass with None values, which is "
             "exactly the silent failure it exists to prevent"
-            % (max_pos, n_layers, _cfg_get(cfg, "model_type", None))
+            % (max_pos, n_layers, _cfg_get(cfg, "model_type"))
         )
 
     margin = float(token_margin)
     effective_prompt = int(math.ceil(int(prompt_tokens) * (1.0 + margin)))
     total_tokens = effective_prompt + int(max_new_tokens)
     kv_bytes = kv_cache_bytes(cfg, total_tokens)
-    n_params = _cfg_get(cfg, "num_parameters", None)
+    n_params = _cfg_get(cfg, "num_parameters")
     if weight_bytes is not None:
         weight_bytes = int(weight_bytes)
     elif n_params:
@@ -631,36 +577,37 @@ def safetensors_header_bytes(path: str | Path) -> int:
     """Weight bytes of ONE safetensors file from its header alone: the file
     starts with a little-endian u64 header length, then the JSON header whose
     ``data_offsets`` end at the last byte of tensor data."""
-    import json as _json
-    import struct
-
     with open(path, "rb") as f:
         (n,) = struct.unpack("<Q", f.read(8))
-        header = _json.loads(f.read(n))
+        header = json.loads(f.read(n))
     return max(
         (int(v["data_offsets"][1]) for k, v in header.items() if k != "__metadata__"),
         default=0,
     )
 
 
+def _index_total_size(index_path: str | Path) -> int | None:
+    """``metadata.total_size`` of a ``model.safetensors.index.json``, or None."""
+    meta = json.loads(Path(index_path).read_text(encoding="utf-8")).get("metadata") or {}
+    size = meta.get("total_size")
+    return int(size) if size else None
+
+
 def safetensors_total_bytes(model_id: str) -> int | None:
-    """Total weight bytes of a checkpoint WITHOUT downloading weights (item K).
+    """Total weight bytes of a checkpoint, without downloading the weights.
 
-    Local directory: ``model.safetensors.index.json`` ``metadata.total_size``,
-    else the header of ``model.safetensors``.  Hub id: ``hf_hub_download`` of
-    the index file only; for a single-file checkpoint
-    ``parse_safetensors_file_metadata`` (header via range request).  None when
-    unobtainable -- callers must then refuse to pre-flight, never assume 0.
+    Local directory: ``metadata.total_size`` of the index file, else the header
+    of ``model.safetensors``.  Hub id: download only the index file; for a
+    single-file checkpoint read the header with a range request
+    (``parse_safetensors_file_metadata``).  None when the size cannot be
+    obtained (offline, no auth, ...); callers must then refuse to pre-flight,
+    never assume 0.
     """
-    import json as _json
-
     local = Path(model_id)
     if local.is_dir():
         index = local / SAFETENSORS_INDEX
         if index.is_file():
-            meta = _json.loads(index.read_text(encoding="utf-8")).get("metadata") or {}
-            size = meta.get("total_size")
-            return int(size) if size else None
+            return _index_total_size(index)
         single = local / SAFETENSORS_SINGLE
         if single.is_file():
             return safetensors_header_bytes(single)
@@ -671,12 +618,9 @@ def safetensors_total_bytes(model_id: str) -> int | None:
     except ImportError:
         return None
     try:
-        path = huggingface_hub.hf_hub_download(model_id, SAFETENSORS_INDEX)
-        meta = _json.loads(Path(path).read_text(encoding="utf-8")).get("metadata") or {}
-        size = meta.get("total_size")
-        return int(size) if size else None
+        return _index_total_size(huggingface_hub.hf_hub_download(model_id, SAFETENSORS_INDEX))
     except EntryNotFoundError:
-        pass
+        pass  # no index: a single-file checkpoint
     except Exception:  # noqa: BLE001 -- offline / auth / network: unobtainable, not 0
         return None
     try:
@@ -697,6 +641,9 @@ def load_questions(
     include_excluded: bool = False,
     max_questions: int | None = None,
 ) -> list[dict]:
+    """The questions to answer: ``subset`` ("generated", "legacy", or anything
+    else for all), without excluded ones unless ``include_excluded``, at most
+    ``max_questions``."""
     with Path(path).open(encoding="utf-8") as f:
         items = json.load(f)
     out = []
@@ -734,19 +681,18 @@ def load_reader(
     prefill_last_row: bool = False,
     quantization: str = "none",
 ) -> Any:
-    """Load the HF reader with the sdpa mass patch active.
+    """Load the HF reader with the sdpa mass patch active.  GPU only.
 
-    ``quantization``: "none" = bf16 (or the checkpoint's own pre-quantization);
-    "nf4"/"fp4" = bitsandbytes 4-bit on an unquantized checkpoint (weights
-    stay 4-bit in memory, dequantized per matmul) — the 46 GB-card fallback
-    of DECISIONS H24.
+    ``quantization``: "none" loads bf16 (or the checkpoint's own
+    quantization); "nf4"/"fp4" load an unquantized checkpoint in bitsandbytes
+    4-bit, dequantized per matmul, which is what fits on a 46 GB card.
 
-    GPU ONLY -- never called on the CPU dev machine (D-11).
+    ``bias_cap`` is the only cap: it clamps the effective bias ``w * mass``
+    inside ``build_mass_bias``; the mass vector itself is built uncapped.
 
-    ``bias_cap`` is the ONLY cap (Astra round 2, item 4): it clamps the
-    effective bias ``w * mass`` inside ``build_mass_bias``; the mass vector
-    itself is built uncapped.  ``prefill_last_row`` is the H15 (b) switch
-    (DECISIONS H15/H18), off by default.
+    ``prefill_last_row`` (off by default) also applies the bias during prefill,
+    to the last prompt row only.  That row produces the first answer token,
+    which decode-only injection can never influence.
     """
     from server.mass_weighted_gemma import MassWeightedLLM
 
@@ -757,18 +703,16 @@ def load_reader(
         quantization=str(quantization),
         prefill_last_row=bool(prefill_last_row),
     )
-    # The knobs below have no constructor parameters in MassWeightedGemma; they
-    # are read from config.yaml at __init__ time. The experiment must set them
-    # per cell, so they are assigned here explicitly (documented deviation).
+    # MassWeightedLLM reads these knobs from config.yaml in __init__ and has no
+    # constructor parameters for them; each cell needs its own values.
     llm._mass_weight = float(w)
     llm._prefill_mass_scale = float(prefill_scale)
     llm._bias_cap = None if bias_cap is None else float(bias_cap)
     llm.load()
-    # M1: the mass patch replaces torch's scaled_dot_product_attention. A model
-    # that runs "eager" (or flash_attention_2) never calls it, so the bias would
-    # be built, counted as applied and silently never added -- the injected arm
-    # would be the text-only arm with extra bookkeeping. load() now asks for
-    # sdpa explicitly; this asserts the model actually took it.
+    # The mass patch replaces torch's scaled_dot_product_attention.  A model
+    # running "eager" or flash_attention_2 never calls it: the bias would be
+    # built and counted as applied but never added, and the injected arm would
+    # silently be the text-only arm.  load() asks for sdpa; check it got it.
     impl = llm.attn_implementation
     if impl != "sdpa":
         raise RuntimeError(
@@ -782,15 +726,14 @@ def load_reader(
 def first_line_answer(text: str) -> str:
     """The answer is the FIRST non-empty line of the generation.
 
-    A leading ``<think>...</think>`` block (a thinking model answers inside it
-    first) is removed before the scan, and a bare ``<think>`` line is skipped, so
-    an unterminated block cannot become the answer.
+    A leading ``<think>...</think>`` block is removed first, and a bare
+    ``<think>`` / ``</think>`` line is skipped, so an unterminated thinking
+    block cannot become the answer.
 
-    The reader prompt asks for "the answer only, in a few words", but a chat
-    model routinely adds a second sentence of justification. score_binary
-    matches on the whole string with --max-words, so the extra prose either
-    trips the word cap or smuggles in a second candidate answer. The full text
-    is kept in the meta sidecar as ``raw`` so nothing is lost.
+    The prompt asks for "the answer only, in a few words", but a chat model
+    often adds a sentence of justification, which would either trip the
+    scorer's word cap or smuggle in a second candidate answer.  The full text is
+    kept in the meta sidecar as ``raw``.
     """
     body = THINK_BLOCK_RE.sub("", text, count=1) if "<think>" in text else text
     for line in body.splitlines():
@@ -812,22 +755,23 @@ def run_reader(
     progress: Callable[[str], None] | None = None,
     chat_template: bool = False,
 ) -> ReaderRun:
-    """Answer every question one at a time; greedy; mass vector per question.
+    """Answer every question one at a time (greedy), with its own mass vector.
 
-    GPU ONLY (``llm`` is a loaded MassWeightedLLM).
+    GPU only: ``llm`` is a loaded MassWeightedLLM.
 
-    ``arm`` enables the M2 guard: a ``cd_*`` arm run with ``w > 0`` MUST have at
-    least one planet span in its context. ``build_reader_mass_vector`` only
-    refuses when the literal text ``[PN`` is present, so a CD that serialized to
-    zero planets (every node promoted to a sun) would pass that check and run as
-    a silent baseline under an injected cell name.
+    When ``arm`` is a ``cd_*`` arm and ``w > 0``, the context must contain at
+    least one planet span.  ``build_reader_mass_vector`` only refuses when the
+    text ``[PN`` is present, so a CD serialized without any planet (every node
+    promoted to a sun) would otherwise run as a silent baseline under an
+    injected cell name.
 
-    ``bias_cap`` is NOT applied here (Astra round 2, item 4): the mass vector is
-    built uncapped and the single effective-bias cap lives in the loaded model
-    (``load_reader(bias_cap=...)`` -> ``build_mass_bias``).  Passing it to the
-    mass vector as well clamped ``mass`` first and then ``w * mass`` (mass 10,
-    w 0.5, cap 3 gave 1.5 instead of 3).  The parameter is kept for the call
-    signature and recorded by the caller's meta only.
+    ``bias_cap`` is not applied here and only keeps the signature: the single
+    cap lives in the loaded model (``load_reader(bias_cap=...)``).  Capping the
+    mass vector as well would clamp ``mass`` before ``w * mass`` (mass 10,
+    w 0.5, cap 3 would give 1.5 instead of 3).
+
+    ``chat_template=True`` wraps each prompt in the tokenizer's chat template
+    (see ``chat_wrap``).
     """
     tokenizer = llm.tokenizer
     result = ReaderRun()
@@ -837,15 +781,14 @@ def run_reader(
         ids = tokenizer(prompt, return_tensors=None)["input_ids"]
         if ids and isinstance(ids[0], list):
             ids = ids[0]
-        # Place the mass vector on the model's device. A parameter-less or
-        # not-yet-loaded model falls back to the torch default device; the
-        # exception list is narrow on purpose (no bare except).
+        # Put the mass vector on the model's device (None = torch's default
+        # device, for a model with no parameters or not loaded yet).
         try:
             device = next(llm._model.parameters()).device
         except (StopIteration, AttributeError):
             device = None
         vec, info = build_reader_mass_vector(
-            ids, tokenizer, inject, None,  # item 4: uncapped mass; the cap is in the model
+            ids, tokenizer, inject, None,  # uncapped: the cap is applied in the model
             w=w, prompt_text=prompt, device=device,
         )
         if vec is not None:
@@ -856,7 +799,7 @@ def run_reader(
             text = llm.generate(prompt)
         finally:
             stats = llm.mass_injection_stats()
-            # H15 (b) counter: an attribute (0 / absent on a stub), reset by clear.
+            # Read before clear_mass_vector() resets it; absent (0) on a stub.
             last_row_calls = int(getattr(llm, "bias_applied_prefill_last_row_calls", 0))
             llm.clear_mass_vector()
         if arm and arm.startswith("cd_") and w > 0 and info.planet_spans == 0:
@@ -866,8 +809,7 @@ def run_reader(
                 "[PN line, so this cell would be the text-only baseline under an "
                 "injected name" % (arm, w, info.spans, info.satellite_spans)
             )
-        answer = first_line_answer(text)
-        result.answers[q["qid"]] = answer
+        result.answers[q["qid"]] = first_line_answer(text)
         result.per_question[q["qid"]] = {
             "raw": text,
             "positions_found": info.positions_found,
@@ -906,8 +848,8 @@ def run_meta(
         "transformers_version": transformers.__version__,
         "torch_version": torch.__version__,
         "layer_types": layer_info.get("layer_types"),
-        # A3: the layer count the injection actually reaches, next to the raw
-        # depth -- a hybrid model biases only its full-attention layers.
+        # The layers the injection actually reaches, next to the raw depth: a
+        # hybrid model biases only its full-attention layers.
         "layer_types_summary": layer_info.get("layer_types_summary"),
         "n_sdpa_layers": layer_info.get("n_sdpa_layers"),
         "n_linear_layers": layer_info.get("n_linear_layers"),
@@ -928,14 +870,13 @@ def run_meta(
 
 
 def write_answers(out_path: str | Path, run: ReaderRun) -> None:
+    """``{qid: answer}`` to ``out_path``; run meta + per-question data to ``<out>.meta.json``."""
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", encoding="utf-8") as f:
         json.dump(run.answers, f, ensure_ascii=False, indent=2)
-    meta_path = out.with_suffix(".meta.json")
-    payload = dict(run.run_meta)
-    payload["per_question"] = run.per_question
-    with meta_path.open("w", encoding="utf-8") as f:
+    payload = {**run.run_meta, "per_question": run.per_question}
+    with out.with_suffix(".meta.json").open("w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
@@ -946,9 +887,8 @@ def write_answers(out_path: str | Path, run: ReaderRun) -> None:
 def resolve_allow_linear_layers(args: argparse.Namespace) -> bool:
     """``--allow-linear-layers`` / ``--no-allow-linear-layers`` / the default.
 
-    ``None`` (neither flag given) means "decide from the model id", which is
-    True only for the hybrid reader.  An explicit flag always wins, so
-    ``--no-allow-linear-layers`` restores the dense-only rule for the hybrid.
+    With neither flag (``None``) the model id decides (True only for the
+    hybrid reader).  An explicit flag always wins.
     """
     explicit = getattr(args, "allow_linear_layers", None)
     if explicit is not None:
@@ -1032,8 +972,8 @@ def main(argv: list[str] | None = None) -> int:
         args.questions, subset=args.subset, max_questions=args.max_questions
     )
 
-    # Pre-flight BEFORE the weights are pulled: a sliding-window model must
-    # fail fast, not after 56GB of bf16 has been downloaded.
+    # Pre-flight from the config alone, so an unusable model or an impossible
+    # cell fails before 56 GB of weights are downloaded.
     from transformers import AutoConfig
 
     allow_linear = resolve_allow_linear_layers(args)
@@ -1041,7 +981,6 @@ def main(argv: list[str] | None = None) -> int:
     layer_info = check_model_supported(config, allow_linear_layers=allow_linear)
     context_check = None
     if args.gpu_mem_gb is not None:
-        # B4: refuse an impossible cell before 56 GB of weights are downloaded.
         context_check = check_context_fits(
             config, tokens, args.max_new_tokens, args.gpu_mem_gb,
             weight_bytes=safetensors_total_bytes(args.model_id),
