@@ -207,7 +207,7 @@ CHECKPOINT_IDENTITY = (
     "arm", "W", "w", "model_id", "session_sha256", "questions_sha256", "cd_sha256",
     "compaction_sha256", "inject", "prefill_scale", "max_new_tokens", "prefill_chunk",
     "prefill_last_row", "exclude_rt", "questions_subset_sha256", "quantization",
-    "chat_template",
+    "chat_template", "bias_cap",
 )
 QUESTIONS_SUBSET_NAME = "questions_subset.json"
 
@@ -219,6 +219,7 @@ def checkpoint_header(
     prefill_last_row: bool, exclude_rt=(), questions_subset_sha: str | None = None,
     first_recent_rt: int | None = None, questions_dropped_in_window=(),
     quantization: str = "none", chat_template: bool = False,
+    bias_cap: float | None = None,
 ) -> dict:
     """The header line of ``answers.jsonl``: the cell's identity plus a few
     recorded fields."""
@@ -236,6 +237,8 @@ def checkpoint_header(
         # part of the identity: the chat template changes the prompt string and
         # therefore every token count
         "chat_template": bool(chat_template),
+        # cap on the effective bias w*mass; None = uncapped (the 2026-09 run)
+        "bias_cap": None if bias_cap is None else float(bias_cap),
         # a list, so the header still compares equal after a JSON round trip
         "exclude_rt": [int(i) for i in exclude_rt],
         "questions_subset_sha256": questions_subset_sha,
@@ -351,6 +354,9 @@ def build_parser() -> argparse.ArgumentParser:
                         "thinking off. Qwen3.8 then answers inside a <think> block and "
                         "spends its answer budget there")
     p.set_defaults(chat_template=True)
+    p.add_argument("--bias-cap", type=float, default=None,
+                   help="cap the effective bias w*mass at this value before softmax; "
+                        "default: no cap (raw satellite counts reached w*43 in the 2026-09 run)")
     p.add_argument("--prefill-last-row", action="store_true",
                    help="also add w*mass to the FINAL prefill row, the row that yields the "
                         "first answer token (decode-only injection cannot reach it); "
@@ -394,6 +400,8 @@ def validate_args(args: argparse.Namespace) -> None:
         raise SystemExit("--w must be 0 for baseline arm %s, got %g" % (args.arm, args.w))
     if args.prefill_chunk <= 0:
         raise SystemExit("--prefill-chunk must be > 0, got %d" % args.prefill_chunk)
+    if args.bias_cap is not None and args.bias_cap <= 0:
+        raise SystemExit("--bias-cap must be positive (omit it for no cap)")
     if args.max_new_tokens <= 0:
         raise SystemExit("--max-new-tokens must be > 0, got %d" % args.max_new_tokens)
     if args.arm == "proposed" and not args.cd:
@@ -853,7 +861,7 @@ def main(argv: list[str] | None = None) -> int:
         max_new_tokens=args.max_new_tokens,
         prefill_chunk=int(args.prefill_chunk) if args.arm == "A" else None,
         prefill_last_row=bool(args.prefill_last_row), quantization=args.quantization,
-        chat_template=bool(args.chat_template),
+        chat_template=bool(args.chat_template), bias_cap=args.bias_cap,
         exclude_rt=corpus.exclude_rt, questions_subset_sha=subset_sha,
         first_recent_rt=first_recent_rt, questions_dropped_in_window=dropped,
     )
@@ -873,7 +881,7 @@ def main(argv: list[str] | None = None) -> int:
         args.model_id,
         max_new_tokens=args.max_new_tokens,
         prefill_scale=args.prefill_scale,
-        bias_cap=None,
+        bias_cap=args.bias_cap,
         w=args.w,
         prefill_last_row=bool(args.prefill_last_row),
         quantization=args.quantization,
@@ -923,7 +931,7 @@ def main(argv: list[str] | None = None) -> int:
             question_t0 = time.time()
             part = run_reader.run_reader(
                 llm, window["prompt_context"], [q],
-                w=args.w, inject=args.inject, bias_cap=None, arm=args.arm, progress=progress,
+                w=args.w, inject=args.inject, bias_cap=args.bias_cap, arm=args.arm, progress=progress,
                 chat_template=args.chat_template,
             )
             pq = part.per_question[qid]
@@ -1050,7 +1058,7 @@ def main(argv: list[str] | None = None) -> int:
         w=args.w,
         inject=args.inject,
         prefill_scale=args.prefill_scale,
-        bias_cap=None,
+        bias_cap=args.bias_cap,
         context_tokens=window["window_tokens"],
         arm=args.arm,
         context_check=context_check,

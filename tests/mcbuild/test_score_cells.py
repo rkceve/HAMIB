@@ -78,3 +78,28 @@ def test_missing_answer_in_arm_A_is_refused(main_dir: Path) -> None:
 def test_mcnemar_matches_binomial() -> None:
     assert score_cells.mcnemar_one_sided(0, 0) == 1.0
     assert score_cells.mcnemar_one_sided(0, 5) == pytest.approx(0.5 ** 5)
+
+
+def test_truncation_control_is_compared_when_present(main_dir: Path) -> None:
+    """A ``truncB_W<W>`` directory is scored on the same subset and reported next to arm A;
+    without it the result has no B keys (so earlier results re-score unchanged)."""
+    out = main_dir.parent / "s.json"
+    qfile = str(main_dir.parent / "questions.json")
+    score_cells.main(["--main", str(main_dir), "--questions", qfile, "--out", str(out)])
+    (cell,) = json.loads(out.read_text(encoding="utf-8"))["cells"]
+    assert "B" not in cell and "paired_vs_B" not in cell
+
+    # truncation gets the recent fact (f003) and the absent one, misses the old ones
+    _write(main_dir / "truncB_W8000", {"f001": "unknown", "f002": "Paper", "f003": "1.21.8", "a001": "unknown"},
+           8000, [q["qid"] for q in QS])
+    md = main_dir.parent / "s.md"
+    score_cells.main(["--main", str(main_dir), "--questions", qfile, "--out", str(out), "--md", str(md)])
+    (cell,) = json.loads(out.read_text(encoding="utf-8"))["cells"]
+    assert cell["b_dir"] == "truncB_W8000"
+    assert cell["B"]["pass"] == 2            # f003 + a001 on the 3-question subset (f002 is excluded)
+    pb = cell["paired_vs_B"]
+    assert (pb["both_pass"], pb["both_fail"], pb["other_only"], pb["proposed_only"]) == (2, 1, 0, 0)
+    assert pb["mcnemar_p_proposed_gt_other"] == 1.0
+    assert "truncation pass" in md.read_text(encoding="utf-8")
+    # arm A comparison is untouched by the extra column
+    assert cell["A"]["pass"] == 2 and cell["paired"]["A_only"] == 1

@@ -35,6 +35,8 @@ from scipy import stats
 from benchmark.bineval.score_binary import judge_none, load_questions, score_condition
 
 CELL_RE = re.compile(r"^proposed_W(?P<W>\d+)_w(?P<w>[0-9.]+)$")
+# the truncation control at the same window budget: raw transcript cut to W, no diagram, no bias
+TRUNC_DIR = "truncB_W{W}"
 COMPUTE_KEYS = ("attn_flops_total", "wall_ms_total", "energy_joules", "prompt_tokens")
 
 
@@ -101,8 +103,30 @@ def pass_vector(scored: dict, qids: list[str]) -> list[int]:
     return [1 if verdict.get(q) == "pass" else 0 for q in qids]
 
 
-def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict]) -> dict:
-    """Score one proposed cell and arm A on the cell's question subset."""
+def _arm_block(sc: dict, comp: dict[str, dict], qids: list[str], meta: dict) -> dict:
+    return {"pass": sc["aggregate"]["pass"], "fail": sc["aggregate"]["fail"],
+            "indeterminate": sc["aggregate"]["indeterminate"],
+            "pass_rate": sc["aggregate"]["pass_rate_tier1"], "compute": compute_summary(comp, qids),
+            "items": sc["items"], "window_tokens": meta.get("context_tokens")}
+
+
+def _paired(pv: list[int], ov: list[int]) -> dict:
+    """Paired comparison of the proposed pass vector against another arm's."""
+    other_only = sum(1 for x, y in zip(pv, ov) if y == 1 and x == 0)
+    proposed_only = sum(1 for x, y in zip(pv, ov) if x == 1 and y == 0)
+    return {
+        "both_pass": sum(1 for x, y in zip(pv, ov) if x == 1 and y == 1),
+        "both_fail": sum(1 for x, y in zip(pv, ov) if x == 0 and y == 0),
+        "other_only": other_only, "proposed_only": proposed_only,
+        "mcnemar_p_proposed_gt_other": mcnemar_one_sided(other_only, proposed_only),
+        "mcnemar_p_other_gt_proposed": mcnemar_one_sided(proposed_only, other_only),
+        "bootstrap": bootstrap_ci(pv, ov),
+    }
+
+
+def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict], b_dir: Path | None = None) -> dict:
+    """Score one proposed cell against arm A, and against the truncation control
+    ``b_dir`` when it exists, on the cell's question subset."""
     subset = json.loads((cell_dir / "questions_subset.json").read_text(encoding="utf-8"))
     qids = list(subset["qids"])
     by_qid = {q["qid"]: q for q in questions}
@@ -128,7 +152,18 @@ def score_cell(cell_dir: Path, a_dir: Path, questions: list[dict]) -> dict:
         ratios[k] = None if pm is None or am is None or am == 0 else pm / am
     m = CELL_RE.match(cell_dir.name)
     assert m is not None
+    vs_b: dict = {}
+    if b_dir is not None and (b_dir / "meta.json").exists():
+        b_ans, b_comp, b_meta = load_cell(b_dir)
+        lacking = [q for q in qids if q not in b_ans]
+        if lacking:
+            raise ValueError(f"{cell_dir.name}: truncation control has no answer for {lacking[:5]}")
+        b_sc = score_condition(scored_qs, {}, b_ans, judge_none, strict_short=True)
+        bv = pass_vector(b_sc, qids)
+        vs_b = {"B": _arm_block(b_sc, b_comp, qids, b_meta), "paired_vs_B": _paired(pv, bv),
+                "b_dir": b_dir.name}
     return {
+        **vs_b,
         "cell": cell_dir.name, "W": int(m["W"]), "w": float(m["w"]),
         "n_questions": len(qids), "dropped_in_window": list(subset.get("dropped", [])),
         "first_recent_rt": subset.get("first_recent_rt"),
@@ -160,14 +195,20 @@ def _fmt(v: float | None) -> str:
 
 
 def markdown(cells: list[dict]) -> str:
-    lines = ["| W | w | n | proposed pass | A pass | diff (95% CI) | McNemar p (prop>A / A>prop) "
-             "| attn FLOPs ratio | wall ratio | energy ratio | prompt tokens prop / A |",
-             "|---|---|---|---|---|---|---|---|---|---|---|"]
+    """One row per cell. The truncation-control columns appear only when some cell has one."""
+    with_b = any("B" in r for r in cells)
+    head = ("| W | w | n | proposed pass | A pass | diff (95% CI) | McNemar p (prop>A / A>prop) "
+            "| attn FLOPs ratio | wall ratio | energy ratio | prompt tokens prop / A |")
+    sep = "|---|---|---|---|---|---|---|---|---|---|---|"
+    if with_b:
+        head += " truncation pass | diff vs truncation (95% CI) | McNemar p (prop>trunc / trunc>prop) |"
+        sep += "---|---|---|"
+    lines = [head, sep]
     for r in cells:
         pr, ar = r["proposed"], r["A"]
         bs = r["paired"]["bootstrap"]["diff_ci95"]
         cr = r["compute_ratio_proposed_over_A"]
-        lines.append(
+        row = (
             f"| {r['W']} | {r['w']} | {r['n_questions']} | {pr['pass']} ({pr['pass_rate']:.3f}) "
             f"| {ar['pass']} ({ar['pass_rate']:.3f}) | {pr['pass_rate'] - ar['pass_rate']:+.3f} "
             f"({bs[0]:+.3f}, {bs[1]:+.3f}) | {r['paired']['mcnemar_p_proposed_gt_A']:.3f} / "
@@ -175,6 +216,16 @@ def markdown(cells: list[dict]) -> str:
             f"| {_fmt(cr['wall_ms_total'])} | {_fmt(cr['energy_joules'])} "
             f"| {pr['compute']['prompt_tokens_mean']:.0f} / {ar['compute']['prompt_tokens_mean']:.0f} |"
         )
+        if with_b:
+            if "B" in r:
+                b, pb = r["B"], r["paired_vs_B"]
+                cb = pb["bootstrap"]["diff_ci95"]
+                row += (f" {b['pass']} ({b['pass_rate']:.3f}) | {pr['pass_rate'] - b['pass_rate']:+.3f} "
+                        f"({cb[0]:+.3f}, {cb[1]:+.3f}) | {pb['mcnemar_p_proposed_gt_other']:.3f} / "
+                        f"{pb['mcnemar_p_other_gt_proposed']:.3f} |")
+            else:
+                row += " n/a | n/a | n/a |"
+        lines.append(row)
     return "\n".join(lines) + "\n"
 
 
@@ -197,7 +248,8 @@ def main(argv: list[str] | None = None) -> int:
     cell_dirs = sorted((d for d in main_dir.iterdir() if d.is_dir() and CELL_RE.match(d.name)), key=key)
     if not cell_dirs:
         raise SystemExit(f"no proposed_W*_w* directories under {main_dir}")
-    cells = [score_cell(d, main_dir / args.a_dir, questions) for d in cell_dirs]
+    cells = [score_cell(d, main_dir / args.a_dir, questions,
+                        b_dir=main_dir / TRUNC_DIR.format(W=key(d)[0])) for d in cell_dirs]
     payload = {"kind": "mcbuild_bench_scores", "main_dir": str(main_dir), "a_dir": args.a_dir,
                "questions_sha256": hashlib.sha256(Path(args.questions).read_bytes()).hexdigest(),
                "cells": cells}

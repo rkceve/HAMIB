@@ -356,3 +356,49 @@ H33. (2026-09-21) Result of the H32 control, and the state in which the pod is r
     chose to stop here ("ここで止めるからデータの保存を完了させて").
     Everything under /workspace/mcb/runs was verified file by file against the local copy by sha256
     (140 files) before release; the scripts as executed are saved under pod_scripts_as_run/.
+H34. (2026-10-01, Ryosuke: "同じcontext windowでHAMIB機構をつけてないモデルでの実験もしたいね。リストに
+    追加して覚えといて") PENDING, not yet run. Add the truncation control: the same reader with NO
+    correlation diagram and NO bias, given the raw transcript cut to the same budgets
+    W in {8000, 16000, 32000} (newest-first whole round trips). This is `--arm B`, which
+    windows.py and run_arms.py already implement and tests already cover; it was never run
+    because Ryosuke struck Fable's unapproved baselines B/C on 2026-09-20, and he is now
+    adopting the truncation one himself.
+    Scoring (corrected 2026-10-03): arm B is NOT run through the in-window exclusion — applied
+    literally it would remove every question the truncated transcript can answer. Arm B runs on
+    all 96 questions and is scored on the SAME subset as the proposed cell at the same W (the
+    subset the proposed cell wrote; in the 2026-09-21 run that was all 96, since no verbatim round
+    trip fit). That is the honest truncation baseline: recent facts answered from raw text, old
+    facts lost to the cut.
+    Why it matters: the 2026-09 grid compares a diagram window against the FULL transcript only,
+    so it cannot say whether the diagram beats simply keeping the most recent W tokens of raw
+    conversation. Without this column "the diagram helps" is not established either — only
+    "a 32k diagram beats nothing at 32k" is, and that is not a claim anyone asked about. The
+    literature expects the flat original-order baseline to be competitive at budgets >= 5k
+    (DOS RAG, EMNLP 2025; recorded in RESEARCH_PROGRAM.md 1.7), which is exactly the band of
+    the 32k cell. Per-cell question exclusion (H22 d) applies to arm B the same way.
+    Cost estimate: 3 cells x 96 questions, reader only, no judge and no manager, so roughly
+    2.6 / 5.2 / 10.9 s per question = about 45 min of GPU plus three model loads.
+H35. (2026-10-03, Ryosuke, four answers to the second-round design questions) The second measurement
+    round is fixed as follows. Everything not listed stays exactly as in the 2026-09-21 run: same
+    corpus (36 round trips), same 96 questions, same cd.json (NOT rebuilt), same reader
+    Qwen/Qwen3.8-27B bf16, same chat-template prompt, greedy, 48 tokens, same per-cell question
+    exclusion, same windows W in {8000, 16000, 32000}, same serialization.
+    (a) Reader prompt: UNCHANGED (Ryosuke: "変えない。基準側の結果を使い回す"). Consequence: the
+        full-transcript baseline 94/96 and its per-question records are reused; no 6-hour re-run.
+    (b) Bias: inherit planet mass to satellites (`--inject planet+satellites`, the existing switch)
+        AND cap the effective bias w * mass at 3.0 (Ryosuke: "衛星に継承+実効値に上限3.0"). Raw
+        satellite-count mass is kept. Reason recorded in H33: 74 of 88 facts sit in satellite nodes
+        while injection was planet-only, and the uncapped product reached e^43 at w = 1.0.
+        w grid stays {0.1, 0.3, 1.0} for comparability; w = 0 is unchanged by inheritance and the
+        existing w = 0 cells are reused as the control.
+    (c) Serialization: UNCHANGED (Ryosuke: "今のまま"). Empty suns stay in the window; the 2026-09-21
+        proposal to drop them is NOT adopted.
+    (d) Window composition: the three windows UNCHANGED (Ryosuke: "前回の3条件のまま"). Neither a
+        whole-diagram window nor a half-diagram/half-recent window is added this round.
+    Together with H34 the round is therefore 12 new cells: truncation control (arm B) x 3 windows,
+    and proposed with (b) x 3 windows x 3 strengths. Reader only, no judge, no manager: about
+    2.5 h of A100 including model loads. Implementation needed before the run: a `--bias-cap`
+    flag on run_arms (today the cap is hard-wired to None in three places) carried in the
+    checkpoint identity and in meta.json, plus the pod script for the 12 cells.
+    Fable's proposals NOT adopted this round and left on the list: quote-then-answer prompt,
+    serializer cleanup, whole-diagram window, half-and-half window, two-step tree navigation.

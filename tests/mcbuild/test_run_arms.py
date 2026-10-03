@@ -1075,3 +1075,38 @@ def test_questions_subset_binding_and_misuse_are_refused(monkeypatch, tmp_path: 
     # a missing file is caught by the path check
     with pytest.raises(SystemExit, match="file not found"):
         run_arms.main(["--arm", "A", "--W", "full", "--questions-subset", str(tmp_path / "nope.json")] + base)
+
+
+def test_bias_cap_reaches_the_reader_and_the_cell_identity(monkeypatch, tmp_path: Path) -> None:
+    """``--bias-cap`` is passed to load_reader (which clamps w*mass in the model), recorded in
+    meta.json and the answers.jsonl header, and a resume with a different cap is refused.
+    Default is None, the uncapped setting of the 2026-09 run."""
+    from benchmark.bineval import run_reader
+
+    load_kwargs: list[dict] = []
+    llm = FakeLLM(WsTok())
+    _wire_gpu(monkeypatch, llm=llm)
+
+    def fake_load(model_id, **kw):
+        load_kwargs.append(kw)
+        return llm
+
+    monkeypatch.setattr(run_reader, "load_reader", fake_load)
+    base = _base(tmp_path)
+    out = tmp_path / "out"
+    assert run_arms.main(["--arm", "B", "--W", "8000", "--bias-cap", "3.0"] + base) == 0
+    assert load_kwargs[-1]["bias_cap"] == 3.0
+    meta = json.loads((out / "meta.json").read_text(encoding="utf-8"))
+    assert meta["bias_cap"] == 3.0
+    header, _done = read_checkpoint(out / "answers.jsonl")
+    assert header["bias_cap"] == 3.0
+    with pytest.raises(SystemExit, match="bias_cap"):
+        run_arms.main(["--arm", "B", "--W", "8000", "--bias-cap", "2.0", "--resume"] + base)
+    with pytest.raises(SystemExit, match="bias_cap"):
+        run_arms.main(["--arm", "B", "--W", "8000", "--resume"] + base)
+    with pytest.raises(SystemExit, match="positive"):
+        run_arms.main(["--arm", "B", "--W", "8000", "--bias-cap", "0"] + base)
+    assert run_arms.main(["--arm", "B", "--W", "8000"] + base) == 0
+    assert load_kwargs[-1]["bias_cap"] is None
+    meta = json.loads((out / "meta.json").read_text(encoding="utf-8"))
+    assert meta["bias_cap"] is None

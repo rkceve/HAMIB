@@ -33,3 +33,20 @@ Branch: `mcbuild-bench` (commit 019bdd9 + follow-ups). `main` untouched. Nothing
 - `wall_ms_prefill/decode` come from a LogitsProcessor timestamp (first decode step), not from kernel-level timing.
 - Attention FLOPs = QKᵀ term only, GQA ignored (E1 as decided).
 - Codex reviews return PLAUSIBLE findings (its sandbox has no python); each is verified locally before a fix.
+
+## Second measurement round — decided 2026-10-03 (H35), not yet run
+
+12 cells on the unchanged corpus / questions / cd.json / prompt / windows:
+- truncation control `--arm B`, W in {8000, 16000, 32000} (H34);
+- `--arm proposed --inject planet+satellites --bias-cap 3.0`, W in {8000, 16000, 32000}, w in {0.1, 0.3, 1.0}.
+Baseline 94/96 and the w = 0 cells are reused. Needs `--bias-cap` wired into run_arms and a pod script.
+
+## Pending experiments (2026-10-01)
+
+1. **Truncation control, `--arm B`** (H34, Ryosuke 2026-10-01). Raw transcript cut to
+   W in {8000, 16000, 32000}, no diagram, no bias. Already implemented and tested; never run.
+   Decides whether the correlation diagram beats simply keeping the most recent W tokens.
+   About 45 min of GPU.
+2. Satellite inheritance for the bias, `--inject planet+satellites` (74 of 88 facts sit in
+   satellite nodes, 3 in planet nodes; the 2026-09 run injected into planets only).
+3. A window that holds the whole diagram (about 35k tokens), to find the method's ceiling.
