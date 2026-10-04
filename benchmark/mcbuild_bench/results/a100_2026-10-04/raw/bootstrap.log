@@ -1,0 +1,33 @@
+
+[23:55:40] 0/5 GPU
+NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 63.26 W
+
+[23:55:40] 1/5 reader venv
+torch 2.11.0+cu128 cuda 12.8 | transformers 5.17.0 | gpu NVIDIA A100-SXM4-80GB
+
+[23:57:27] 2/5 weights: Qwen/Qwen3.8-27B (55.6 GB), downloading in the background -> /workspace/mcb/runs/weights.log
+
+[23:57:27] 3/5 causal_conv1d from the GitHub source tree (sm_80 only) -> /workspace/mcb/runs/ccd_build.log
+causal_conv1d: built
+causal_conv1d visible: True
+
+[00:02:55] 4/5 inputs from the first run
+tar: runs/main/A_full/answers.json: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/main/A_full/answers.jsonl: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/main/A_full/meta.json: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/main/A_full: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/main: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/v4_36rt/cd.json: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs/v4_36rt: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: runs: Cannot change ownership to uid 197609, gid 197121: Invalid argument
+tar: Exiting with failure status due to previous errors
+
+[00:02:55]    waiting for the weights
+WEIGHTS_READY /workspace/mcb/hf/hub/models--Qwen--Qwen3.8-27B/snapshots/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0
+
+[00:02:55] 5/5 CPU self-test
+303 passed, 15 warnings in 74.57s (0:01:14)
+ALL CHECKS PASSED
+overlay                      100G  7.1G   93G   8% /
+mfs#us-md-1.runpod.net:9421  404T  280T  124T  70% /workspace
+BOOTSTRAP_DONE

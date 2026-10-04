@@ -46,13 +46,33 @@ Accuracy across the full grid, by window size and bias strength `w`:
 | 16,000 | 41 | 41 | 33 | 20 |
 | 8,000 | 29 | 29 | 24 | 18 |
 
-**Two things this run does not show.** It does not show parity: the full
+**Second round, 2026-10-04 — the same window without the diagram.** Same
+model, prompt, questions and diagram; twelve new cells on one A100. A
+*truncation control* kept the most recent transcript in the same window instead
+of the diagram, and the bias was tried again with satellites inheriting their
+planet's mass and the effective bias capped at 3.0.
+
+| window | most recent transcript, no diagram | diagram, w = 0.1 / 0.3 / 1.0 | diagram, w = 0 (first round) |
+|---|---|---|---|
+| 32,000 | 38 | 61 / 62 / **63** | 63 |
+| 16,000 | 25 | 40 / 40 / 40 | 41 |
+| 8,000 | 20 | 30 / 29 / 29 | 29 |
+
+The diagram beats the recent transcript at every window: +25 questions at
+32,000, +15 at 16,000, +10 at 8,000 (paired McNemar p &lt; 0.001, 0.003, 0.03).
+The capped, inherited bias removed the collapse at large `w` and gained nothing:
+every cell is within two questions of `w = 0`.
+
+**Two things these runs do not show.** They do not show parity: the full
 transcript wins every cell (McNemar one-sided p &lt; 1e-9). And the attention bias
-contributed nothing — `w = 0` and `w = 0.1` produced byte-identical answers at
-all three window sizes, and larger `w` only made things worse. Everything the
-diagram rows achieved came from narrowing the context, not from the bias. The
+contributed nothing — in the first round `w = 0` and `w = 0.1` produced
+byte-identical answers at all three window sizes and larger `w` only made things
+worse; in the second, with the cap and the inheritance, `w` no longer hurts and
+still does not help. Everything the diagram rows achieved came from what is in
+the window, not from how it is weighted. The
 [full write-up](#the-2026-09-run-in-detail) gives the failure
-analysis and the two configuration defects behind the bias result.
+analysis and the two configuration defects behind the first bias result, and
+[the second round](#second-round-2026-10-04) the control and the retry.
 
 The external judge that routed the manager's decisions is a hosted API, so its
 energy is not measurable here. What is measured is published: 10,571 requests,
@@ -176,11 +196,12 @@ hamib/
 │   │   ├── jev_judge.py / jev_client.py / summarizer_client.py
 │   │   ├── gpu_sampler.py           # 1 Hz power sampling and per-span energy
 │   │   ├── pod/                     # the scripts as they ran on the GPU host
-│   │   └── results/a100_2026-09-20/ # 159 raw files with checksums; see its README
+│   │   ├── results/a100_2026-09-20/ # first round: 159 raw files with checksums; see its README
+│   │   └── results/a100_2026-10-04/ # second round: truncation control + capped bias; 101 files from the pod
 │   ├── bineval/                     # binary-decomposition question instrument
 │   └── longchat/                    # long synthetic dialogue corpora
 │
-├── tests/                           # 890 tests (pytest); none require a GPU
+├── tests/                           # 893 tests (pytest); none require a GPU
 │
 └── results/                         # Raw outputs of the 2026-05 experiments
     ├── oom_rescue/                  # GPT-OSS-20B OOM-rescue data
@@ -261,7 +282,7 @@ count, un-normalized and uncapped (0-43, median 1, **41% of planets are 0**), so
 That is e^43 on a pre-softmax logit, and it collapses the output. There is also a targeting problem: 74 of the 88 fact questions have their answer
 in a satellite node and only 3 in a planet node, while the bias is applied to
 planets only (`--inject planet`). The `planet+satellites` inheritance switch
-exists in `server/cd_parser.py` and was never exercised.
+exists in `server/cd_parser.py`; it was exercised in the second round, below.
 
 What the diagram itself achieved is the more interesting half. In every cell the
 window held the diagram alone: `n_recent_rts` is 0, so not one verbatim round
@@ -275,6 +296,58 @@ information loss in the manager.
 Behaviour on unanswerable questions is sound. The 8 questions with no answer in
 the corpus were answered "unknown" correctly 8/8 at W=8,000 and W=16,000, and 7/8 at
 W=32,000. Narrowing the window does not induce fabrication.
+
+### Second round (2026-10-04)
+
+Twelve reader-only cells on the unchanged inputs (corpus, questions, diagram,
+prompt, windows), one A100 80 GB SXM4 pod, 2 h 21 min including model loads, no
+failure. Nothing was rebuilt, so there is no new build cost; the diagram rows still
+carry the 0.694 MJ build from the first round. Everything is in
+`benchmark/mcbuild_bench/results/a100_2026-10-04/` (101 files from the pod, with checksums;
+its README has the per-question lists).
+
+**The truncation control.** `--arm B`: the raw transcript cut to the same budget W,
+newest round trips first, whole round trips only, no diagram, no bias. It answers
+whether the diagram beats simply keeping the most recent W tokens. Paired on the
+same 96 questions:
+
+| window | transcript cut to W (tokens used) | diagram, w = 0.1 | only the diagram got / only the cut transcript got | difference, 95% CI | McNemar p |
+|---|---|---|---|---|---|
+| 32,000 | 38 (31,007) | 61 | 34 / 11 | +23 (+10, +35) | &lt; 0.001 |
+| 16,000 | 25 (13,425) | 40 | 21 / 6 | +15 (+5, +25) | 0.003 |
+| 8,000 | 20 (5,229) | 30 | 17 / 7 | +10 (+1, +20) | 0.032 |
+
+The margin grows with the window. The questions only the cut transcript got are
+facts stated in its recent round trips; the ones only the diagram got are spread
+over the whole session. Reading cost is the same for both at the same W (the cut
+transcript's windows are a little smaller because they hold whole round trips:
+65%, 84% and 97% of the budget), so the diagram's extra cost is the one-time build:
+over 96 questions at 32k, 3.1x the energy of the cut transcript for 1.66x the
+answers, closing as the build amortizes.
+
+**The bias, second attempt.** Satellites inherit their planet's mass and the
+effective bias `w * mass` is capped at 3.0, which puts a bias on 71-78% of the
+window's tokens instead of the planet lines alone:
+
+| window | w = 0 (first round) | w = 0.1 | w = 0.3 | w = 1.0 | first round, w = 1.0 (uncapped, planets only) |
+|---|---|---|---|---|---|
+| 32,000 | 63 | 61 | 62 | 63 | 27 |
+| 16,000 | 41 | 40 | 40 | 40 | 20 |
+| 8,000 | 29 | 30 | 29 | 29 | 18 |
+
+The cap removed the collapse: `w = 1.0` now costs nothing instead of 36 questions
+at 32k. It gained nothing either: every cell is within two questions of `w = 0`.
+The answer strings do change with `w` (14 of 96 differ between `w = 0.1` and
+`w = 1.0` at 32k), but the changes cancel. The questions the diagram misses are the
+same as before — present in the window as a terse satellite line and not used by
+the reader; making the bias reach those lines did not make the reader use them. In
+both configurations tried, the measured effect of the attention bias is zero
+within ±2 questions.
+
+**Pod caveat.** The first run was on an A100 PCIe, this one on an A100 SXM4, which
+is about 10% faster and draws 15-20% more energy per question on the same cells.
+Accuracy is unaffected; energy and wall time are comparable within a round, not
+across the two. The energy figures at the top of this file are the first round's.
 
 ### The external judge
 
@@ -291,17 +364,24 @@ minutes it was working. At one such GPU the saving is 2.6x, at two it is 1.7x.
 ### Reproducing it
 
 ```bash
-# score the published run (no GPU needed)
+# score the published runs (no GPU needed)
 python -m benchmark.mcbuild_bench.score_cells \
   --main benchmark/mcbuild_bench/results/a100_2026-09-20/raw/main \
   --questions benchmark/mcbuild_bench/data/questions.json \
   --out scores.json --md scores.md
+
+# second round: the baseline is read from the first round's folder
+python -m benchmark.mcbuild_bench.score_cells \
+  --main benchmark/mcbuild_bench/results/a100_2026-10-04/raw/round2 \
+  --a-dir ../../../a100_2026-09-20/raw/main/A_full \
+  --questions benchmark/mcbuild_bench/data/questions.json \
+  --out scores2.json --md scores2.md
 ```
 
 `benchmark/mcbuild_bench/DESIGN.md` is the contract, `DECISIONS.md` the decision
 ledger (every deviation from the design is recorded there with its reason), and
-`results/a100_2026-09-20/README.md` indexes the 159 raw files with their
-checksums. The pod scripts under `benchmark/mcbuild_bench/pod/` are the ones that
+`results/a100_2026-09-20/README.md` and `results/a100_2026-10-04/README.md`
+index the raw files with their checksums. The pod scripts under `benchmark/mcbuild_bench/pod/` are the ones that
 actually ran.
 
 > **Redaction.** The corpus is a real development session, published after

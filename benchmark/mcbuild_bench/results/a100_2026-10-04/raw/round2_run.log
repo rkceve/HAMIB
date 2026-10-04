@@ -1,0 +1,25 @@
+[00:07:35] cell truncB_W8000
+[00:23:49] cell truncB_W8000 exit=0
+[00:23:49] cell truncB_W16000
+[00:31:13] cell truncB_W16000 exit=0
+[00:31:13] cell truncB_W32000
+[00:47:42] cell truncB_W32000 exit=0
+[00:47:42] cell proposed_W8000_w0.1
+[00:53:22] cell proposed_W8000_w0.1 exit=0
+[00:53:22] cell proposed_W8000_w0.3
+[00:58:53] cell proposed_W8000_w0.3 exit=0
+[00:58:53] cell proposed_W8000_w1.0
+[01:04:21] cell proposed_W8000_w1.0 exit=0
+[01:04:21] cell proposed_W16000_w0.1
+[01:13:37] cell proposed_W16000_w0.1 exit=0
+[01:13:37] cell proposed_W16000_w0.3
+[01:22:39] cell proposed_W16000_w0.3 exit=0
+[01:22:39] cell proposed_W16000_w1.0
+[01:31:44] cell proposed_W16000_w1.0 exit=0
+[01:31:44] cell proposed_W32000_w0.1
+[01:50:34] cell proposed_W32000_w0.1 exit=0
+[01:50:34] cell proposed_W32000_w0.3
+[02:09:16] cell proposed_W32000_w0.3 exit=0
+[02:09:16] cell proposed_W32000_w1.0
+[02:28:01] cell proposed_W32000_w1.0 exit=0
+ROUND2_DONE

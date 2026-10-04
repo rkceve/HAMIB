@@ -1,0 +1,4 @@
+[2026-10-04T00:07:37] watchdog start (poll 300s, max 5 restarts)
+[2026-10-04T00:38:47] watchdog start (poll 300s, stall after 1500s, max 5 restarts)
+[2026-10-04T02:28:48] ALL CELLS COMPLETE
+WATCHDOG_COMPLETE

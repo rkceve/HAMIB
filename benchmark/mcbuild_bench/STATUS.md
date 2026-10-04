@@ -34,12 +34,25 @@ Branch: `mcbuild-bench` (commit 019bdd9 + follow-ups). `main` untouched. Nothing
 - Attention FLOPs = QKᵀ term only, GQA ignored (E1 as decided).
 - Codex reviews return PLAUSIBLE findings (its sandbox has no python); each is verified locally before a fix.
 
-## Second measurement round — decided 2026-10-03 (H35), not yet run
+## Second measurement round — run 2026-10-04 (H35, H36); results in `results/a100_2026-10-04/`
 
-12 cells on the unchanged corpus / questions / cd.json / prompt / windows:
-- truncation control `--arm B`, W in {8000, 16000, 32000} (H34);
-- `--arm proposed --inject planet+satellites --bias-cap 3.0`, W in {8000, 16000, 32000}, w in {0.1, 0.3, 1.0}.
-Baseline 94/96 and the w = 0 cells are reused. `--bias-cap` is wired, `pod/round2_run.sh` exists.
+12 cells on the unchanged corpus / questions / cd.json / prompt / windows, one A100 80 GB SXM4 pod,
+00:07-02:28 UTC, no failure, no restart:
+- truncation control `--arm B`, W in {8000, 16000, 32000} (H34): **20 / 25 / 38** of 96
+  (windows of 5,229 / 13,425 / 31,007 tokens: whole round trips only);
+- `--arm proposed --inject planet+satellites --bias-cap 3.0`, W in {8000, 16000, 32000},
+  w in {0.1, 0.3, 1.0}: **30, 29, 29 / 40, 40, 40 / 61, 62, 63** of 96.
+Baseline 94/96 and the w = 0 cells (29 / 41 / 63) were reused.
+
+Two results. (1) The diagram beats the most recent transcript of the same size at every window:
++10 (p = 0.03), +15 (p = 0.003), +23 to +25 (p < 0.001) questions, paired McNemar. (2) The capped,
+satellite-inherited bias removed the collapse at large w (September: 63 → 27 at 32k; now 61-63) and
+gained nothing: every cell is within 2 questions of w = 0. Energy and wall time are not comparable
+with the first run's PCIe pod (SXM4 is ~10 % faster and ~15-20 % more energy per question); within
+this round, truncation and diagram cost the same to read at the same W. Details and the per-question
+lists are in `results/a100_2026-10-04/README.md`.
+
+What was verified before the run (kept for the record):
 
 Verified without a GPU (2026-10-03): 957 unit tests; a dry run of round2_run.sh with a recording stand-in
 for run_arms (12 command lines with the intended flags, a second pass skips all 12 as complete); a CPU
@@ -56,10 +69,10 @@ informative cells are w = 0.1 and 0.3.
 
 ## Pending experiments (2026-10-01)
 
-1. **Truncation control, `--arm B`** (H34, Ryosuke 2026-10-01). Raw transcript cut to
-   W in {8000, 16000, 32000}, no diagram, no bias. Already implemented and tested; never run.
-   Decides whether the correlation diagram beats simply keeping the most recent W tokens.
-   About 45 min of GPU.
-2. Satellite inheritance for the bias, `--inject planet+satellites` (74 of 88 facts sit in
-   satellite nodes, 3 in planet nodes; the 2026-09 run injected into planets only).
+1. ~~Truncation control, `--arm B`~~ — run 2026-10-04 (H36): 20 / 25 / 38 of 96; the diagram
+   wins at every window.
+2. ~~Satellite inheritance for the bias, `--inject planet+satellites`~~ — run 2026-10-04 with
+   the cap at 3.0 (H36): no gain, no collapse.
 3. A window that holds the whole diagram (about 35k tokens), to find the method's ceiling.
+4. (Fable's proposal, not adopted) a truncation variant that fills the budget with a partial
+   round trip; the whole-round-trip control used 65 % / 84 % / 97 % of the 8k / 16k / 32k budgets.

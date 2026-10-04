@@ -402,3 +402,38 @@ H35. (2026-10-03, Ryosuke, four answers to the second-round design questions) Th
     checkpoint identity and in meta.json, plus the pod script for the 12 cells.
     Fable's proposals NOT adopted this round and left on the list: quote-then-answer prompt,
     serializer cleanup, whole-diagram window, half-and-half window, two-step tree navigation.
+
+H36. (2026-10-04, measured) The second round ran as fixed in H34/H35 on one A100 80 GB SXM4 pod
+    (driver 580, torch 2.11.0+cu128, the same pins otherwise), 00:07-02:28 UTC, twelve cells,
+    no failure, no restart, no stall. Results, correct of 96:
+      truncation control (arm B)   W = 8000: 20   16000: 25   32000: 38
+      proposed, w = 0.1 / 0.3 / 1.0   8000: 30 / 29 / 29   16000: 40 / 40 / 40   32000: 61 / 62 / 63
+      reused: baseline 94, w = 0 cells 29 / 41 / 63.
+    (a) The diagram beats the most recent transcript of the same size at every window (paired
+        McNemar, diagram > truncation: p = 0.032 / 0.003 / < 0.001 at w = 0.1; +10, +15, +23
+        questions). The truncation windows hold whole round trips and so used 5,229 / 13,425 /
+        31,007 tokens of the budgets (65 / 84 / 97 %); the control was NOT exclusion-filtered,
+        by H34. A variant that fills the budget with a partial round trip is Fable's proposal
+        and is not adopted.
+    (b) The capped, satellite-inherited bias (71-78 % of window tokens biased) removed the
+        collapse at large w and gained nothing: every cell within 2 questions of w = 0. At 32k
+        the w = 0.1 cell lost f023 and f069 relative to September's w = 0.1 and the w = 1.0 cell
+        has them back; the answer strings differ on 8-14 of 96 questions between strengths, the
+        pass counts do not. The measured effect of the bias is zero within +-2 in both
+        configurations tried.
+    (c) Pod difference. The first run was on an A100 PCIe; this one on an SXM4. Reader cells are
+        about 10 % faster and 15-20 % more energy per question here, so the energy and wall ratios
+        against the reused baseline in scores.md mix two pods. Accuracy is unaffected. Within the
+        round, truncation and diagram cost the same to read at the same W.
+    (d) Operational change during the run (Ryosuke, 00:30 UTC: check every few minutes and, if the
+        run is stalled, find the cause, fix and resume). At 00:38 UTC round2_run.sh was replaced by a
+        version that reports a failed cell and continues (the pass exits 1 at the end so the
+        watchdog retries), and watchdog_round2.sh by a version that also kills a runner that has
+        written nothing for 25 min. Both were renamed over the old files, so the running instance
+        kept executing the original script (identical cell command lines); the new watchdog never
+        had to act. Both versions are in the repository history; the end-state files are in
+        results/a100_2026-10-04/pod_scripts_as_run/.
+    (e) Data: 101 files fetched as one tarball through the proxy ssh, sha256 verified on both
+        sides (pod/fetch.sh), listed with per-file checksums in raw_manifest.json. No file over
+        250 KB; nothing gzipped. The baseline's raw files are not duplicated; the scorer reads them
+        from results/a100_2026-09-20/raw/main/A_full.
