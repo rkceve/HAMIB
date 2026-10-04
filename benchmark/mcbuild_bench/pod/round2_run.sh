@@ -13,6 +13,7 @@
 # can be pointed at this directory alone.
 #
 # Usage on the pod:  bash round2_run.sh [cd.json]        (resumable; rerun to continue)
+# A cell that exits non-zero is reported as CELL_FAIL and skipped; the pass ends with exit 1.
 set -uo pipefail
 MCB=/workspace/mcb; CD="${1:-$MCB/runs/v4_36rt/cd.json}"; OUT=$MCB/runs/round2; mkdir -p "$OUT"
 export HF_HOME=$MCB/hf PATH="$HOME/.local/bin:$PATH"
@@ -34,8 +35,10 @@ run_cell() {  # name, then run_arms arguments
   python -m benchmark.mcbuild_bench.run_arms "${COMMON[@]}" "$@" \
     --out "$OUT/$cell" --gpu-csv "$OUT/$cell/gpu.csv" >> "$OUT/$cell.log" 2>&1
   local rc=$?; log "cell $cell exit=$rc"
-  [ "$rc" = 0 ] || { echo "CELL_FAIL $cell"; echo ROUND2_DONE; exit 1; }
+  # a failed cell is reported and the queue moves on; the watchdog's restart retries it later
+  [ "$rc" = 0 ] || { echo "CELL_FAIL $cell"; FAILED="$FAILED $cell"; }
 }
+FAILED=""
 
 for W in 8000 16000 32000; do
   run_cell "truncB_W${W}" --arm B --W "$W" --w 0 --inject none
@@ -44,4 +47,5 @@ for W in 8000 16000 32000; do for w in 0.1 0.3 1.0; do
   run_cell "proposed_W${W}_w${w}" --arm proposed --W "$W" --w "$w" \
     --inject planet+satellites --bias-cap 3.0 --cd "$CD"
 done; done
+[ -z "$FAILED" ] || { log "cells that failed this pass:$FAILED"; echo ROUND2_DONE; exit 1; }
 echo ROUND2_DONE
